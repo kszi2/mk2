@@ -1,0 +1,19 @@
+= form_for @coursework do |f|
+  - if @coursework.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@coursework.errors.count, "error")} prohibited this coursework from being saved:"
+      %ul
+        - @coursework.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :course
+    = f.text_field :course
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :active
+    = f.check_box :active
+  .actions
+    = f.submit 'Save'

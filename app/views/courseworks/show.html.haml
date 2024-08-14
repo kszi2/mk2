@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Course:
+  = @coursework.course
+%p
+  %b Name:
+  = @coursework.name
+%p
+  %b Active:
+  = @coursework.active
+
+= link_to 'Edit', edit_coursework_path(@coursework)
+\|
+= link_to 'Back', courseworks_path

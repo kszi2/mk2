@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @template.name
+%p
+  %b Course:
+  = @template.course
+%p
+  %b Data:
+  = @template.data
+
+= link_to 'Edit', edit_template_path(@template)
+\|
+= link_to 'Back', templates_path

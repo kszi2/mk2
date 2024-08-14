@@ -1,0 +1,25 @@
+%h1 Listing courseworks
+
+%table
+  %thead
+    %tr
+      %th Course
+      %th Name
+      %th Active
+      %th
+      %th
+      %th
+
+  %tbody
+    - @courseworks.each do |coursework|
+      %tr
+        %td= coursework.course
+        %td= coursework.name
+        %td= coursework.active
+        %td= link_to 'Show', coursework
+        %td= link_to 'Edit', edit_coursework_path(coursework)
+        %td= link_to 'Destroy', coursework, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Coursework', new_coursework_path
