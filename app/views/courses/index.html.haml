@@ -10,7 +10,7 @@
 
   %tbody
     - @courses.each do |course|
-      %tr
+      %tr.border-b.border-wa-brand-border-loud
         %td= course.name
         %td= link_to 'Show', course
         %td= link_to 'Edit', edit_course_path(course)

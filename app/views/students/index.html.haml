@@ -1,0 +1,31 @@
+%h1 Listing students
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Neptun
+      %th
+      %th
+      %th
+
+  %tbody
+    - @students.each do |student|
+      %tr.border-b.border-wa-brand-border-loud
+        %td= student.name
+        %td.font-mono= student.neptun.upcase
+        %td= link_to 'Show', student
+        %td= link_to 'Edit', edit_student_path(student)
+        %td= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Student', new_student_path
+
+- if @from_import
+  %p Imported!
+  - if @import_errors.blank?
+    %span.text-wa-success-fill-loud All imports successful!
+  - else
+    - @import_errors.each do |import_error|
+      .block.text-wa-danger-fill-loud.mt-2= import_error

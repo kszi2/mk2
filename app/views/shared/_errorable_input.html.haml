@@ -1,0 +1,5 @@
+.flex.flex-col.gap-1
+  = yield
+  .text-wa-danger-fill-loud.flex.flex-col
+    - entity.errors[field].each do |error|
+      %div= error.upcase_first

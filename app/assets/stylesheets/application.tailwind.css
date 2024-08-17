@@ -1,3 +1,123 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:host, :root {
+    /* WebAwesome configuration: this shouldn't need !important...
+     * but I'm probably fucking up something
+     */
+    --wa-border-radius-multiplier: .1875 !important;
+
+    /* focus config: make it smaller, and light-blue */
+    --wa-focus-ring-width: .09375rem !important;
+    --wa-focus-color: #4cb0f1 !important;
+
+    /* surface config: blue-tinted dark */
+    --wa-color-surface-default: #11181e !important;
+    --wa-color-surface-raised: #202127 !important;
+    --wa-color-surface-lowered: #0a1117 !important;
+    --wa-color-surface-border: #15202b !important;
+
+    /* text-color config: blue-tinted white-ish */
+    --wa-color-text-normal: #eaeaff !important;
+    --wa-color-text-quiet: #5f5f67 !important;
+    --wa-color-text-link: var(--wa-focus-color) !important;
+
+    /* color config */
+    /*** brand color ***/
+    --wa-color-brand-fill-quiet: #321763 !important;
+    --wa-color-brand-fill-normal: #472c78 !important;
+    --wa-color-brand-fill-loud: #654a96 !important;
+
+    --wa-color-brand-border-quiet: #503578 !important;
+    --wa-color-brand-border-normal: #654a8d !important;
+    --wa-color-brand-border-loud: #8368ab !important;
+
+    --wa-color-brand-on-quiet: var(--wa-color-brand-border-normal) !important;
+    --wa-color-brand-on-normal: var(--wa-color-text-normal) !important;
+    --wa-color-brand-on-loud: var(--wa-color-text-normal) !important;
+
+    /*** success color ***/
+    --wa-color-success-fill-quiet: #728964 !important;
+    --wa-color-success-fill-normal: #87a376 !important;
+    --wa-color-success-fill-loud: #82c86e !important;
+
+    --wa-color-success-border-quiet: #95a287 !important;
+    --wa-color-success-border-normal: #a0d08f !important;
+    --wa-color-success-border-loud: #aff59b !important;
+
+    --wa-color-success-on-quiet: #e7f5e2 !important;
+    --wa-color-success-on-normal: #eefbea !important;
+    --wa-color-success-on-loud: var(--wa-color-text-normal) !important;
+
+    /*** neutral color ***/
+    --wa-color-neutral-fill-quiet: #0f1316 !important;
+    --wa-color-neutral-fill-normal: #11181e !important;
+    --wa-color-neutral-fill-loud: #252c32 !important;
+
+    --wa-color-neutral-border-quiet: #414548 !important;
+    --wa-color-neutral-border-normal: #434a50 !important;
+    --wa-color-neutral-border-loud: #575e64 !important;
+
+    --wa-color-neutral-on-quiet: #e7f5e2 !important;
+    --wa-color-neutral-on-normal: #eefbea !important;
+    --wa-color-neutral-on-loud: var(--wa-color-text-normal) !important;
+
+    /*** warning color ***/
+    --wa-color-warning-fill-quiet: #9f582a !important;
+    --wa-color-warning-fill-normal: #fa8e08 !important;
+    --wa-color-warning-fill-loud: #e1750f !important;
+
+    --wa-color-warning-border-quiet: #bd7648 !important;
+    --wa-color-warning-border-normal: #ff930d !important;
+    --wa-color-warning-border-loud: #ff932d !important;
+
+    --wa-color-warning-on-quiet: #e7f5e2 !important;
+    --wa-color-warning-on-normal: #eefbea !important;
+    --wa-color-warning-on-loud: var(--wa-color-text-normal) !important;
+
+    /*** warning color ***/
+    --wa-color-danger-fill-quiet2: rgba(115, 8, 26, 0.1) !important;
+    --wa-color-danger-fill-quiet: #73081a !important;
+    --wa-color-danger-fill-normal: #780d24 !important;
+    --wa-color-danger-fill-loud: #96031A !important;
+
+    --wa-color-danger-border-quiet: #9b1c1a !important;
+    --wa-color-danger-border-normal: #b54343 !important;
+    --wa-color-danger-border-loud: #822b2b !important;
+
+    --wa-color-danger-on-quiet: #e7f5e2 !important;
+    --wa-color-danger-on-normal: #eefbea !important;
+    --wa-color-danger-on-loud: var(--wa-color-text-normal) !important;
+}
+
+.menu-stuff wa-button::part(base) {
+    text-transform: uppercase !important;
+}
+
+.menu-item {
+    color: var(--wa-color-text-normal);
+    text-transform: uppercase;
+    text-decoration: none;
+
+    padding: 0 20px;
+    position: relative;
+}
+
+.menu-item:after {
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 1px;
+    left: 50%;
+    position: absolute;
+    background: var(--wa-color-brand-border-normal);
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+}
+
+.menu-item:hover:after {
+    width: 100%;
+    left: 0;
+}
