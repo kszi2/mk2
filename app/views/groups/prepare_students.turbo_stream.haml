@@ -1,0 +1,8 @@
+= turbo_stream.replace "students-to-add" do
+  #students-to-add
+    = hidden_field_tag "current_neptuns", @current_neptuns.join(";")
+    .flex.flex-wrap.w-full.gap-2
+      - @missing_neptuns.each do |neptun|
+        %wa-tag.w-fit._(variant="danger")= neptun
+      - @current_neptuns.each do |neptun|
+        %wa-tag.w-fit= neptun

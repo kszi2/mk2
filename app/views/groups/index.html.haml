@@ -1,23 +1,22 @@
-%h1 Listing groups
+%h1.text-4xl.mb-4 Listing groups for #{@course.name}
 
-%table
-  %thead
-    %tr
-      %th Course
-      %th Name
-      %th
-      %th
-      %th
-
-  %tbody
-    - @groups.each do |group|
+= turbo_frame_tag 'groups-frame' do
+  %table.w-full
+    %thead
       %tr
-        %td= group.course
-        %td= group.name
-        %td= link_to 'Show', group
-        %td= link_to 'Edit', edit_group_path(group)
-        %td= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' }
+        %th Name
+        %th
+        %th
+        %th
+
+    %tbody
+      - @groups.each do |group|
+        %tr
+          %td= group.name
+          %td= link_to 'Show', [@course, group]
+          %td= link_to 'Edit', edit_course_group_path(group.course, group)
+          %td= link_to 'Destroy', [@course, group], method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
 
-= link_to 'New Group', new_group_path
+= link_to 'New Group', new_course_group_path(@course)

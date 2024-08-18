@@ -4,6 +4,17 @@
   %b Name:
   = @course.name
 
-= link_to 'Edit', edit_course_path(@course)
-\|
-= link_to 'Back', courses_path
+.flex.gap-2
+  = link_to 'Edit', edit_course_path(@course)
+  \|
+  = link_to 'Back', courses_path
+
+.flex.flex-row.flex-wrap.items-center.gap-2.my-4._(class="mx-4 md:mx-0")
+  %h2.text-4xl Groups
+  %wa-button.w-fit{href: new_course_group_path(@course)}
+    %wa-icon(slot="prefix" name="plus")
+    Add group
+
+= turbo_frame_tag "groups-frame", src: course_groups_path(@course) do
+  .w-full.flex.flex-row.justify-center
+    %wa-spinner.text-9xl

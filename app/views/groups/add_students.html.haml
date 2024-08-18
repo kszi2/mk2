@@ -1,0 +1,26 @@
+= turbo_frame_tag "add-students" do
+  %wa-button.w-fit{href: course_group_add_students_path(@course, @group)}
+    %wa-icon(slot="prefix" name="plus")
+    Add students
+
+  %wa-drawer.text-wa-text-normal._(with-header with-footer open style="--size: 50%;")
+    .text-wa-text-normal.text-2xl._(slot="label") Add students
+
+    = form_tag course_group_prepare_students_path(@course, @group), id: "students_form", multipart: true do
+      .text-wa-text-normal.flex.flex-col.gap-3
+        = raw_wa_input_tag :manual_neptuns, "text", "Manual import"
+
+        %div
+          %h3.text-md Import from file
+          = file_field_tag :import_file, accept: ".csv"
+
+        .w-full.flex.justify-end
+          %wa-button(variant="brand" type="submit" name="stage") Stage
+
+        %h3.text-xl Students to add
+        #students-to-add
+          = hidden_field_tag :current_neptuns, ""
+
+
+    %wa-button(slot="footer" type="button" variant="warning" appearance="outlined" data-drawer="close") Close
+    %wa-button(slot="footer" variant="brand" form="students_form" type="submit" data-drawer="close") Add

@@ -19,7 +19,9 @@ class Student < ApplicationRecord
       current_row = i
       i = i + 1
 
-      student = Student.create(row.to_hash)
+      data = row.to_hash
+      data["neptun"].upcase!
+      student = Student.create(data)
       next if student.valid?
 
       logger.warn "errors for: #{student.inspect}"

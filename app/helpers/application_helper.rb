@@ -42,4 +42,8 @@ class ActionView::Helpers::FormBuilder
   def wa_text(field)
     wa_text_tag @object, field
   end
+
+  def wa_submit(text = "Save")
+    wa_submit_tag text
+  end
 end

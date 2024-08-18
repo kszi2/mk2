@@ -91,6 +91,10 @@
     --wa-color-danger-on-loud: var(--wa-color-text-normal) !important;
 }
 
+dialog.dialog {
+    color: var(--wa-color-text-normal);
+}
+
 .menu-stuff wa-button::part(base) {
     text-transform: uppercase !important;
 }
