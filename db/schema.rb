@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_18_122713) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_18_171613) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -38,6 +38,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_18_122713) do
     t.datetime "updated_at", null: false
     t.date "year", default: "2024-08-18", null: false
     t.integer "semester", default: 1, null: false
+    t.date "first_date", null: false
+    t.integer "repeat_times", default: 14, null: false
+    t.integer "day_difference", default: 7, null: false
     t.index ["course_id", "name", "year", "semester"], name: "index_groups_on_course_id_and_name_and_year_and_semester", unique: true
     t.index ["course_id"], name: "index_groups_on_course_id"
   end

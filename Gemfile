@@ -72,3 +72,7 @@ end
 gem "haml", "~> 6.3"
 gem "haml-rails", "~> 2.1"
 gem "prawn", "~> 2.5"
+
+gem 'faraday'
+gem 'faraday-multipart'
+gem 'httpx'

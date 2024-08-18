@@ -14,6 +14,7 @@
   %wa-button{size: :small, href: edit_course_group_path(@course, @group)} Edit
   %wa-button{size: :small, href: course_groups_path(@course)} Back
   %wa-button{size: :small, href: course_group_path(@course, @group, format: :pdf)} Get attendance sheet
+  %wa-button{size: :small, href: course_group_send_attendance_path(@course, @group)} Send attendance sheet to discord
 
 .flex.flex-row.flex-wrap.items-center.gap-2.mt-8._(class="mx-4 md:mx-0")
   %h2.text-4xl Students

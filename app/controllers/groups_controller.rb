@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
   before_action :set_course
-  before_action :set_group, only: %i[ show edit update destroy add_students remove_student ]
+  before_action :set_group, only: %i[ show edit update destroy add_students remove_student send_attendance ]
 
   # GET /groups or /groups.json
   def index
@@ -29,6 +29,13 @@ class GroupsController < ApplicationController
         doc = @group.attendance_sheet(date, sort)
         send_data doc.render, filename: "#{@group.name}.pdf", type: 'application/pdf'
       end
+    end
+  end
+
+  def send_attendance
+    @group.send_attendance_sheet
+    respond_to do |format|
+      format.html { redirect_to course_group_path(@course, @group), notice: "Attendance sheet was successfully queued for sending." }
     end
   end
 
@@ -162,6 +169,6 @@ class GroupsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def group_params
-    params.require(:group).permit(:course_id, :name)
+    params.require(:group).permit(:course_id, :name, :year, :semester, :first_date, :repeat_times, :day_difference)
   end
 end

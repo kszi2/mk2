@@ -5,6 +5,20 @@ class Group < ApplicationRecord
   validates :name, presence: true, uniqueness: { scope: :course_id }
   validates :year, presence: true
   validates :semester, presence: true, numericality: { only_integer: true }, inclusion: { in: 1..2 }
+  validates :first_date, presence: true, uniqueness: { scope: [:course_id, :year, :semester] }
+  validates :repeat_times, presence: true, numericality: { only_integer: true }, inclusion: { in: 0..14 }
+  validates :day_difference, presence: true, numericality: { only_integer: true }, inclusion: { in: 1..(7 * 14) }
+
+  def dates_for_class
+    (0..repeat_times).map do |entry|
+      first_date + (day_difference * entry).days
+    end
+  end
+
+  def send_attendance_sheet(*args)
+    pdf = attendance_sheet(*args)
+    SendToDiscordWebhookJob.perform_later(pdf.render, "#{name}.pdf")
+  end
 
   def attendance_sheet(date = Date.today, sort = :name, title = "Jelenléti ív")
     me = self
@@ -44,7 +58,7 @@ class Group < ApplicationRecord
           end
 
           # checkbox
-          bounding_box [index_pad + 345, offset - (offset - 11) / 2 ], width: 11, height: 11 do
+          bounding_box [index_pad + 345, offset - (offset - 11) / 2], width: 11, height: 11 do
             stroke_bounds
           end
         end
