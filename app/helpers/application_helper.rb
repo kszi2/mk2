@@ -12,8 +12,10 @@ module ApplicationHelper
     end
   end
 
-  def wa_text_tag(object, field)
-    wa_input_tag object, field, "text"
+  %w[text number date].each do |type|
+    ApplicationHelper.define_method "wa_#{type}_tag".to_sym do |object, field|
+      wa_input_tag object, field, type
+    end
   end
 
   def wa_submit_tag(text = "Save")
@@ -23,7 +25,7 @@ module ApplicationHelper
   def wa_input_tag(object, field, type)
     errorable_input object, field do
       # noinspection RubyArgCount field_name needs only one param here
-      raw_wa_input_tag field_name(field), 'text', field.to_s.humanize, object.send(field)
+      raw_wa_input_tag field_name(field), type, field.to_s.humanize, object.send(field)
     end
   end
 
@@ -39,8 +41,10 @@ end
 class ActionView::Helpers::FormBuilder
   include ApplicationHelper
 
-  def wa_text(field)
-    wa_text_tag @object, field
+  %i[wa_text wa_date wa_number].each do |type|
+    self.define_method type do |field|
+      self.send("#{type.to_s}_tag".to_sym, @object, field)
+    end
   end
 
   def wa_submit(text = "Save")

@@ -1,4 +1,8 @@
 = form_for [@course, @group] do |f|
   = f.hidden_field :course_id, value: @course.id
   = f.wa_text :name
-  = f.wa_submit
+  = f.wa_date :year
+  = f.wa_number :semester
+
+  .flex.justify-end
+    = f.wa_submit

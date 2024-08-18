@@ -11,7 +11,7 @@
 
     %tbody
       - @groups.each do |group|
-        %tr
+        %tr.border-b.border-wa-brand-border-loud
           %td= group.name
           %td= link_to 'Show', [@course, group]
           %td= link_to 'Edit', edit_course_group_path(group.course, group)
