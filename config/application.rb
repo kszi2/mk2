@@ -23,5 +23,15 @@ module Mk2
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # use good_job in all scenarios (good_job itself handles different envs)
+    config.active_job.queue_adapter = :good_job
+    config.good_job.enable_cron = true
+    config.good_job.cron = {
+      send_next_days_attendances: {
+        cron: "29 17 * * *",
+        class: 'DailySendNeededAttendancesJob',
+      }
+    }
   end
 end

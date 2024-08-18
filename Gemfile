@@ -76,3 +76,5 @@ gem "prawn", "~> 2.5"
 gem 'faraday'
 gem 'faraday-multipart'
 gem 'httpx'
+
+gem "good_job", "~> 4.2"
