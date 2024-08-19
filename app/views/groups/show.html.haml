@@ -7,26 +7,36 @@
   %b Group:
   = @group.name
 %p
+  %b Group type:
+  = @group.course_type.name
+%p
   %b Semester:
   #{@group.year.year}-#{@group.year.year + 1}/#{@group.semester}
 
 .flex.gap-2.mt-4
   %wa-button{size: :small, href: edit_course_group_path(@course, @group)} Edit
   %wa-button{size: :small, href: course_groups_path(@course)} Back
-  %wa-button{size: :small, href: course_group_path(@course, @group, format: :pdf)} Get attendance sheet
-  %wa-button{size: :small, href: course_group_send_attendance_path(@course, @group)} Send attendance sheet to discord
 
 .flex.flex-row.flex-wrap.items-center.gap-2.mt-8._(class="mx-4 md:mx-0")
-  %h2.text-4xl Students
-  = turbo_frame_tag "add-students" do
-    %wa-button.w-fit{href: course_group_add_students_path(@course, @group)}
-      %wa-icon(slot="prefix" name="plus")
-      Add students
+  %wa-tab-group.w-full
+    %wa-tab(slot="nav" panel="students" style="--active-tab-color: var(--wa-color-brand-border-loud);") Students
+    %wa-tab(slot="nav" panel="submissions" style="--active-tab-color: var(--wa-color-brand-border-loud);") Submissions
 
-#group_student_list
-  - @group.students.order(:name).each do |student|
-    = form_tag course_group_remove_student_path(@course, @group, student.neptun.upcase), method: :delete do
-      .flex.mt-3.px-2.items-center.justify-between.border-b.border-wa-brand-border-loud
-        = student.name
-        %span.font-mono= student.neptun.upcase
-        %wa-button(type="submit" variant="danger" appearance="text") Remove
+    %wa-tab-panel(name="students")
+      = turbo_frame_tag "add-students" do
+        %wa-button.w-fit{size: :small, variant: :brand, href: course_group_add_students_path(@course, @group)}
+          %wa-icon(slot="prefix" name="plus")
+          Add students
+        %wa-button{size: :small, href: course_group_path(@course, @group, format: :pdf)} Get attendance sheet
+        %wa-button{size: :small, href: course_group_send_attendance_path(@course, @group)} Send attendance sheet to discord
+
+      #group_student_list
+        - @group.students.order(:name).each do |student|
+          = form_tag course_group_remove_student_path(@course, @group, student.neptun.upcase), method: :delete do
+            .flex.mt-3.px-2.items-center.justify-between.border-b.border-wa-brand-border-loud
+              = student.name
+              %span.font-mono= student.neptun.upcase
+              %wa-button(type="submit" variant="danger" appearance="text") Remove
+
+    %wa-tab-panel(name="submissions")
+      WIP

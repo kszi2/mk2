@@ -1,10 +1,10 @@
 class GroupsController < ApplicationController
-  before_action :set_course
   before_action :set_group, only: %i[ show edit update destroy add_students remove_student send_attendance ]
+  before_action :set_course
 
   # GET /groups or /groups.json
   def index
-    @groups = Group.where(course_id: params[:course_id]).all
+    @groups = Group.includes(:course, :course_type).where(course_id: params[:course_id]).all
   end
 
   # GET /groups/1 or /groups/1.json
@@ -41,7 +41,7 @@ class GroupsController < ApplicationController
 
   # GET /groups/new
   def new
-    @group = Group.new
+    @group = Group.new course: @course
   end
 
   # GET /groups/1/edit
@@ -158,17 +158,22 @@ class GroupsController < ApplicationController
   end
 
   def set_course
-    @course = Course.find(params[:course_id])
+    if @group.nil?
+      @course = Course.find(params[:course_id])
+    else
+      @course = @group.course
+    end
   end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_group
     group_id = params[:group_id] || params[:id]
-    @group = Group.includes(:course).find(group_id)
+    @group = Group.includes(:course, :course_type).find(group_id)
   end
 
   # Only allow a list of trusted parameters through.
   def group_params
-    params.require(:group).permit(:course_id, :name, :year, :semester, :first_date, :repeat_times, :day_difference)
+    ret = params.require(:group).permit(:course_id, :course_type_id, :name, :year, :semester, :first_date, :repeat_times, :day_difference)
+    ret.except(:course_type)
   end
 end

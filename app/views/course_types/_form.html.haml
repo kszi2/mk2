@@ -1,0 +1,6 @@
+= form_for [@course, @course_type] do |f|
+  = f.hidden_field :course_id, value: @course_id
+  = f.wa_text :name
+
+  .flex.justify-end
+    = f.wa_submit

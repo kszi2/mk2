@@ -10,9 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_18_222013) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_19_130908) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "course_types", force: :cascade do |t|
+    t.string "name", limit: 32, null: false
+    t.bigint "course_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_course_types_on_course_id"
+  end
 
   create_table "courses", force: :cascade do |t|
     t.string "name", limit: 32, null: false
@@ -129,8 +137,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_18_222013) do
     t.date "first_date", null: false
     t.integer "repeat_times", default: 14, null: false
     t.integer "day_difference", default: 7, null: false
+    t.bigint "course_type_id"
     t.index ["course_id", "name", "year", "semester"], name: "index_groups_on_course_id_and_name_and_year_and_semester", unique: true
     t.index ["course_id"], name: "index_groups_on_course_id"
+    t.index ["course_type_id"], name: "index_groups_on_course_type_id"
   end
 
   create_table "groups_students", id: false, force: :cascade do |t|
@@ -156,7 +166,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_18_222013) do
     t.index ["name"], name: "index_templates_on_name", unique: true
   end
 
+  add_foreign_key "course_types", "courses"
   add_foreign_key "courseworks", "courses"
+  add_foreign_key "groups", "course_types", column: "course_types_id"
   add_foreign_key "groups", "courses"
   add_foreign_key "templates", "courses"
 end

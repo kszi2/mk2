@@ -18,6 +18,20 @@ module ApplicationHelper
     end
   end
 
+  def wa_select_tag(object, field, values)
+    errorable_input(object, field) do
+      # noinspection RubyArgCount field_name needs only one param here
+      content_tag :"wa-select",
+                  label: field.to_s.humanize,
+                  name: field_name(field),
+                  value: object.send(field) do
+        values.inject(tag.div) do |acc, value|
+          acc + tag.send(:"wa-option", value[1], value: value[0])
+        end
+      end
+    end
+  end
+
   def wa_submit_tag(text = "Save")
     content_tag :"wa-button", text, type: 'submit', value: text, variant: 'brand'
   end
@@ -45,6 +59,10 @@ class ActionView::Helpers::FormBuilder
     self.define_method type do |field|
       self.send("#{type.to_s}_tag".to_sym, @object, field)
     end
+  end
+
+  def wa_select(field, values)
+    wa_select_tag @object, field, values
   end
 
   def wa_submit(text = "Save")

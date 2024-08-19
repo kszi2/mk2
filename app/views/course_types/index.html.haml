@@ -1,0 +1,22 @@
+%h1 Listing course_types
+
+= turbo_frame_tag "course-types-frame" do
+  %table.w-full
+    %thead
+      %tr.border-b-4.border-wa-brand-border-loud
+        %th Name
+        %th
+        %th
+        %th
+
+    %tbody
+      - @course_types.each do |course_type|
+        %tr.border-b.border-wa-brand-border-loud
+          %td= course_type.name
+          %td= link_to 'Show', [@course, course_type]
+          %td= link_to 'Edit', edit_course_course_type_path(@course, course_type)
+          %td= link_to 'Destroy', [@course, course_type], method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Course type', new_course_course_type_path(@course)

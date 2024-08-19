@@ -4,17 +4,35 @@
   %b Name:
   = @course.name
 
-.flex.gap-2
-  = link_to 'Edit', edit_course_path(@course)
-  \|
-  = link_to 'Back', courses_path
+.flex.gap-2.mt-4
+  %wa-button{size: :small, href: edit_course_path(@course)} Edit
+  %wa-button{size: :small, href: courses_path} Back
 
-.flex.flex-row.flex-wrap.items-center.gap-2.my-4._(class="mx-4 md:mx-0")
-  %h2.text-4xl Groups
-  %wa-button.w-fit{href: new_course_group_path(@course)}
-    %wa-icon(slot="prefix" name="plus")
-    Add group
+.flex.flex-row.flex-wrap.items-center.gap-2.mt-8._(class="mx-4 md:mx-0")
+  %wa-tab-group.w-full
+    %wa-tab(slot="nav" panel="groups" style="--active-tab-color: var(--wa-color-brand-border-loud);") Groups
+    %wa-tab(slot="nav" panel="coures-types" style="--active-tab-color: var(--wa-color-brand-border-loud);") Group types
+    %wa-tab(slot="nav" panel="coursework" style="--active-tab-color: var(--wa-color-brand-border-loud);") Coursework
 
-= turbo_frame_tag "groups-frame", src: course_groups_path(@course) do
-  .w-full.flex.flex-row.justify-center
-    %wa-spinner.text-9xl
+    %wa-tab-panel(name="groups")
+      .flex.flex-row.flex-wrap.items-center.gap-2.my-4._(class="mx-4 md:mx-0")
+        %wa-button.w-fit{size: :small, variant: :brand, href: new_course_group_path(@course)}
+          %wa-icon(slot="prefix" name="plus")
+          Add group
+
+      = turbo_frame_tag "groups-frame", src: course_groups_path(@course) do
+        .w-full.flex.flex-row.justify-center
+          %wa-spinner.text-9xl
+
+    %wa-tab-panel(name="coures-types")
+      .flex.flex-row.flex-wrap.items-center.gap-2.my-4._(class="mx-4 md:mx-0")
+        %wa-button.w-fit{size: :small, variant: :brand, href: new_course_course_type_path(@course)}
+          %wa-icon(slot="prefix" name="plus")
+          Add group type
+
+      = turbo_frame_tag "course-types-frame", src: course_course_types_path(@course), loading: "lazy" do
+        .w-full.flex.flex-row.justify-center
+          %wa-spinner.text-9xl
+
+    %wa-tab-panel(name="coursework")
+      WIP

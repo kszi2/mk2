@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   post 'students/bulk_create' => 'students#bulk_create', as: :bulk_create_students
   resources :students
   resources :courses do
+    resources :course_types
+
     resources :groups do
       get "send_attendance" => "groups#send_attendance", as: :send_attendance
 
