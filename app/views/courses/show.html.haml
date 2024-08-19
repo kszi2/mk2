@@ -12,7 +12,7 @@
   %wa-tab-group.w-full
     %wa-tab(slot="nav" panel="groups" style="--active-tab-color: var(--wa-color-brand-border-loud);") Groups
     %wa-tab(slot="nav" panel="coures-types" style="--active-tab-color: var(--wa-color-brand-border-loud);") Group types
-    %wa-tab(slot="nav" panel="coursework" style="--active-tab-color: var(--wa-color-brand-border-loud);") Coursework
+    %wa-tab(slot="nav" panel="courseworks" style="--active-tab-color: var(--wa-color-brand-border-loud);") Courseworks
 
     %wa-tab-panel(name="groups")
       .flex.flex-row.flex-wrap.items-center.gap-2.my-4._(class="mx-4 md:mx-0")
@@ -34,5 +34,12 @@
         .w-full.flex.flex-row.justify-center
           %wa-spinner.text-9xl
 
-    %wa-tab-panel(name="coursework")
-      WIP
+    %wa-tab-panel(name="courseworks")
+      .flex.flex-row.flex-wrap.items-center.gap-2.my-4._(class="mx-4 md:mx-0")
+        %wa-button.w-fit{size: :small, variant: :brand, href: new_course_coursework_path(@course)}
+          %wa-icon(slot="prefix" name="plus")
+          Add coursework
+
+      = turbo_frame_tag "courseworks-frame", src: course_courseworks_path(@course), loading: "lazy" do
+        .w-full.flex.flex-row.justify-center
+          %wa-spinner.text-9xl

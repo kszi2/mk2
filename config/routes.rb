@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :students
   resources :courses do
     resources :course_types
+    resources :courseworks
 
     resources :groups do
       get "send_attendance" => "groups#send_attendance", as: :send_attendance
@@ -14,7 +15,6 @@ Rails.application.routes.draw do
       delete ":neptun", to: "groups#remove_student", as: :remove_student
     end
   end
-  resources :courseworks
   resources :templates
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

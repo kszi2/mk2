@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_19_130908) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_19_143806) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -35,8 +35,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_19_130908) do
     t.boolean "active", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "for_type_id"
     t.index ["course_id", "name"], name: "index_courseworks_on_course_id_and_name", unique: true
     t.index ["course_id"], name: "index_courseworks_on_course_id"
+    t.index ["for_type_id"], name: "index_courseworks_on_for_type_id"
   end
 
   create_table "good_job_batches", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -140,7 +142,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_19_130908) do
     t.bigint "course_type_id"
     t.index ["course_id", "name", "year", "semester"], name: "index_groups_on_course_id_and_name_and_year_and_semester", unique: true
     t.index ["course_id"], name: "index_groups_on_course_id"
-    t.index ["course_type_id"], name: "index_groups_on_course_type_id"
+    t.index ["course_type_id"], name: "index_groups_on_course_types_id"
   end
 
   create_table "groups_students", id: false, force: :cascade do |t|
@@ -167,8 +169,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_19_130908) do
   end
 
   add_foreign_key "course_types", "courses"
+  add_foreign_key "courseworks", "course_types", column: "for_type_id"
   add_foreign_key "courseworks", "courses"
-  add_foreign_key "groups", "course_types", column: "course_types_id"
+  add_foreign_key "groups", "course_types"
   add_foreign_key "groups", "courses"
   add_foreign_key "templates", "courses"
 end

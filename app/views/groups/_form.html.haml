@@ -11,10 +11,5 @@
 
   = f.wa_select :course_type_id, @group.course.course_types.map(&:to_select_value)
 
-  -# = errorable_input @group, :course_types_id do
-  -#   %wa-select{name: "group[course_types_id]", value: @group.course_types_id}
-  -#     - @group.course.course_types.each do |course_type|
-  -#       %wa-option{value: course_type.id}= course_type.name
-
   .flex.justify-end
     = f.wa_submit
