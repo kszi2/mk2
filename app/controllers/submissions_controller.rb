@@ -9,6 +9,12 @@ class SubmissionsController < ApplicationController
 
   # GET /submissions/1 or /submissions/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.prog2 do
+        render partial: 'submission', format: :prog2
+      end
+    end
   end
 
   # GET /submissions/new

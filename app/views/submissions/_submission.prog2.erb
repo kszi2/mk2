@@ -1,0 +1,12 @@
+# Beadás értékelése (<%= @submission.coursework.name %>)
+
+Összesített pont: <%= @submission.marked_for %>/<%= @submission.total_points %>
+
+<% @submission.marked_points.each do |marked_point| %>
+## <%= marked_point.rating_point.name %> (<%= marked_point.marked_for %>/<%= marked_point.rating_point.show_as_points %>)
+
+  <% marked_point.marking_notes.each do |note| %>
+  - <%= note_preface(note) %> <%= note_reasoning(note) %>
+  <% end %>
+
+<% end %>

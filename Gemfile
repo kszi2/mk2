@@ -78,3 +78,5 @@ gem 'faraday-multipart'
 gem 'httpx'
 
 gem "good_job", "~> 4.2"
+
+gem "responders", "~> 3.1"
