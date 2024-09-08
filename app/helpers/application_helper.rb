@@ -43,6 +43,21 @@ module ApplicationHelper
     end
   end
 
+  def wa_textarea_tag(object, field)
+    errorable_input(object, field) do
+      # noinspection RubyArgCount field_name needs only one param here
+      raw_wa_textarea_tag field_name(field), field.to_s.humanize, object.send(field)
+    end
+  end
+
+  def wa_checkbox_tag(object, field)
+    errorable_input(object, field) do
+      # noinspection RubyArgCount field_name needs only one param here
+      raw_wa_checkbox_tag field_name(field), field.to_s.humanize, object.send(field)
+    end
+  end
+
+
   def raw_wa_input_tag(name, type, label, value = nil)
     tag.send :'wa-input',
              name: name,
@@ -50,13 +65,27 @@ module ApplicationHelper
              value: value,
              label: label
   end
+
+  def raw_wa_textarea_tag(name, label, value = nil)
+    tag.send :'wa-textarea',
+             name: name,
+             value: value,
+             label: label
+  end
+
+  def raw_wa_checkbox_tag(name, label, value = false)
+    content_tag :'wa-checkbox',
+                label,
+                name: name,
+                checked: value
+  end
 end
 
 class ActionView::Helpers::FormBuilder
   include ApplicationHelper
 
-  %i[wa_text wa_date wa_number].each do |type|
-    self.define_method type do |field|
+  %i[wa_text wa_date wa_number wa_textarea wa_checkbox].each do |type|
+    self.define_method(type) do |field|
       self.send("#{type.to_s}_tag".to_sym, @object, field)
     end
   end

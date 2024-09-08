@@ -33,7 +33,20 @@ class GroupsController < ApplicationController
   end
 
   def send_attendance
-    @group.send_attendance_sheet
+    date = Date.today
+    unless params[:date].blank?
+      begin
+        date = Date.parse(params[:date])
+      rescue
+        # ignore, use default
+      end
+    end
+    sort = :name
+    if !params[:sort].blank? && params[:sort].in?(["name", "neptun"])
+      sort = params[:sort].to_sym
+    end
+
+    @group.send_attendance_sheet(date, sort)
     respond_to do |format|
       format.html { redirect_to course_group_path(@course, @group), notice: "Attendance sheet was successfully queued for sending." }
     end

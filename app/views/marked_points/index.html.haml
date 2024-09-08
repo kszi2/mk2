@@ -1,0 +1,24 @@
+%h1 Listing marked_points
+
+= turbo_frame_tag "marked-points-frame" do
+  .mt-4.w-full.flex.flex-col.gap-2
+    - @marked_points.each do |marked_point|
+      .w-full.px-3.py-1.drop-shadow.backdrop-blur-md.border.border-onyx.rounded
+        .w-full.flex.justify-between.mb-2
+          %div.text-2xl= marked_point.rating_point.name
+          %div
+            %span{id: dom_id(marked_point, :xvalue_of)}= marked_point.marked_for
+            = "/"
+            = marked_point.rating_point.show_as_points
+
+        .flex.w-full.justify-end
+          = turbo_frame_tag "marked-points-frame-inner" do
+            = form_tag course_group_submission_marked_point_make_marking_path(@course, @group, @submission, marked_point) do
+              %wa-button.w-fit{size: :small, variant: :brand, type: 'submit'}
+                %wa-icon(slot="prefix" name="plus")
+                Add note
+
+        %div.my-2{id: dom_id(marked_point)}
+          = turbo_frame_tag "marking-notes-frame", src: course_group_submission_marked_point_marking_notes_path(@course, @group, @submission, marked_point) do
+            .w-full.flex.flex-row.justify-center
+              %wa-spinner.text-6xl

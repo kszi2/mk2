@@ -4,15 +4,30 @@ Rails.application.routes.draw do
   resources :students
   resources :courses do
     resources :course_types
-    resources :courseworks
+    resources :courseworks do
+      get "header" => "rating_points#header", as: :rating_header
+
+      resources :rating_points
+    end
 
     resources :groups do
-      get "send_attendance" => "groups#send_attendance", as: :send_attendance
+      post "send_attendance" => "groups#send_attendance", as: :send_attendance
 
       get "add_students", to: "groups#add_students", as: :add_students
       post "prepare_students", to: "groups#prepare_students", as: :prepare_students
 
       delete ":neptun", to: "groups#remove_student", as: :remove_student
+
+      get "submission_header" => "submissions#header", as: :submission_header
+
+      resources :submissions do
+        resources :marked_points do
+          post 'make_marking', to: 'marking_notes#make_marking', as: :make_marking
+          post 'cancel_make', to: 'marking_notes#cancel_make', as: :cancel_make
+
+          resources :marking_notes
+        end
+      end
     end
   end
   resources :templates

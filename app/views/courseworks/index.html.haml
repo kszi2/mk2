@@ -7,6 +7,8 @@
         %th Name
         %th Course
         %th Group type
+        %th Total points
+        %th # Criteria
         %th
         %th
         %th
@@ -17,6 +19,8 @@
           %td= coursework.name
           %td= coursework.course.name
           %td= coursework.for_type.name
+          %td= coursework.total_points
+          %td= coursework.criteria_count
           %td= link_to 'Show', [@course, coursework]
           %td= link_to 'Edit', edit_course_coursework_path(@course, coursework)
           %td= link_to 'Destroy', [@course, coursework], method: :delete, data: { confirm: 'Are you sure?' }

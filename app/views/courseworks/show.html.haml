@@ -17,3 +17,12 @@
   = link_to 'Edit', edit_course_coursework_path(@course, @coursework)
   \|
   = link_to 'Back', course_path(@course)
+
+.flex.flex-col.gap-2.my-4._(class="mx-4 md:mx-0")
+  %h2.text-3xl Rating points
+  = render 'rating_points/header', objs: [@course, @coursework]
+
+.w-full
+  = turbo_frame_tag "rating-points-frame", src: course_coursework_rating_points_path(@course, @coursework) do
+    .w-full.flex.flex-row.justify-center
+      %wa-spinner.text-9xl

@@ -1,0 +1,25 @@
+= turbo_page_requires_reload
+
+%p
+  %b Student:
+  = "#{@submission.student.name} (#{@submission.student.neptun})"
+%p
+  %b Coursework:
+  = @submission.coursework.name
+
+.flex.gap-2
+  = link_to 'Edit', edit_course_group_submission_path(@course, @group, @submission)
+  \|
+  = link_to 'Back', course_group_path(@course, @group)
+
+%h2.text-xl.mt-8 Marking
+
+.text-lg
+  Total:
+  %span{id: dom_id(@submission, :marked_for)}= @submission.marked_for
+  = '/'
+  = @submission.total_points
+
+= turbo_frame_tag "marked-points-frame", src: course_group_submission_marked_points_path(@course, @group, @submission) do
+  .w-full.flex.flex-row.justify-center
+    %wa-spinner.text-9xl

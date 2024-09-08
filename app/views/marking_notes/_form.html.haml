@@ -1,0 +1,12 @@
+= form_for [@course, @group, @submission, @marked_point, @marking_note] do |f|
+  = f.hidden_field :marked_point_id, value: @marked_point.id
+
+  = f.wa_number :points_cost
+  = f.wa_textarea :reason
+  = f.wa_checkbox :fixed
+
+  .flex.justify-end.gap-2.mt-4
+    = turbo_frame_tag "marked-points-frame-canceller" do
+      = form_tag course_group_submission_marked_point_cancel_make_path(@course, @group, @submission, @marked_point) do
+        %wa-button.w-fit{variant: :warning, appearance: :outlined, type: 'submit'} Cancel
+    = f.wa_submit

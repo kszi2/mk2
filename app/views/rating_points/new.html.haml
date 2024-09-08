@@ -1,0 +1,6 @@
+%h1 New rating_point
+
+= turbo_frame_tag "add-rating-points-frame" do
+  = render 'form'
+
+= link_to 'Back', course_coursework_path(@course, @coursework)

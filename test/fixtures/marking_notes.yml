@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  points_cost: 1
+  reason: MyString
+  fixed: false
+  marked_points: one
+
+two:
+  points_cost: 1
+  reason: MyString
+  fixed: false
+  marked_points: two

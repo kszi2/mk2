@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_19_143806) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_08_092916) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -150,12 +150,51 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_19_143806) do
     t.bigint "group_id", null: false
   end
 
+  create_table "marked_points", force: :cascade do |t|
+    t.bigint "submission_id", null: false
+    t.bigint "rating_point_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["rating_point_id"], name: "index_marked_points_on_rating_point_id"
+    t.index ["submission_id"], name: "index_marked_points_on_submission_id"
+  end
+
+  create_table "marking_notes", force: :cascade do |t|
+    t.integer "points_cost"
+    t.string "reason"
+    t.boolean "fixed"
+    t.bigint "marked_point_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["marked_point_id"], name: "index_marking_notes_on_marked_point_id"
+  end
+
+  create_table "rating_points", force: :cascade do |t|
+    t.string "name", limit: 32, null: false
+    t.string "description"
+    t.integer "available_points", default: 0, null: false
+    t.bigint "coursework_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["coursework_id", "name"], name: "index_rating_points_on_coursework_id_and_name", unique: true
+    t.index ["coursework_id"], name: "index_rating_points_on_coursework_id"
+  end
+
   create_table "students", force: :cascade do |t|
     t.string "name", limit: 255, null: false
     t.string "neptun", limit: 6, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["neptun"], name: "index_students_on_neptun", unique: true
+  end
+
+  create_table "submissions", force: :cascade do |t|
+    t.bigint "student_id", null: false
+    t.bigint "coursework_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["coursework_id"], name: "index_submissions_on_coursework_id"
+    t.index ["student_id"], name: "index_submissions_on_student_id"
   end
 
   create_table "templates", force: :cascade do |t|
@@ -173,5 +212,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_19_143806) do
   add_foreign_key "courseworks", "courses"
   add_foreign_key "groups", "course_types"
   add_foreign_key "groups", "courses"
+  add_foreign_key "marked_points", "rating_points"
+  add_foreign_key "marked_points", "submissions"
+  add_foreign_key "marking_notes", "marked_points"
+  add_foreign_key "rating_points", "courseworks"
+  add_foreign_key "submissions", "courseworks"
+  add_foreign_key "submissions", "students"
   add_foreign_key "templates", "courses"
 end

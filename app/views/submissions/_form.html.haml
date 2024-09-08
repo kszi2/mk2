@@ -1,0 +1,8 @@
+= form_for [@course, @group, @submission] do |f|
+  = f.hidden_field :group_id, value: @group.id
+  = f.wa_select :student_id, @group.students.map { |s| [ s.id, "#{s.name} (#{s.neptun})" ] }
+  = f.wa_select :coursework_id, @courseworks.map { |s| [ s.id, s.name ] }
+
+  .flex.justify-end.gap-2.mt-4
+    %wa-button{variant: :warning, appearance: :outlined, href: course_group_submission_header_path(@course, @group) } Back
+    = f.wa_submit

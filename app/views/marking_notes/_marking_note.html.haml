@@ -1,0 +1,12 @@
+%div
+  - if marking_note.points_cost == 0
+    (Megjegyzés)
+  - elsif marking_note.marked_point.rating_point.criterion? # LoD breakage
+    (Megtagadva)
+  - else
+    (-#{marking_note.points_cost}p)
+
+  - if marking_note.reason.empty?
+    Szar
+  - else
+    = marking_note.reason

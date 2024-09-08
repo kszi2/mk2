@@ -1,0 +1,9 @@
+= form_for [@course, @coursework, @rating_point], class: 'mb-4' do |f|
+  = f.hidden_field :coursework_id, value: @coursework.id
+  = f.wa_text :name
+  = f.wa_text :description
+  = f.wa_number :available_points
+
+  .flex.justify-end.gap-2.mt-4
+    %wa-button{variant: :warning, appearance: :outlined, href: course_coursework_rating_header_path(@course, @coursework) } Back
+    = f.wa_submit

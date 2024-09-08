@@ -23,20 +23,27 @@
     %wa-tab(slot="nav" panel="submissions" style="--active-tab-color: var(--wa-color-brand-border-loud);") Submissions
 
     %wa-tab-panel(name="students")
-      = turbo_frame_tag "add-students" do
-        %wa-button.w-fit{size: :small, variant: :brand, href: course_group_add_students_path(@course, @group)}
-          %wa-icon(slot="prefix" name="plus")
-          Add students
+      .flex.gap-2
+        = turbo_frame_tag "add-students" do
+          %wa-button.w-fit{size: :small, variant: :brand, href: course_group_add_students_path(@course, @group)}
+            %wa-icon(slot="prefix" name="plus")
+            Add students
         %wa-button{size: :small, href: course_group_path(@course, @group, format: :pdf)} Get attendance sheet
-        %wa-button{size: :small, href: course_group_send_attendance_path(@course, @group)} Send attendance sheet to discord
+        = form_tag course_group_send_attendance_path(@course, @group), method: :post, class: "flex w-fit gap-2" do
+          %wa-button{size: :small, type: :submit} Send attendance sheet to discord
+          %wa-input.w-fit._{size: :small, type: :date, name: :date}
 
       #group_student_list
         - @group.students.order(:name).each do |student|
           = form_tag course_group_remove_student_path(@course, @group, student.neptun.upcase), method: :delete do
             .flex.mt-3.px-2.items-center.justify-between.border-b.border-wa-brand-border-loud
-              = student.name
+              %span.block.w-px.overflow-visible.whitespace-nowrap= student.name
               %span.font-mono= student.neptun.upcase
               %wa-button(type="submit" variant="danger" appearance="text") Remove
 
     %wa-tab-panel(name="submissions")
-      WIP
+      = render 'submissions/header', objs: [@course, @group]
+
+      = turbo_frame_tag "group-submissions-frame", src: course_group_submissions_path(@course, @group) do
+        .w-full.flex.flex-row.justify-center
+          %wa-spinner.text-9xl

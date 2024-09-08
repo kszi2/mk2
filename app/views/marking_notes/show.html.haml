@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Points cost:
+  = @marking_note.points_cost
+%p
+  %b Reason:
+  = @marking_note.reason
+%p
+  %b Fixed:
+  = @marking_note.fixed
+%p
+  %b Marked points:
+  = @marking_note.marked_points
+
+= link_to 'Edit', edit_marking_note_path(@marking_note)
+\|
+= link_to 'Back', marking_notes_path

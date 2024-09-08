@@ -23,14 +23,30 @@ class Group < ApplicationRecord
   end
 
   def send_attendance_sheet(*args)
-    pdf = attendance_sheet(*args)
-    SendToDiscordWebhookJob.perform_later(pdf.render, "#{name}.pdf")
+    pdf_obj = attendance_sheet(*args)
+    raw_pdf_bytes = pdf_obj.render
+    SendToDiscordWebhookJob.perform_later(Base64.encode64(raw_pdf_bytes), "#{name}.pdf")
   end
 
   def attendance_sheet(date = Date.today, sort = :name, title = "Jelenléti ív")
     me = self
     golyok = students.sort_by(&sort)
-    Prawn::Document::new do
+    Prawn::Document::new(page_size: 'A4') do
+
+      font_families.update(
+        'IBMPlexSans' => {
+          normal: Rails.root.join("IBMPlexSans-Text.ttf"),
+          italic: Rails.root.join("IBMPlexSans-Italic.ttf"),
+          bold:  Rails.root.join("IBMPlexSans-Bold.ttf"),
+        },
+        'IBMPlexMono' => {
+          normal: Rails.root.join("IBMPlexMono-Text.ttf"),
+          italic: Rails.root.join("IBMPlexMono-Italic.ttf"),
+          bold:  Rails.root.join("IBMPlexMono-Bold.ttf"),
+        }
+      )
+      font "IBMPlexSans"
+
       text title, size: 24, align: :center
       move_down 5
 
@@ -59,7 +75,7 @@ class Group < ApplicationRecord
             text_box g.name, valign: :center, overflow: :shrink_to_fit
           end
           bounding_box [index_pad + 265, offset], width: 60, height: offset do
-            font 'Courier' do
+            font 'IBMPlexMono' do
               text "#{g.neptun[0..2].upcase}***", valign: :center
             end
           end

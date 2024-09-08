@@ -1,0 +1,28 @@
+%h1.text-4xl Listing rating points for #{@coursework.name} of #{@course.name}
+
+= turbo_frame_tag "rating-points-frame" do
+  %table.w-full
+    %thead
+      %tr.border-b-4.border-wa-brand-border-loud
+        %th Name
+        %th Description
+        %th Available points
+        %th Coursework
+        %th
+        %th
+        %th
+
+    %tbody
+      - @rating_points.each do |rating_point|
+        %tr.border-b.border-wa-brand-border-loud
+          %td= rating_point.name
+          %td= truncate(rating_point.description, length: 16)
+          %td= rating_point.criterion? ? "Criterion" : rating_point.available_points
+          %td= rating_point.coursework.name
+          %td= link_to 'Show', [@course, @coursework, rating_point]
+          %td= link_to 'Edit', edit_course_coursework_rating_point_path(@course, @coursework, rating_point)
+          %td= link_to 'Destroy', [@course, @coursework, rating_point], method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Rating point', new_course_coursework_rating_point_path(@course, @coursework)

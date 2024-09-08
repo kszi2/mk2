@@ -18,12 +18,12 @@ end
 class SendToDiscordWebhookJob < ApplicationJob
   queue_as :default
 
-  def perform(rawdata, sentfile, **options)
+  def perform(rawdata_base64, sentfile, **options)
     options[:content] ||= ""
     options[:filetype] ||= "application/pdf"
 
     Tempfile.create(["attendance-", ".pdf"], mode: File::RDWR | File::CREAT | File::BINARY) do |file|
-      file << rawdata
+      file << Base64.decode64(rawdata_base64)
       file.rewind
 
       conn = DiscordFaradayConnection.instance.get_connection
