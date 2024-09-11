@@ -3,5 +3,4 @@
 = turbo_frame_tag "marking-notes-frame" do
   .flex.flex-col.gap-2._{id: dom_id(@marked_point, :notes)}
     - @marking_notes.each do |marking_note|
-      -# todo
-      = render partial: 'marking_notes/marking_note', locals: {marking_note: marking_note}
+      = render partial: 'marking_notes/marking_note', locals: {marking_note: marking_note, objs: [@course, @group, @submission, @marked_point, marking_note]}

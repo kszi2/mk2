@@ -1,6 +1,6 @@
 class MarkingNotesController < ApplicationController
   before_action :set_parents
-  before_action :set_marking_note, only: %i[ show edit update destroy ]
+  before_action :set_marking_note, only: %i[ edit_marking show edit update destroy ]
 
   # GET /marking_notes or /marking_notes.json
   def index
@@ -18,6 +18,12 @@ class MarkingNotesController < ApplicationController
 
   def make_marking
     @marking_note = MarkingNote.new
+    respond_to do |format|
+      format.turbo_stream
+    end
+  end
+
+  def edit_marking
     respond_to do |format|
       format.turbo_stream
     end
@@ -51,7 +57,8 @@ class MarkingNotesController < ApplicationController
   def update
     respond_to do |format|
       if @marking_note.update(marking_note_params)
-        format.html { redirect_to marking_note_url(@marking_note), notice: "Marking note was successfully updated." }
+        format.turbo_stream { render }
+        format.html { redirect_to course_group_submission_path(@course, @group, @submission), notice: "Marking note was successfully updated." }
         format.json { render :show, status: :ok, location: @marking_note }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -81,7 +88,7 @@ class MarkingNotesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_marking_note
-    @marking_note = MarkingNote.find(params[:id])
+    @marking_note = MarkingNote.find(params[:id] || params[:marking_note_id])
   end
 
   # Only allow a list of trusted parameters through.

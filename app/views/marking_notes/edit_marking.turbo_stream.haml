@@ -1,0 +1,4 @@
+= turbo_stream.replace dom_id(@marking_note) do
+  #edit_note_form
+    = turbo_frame_tag dom_id(@marking_note, :edit) do
+      = render "form"

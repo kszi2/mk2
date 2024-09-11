@@ -1,5 +1,8 @@
-%div.flex
-  %wa-button{size: :small, appearance: :text, variant: :brand, href: '#'} Edit
+%div.flex._{id: dom_id(marking_note)}
+  = turbo_frame_tag dom_id(marking_note, :edit_strm) do
+    = form_tag edit_course_group_submission_marked_point_marking_note_path(*objs) do
+      %wa-button{size: :small, appearance: :text, variant: :brand, type: :submit} Edit
+
   %div(class="translate-y-0.5")
     = note_preface(marking_note)
     = note_reasoning(marking_note)

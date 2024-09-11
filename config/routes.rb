@@ -25,7 +25,9 @@ Rails.application.routes.draw do
           post 'make_marking', to: 'marking_notes#make_marking', as: :make_marking
           post 'cancel_make', to: 'marking_notes#cancel_make', as: :cancel_make
 
-          resources :marking_notes
+          resources :marking_notes do
+            post 'edit', to: 'marking_notes#edit_marking'
+          end
         end
       end
     end
