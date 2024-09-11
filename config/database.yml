@@ -68,7 +68,7 @@ test:
 #
 # If the connection URL is provided in the special DATABASE_URL environment
 # variable, Rails will automatically merge its configuration values on top of
-# the values provided in this file. Alternatively, you can specify a connection
+  # the values provided in this file. Alternatively, you can specify a connection
 # URL environment variable explicitly:
 #
 #   production:
@@ -81,5 +81,7 @@ production:
   <<: *default
   database: mk2_production
   username: mk2
-  password: <%= Rails.application.credentials.db!.pass! %>
+  # precompilation of assets can proceed without correct db password, otherwise
+  # die screaming if it is not set
+  password: <%= ENV["SECRET_KEY_BASE_DUMMY"].blank? ? Rails.application.credentials.db!.pass! : "mk2" %>
   host: /var/pg
