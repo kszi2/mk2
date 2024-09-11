@@ -19,20 +19,21 @@ FROM base as build
 
 # Install packages needed to build gems
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential curl git libpq-dev libvips pkg-config unzip
+    apt-get install --no-install-recommends -y build-essential curl git libpq-dev libvips pkg-config unzip nodejs npm
 
 #ENV BUN_INSTALL=/usr/local/bun
 #ENV PATH=/usr/local/bun/bin:$PATH
 #ARG BUN_VERSION=1.1.9
 #RUN curl -fsSL https://bun.sh/install | bash -s -- "bun-v${BUN_VERSION}"
 
-ARG NODE_VERSION=20.11.1
+ARG NODE_VERSION=18.17.1
 ARG YARN_VERSION=1.22.19
 ENV PATH=/usr/local/node/bin:$PATH
-RUN curl -sL https://github.com/nodenv/node-build/archive/master.tar.gz | tar xz -C /tmp/ && \
-    /tmp/node-build-master/bin/node-build "${NODE_VERSION}" /usr/local/node && \
-    npm install -g yarn@$YARN_VERSION && \
-    rm -rf /tmp/node-build-master
+#RUN curl -sL https://github.com/nodenv/node-build/archive/master.tar.gz | tar xz -C /tmp/ && \
+#    /tmp/node-build-master/bin/node-build "${NODE_VERSION}" /usr/local/node && \
+#    npm install -g yarn@$YARN_VERSION && \
+#    rm -rf /tmp/node-build-master
+RUN npm install -g yarn@$YARN_VERSION
 
 # Install application gems
 COPY Gemfile Gemfile.lock ./
