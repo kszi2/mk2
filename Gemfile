@@ -80,3 +80,5 @@ gem 'httpx'
 gem "good_job", "~> 4.2"
 
 gem "responders", "~> 3.1"
+
+gem "foreman", "~> 0.88.1"
