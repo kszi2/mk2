@@ -12,6 +12,10 @@
 %p
   %b Semester:
   #{@group.year.year}-#{@group.year.year + 1}/#{@group.semester}
+%p
+  %b Remaining dates:
+  - @group.dates_for_class.filter { |date| date >= Date.today }.each do |date|
+    %wa-tag.fit= date.strftime("%F")
 
 .flex.gap-2.mt-4
   %wa-button{size: :small, href: edit_course_group_path(@course, @group)} Edit
@@ -31,7 +35,7 @@
         %wa-button{size: :small, href: course_group_path(@course, @group, format: :pdf)} Get attendance sheet
         = form_tag course_group_send_attendance_path(@course, @group), method: :post, class: "flex w-fit gap-2" do
           %wa-button{size: :small, type: :submit} Send attendance sheet to discord
-          %wa-input.w-fit._{size: :small, type: :date, name: :date}
+          %wa-input.w-fit._{size: :small, type: :date, name: :date, value: @group.next_class_date}
 
       #group_student_list
         - @group.students.order(:name).each do |student|

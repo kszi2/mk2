@@ -17,9 +17,15 @@ class Group < ApplicationRecord
   end
 
   def dates_for_class
-    (0..repeat_times).map do |entry|
+    (0..repeat_times - 1).map do |entry|
       first_date + (day_difference * entry).days
     end
+  end
+
+  def next_class_date
+    rem = dates_for_class.filter { |date| date >= Date.today }
+    return nil if rem.empty?
+    rem.first
   end
 
   def send_attendance_sheet(*args)

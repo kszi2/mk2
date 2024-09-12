@@ -6,6 +6,7 @@
       %tr.border-b-4.border-wa-brand-border-loud
         %th Name
         %th Type
+        %th Next class
         %th
         %th
         %th
@@ -15,6 +16,7 @@
         %tr.border-b.border-wa-brand-border-loud
           %td= group.name
           %td= group.course_type.name
+          %td= render_next_date(group.next_class_date)
           %td= link_to 'Show', [@course, group]
           %td= link_to 'Edit', edit_course_group_path(group.course, group)
           %td= link_to 'Destroy', [@course, group], method: :delete, data: { confirm: 'Are you sure?' }
