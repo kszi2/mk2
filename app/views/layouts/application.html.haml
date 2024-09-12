@@ -54,15 +54,14 @@
         = notice
 
     - if flashed
-      %script
-        :javascript
-          animateCSS("div.notification", "fadeInDown").then(x => {
-            setTimeout(() => {
-              animateCSS("div.notification", "fadeOutUp").then(x => {
-                document.querySelector("div.notification").remove();
-              });
-            }, 1000);
-          })
+      :javascript
+        animateCSS("div.notification", "fadeInDown").then(x => {
+          setTimeout(() => {
+            animateCSS("div.notification", "fadeOutUp").then(x => {
+              document.querySelector("div.notification").remove();
+            });
+          }, 1000);
+        })
 
 %main(class="container mx-3 md:mx-auto mt-16 h-full flex flex-col")
   = yield

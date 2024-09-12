@@ -1,5 +1,10 @@
 %h1 Listing students
 
+.my-4
+  = turbo_frame_tag "student-imports", src: import_students_path
+
+%wa-button.my-4{href: new_student_path} New Student
+
 %table
   %thead
     %tr
@@ -20,7 +25,6 @@
 
 %br
 
-= link_to 'New Student', new_student_path
 
 - if @from_import
   %p Imported!
