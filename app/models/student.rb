@@ -22,7 +22,7 @@ class Student < ApplicationRecord
       data = row.to_hash
       puts data
       data["neptun"].upcase!
-      student = Student.create(data)
+      student = Student.create(neptun: data["neptun"], name: data["name"])
       next if student.valid?
 
       logger.warn "errors for: #{student.inspect}"
