@@ -23,16 +23,14 @@ class Group < ApplicationRecord
   end
 
   def send_attendance_sheet(*args)
-    pdf_obj = attendance_sheet(*args)
-    raw_pdf_bytes = pdf_obj.render
-    SendToDiscordWebhookJob.perform_later(Base64.encode64(raw_pdf_bytes), "#{name}.pdf")
+    pdf = attendance_sheet(*args)
+    SendToDiscordWebhookJob.perform_later(pdf.id, "#{name}.pdf")
   end
 
   def attendance_sheet(date = Date.today, sort = :name, title = "Jelenléti ív")
     me = self
     golyok = students.sort_by(&sort)
-    Prawn::Document::new(page_size: 'A4') do
-
+    pdf = Prawn::Document::new(page_size: 'A4') do
       font_families.update(
         'IBMPlexSans' => {
           normal: Rails.root.join("IBMPlexSans-Text.ttf"),
@@ -90,5 +88,11 @@ class Group < ApplicationRecord
         transparent(0.5) { stroke_horizontal_rule }
       end
     end
+    datum = PdfDatum.new
+    datum.file.attach(io: StringIO.new(pdf.render),
+                      filename: "#{name}_#{date}.pdf",
+                      content_type: "application/pdf")
+    datum.save!
+    datum
   end
 end

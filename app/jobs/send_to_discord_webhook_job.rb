@@ -18,27 +18,27 @@ end
 class SendToDiscordWebhookJob < ApplicationJob
   queue_as :default
 
-  def perform(rawdata_base64, sentfile, **options)
+  def perform(pdfid, sentfile, **options)
     options[:content] ||= ""
     options[:filetype] ||= "application/pdf"
 
-    Tempfile.create(["attendance-", ".pdf"], mode: File::RDWR | File::CREAT | File::BINARY) do |file|
-      file << Base64.decode64(rawdata_base64)
-      file.rewind
+    pdf = PdfDatum.find(pdfid)
+    conn = DiscordFaradayConnection.instance.get_connection
 
-      conn = DiscordFaradayConnection.instance.get_connection
+    payload = {}
+    payload[:file1] = Faraday::Multipart::FilePart.new(StringIO.new(pdf.file.download), options[:filetype], pdf.file.filename.to_s)
+    payload[:payload_json] = Faraday::Multipart::ParamPart.new(
+      {
+        content: options[:content],
+      }.to_json,
+      "application/json"
+    )
 
-      payload = {}
-      payload[:file1] = Faraday::Multipart::FilePart.new(file, options[:filetype], sentfile)
-      payload[:payload_json] = Faraday::Multipart::ParamPart.new(
-        {
-          content: options[:content],
-        }.to_json,
-        "application/json"
-      )
-
-      discord = Rails.application.credentials.discord!.webhook_token!
-      conn.post("/api/webhooks/#{discord}", payload)
-    end
+    discord = Rails.application.credentials.discord!.webhook_token!
+    conn.post("/api/webhooks/#{discord}", payload)
+  rescue => e
+    puts "ERROR: #{e.message}"
+  ensure
+    pdf.destroy!
   end
 end
