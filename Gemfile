@@ -83,4 +83,4 @@ gem "responders", "~> 3.1"
 
 gem "foreman", "~> 0.88.1"
 
-gem "bundler", "~> 2.5"
+gem "bundler", "~> 2.4"

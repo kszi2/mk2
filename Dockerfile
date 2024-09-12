@@ -69,7 +69,7 @@ FROM base
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y curl libvips postgresql-client && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives \
-    gem install foreman
+    gem install bundler -v '~> 2.5'
 
 # Copy built artifacts: gems, application
 COPY --from=build /usr/local/bundle /usr/local/bundle
@@ -85,5 +85,5 @@ VOLUME "/var/pg"
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
 # Start the server by default, this can be overwritten at runtime
-EXPOSE 3000
-CMD ["/rails/bin/foreman", "exec", "foreman", "start"]
+EXPOSE 5000
+CMD ["/rails/bin/bundle", "exec", "foreman", "start"]
