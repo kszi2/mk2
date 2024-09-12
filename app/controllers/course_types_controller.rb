@@ -5,7 +5,7 @@ class CourseTypesController < ApplicationController
 
   # GET /course_types or /course_types.json
   def index
-    @course_types = CourseType.all
+    @course_types = CourseType.where(course_id: @course_id).all
   end
 
   # GET /course_types/1 or /course_types/1.json
