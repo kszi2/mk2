@@ -6,7 +6,7 @@ class Group < ApplicationRecord
   validates :name, presence: true, uniqueness: { scope: :course_id }
   validates :year, presence: true
   validates :semester, presence: true, numericality: { only_integer: true }, inclusion: { in: 1..2 }
-  validates :first_date, presence: true, uniqueness: { scope: [:course_id, :year, :semester] }
+  validates :first_date, presence: true
   validates :repeat_times, presence: true, numericality: { only_integer: true }, inclusion: { in: 0..14 }
   validates :day_difference, presence: true, numericality: { only_integer: true }, inclusion: { in: 1..(7 * 14) }
   validates :course_type_id, presence: true, on: :create # new groups can only be created with course_type set
