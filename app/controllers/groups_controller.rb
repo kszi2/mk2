@@ -13,40 +13,18 @@ class GroupsController < ApplicationController
       format.html
       format.json
       format.pdf do
-        date = Date.today
-        unless params[:date].blank?
-          begin
-            date = Date.parse(params[:date])
-          rescue
-            # ignore, use default
-          end
+        begin
+          doc = @group.attendance_sheet(*parse_attendance_sheet_data)
+          send_data doc.file.download, filename: "#{@group.name}.pdf", type: 'application/pdf'
+        ensure
+          doc.destroy!
         end
-        sort = :name
-        if !params[:sort].blank? && params[:sort].in?(["name", "neptun"])
-          sort = params[:sort].to_sym
-        end
-
-        doc = @group.attendance_sheet(date, sort)
-        send_data doc.render, filename: "#{@group.name}.pdf", type: 'application/pdf'
       end
     end
   end
 
   def send_attendance
-    date = Date.today
-    unless params[:date].blank?
-      begin
-        date = Date.parse(params[:date])
-      rescue
-        # ignore, use default
-      end
-    end
-    sort = :name
-    if !params[:sort].blank? && params[:sort].in?(["name", "neptun"])
-      sort = params[:sort].to_sym
-    end
-
-    @group.send_attendance_sheet(date, sort)
+    @group.send_attendance_sheet(*parse_attendance_sheet_data)
     respond_to do |format|
       format.html { redirect_to course_group_path(@course, @group), notice: "Attendance sheet was successfully queued for sending." }
     end
@@ -124,6 +102,23 @@ class GroupsController < ApplicationController
   end
 
   private
+
+  def parse_attendance_sheet_data
+    date = Date.today
+    unless params[:date].blank?
+      begin
+        date = Date.parse(params[:date])
+      rescue
+        # ignore, use default
+      end
+    end
+    sort = :name
+    if !params[:sort].blank? && params[:sort].in?(["name", "neptun"])
+      sort = params[:sort].to_sym
+    end
+
+    [date, sort]
+  end
 
   def stage_students
     current_neptuns = params[:current_neptuns].upcase.split(";")
