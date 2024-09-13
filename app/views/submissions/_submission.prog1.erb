@@ -1,0 +1,13 @@
+<% @submission.marked_points.filter { |a| a.rating_point.criterion? }.each do |marked_point| %>
+<%= prog1_point_marker(marked_point) %> <%= marked_point.rating_point.name %>
+<% marked_point.marking_notes.each do |note| %>
+  - <%= note_preface(note) %> <%= note_reasoning(note) %>
+<% end %>
+<% end %>
+
+<% @submission.marked_points.filter { |a| !a.rating_point.criterion? }.each do |marked_point| %>
+<%= prog1_point_marker(marked_point) %> <%= marked_point.rating_point.name %>
+<% marked_point.marking_notes.each do |note| %>
+  - <%= note_preface(note) %> <%= note_reasoning(note) %>
+<% end %>
+<% end %>

@@ -8,9 +8,4 @@ class RatingPoint < ApplicationRecord
   def criterion?
     available_points == 0
   end
-
-  def show_as_points
-    return "GO-NOGO" if criterion?
-    available_points.to_s
-  end
 end

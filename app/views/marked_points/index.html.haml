@@ -7,9 +7,9 @@
         .w-full.flex.justify-between.mb-2
           %div.text-2xl= marked_point.rating_point.name
           %div
-            %span{id: dom_id(marked_point, :xvalue_of)}= marked_point.marked_for
+            %span{id: dom_id(marked_point, :xvalue_of)}= prog2_point_achieved marked_point
             = "/"
-            = marked_point.rating_point.show_as_points
+            = prog2_point_achievable marked_point
 
         .flex.w-full.justify-end
           = turbo_frame_tag "marked-points-frame-inner" do

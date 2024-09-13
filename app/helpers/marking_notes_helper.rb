@@ -1,6 +1,8 @@
 module MarkingNotesHelper
   def note_preface(note)
-    if note.points_cost == 0
+    if note.fixed
+      "(Javítva)"
+    elsif note.points_cost == 0
       "(Megjegyzés)"
     elsif note.marked_point.rating_point.criterion? # LoD breakage
       "(Megtagadva)"

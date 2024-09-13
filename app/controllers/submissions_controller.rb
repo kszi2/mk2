@@ -11,9 +11,8 @@ class SubmissionsController < ApplicationController
   def show
     respond_to do |format|
       format.html
-      format.prog2 do
-        render partial: 'submission', format: :prog2
-      end
+      format.prog2 { render partial: 'submission', format: :prog2 }
+      format.prog1 { render partial: 'submission', format: :prog1 }
     end
   end
 

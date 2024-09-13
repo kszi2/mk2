@@ -1,7 +1,7 @@
 = turbo_stream.remove 'new_note_form'
 
 = turbo_stream.replace dom_id(@marked_point, :xvalue_of) do
-  %span{id: dom_id(@marked_point, :xvalue_of)}= @marked_point.marked_for
+  %span{id: dom_id(@marked_point, :xvalue_of)}= prog2_point_achieved @marked_point
 
 = turbo_stream.append dom_id(@marked_point, :notes) do
   = render partial: 'marking_note', locals: { marking_note: @marking_note, objs: [@course, @group, @submission, @marked_point, @marking_note]}
