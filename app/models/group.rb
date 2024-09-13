@@ -34,6 +34,9 @@ class Group < ApplicationRecord
   end
 
   def attendance_sheet(date = Date.today, sort = :name, title = "Jelenléti ív")
+    real_date = date
+    real_date = next_class_date if real_date == :next
+
     me = self
     golyok = students.sort_by(&sort)
     pdf = Prawn::Document::new(page_size: 'A4') do
@@ -64,7 +67,7 @@ class Group < ApplicationRecord
       end
 
       bounding_box [2 * third, cursor + 17], width: third, height: 17 do
-        text date.strftime("%F"), align: :right, valign: :center
+        text real_date.strftime("%F"), align: :right, valign: :center
       end
 
       move_down 11
@@ -96,7 +99,7 @@ class Group < ApplicationRecord
     end
     datum = PdfDatum.new
     datum.file.attach(io: StringIO.new(pdf.render),
-                      filename: "#{name}_#{date}.pdf",
+                      filename: "#{name}_#{real_date}.pdf",
                       content_type: "application/pdf")
     datum.save!
     datum

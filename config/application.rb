@@ -28,9 +28,13 @@ module Mk2
     config.active_job.queue_adapter = :good_job
     config.good_job.enable_cron = true
     config.good_job.cron = {
-      send_next_days_attendances: {
-        cron: "29 17 * * *",
-        class: 'DailySendNeededAttendancesJob',
+      # send_next_days_attendances: {
+      #   cron: "29 17 * * *",
+      #   class: 'DailySendNeededAttendancesJob',
+      # },
+      send_next_week_attendances: {
+        cron: "17 15 * * 0",
+        class: 'WeeklySendNeededAttendancesJob'
       }
     }
   end
