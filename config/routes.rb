@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount GoodJob::Engine => 'good_job'
+
   get 'students/import' => 'students#import', as: :import_students
   post 'students/bulk_create' => 'students#bulk_create', as: :bulk_create_students
   resources :students
