@@ -1,6 +1,6 @@
 class Date
   def first_semester?
-    self.month < 7 && self.month > 2
+    self.month >= 7 || self.month <= 2
   end
 
   def semester_number
