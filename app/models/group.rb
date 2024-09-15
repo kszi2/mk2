@@ -29,79 +29,89 @@ class Group < ApplicationRecord
   end
 
   def send_attendance_sheet(*args)
-    pdf = attendance_sheet(*args)
-    SendToDiscordWebhookJob.perform_later(pdf.id, "#{name}.pdf")
+    attendance_sheet(*args).send_to_discord
+  end
+
+  def render_attendance_sheet(pdf, date = Date.today, sort = :name, title = "Jelenléti ív")
+    real_date = date
+    real_date = next_class_date if real_date == :next
+
+    golyok = students.order(sort)
+    render_to_pdf(self, golyok, real_date, title, pdf)
   end
 
   def attendance_sheet(date = Date.today, sort = :name, title = "Jelenléti ív")
     real_date = date
     real_date = next_class_date if real_date == :next
 
-    me = self
     golyok = students.order(sort)
-    pdf = Prawn::Document::new(page_size: 'A4') do
-      font_families.update(
-        'IBMPlexSans' => {
-          normal: Rails.root.join("IBMPlexSans-Text.ttf"),
-          italic: Rails.root.join("IBMPlexSans-Italic.ttf"),
-          bold:  Rails.root.join("IBMPlexSans-Bold.ttf"),
-        },
-        'IBMPlexMono' => {
-          normal: Rails.root.join("IBMPlexMono-Text.ttf"),
-          italic: Rails.root.join("IBMPlexMono-Italic.ttf"),
-          bold:  Rails.root.join("IBMPlexMono-Bold.ttf"),
-        }
-      )
-      font "IBMPlexSans"
+    pdf = Prawn::Document::new(page_size: 'A4') do |pdf|
+      render_to_pdf(self, golyok, real_date, title, pdf)
+    end
 
-      text title, size: 24, align: :center
-      move_down 5
+    PdfDatum.from_raw(pdf.render, "#{name}_#{real_date}.pdf")
+  end
 
-      third = bounds.width / 3
-      bounding_box [0, cursor], width: third, height: 17 do
-        text me.course.name, style: :italic, valign: :center
-      end
+  private
 
-      bounding_box [third, cursor + 17], width: third, height: 17 do
-        text me.name, align: :center, size: 16, valign: :center
-      end
+  def render_to_pdf(me, golyok, real_date, title, pdf)
+    pdf.font_families.update(
+      'IBMPlexSans' => {
+        normal: Rails.root.join("IBMPlexSans-Text.ttf"),
+        italic: Rails.root.join("IBMPlexSans-Italic.ttf"),
+        bold:  Rails.root.join("IBMPlexSans-Bold.ttf"),
+      },
+      'IBMPlexMono' => {
+        normal: Rails.root.join("IBMPlexMono-Text.ttf"),
+        italic: Rails.root.join("IBMPlexMono-Italic.ttf"),
+        bold:  Rails.root.join("IBMPlexMono-Bold.ttf"),
+      }
+    )
+    pdf.font "IBMPlexSans"
 
-      bounding_box [2 * third, cursor + 17], width: third, height: 17 do
-        text real_date.strftime("%F"), align: :right, valign: :center
-      end
+    pdf.text title, size: 24, align: :center
+    pdf.move_down 5
 
-      move_down 11
-      golyok.each_with_index do |g, i|
-        offset = 19
-        bounding_box [0, cursor], width: bounds.width, height: offset do
-          index_pad = (Math.log10(golyok.length).ceil + 1) * 8
-          bounding_box [5, offset], width: index_pad, height: offset do
-            text "#{i + 1}", valign: :center
-          end
-          bounding_box [index_pad + 5, offset], width: 260, height: offset do
-            text_box g.name, valign: :center, overflow: :shrink_to_fit
-          end
-          bounding_box [index_pad + 265, offset], width: 60, height: offset do
-            font 'IBMPlexMono' do
-              text "#{g.neptun[0..2].upcase}***", valign: :center
-            end
-          end
+    third = pdf.bounds.width / 3
+    pdf.bounding_box [0, pdf.cursor], width: third, height: 17 do
+      pdf.text me.course.name, style: :italic, valign: :center
+    end
 
-          # checkbox
-          bounding_box [index_pad + 345, offset - (offset - 11) / 2], width: 11, height: 11 do
-            stroke_bounds
+    pdf.bounding_box [third, pdf.cursor + 17], width: third, height: 17 do
+      pdf.text me.name, align: :center, size: 16, valign: :center
+    end
+
+    pdf.bounding_box [2 * third, pdf.cursor + 17], width: third, height: 17 do
+      pdf.text real_date.strftime("%F"), align: :right, valign: :center
+    end
+
+    pdf.move_down 11
+    golyok.each_with_index do |g, i|
+      offset = 19
+      pdf.bounding_box [0, pdf.cursor], width: pdf.bounds.width, height: offset do
+        index_pad = (Math.log10(golyok.length).ceil + 1) * 8
+        pdf.bounding_box [5, offset], width: index_pad, height: offset do
+          pdf.text "#{i + 1}", valign: :center
+        end
+        pdf.bounding_box [index_pad + 5, offset], width: 260, height: offset do
+          pdf.text_box g.name, valign: :center, overflow: :shrink_to_fit
+        end
+        pdf.bounding_box [index_pad + 265, offset], width: 60, height: offset do
+          pdf.font 'IBMPlexMono' do
+            pdf.text "#{g.neptun[0..2].upcase}***", valign: :center
           end
         end
 
-        # guideline
-        transparent(0.5) { stroke_horizontal_rule }
+        # checkbox
+        pdf.bounding_box [index_pad + 345, offset - (offset - 11) / 2], width: 11, height: 11 do
+          pdf.stroke_bounds
+        end
       end
+
+      # guideline
+      pdf.transparent(0.5) { pdf.stroke_horizontal_rule }
     end
-    datum = PdfDatum.new
-    datum.file.attach(io: StringIO.new(pdf.render),
-                      filename: "#{name}_#{real_date}.pdf",
-                      content_type: "application/pdf")
-    datum.save!
-    datum
+
+    pdf
   end
 end
