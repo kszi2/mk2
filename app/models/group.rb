@@ -38,7 +38,7 @@ class Group < ApplicationRecord
     real_date = next_class_date if real_date == :next
 
     me = self
-    golyok = students.sort_by(&sort)
+    golyok = students.order(sort)
     pdf = Prawn::Document::new(page_size: 'A4') do
       font_families.update(
         'IBMPlexSans' => {
