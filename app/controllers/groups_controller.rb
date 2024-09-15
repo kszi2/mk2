@@ -14,9 +14,7 @@ class GroupsController < ApplicationController
       format.json
       format.pdf do
         begin
-          puts ">>>: #{parse_attendance_sheet_data}"
           doc = @group.attendance_sheet(*parse_attendance_sheet_data)
-          puts ">>>: #{doc.inspect}"
           send_data doc.file.download, filename: "#{@group.name}.pdf", type: 'application/pdf'
         rescue => e
           logger.error("error generating group pdf: #{e.message}")
