@@ -1,0 +1,8 @@
+.flex.justify-between.w-full.border-b.border-b-wa-brand-border-loud.rounded
+  .flex.flex-col
+    %h3.text-3xl #{group.name} (#{render_next_date(group.next_class_date)})
+    = group.course_type.name
+  %wa-button-group
+    %wa-button{variant: :brand, href: course_group_path(@course, group)} Show
+    %wa-button{variant: :brand, appearance: :outlined, href: course_group_path(@course, group)} Edit
+

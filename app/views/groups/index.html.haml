@@ -1,26 +1,8 @@
 %h1.text-4xl.mb-4 Listing groups for #{@course.name}
 
 = turbo_frame_tag 'groups-frame' do
-  %table.w-full
-    %thead
-      %tr.border-b-4.border-wa-brand-border-loud
-        %th Name
-        %th Type
-        %th Next class
-        %th
-        %th
-        %th
-
-    %tbody
-      - @groups.each do |group|
-        %tr.border-b.border-wa-brand-border-loud
-          %td= group.name
-          %td= group.course_type.name
-          %td= render_next_date(group.next_class_date)
-          %td= link_to 'Show', [@course, group]
-          %td= link_to 'Edit', edit_course_group_path(group.course, group)
-          %td= link_to 'Destroy', [@course, group], method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
+  .flex.flex-col.w-full.gap-2
+    - @groups.sort_by(&:name).each do |group|
+      = render 'group_listing', group: group
 
 = link_to 'New Group', new_course_group_path(@course)

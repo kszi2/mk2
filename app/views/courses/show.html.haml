@@ -20,9 +20,9 @@
           %wa-icon(slot="prefix" name="plus")
           Add group
 
-      = turbo_frame_tag "groups-frame", src: course_groups_path(@course) do
-        .w-full.flex.flex-row.justify-center
-          %wa-spinner.text-9xl
+      .flex.flex-col.w-full.gap-2
+        - @course.groups.sort_by(&:name).each do |group|
+          = render 'groups/group_listing', group: group
 
     %wa-tab-panel(name="coures-types")
       .flex.flex-row.flex-wrap.items-center.gap-2.my-4._(class="mx-4 md:mx-0")
