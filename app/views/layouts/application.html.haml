@@ -1,75 +1,78 @@
 !!! 5
 %html
-%head
-  %title mk2
-  %meta(name="viewport" content="width=device-width,initial-scale=1")/
-  %meta(name="view-transition" content="same-origin")/
-  = csrf_meta_tags
-  = csp_meta_tag
+  %head
+    %title mk2
+    %meta(name="viewport" content="width=device-width,initial-scale=1")/
+    %meta(name="view-transition" content="same-origin")/
+    = csrf_meta_tags
+    = csp_meta_tag
 
-  = stylesheet_link_tag "application", "data-turbo-track": "reload"
-  = javascript_include_tag "application", "data-turbo-track": "reload", type: "module"
+    = stylesheet_link_tag "application", "data-turbo-track": "reload"
+    = javascript_include_tag "application", "data-turbo-track": "reload", type: "module"
 
-  %link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css")/
-  %link(rel="stylesheet" href="https://early.webawesome.com/webawesome@3.0.0-alpha.2/dist/themes/default.css")/
-  %script(type="module" src="https://early.webawesome.com/webawesome@3.0.0-alpha.2/dist/webawesome.loader.js" data-fa-kit-code="4e88cc9921")
-  %link(rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/styles/github-dark.min.css")/
+    %link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css")/
+    %link(rel="stylesheet" href="https://early.webawesome.com/webawesome@3.0.0-alpha.2/dist/themes/default.css")/
+    %script(type="module" src="https://early.webawesome.com/webawesome@3.0.0-alpha.2/dist/webawesome.loader.js" data-fa-kit-code="4e88cc9921")
+    %link(rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/styles/github-dark.min.css")/
 
-%body.h-screen.bg-gradient-to-b.from-charcoal2.to-charcoal2.via-charcoal22.text-wa-text-normal._(class="via-40% to-80%")
-.relative
-  .fixed.z-50.w-full.flex.flex-row._(class="top-0.5 left-1/2 -translate-x-1/2 md:w-4/5 lg:w-3/5 xl:w-2/5")
-    %nav(class="mt-2 px-3 py-1 drop-shadow backdrop-blur-md w-full mx-2 md:mx-auto border border-onyx rounded flex flex-row flex-wrap justify-between")
-      #logo.h-full.flex.flex-row.items-center.gap-2
-        = link_to '/', class: 'h-full font-plex font-semibold text-2xl mx-1' do
-          mk2
+  %body.h-screen.bg-gradient-to-b.from-charcoal2.to-charcoal2.via-charcoal22.text-wa-text-normal._(class="via-40% to-80%")
+    .relative
+      .fixed.z-50.w-full.flex.flex-row._(class="top-0.5 left-1/2 -translate-x-1/2 md:w-4/5 lg:w-3/5 xl:w-2/5")
+        %nav(class="mt-2 px-3 py-1 drop-shadow backdrop-blur-md w-full mx-2 md:mx-auto border border-onyx rounded flex flex-row flex-wrap justify-between")
+          #logo.h-full.flex.flex-row.items-center.gap-2
+            = link_to '/', class: 'h-full font-plex font-semibold text-2xl mx-1' do
+              mk2
 
-      %a.menu-item.flex-row.items-center.font-semibold.border-wa-brand-border-loud._{
-        class: "hidden md:flex #{"border-b" if controller_name == 'languages'}",
-        href: templates_path
-      } Templates
-      %a.menu-item.flex-row.items-center.font-semibold.border-wa-brand-border-loud._{
-        class: "hidden md:flex #{"border-b" if controller_name == 'decks'}",
-        href: courses_path
-      } Courses
-      %a.menu-item.flex-row.items-center.font-semibold.border-wa-brand-border-loud._{
-        class: "hidden md:flex #{"border-b" if controller_name == 'decks'}",
-        href: students_path
-      } Students
+          %a.menu-item.flex-row.items-center.font-semibold.border-wa-brand-border-loud._{
+            class: "hidden md:flex #{"border-b" if controller_name == 'languages'}",
+            href: templates_path
+          } Templates
+          %a.menu-item.flex-row.items-center.font-semibold.border-wa-brand-border-loud._{
+            class: "hidden md:flex #{"border-b" if controller_name == 'decks'}",
+            href: courses_path
+          } Courses
+          %a.menu-item.flex-row.items-center.font-semibold.border-wa-brand-border-loud._{
+            class: "hidden md:flex #{"border-b" if controller_name == 'decks'}",
+            href: students_path
+          } Students
 
-    %wa-tooltip(for="logo")
-      - if Rails.configuration.version_info.nil?
-        Uncertain version
-      - else
-        %p This is a #{Rails.configuration.version_info[:type].upcase_first}
-        %p= Rails.configuration.version_info[:version]
-        %p Last commit deployed is #{Rails.configuration.version_info[:commit]}
+      %wa-tooltip(for="logo")
+        - if Rails.configuration.version_info.nil?
+          Uncertain version
+        - else
+          %p This is a #{Rails.configuration.version_info[:type].upcase_first}
+          %p= Rails.configuration.version_info[:version]
+          %p Last commit deployed is #{Rails.configuration.version_info[:commit]}
 
-  .fixed.top-16.left-0.z-40.w-full.flex.flex-col.items-center.notification.animate__animated.animate__fadeInDown
-    - flashed = false
-    - if flash && flash.key?(:alert)
-      - flashed = true
-      %wa-callout(variant="danger")
-        %wa-icon(slot="icon" name="triangle-exclamation" variant="regular")
-        %strong Error
-        %br/
-        = alert
-    - if flash && flash.key?(:notice)
-      - flashed = true
-      %wa-callout(variant="success")
-        %wa-icon(slot="icon" name="circle-check" variant="regular")
-        %strong Success
-        %br/
-        = notice
+    .fixed.top-16.left-0.z-40.w-full.flex.flex-col.items-center.notification.animate__animated.animate__fadeInDown
+      - flashed = false
+      - if flash && flash.key?(:alert)
+        - flashed = true
+        %wa-callout(variant="danger")
+          %wa-icon(slot="icon" name="triangle-exclamation" variant="regular")
+          %strong Error
+          %br/
+          = alert
+      - if flash && flash.key?(:notice)
+        - flashed = true
+        %wa-callout(variant="success")
+          %wa-icon(slot="icon" name="circle-check" variant="regular")
+          %strong Success
+          %br/
+          = notice
 
-    - if flashed
-      :javascript
-        animateCSS("div.notification", "fadeInDown").then(x => {
+      - if flashed
+        :javascript
           setTimeout(() => {
-            animateCSS("div.notification", "fadeOutUp").then(x => {
-              document.querySelector("div.notification").remove();
-            });
-          }, 1000);
-        })
+            animateCSS("div.notification", "fadeInDown").then(x => {
+              setTimeout(() => {
+                animateCSS("div.notification", "fadeOutUp").then(x => {
+                  document.querySelector("div.notification").remove();
+                });
+              }, 1000);
+            })
+          }, 100);
 
-%main(class="container mx-3 md:mx-auto mt-16 h-full flex flex-col")
-  = yield
+
+    %main(class="container mx-3 md:mx-auto mt-16 h-full flex flex-col")
+      = yield
