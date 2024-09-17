@@ -47,7 +47,7 @@ class SubmissionsController < ApplicationController
 
     respond_to do |format|
       if succ
-        format.html { redirect_to course_group_path(@course, @group), notice: "Submission was successfully created." }
+        format.html { redirect_to course_group_submission_path(@course, @group, @submission), notice: "Submission was successfully created." }
         format.json { render :show, status: :created, location: @submission }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -66,7 +66,7 @@ class SubmissionsController < ApplicationController
   def update
     respond_to do |format|
       if @submission.update(submission_params)
-        format.html { redirect_to course_group_path(@course, @group), notice: "Submission was successfully updated." }
+        format.html { redirect_to course_group_submission_path(@course, @group, @submission), notice: "Submission was successfully updated." }
         format.json { render :show, status: :ok, location: @submission }
       else
         format.html { render :edit, status: :unprocessable_entity }
