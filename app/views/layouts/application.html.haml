@@ -19,9 +19,16 @@
 .relative
   .fixed.z-50.w-full.flex.flex-row._(class="top-0.5 left-1/2 -translate-x-1/2 md:w-4/5 lg:w-3/5 xl:w-2/5")
     %nav(class="mt-2 px-3 py-1 drop-shadow backdrop-blur-md w-full mx-2 md:mx-auto border border-onyx rounded flex flex-row flex-wrap justify-between")
-      .h-full.flex.flex-row.items-center.gap-2
+      #logo.h-full.flex.flex-row.items-center.gap-2
         = link_to '/', class: 'h-full font-plex font-semibold text-2xl mx-1' do
           mk2
+      %wa-tooltip(for="logo")
+        - if Rails.configuration.version_info.nil?
+          Uncertain version
+        - else
+          %p This is a #{Rails.configuration.version_info[:type].upcase_first}
+          %p= Rails.configuration.version_info[:version]
+          %p Last commit deployed is #{Rails.configuration.version_info[:commit]}
 
       %a.menu-item.flex-row.items-center.font-semibold.border-wa-brand-border-loud._{
         class: "hidden md:flex #{"border-b" if controller_name == 'languages'}",
