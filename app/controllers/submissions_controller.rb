@@ -105,9 +105,9 @@ class SubmissionsController < ApplicationController
   def set_parents
     @group = Group.includes(:students).where(id: params.require(:group_id)).first!
     @course = Course.find(params.require(:course_id))
-    @courseworks = @course.courseworks.where(for_type: @group.course_type)
-    if params.key?(:coursework) && !params[:coursework].blank?
-      @courseworks = @courseworks.where(name: params.require(:coursework))
+    @courseworks = @course.courseworks.where(for_type_id: @group.course_type_id)
+    if params.key?(:coursework_id) && !params[:coursework_id].blank?
+      @courseworks = @courseworks.where(id: params.require(:coursework_id))
     end
   end
 

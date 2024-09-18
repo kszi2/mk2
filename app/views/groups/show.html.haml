@@ -52,10 +52,10 @@
 
         = form_tag course_group_filter_submissions_path(@course, @group) do
           .flex.gap-2.items-end
-            %wa-select.w-fit(name="coursework" label="Coursework")
+            %wa-select.w-fit(name="coursework_id" label="Coursework")
               %wa-option(value="") &lt;all&gt;
-              - @course.courseworks.pluck(:name).each do |name|
-                %wa-option(value=name)= name
+              - @course.courseworks.pluck(:id, :name).each do |id, name|
+                %wa-option(value=id)= name
             = wa_submit_tag "Filter"
 
       = turbo_frame_tag "group-submissions-frame", src: course_group_submissions_path(@course, @group) do
