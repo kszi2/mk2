@@ -21,12 +21,12 @@
   %wa-button{size: :small, href: edit_course_group_path(@course, @group)} Edit
   %wa-button{size: :small, href: course_path(@course)} Back
 
-.flex.flex-row.flex-wrap.items-center.gap-2.mt-8._(class="mx-4 md:mx-0")
-  %wa-tab-group.w-full
+.flex.flex-row.flex-wrap.items-center.gap-2.mt-8.h-full(class="mx-4 md:mx-0")
+  %wa-tab-group.w-full.h-full
     %wa-tab(slot="nav" panel="students" style="--active-tab-color: var(--wa-color-brand-border-loud);") Students
     %wa-tab(slot="nav" panel="submissions" style="--active-tab-color: var(--wa-color-brand-border-loud);") Submissions
 
-    %wa-tab-panel(name="students")
+    %wa-tab-panel.h-full(name="students")
       .flex.gap-2
         = turbo_frame_tag "add-students" do
           %wa-button.w-fit{size: :small, variant: :brand, href: course_group_add_students_path(@course, @group)}
@@ -45,8 +45,18 @@
               %span.font-mono= student.neptun.upcase
               %wa-button(type="submit" variant="danger" appearance="text") Remove
 
-    %wa-tab-panel(name="submissions")
-      = render 'submissions/header', objs: [@course, @group]
+    %wa-tab-panel.h-full(name="submissions")
+      .flex.justify-between.flex-wrap.my-4.gap-2
+        %div(class="w-3/4")
+          = render 'submissions/header', objs: [@course, @group]
+
+        = form_tag course_group_filter_submissions_path(@course, @group) do
+          .flex.gap-2.items-end
+            %wa-select.w-fit(name="coursework" label="Coursework")
+              %wa-option(value="") &lt;all&gt;
+              - @course.courseworks.pluck(:name).each do |name|
+                %wa-option(value=name)= name
+            = wa_submit_tag "Filter"
 
       = turbo_frame_tag "group-submissions-frame", src: course_group_submissions_path(@course, @group) do
         .w-full.flex.flex-row.justify-center

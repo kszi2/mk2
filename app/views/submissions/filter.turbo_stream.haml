@@ -1,0 +1,4 @@
+= turbo_stream.replace "submissions-listing" do
+  #submissions-listing.flex.flex-col.w-full.gap-2
+    - @submissions.each do |submission|
+      = render "submission_listing", submission: submission

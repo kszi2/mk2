@@ -1,26 +1,8 @@
 %h1 Listing submissions
 
 = turbo_frame_tag "group-submissions-frame" do
-  %table.w-full
-    %thead
-      %tr.border-b-4.border-wa-brand-border-loud
-        %th Student
-        %th Coursework
-        %th Submitted at
-        %th
-        %th
-        %th
-
-    %tbody
-      - @submissions.each do |submission|
-        %tr.border-b.border-wa-brand-border-loud
-          %td= submission.student.name
-          %td= submission.coursework.name
-          %td= submission.created_at.strftime("%F %H:%M:%S")
-          %td= link_to 'Show', [@course, @group, submission]
-          %td= link_to 'Edit', edit_course_group_submission_path(@course, @group, submission)
-          %td= link_to 'Destroy', [@course, @group, submission], method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
+  #submissions-listing.flex.flex-col.w-full.gap-2
+    - @submissions.each do |submission|
+      = render "submission_listing", submission: submission
 
 = link_to 'New Submission', new_course_group_submission_path(@course, @group)

@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       delete ":neptun", to: "groups#remove_student", as: :remove_student
 
       get "submission_header" => "submissions#header", as: :submission_header
+      post "submission_filter" => "submissions#filter", as: :filter_submissions
 
       resources :submissions do
         resources :marked_points do

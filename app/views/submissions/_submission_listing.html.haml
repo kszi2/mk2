@@ -1,0 +1,9 @@
+.flex.justify-between.w-full.border-b.border-b-wa-brand-border-loud.rounded
+  .ml-2.w-full
+    .flex.justify-between.items-end(class="w-1/4")
+      %h4.block.w-px.overflow-visible.whitespace-nowrap.text-xl= submission.student.name
+      #{submission.coursework.name}
+    = submission.created_at.localtime.strftime("%F %H:%M:%S")
+  %wa-button-group
+    %wa-button{variant: :brand, href: course_group_submission_path(@course, @group, submission)} Show
+    %wa-button{variant: :brand, appearance: :outlined, href: course_group_submission_path(@course, @group, submission)} Edit

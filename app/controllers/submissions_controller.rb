@@ -4,7 +4,11 @@ class SubmissionsController < ApplicationController
 
   # GET /submissions or /submissions.json
   def index
-    @submissions = Submission.all
+    @submissions = Submission
+                     .includes(:student, :coursework)
+                     .where(coursework_id: @courseworks.pluck(:id))
+                     .where(student_id: @group.students.pluck(:id))
+                     .all
   end
 
   # GET /submissions/1 or /submissions/1.json
@@ -13,6 +17,17 @@ class SubmissionsController < ApplicationController
       format.html
       format.prog2 { render partial: 'submission', format: :prog2 }
       format.prog1 { render partial: 'submission', format: :prog1 }
+    end
+  end
+
+  def filter
+    @submissions = Submission
+                     .includes(:student, :coursework)
+                     .where(coursework_id: @courseworks.pluck(:id))
+                     .where(student_id: @group.students.pluck(:id))
+                     .all
+    respond_to do |format|
+      format.turbo_stream
     end
   end
 
@@ -88,9 +103,12 @@ class SubmissionsController < ApplicationController
   private
 
   def set_parents
-    @group = Group.includes(:students).find(params.require(:group_id))
+    @group = Group.includes(:students).where(id: params.require(:group_id)).first!
     @course = Course.find(params.require(:course_id))
-    @courseworks = @course.courseworks.filter { |cw| cw.for_type = @group.course_type }
+    @courseworks = @course.courseworks.where(for_type: @group.course_type)
+    if params.key?(:coursework) && !params[:coursework].blank?
+      @courseworks = @courseworks.where(name: params.require(:coursework))
+    end
   end
 
   # Use callbacks to share common setup or constraints between actions.
