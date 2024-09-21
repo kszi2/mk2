@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @free_day.name
+%p
+  %b From day:
+  = @free_day.from_day
+%p
+  %b To day:
+  = @free_day.to_day
+
+= link_to 'Edit', edit_free_day_path(@free_day)
+\|
+= link_to 'Back', free_days_path

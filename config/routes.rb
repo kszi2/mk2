@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
   mount GoodJob::Engine => 'good_job'
 
+  get 'control_panel' => 'control_panel#view', as: :control_panel
+
   get 'students/import' => 'students#import', as: :import_students
   post 'students/bulk_create' => 'students#bulk_create', as: :bulk_create_students
   resources :students
+
+  resources :free_days
   resources :courses do
     resources :course_types
     resources :courseworks do

@@ -1,0 +1,2 @@
+class FreeDay < ApplicationRecord
+end
