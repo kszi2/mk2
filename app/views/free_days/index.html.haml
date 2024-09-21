@@ -1,0 +1,25 @@
+%h1 Listing free_days
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th From day
+      %th To day
+      %th
+      %th
+      %th
+
+  %tbody
+    - @free_days.each do |free_day|
+      %tr
+        %td= free_day.name
+        %td= free_day.from_day
+        %td= free_day.to_day
+        %td= link_to 'Show', free_day
+        %td= link_to 'Edit', edit_free_day_path(free_day)
+        %td= link_to 'Destroy', free_day, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Free day', new_free_day_path

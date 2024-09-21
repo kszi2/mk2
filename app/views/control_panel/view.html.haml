@@ -1,0 +1,28 @@
+%h1.mb-8.text-4xl mk2 Control Panel
+
+.flex.flex-row.flex-wrap-reverse._(class="gap-3 lg:gap-1")
+  %div(style="flex-grow: 1;")
+    %h2.mb-5.text-xl Configuration
+
+    .mb-3
+      %h3.mb-1.text-lg Job management
+      %a.border.rounded.border-wa-brand-border-loud.p-2._{href:"/good_job",
+        class: "hover:color-wa-brand-border-loud"
+      } Open good_job control panel
+
+    .mb-3
+      %h3.mb-1.text-lg Free days
+      %a.border.rounded.border-wa-brand-border-loud.p-2._{href:"/free_days"} Free days
+
+
+  %aside
+    %h2.mb-5.text-xl Version info
+
+    %div.font-mono
+      - if Rails.configuration.version_info.nil?
+        %p Uncertain version
+        %p If you see this in production, you broke the deployment
+      - else
+        %p This is mk2 #{Rails.configuration.version_info[:type].upcase_first} edition
+        %p Running mk2 #{Rails.configuration.version_info[:version]}
+        %p Last commit deployed is #{Rails.configuration.version_info[:commit]}

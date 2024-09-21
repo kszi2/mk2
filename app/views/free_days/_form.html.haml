@@ -1,0 +1,19 @@
+= form_for @free_day do |f|
+  - if @free_day.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@free_day.errors.count, "error")} prohibited this free_day from being saved:"
+      %ul
+        - @free_day.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :from_day
+    = f.date_field :from_day
+  .field
+    = f.label :to_day
+    = f.date_field :to_day
+  .actions
+    = f.submit 'Save'

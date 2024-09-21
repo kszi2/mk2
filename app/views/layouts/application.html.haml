@@ -22,26 +22,23 @@
       #logo.h-full.flex.flex-row.items-center.gap-2
         = link_to '/', class: 'h-full font-plex font-semibold text-2xl mx-1' do
           mk2
-      %wa-tooltip(for="logo")
-        - if Rails.configuration.version_info.nil?
-          Uncertain version
-        - else
-          %p This is a #{Rails.configuration.version_info[:type].upcase_first}
-          %p= Rails.configuration.version_info[:version]
-          %p Last commit deployed is #{Rails.configuration.version_info[:commit]}
 
       %a.menu-item.flex-row.items-center.font-semibold.border-wa-brand-border-loud._{
-        class: "hidden md:flex #{"border-b" if controller_name == 'languages'}",
+        class: "hidden md:flex #{"border-b" if controller_name == 'templates'}",
         href: templates_path
       } Templates
       %a.menu-item.flex-row.items-center.font-semibold.border-wa-brand-border-loud._{
-        class: "hidden md:flex #{"border-b" if controller_name == 'decks'}",
+        class: "hidden md:flex #{"border-b" if controller_name == 'courses'}",
         href: courses_path
       } Courses
       %a.menu-item.flex-row.items-center.font-semibold.border-wa-brand-border-loud._{
-        class: "hidden md:flex #{"border-b" if controller_name == 'decks'}",
+        class: "hidden md:flex #{"border-b" if controller_name == 'students'}",
         href: students_path
       } Students
+      %a.menu-item.flex-row.items-center.font-semibold.border-wa-brand-border-loud._{
+        class: "hidden md:flex #{"border-b" if controller_name == 'control_panel'}",
+        href: control_panel_path
+      } Control Panel
 
   .fixed.top-16.left-0.z-40.w-full.flex.flex-col.items-center.notification.animate__animated.animate__fadeInDown
     - flashed = false

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_15_183323) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_21_192445) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -67,6 +67,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_15_183323) do
     t.index ["course_id", "name"], name: "index_courseworks_on_course_id_and_name", unique: true
     t.index ["course_id"], name: "index_courseworks_on_course_id"
     t.index ["for_type_id"], name: "index_courseworks_on_for_type_id"
+  end
+
+  create_table "free_days", force: :cascade do |t|
+    t.string "name", limit: 64, null: false
+    t.date "from_day", null: false
+    t.date "to_day"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "good_job_batches", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
