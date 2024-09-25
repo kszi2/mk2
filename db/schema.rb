@@ -162,7 +162,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_15_183323) do
     t.string "name", limit: 32, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.date "year", default: "2024-08-18", null: false
+    t.date "year", default: "2024-09-25", null: false
     t.integer "semester", default: 1, null: false
     t.date "first_date", null: false
     t.integer "repeat_times", default: 14, null: false
@@ -170,7 +170,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_15_183323) do
     t.bigint "course_type_id"
     t.index ["course_id", "name", "year", "semester"], name: "index_groups_on_course_id_and_name_and_year_and_semester", unique: true
     t.index ["course_id"], name: "index_groups_on_course_id"
-    t.index ["course_type_id"], name: "index_groups_on_course_types_id"
+    t.index ["course_type_id"], name: "index_groups_on_course_type_id"
   end
 
   create_table "groups_students", id: false, force: :cascade do |t|
