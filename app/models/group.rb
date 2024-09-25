@@ -11,11 +11,6 @@ class Group < ApplicationRecord
   validates :day_difference, presence: true, numericality: { only_integer: true }, inclusion: { in: 1..(7 * 14) }
   validates :course_type_id, presence: true, on: :create # new groups can only be created with course_type set
 
-  def safe_course_type
-    return "<unset>" if course_type.nil?
-    course_type.name
-  end
-
   def dates_for_class
     (0..repeat_times - 1).map do |entry|
       first_date + (day_difference * entry).days
