@@ -72,6 +72,8 @@ group :test do
   gem "selenium-webdriver"
 end
 
+gem 'parallel_tests', group: [:development, :test]
+
 gem "haml", "~> 6.3"
 gem "haml-rails", "~> 2.1"
 gem "prawn", "~> 2.5"
