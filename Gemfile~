@@ -90,6 +90,8 @@ gem "foreman", "~> 0.88.1"
 
 gem "bundler", "~> 2.4"
 
+<<<<<<< HEAD
 gem "kaminari", "~> 1.2"
-
+=======
 gem "image_processing", "~> 1.13"
+>>>>>>> 2cf7d89 (test: pdf_datum basic tests)
