@@ -53,7 +53,7 @@ class CourseworksController < ApplicationController
     @coursework.destroy!
 
     respond_to do |format|
-      format.html { redirect_to course_path(@course), notice: "Coursework was successfully destroyed." }
+      format.html { redirect_to course_path(@course, page: :courseworks), notice: "Coursework was successfully destroyed." }
       format.json { head :no_content }
     end
   end

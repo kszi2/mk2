@@ -13,10 +13,10 @@
   %b Active:
   = @coursework.active
 
-.flex.gap-2
-  = link_to 'Edit', edit_course_coursework_path(@course, @coursework)
-  \|
-  = link_to 'Back', course_path(@course)
+
+.flex.gap-2.mt-4
+  %wa-button{size: :small, href: edit_course_coursework_path(@course, @coursework)} Edit
+  %wa-button{size: :small, href: course_path(@course, page: :courseworks)} Back
 
 .flex.flex-col.gap-2.my-4._(class="mx-4 md:mx-0")
   %h2.text-3xl Rating points

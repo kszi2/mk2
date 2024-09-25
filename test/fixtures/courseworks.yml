@@ -2,25 +2,30 @@
 
 bw_lab_1:
   course: course_with_biweekly_lab
+  for_type: labor_2
   name: Biweekly Lab 1
   active: true
 
 bw_lab_2:
   course: course_with_biweekly_lab
+  for_type: labor_2
   name: Biweekly Lab 2
   active: true
 
 inactive_lab:
   course: course_with_lab
+  for_type: labor_1
   name: Lab 1 (Old)
   active: false
 
 w_lab_1:
   course: course_with_lab
+  for_type: labor_1
   name: Lab 1
   active: true
 
 w_lab_2:
   course: course_with_lab
+  for_type: labor_1
   name: Lab 2
   active: true
