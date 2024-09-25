@@ -120,6 +120,9 @@ GEM
       multipart-post (~> 2)
     faraday-net_http (3.3.0)
       net-http
+    ffi (1.17.0-arm-linux-gnu)
+    ffi (1.17.0-x64-mingw-ucrt)
+    ffi (1.17.0-x86_64-linux-gnu)
     foreman (0.88.1)
     fugit (1.11.1)
       et-orbi (~> 1, >= 1.2.11)
@@ -147,6 +150,9 @@ GEM
       http-2 (>= 1.0.0)
     i18n (1.14.6)
       concurrent-ruby (~> 1.0)
+    image_processing (1.13.0)
+      mini_magick (>= 4.9.5, < 5)
+      ruby-vips (>= 2.0.17, < 3)
     io-console (0.7.2)
     irb (1.14.0)
       rdoc (>= 4.0.0)
@@ -168,6 +174,7 @@ GEM
       net-smtp
     marcel (1.0.4)
     matrix (0.4.2)
+    mini_magick (4.13.2)
     mini_mime (1.1.5)
     minitest (5.25.1)
     msgpack (1.7.2)
@@ -256,6 +263,9 @@ GEM
       railties (>= 5.2)
     rexml (3.3.7)
     rouge (4.4.0)
+    ruby-vips (2.2.2)
+      ffi (~> 1.12)
+      logger
     rubyzip (2.3.2)
     selenium-webdriver (4.25.0)
       base64 (~> 0.2)
@@ -321,6 +331,7 @@ DEPENDENCIES
   haml (~> 6.3)
   haml-rails (~> 2.1)
   httpx
+  image_processing (~> 1.13)
   jbuilder
   jsbundling-rails
   parallel_tests
