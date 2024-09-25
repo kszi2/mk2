@@ -1,13 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  descriptin: MyString
-  available_points: 1
-  coursework: one
+lab1:
+  name: Lab 1
+  description: Rating for lab 1
+  available_points: 0
+  coursework: w_lab_1
 
-two:
-  name: MyString
-  descriptin: MyString
-  available_points: 1
-  coursework: two
+bwlab1:
+  name: BW Lab 1
+  description: Rating for lab 1
+  available_points: 0
+  coursework: bw_lab_1

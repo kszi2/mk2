@@ -1,9 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  course: one
+labor_1:
+  name: Labor Type
+  course: course_with_lab
 
-two:
-  name: MyString
-  course: two
+gyak:
+  name: Gyak Type
+  course: course_with_lab
+
+labor_2:
+  name: Labor Type
+  course: course_with_biweekly_lab

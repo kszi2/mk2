@@ -1,9 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  submission: one
-  rating_point: one
+marking_gjs_bw1:
+  submission: gjs_sub_bw1
+  rating_point: bwlab1
 
-two:
-  submission: two
-  rating_point: two
+marking_jds_bw1:
+  submission: jds_sub_bw1
+  rating_point: bwlab1
+
+marking_jds_w1:
+  submission: jds_sub_w1
+  rating_point: lab1

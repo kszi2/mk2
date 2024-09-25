@@ -1,13 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+note1:
   points_cost: 1
-  reason: MyString
-  fixed: false
-  marked_points: one
+  reason: Szar
+  fixed: true
+  marked_point: marking_gjs_bw1
 
-two:
+note2:
   points_cost: 1
-  reason: MyString
+  reason: Intricate reasoning (még minding szar)
   fixed: false
-  marked_points: two
+  marked_point: marking_jds_w1
