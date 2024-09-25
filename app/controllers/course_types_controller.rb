@@ -40,7 +40,7 @@ class CourseTypesController < ApplicationController
   def update
     respond_to do |format|
       if @course_type.update(course_type_params)
-        format.html { redirect_to course_type_url(@course_type), notice: "Course type was successfully updated." }
+        format.html { redirect_to course_course_type_path(@course, @course_type), notice: "Course type was successfully updated." }
         format.json { render :show, status: :ok, location: @course_type }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -54,7 +54,7 @@ class CourseTypesController < ApplicationController
     @course_type.destroy!
 
     respond_to do |format|
-      format.html { redirect_to course_types_url, notice: "Course type was successfully destroyed." }
+      format.html { redirect_to course_path(@course, page: :course_type), notice: "Course type was successfully destroyed." }
       format.json { head :no_content }
     end
   end
