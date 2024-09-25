@@ -22,8 +22,8 @@ class Group < ApplicationRecord
     end
   end
 
-  def next_class_date
-    rem = dates_for_class.filter { |date| date >= Date.today }
+  def next_class_date(today = Date.today)
+    rem = dates_for_class.filter { |date| date >= today }
     return nil if rem.empty?
     rem.first
   end
