@@ -2,7 +2,7 @@ class Submission < ApplicationRecord
   belongs_to :student
   belongs_to :coursework
   has_many :rating_points, through: :coursework
-  has_many :marked_points
+  has_many :marked_points, dependent: :delete_all
 
   def total_points
     coursework.total_points

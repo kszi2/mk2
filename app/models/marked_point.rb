@@ -1,7 +1,7 @@
 class MarkedPoint < ApplicationRecord
   belongs_to :submission
   belongs_to :rating_point
-  has_many :marking_notes
+  has_many :marking_notes, dependent: :delete_all
 
   def marked_for
     rating_point.available_points - total_points_cost

@@ -2,7 +2,7 @@
 
 %p
   %b Name:
-  = @course.name
+  %span= @course.name
 
 .flex.gap-2.mt-4
   %wa-button{size: :small, href: edit_course_path(@course)} Edit
