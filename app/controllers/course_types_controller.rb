@@ -54,7 +54,7 @@ class CourseTypesController < ApplicationController
     @course_type.destroy!
 
     respond_to do |format|
-      format.html { redirect_to course_path(@course, page: :course_type), notice: "Course type was successfully destroyed." }
+      format.html { redirect_to course_path(@course, page: :course_types), notice: "Course type was successfully destroyed." }
       format.json { head :no_content }
     end
   end
