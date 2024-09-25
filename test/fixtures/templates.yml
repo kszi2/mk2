@@ -1,11 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  course: one
-  data: MyString
+rating_template:
+  name: Rating template
+  course: course_with_lab
+  data: Text
 
-two:
-  name: MyString
-  course: two
-  data: MyString
+semester_closing_template:
+  name: Semester closing template
+  course: course_with_biweekly_lab
+  data: More text

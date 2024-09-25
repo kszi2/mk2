@@ -1,9 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  student: one
-  coursework: one
+gjs_sub_bw1:
+  student: gipsz_jakab
+  coursework: bw_lab_1
 
-two:
-  student: two
-  coursework: two
+jds_sub_bw1:
+  student: john_doe
+  coursework: bw_lab_1
+
+jds_sub_w1:
+  student: john_doe
+  coursework: w_lab_1

@@ -1,9 +1,21 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  course: one
-  name: MyString
+weekly_lab:
+  course: course_with_lab
+  name: Gyak Group
+  year: 2024-08-18
+  semester: 1
+  first_date: 2024-09-02
+  repeat_times: 14
+  day_difference: 7
+  course_type: gyak
 
-two:
-  course: two
-  name: MyString
+biweekly_lab:
+  course: course_with_biweekly_lab
+  name: Lab Group
+  year: 2024-08-18
+  semester: 1
+  first_date: 2024-09-09
+  repeat_times: 7
+  day_difference: 14
+  course_type: labor_2
