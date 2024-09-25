@@ -76,6 +76,24 @@ class CoursesControllerTest < ActionDispatch::IntegrationTest
     assert_dom "wa-input[label='Name']", { count: 1 }
   end
 
+  test "edit has show button to page of current course" do
+    get edit_course_url(@course)
+    assert_response :success
+    assert_dom "wa-button[href='#{course_path(@course)}']", { count: 1, text: "Show" }
+  end
+
+  test "edit has back button to courses index" do
+    get edit_course_url(@course)
+    assert_response :success
+    assert_dom "wa-button[href='#{courses_path}']", { count: 1, text: "Back" }
+  end
+
+  test "edit has save button" do
+    get edit_course_url(@course)
+    assert_response :success
+    assert_dom "wa-button[type='submit']", { count: 1, text: "Save" }
+  end
+
   test "should update course" do
     assert_changes -> { @course.name }, to: "new name" do
       patch course_url(@course), params: { course: { name: "new name" } }
