@@ -2,10 +2,10 @@
 
 %p
   %b Course:
-  = @course_type.course.name
+  %span= @course_type.course.name
 %p
   %b Name:
-  = @course_type.name
+  %span= @course_type.name
 
 .flex.gap-2
   = link_to 'Edit', edit_course_course_type_path(@course, @course_type)
