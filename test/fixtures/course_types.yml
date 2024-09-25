@@ -1,7 +1,7 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 labor_1:
-  name: Labor Type
+  name: Labor Type 1
   course: course_with_lab
 
 gyak:
@@ -9,5 +9,5 @@ gyak:
   course: course_with_lab
 
 labor_2:
-  name: Labor Type
+  name: Labor Type 2
   course: course_with_biweekly_lab
