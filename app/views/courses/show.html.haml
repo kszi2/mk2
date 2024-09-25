@@ -9,9 +9,9 @@
   %wa-button{size: :small, href: courses_path} Back
 
 .flex.flex-row.flex-wrap.items-center.gap-2.mt-8._(class="mx-4 md:mx-0")
-  %wa-tab-group.w-full
+  %wa-tab-group.w-full._(active=@load_page)
     %wa-tab(slot="nav" panel="groups" style="--active-tab-color: var(--wa-color-brand-border-loud);") Groups
-    %wa-tab(slot="nav" panel="coures-types" style="--active-tab-color: var(--wa-color-brand-border-loud);") Group types
+    %wa-tab(slot="nav" panel="course_types" style="--active-tab-color: var(--wa-color-brand-border-loud);") Group types
     %wa-tab(slot="nav" panel="courseworks" style="--active-tab-color: var(--wa-color-brand-border-loud);") Courseworks
 
     %wa-tab-panel(name="groups")
@@ -24,7 +24,7 @@
         - @course.groups.sort_by(&:name).each do |group|
           = render 'groups/group_listing', group: group
 
-    %wa-tab-panel(name="coures-types")
+    %wa-tab-panel(name="course_types")
       .flex.flex-row.flex-wrap.items-center.gap-2.my-4._(class="mx-4 md:mx-0")
         %wa-button.w-fit{size: :small, variant: :brand, href: new_course_course_type_path(@course)}
           %wa-icon(slot="prefix" name="plus")
