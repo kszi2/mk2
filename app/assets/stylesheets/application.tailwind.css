@@ -91,6 +91,10 @@
     --wa-color-danger-on-loud: var(--wa-color-text-normal) !important;
 }
 
+.colored-scrollbar {
+    scrollbar-color: var(--wa-color-brand-fill-loud) #0a0f12;
+}
+
 dialog.dialog {
     color: var(--wa-color-text-normal);
 }
