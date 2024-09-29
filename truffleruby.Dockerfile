@@ -3,7 +3,7 @@
 # Dockerfile for deploying using TruffleRuby native
 
 # Make sure RUBY_VERSION matches the Ruby version in .ruby-version and Gemfile
-ARG RUBY_VERSION=3.2.3
+ARG RUBY_VERSION=3.2.4
 ARG TRUFFLERUBY_VERSION=24.1.0
 FROM ghcr.io/graalvm/truffleruby-community:$TRUFFLERUBY_VERSION-debian AS base
 
@@ -62,10 +62,7 @@ FROM base
 # Install packages needed for deployment
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y curl libvips postgresql-client && \
-    rm -rf /var/lib/apt/lists /var/cache/apt/archives \
-    gem install bundler -v '~> 2.5'
-
-LABEL impl=truffle
+    rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Copy built artifacts: gems, application
 COPY --from=build /usr/local/bundle /usr/local/bundle
