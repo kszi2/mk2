@@ -9,7 +9,7 @@ last_tag_sha=$(echo "$last_tag_data" | cut -d ' ' -f 1)
 last_tag=$(echo "$last_tag_data" | cut -d ' ' -f 2)
 
 # get commit data from git
-last_commit_data=$(git log HEAD ^HEAD~1 --pretty="format:%h on %cI")
+last_commit_data=$(git log HEAD -n 1 --pretty="format:%h on %cI")
 last_commit_sha=$(echo "$last_commit_data" | cut -d ' ' -f 1)
 
 # output
