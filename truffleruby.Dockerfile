@@ -5,7 +5,7 @@
 # Make sure RUBY_VERSION matches the Ruby version in .ruby-version and Gemfile
 ARG RUBY_VERSION=3.2.3
 ARG TRUFFLERUBY_VERSION=24.1.0
-FROM ghcr.io/graalvm/truffleruby-community:debian-$TRUFFLERUBY_VERSION AS base
+FROM ghcr.io/graalvm/truffleruby-community:$TRUFFLERUBY_VERSION-debian AS base
 
 # Rails app lives here
 WORKDIR /rails
