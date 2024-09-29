@@ -40,7 +40,7 @@ jobs:
       with:
         context: .
         push: true
-        tags: ${{ steps.meta.outputs.tags }} latest
+        tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
 
     - name: Build and push Docker image (TruffleRuby)
@@ -50,7 +50,7 @@ jobs:
         file: truffleruby.Dockerfile
         context: .
         push: true
-        tags: ${{ steps.meta.outputs.tags }} truffle-latest
+        tags: ${{ steps.meta.outputs.tags }}-truffle
         labels: ${{ steps.meta.outputs.labels }}
 
     - name: Generate artifact attestation (MRI)
