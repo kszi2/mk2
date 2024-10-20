@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_15_183323) do
+ActiveRecord::Schema[7.1].define(version: 2024_10_20_165740) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -59,7 +59,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_15_183323) do
 
   create_table "courseworks", force: :cascade do |t|
     t.bigint "course_id", null: false
-    t.string "name", limit: 32, null: false
+    t.string "name", limit: 255, null: false
     t.boolean "active", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -243,16 +243,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_15_183323) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "course_types", "courses"
+  add_foreign_key "course_types", "courses", on_delete: :cascade
   add_foreign_key "courseworks", "course_types", column: "for_type_id"
-  add_foreign_key "courseworks", "courses"
+  add_foreign_key "courseworks", "courses", on_delete: :cascade
   add_foreign_key "groups", "course_types"
-  add_foreign_key "groups", "courses"
-  add_foreign_key "marked_points", "rating_points"
-  add_foreign_key "marked_points", "submissions"
-  add_foreign_key "marking_notes", "marked_points"
-  add_foreign_key "rating_points", "courseworks"
-  add_foreign_key "submissions", "courseworks"
+  add_foreign_key "groups", "courses", on_delete: :cascade
+  add_foreign_key "groups_students", "groups", on_delete: :cascade
+  add_foreign_key "groups_students", "students", on_delete: :cascade
+  add_foreign_key "marked_points", "rating_points", on_delete: :cascade
+  add_foreign_key "marked_points", "submissions", on_delete: :cascade
+  add_foreign_key "marking_notes", "marked_points", on_delete: :cascade
+  add_foreign_key "rating_points", "courseworks", on_delete: :cascade
+  add_foreign_key "submissions", "courseworks", on_delete: :cascade
   add_foreign_key "submissions", "students"
-  add_foreign_key "templates", "courses"
+  add_foreign_key "templates", "courses", on_delete: :nullify
 end
