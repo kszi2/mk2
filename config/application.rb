@@ -33,7 +33,7 @@ module Mk2
       #   class: 'DailySendNeededAttendancesJob',
       # },
       send_next_week_attendances: {
-        cron: "17 15 * * 0",
+        cron: "17 11 * * 0",
         class: 'WeeklySendNeededAttendancesJob'
       }
     }
