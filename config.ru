@@ -2,5 +2,7 @@
 
 require_relative "config/environment"
 
+use Rack::Pratchett
+
 run Rails.application
 Rails.application.load_server

@@ -89,3 +89,7 @@ gem "foreman", "~> 0.88.1"
 gem "bundler", "~> 2.4"
 
 gem "kaminari", "~> 1.2"
+
+gem "rack-pratchett", "~> 0.1.1"
+
+gem "falcon", "~> 0.48.3"

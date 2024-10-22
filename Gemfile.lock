@@ -77,6 +77,30 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
+    async (2.17.0)
+      console (~> 1.26)
+      fiber-annotation
+      io-event (~> 1.6, >= 1.6.5)
+    async-container (0.18.3)
+      async (~> 2.10)
+    async-http (0.82.2)
+      async (>= 2.10.2)
+      async-pool (~> 0.9)
+      io-endpoint (~> 0.14)
+      io-stream (~> 0.6)
+      metrics (~> 0.12)
+      protocol-http (~> 0.37)
+      protocol-http1 (>= 0.28.1)
+      protocol-http2 (~> 0.19)
+      traces (~> 0.10)
+    async-http-cache (0.4.4)
+      async-http (~> 0.56)
+    async-pool (0.10.1)
+      async (>= 1.25)
+      traces
+    async-service (0.12.0)
+      async
+      async-container (~> 0.16)
     base64 (0.2.0)
     better_errors (2.10.1)
       erubi (>= 1.0.0)
@@ -100,6 +124,10 @@ GEM
       xpath (~> 3.2)
     concurrent-ruby (1.3.4)
     connection_pool (2.4.1)
+    console (1.27.0)
+      fiber-annotation
+      fiber-local (~> 1.1)
+      json
     crass (1.0.6)
     cssbundling-rails (1.4.1)
       railties (>= 6.0.0)
@@ -112,6 +140,19 @@ GEM
     erubi (1.13.0)
     et-orbi (1.2.11)
       tzinfo
+    falcon (0.48.3)
+      async
+      async-container (~> 0.18)
+      async-http (~> 0.75)
+      async-http-cache (~> 0.4)
+      async-service (~> 0.10)
+      bundler
+      localhost (~> 1.1)
+      openssl (~> 3.0)
+      process-metrics (~> 0.2)
+      protocol-http (~> 0.31)
+      protocol-rack (~> 0.7)
+      samovar (~> 2.3)
     faraday (2.12.0)
       faraday-net_http (>= 2.0, < 3.4)
       json
@@ -120,6 +161,10 @@ GEM
       multipart-post (~> 2)
     faraday-net_http (3.3.0)
       net-http
+    fiber-annotation (0.2.0)
+    fiber-local (1.1.0)
+      fiber-storage
+    fiber-storage (1.0.0)
     foreman (0.88.1)
     fugit (1.11.1)
       et-orbi (~> 1, >= 1.2.11)
@@ -148,6 +193,9 @@ GEM
     i18n (1.14.6)
       concurrent-ruby (~> 1.0)
     io-console (0.7.2)
+    io-endpoint (0.14.0)
+    io-event (1.7.3)
+    io-stream (0.6.0)
     irb (1.14.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
@@ -169,6 +217,7 @@ GEM
       activerecord
       kaminari-core (= 1.2.2)
     kaminari-core (1.2.2)
+    localhost (1.3.1)
     logger (1.6.1)
     loofah (2.22.0)
       crass (~> 1.0.2)
@@ -178,9 +227,12 @@ GEM
       net-imap
       net-pop
       net-smtp
+    mapping (1.1.1)
     marcel (1.0.4)
     matrix (0.4.2)
+    metrics (0.12.0)
     mini_mime (1.1.5)
+    mini_portile2 (2.8.7)
     minitest (5.25.1)
     msgpack (1.7.2)
     multipart-post (2.4.1)
@@ -197,19 +249,30 @@ GEM
     net-smtp (0.5.0)
       net-protocol
     nio4r (2.7.3)
-    nokogiri (1.16.7-arm-linux)
+    nokogiri (1.16.7)
+      mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
-    nokogiri (1.16.7-x64-mingw-ucrt)
-      racc (~> 1.4)
-    nokogiri (1.16.7-x86_64-linux)
-      racc (~> 1.4)
+    openssl (3.2.0)
     pdf-core (0.10.0)
     pg (1.5.8)
-    pg (1.5.8-x64-mingw-ucrt)
     prawn (2.5.0)
       matrix (~> 0.4)
       pdf-core (~> 0.10.0)
       ttfunk (~> 1.8)
+    process-metrics (0.3.0)
+      console (~> 1.8)
+      json (~> 2)
+      samovar (~> 2.1)
+    protocol-hpack (1.5.1)
+    protocol-http (0.42.0)
+    protocol-http1 (0.28.1)
+      protocol-http (~> 0.22)
+    protocol-http2 (0.19.3)
+      protocol-hpack (~> 1.4)
+      protocol-http (~> 0.18)
+    protocol-rack (0.10.1)
+      protocol-http (~> 0.37)
+      rack (>= 1.0)
     psych (5.1.2)
       stringio
     public_suffix (6.0.1)
@@ -218,6 +281,7 @@ GEM
     raabro (1.4.0)
     racc (1.8.1)
     rack (3.1.7)
+    rack-pratchett (0.1.1)
     rack-session (2.0.0)
       rack (>= 3.0.0)
     rack-test (2.1.0)
@@ -266,6 +330,9 @@ GEM
     rexml (3.3.7)
     rouge (4.4.0)
     rubyzip (2.3.2)
+    samovar (2.3.0)
+      console (~> 1.0)
+      mapping (~> 1.0)
     selenium-webdriver (4.25.0)
       base64 (~> 0.2)
       logger (~> 1.4)
@@ -286,6 +353,7 @@ GEM
     thor (1.3.2)
     tilt (2.4.0)
     timeout (0.4.1)
+    traces (0.13.1)
     ttfunk (1.8.0)
       bigdecimal (~> 3.1)
     turbo-rails (2.0.10)
@@ -323,6 +391,7 @@ DEPENDENCIES
   capybara
   cssbundling-rails
   debug
+  falcon (~> 0.48.3)
   faraday
   faraday-multipart
   foreman (~> 0.88.1)
@@ -336,6 +405,7 @@ DEPENDENCIES
   pg (~> 1.1)
   prawn (~> 2.5)
   puma (>= 5.0)
+  rack-pratchett (~> 0.1.1)
   rails (~> 7.1.3, >= 7.1.3.4)
   responders (~> 3.1)
   selenium-webdriver
