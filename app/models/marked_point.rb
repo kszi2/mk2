@@ -9,6 +9,6 @@ class MarkedPoint < ApplicationRecord
 
   def total_points_cost
     return 0 if marking_notes.empty?
-    marking_notes.map(&:points_cost).inject(:+)
+    marking_notes.filter_map { |n| n.points_cost unless n.fixed }.inject(:+) || 0
   end
 end

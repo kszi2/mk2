@@ -30,6 +30,7 @@ Rails.application.routes.draw do
 
           resources :marking_notes do
             post 'edit', to: 'marking_notes#edit_marking'
+            post 'toggle', to: 'marking_notes#toggle', as: :toggle
           end
         end
       end

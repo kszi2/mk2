@@ -1,6 +1,6 @@
 class MarkingNotesController < ApplicationController
   before_action :set_parents
-  before_action :set_marking_note, only: %i[ edit_marking show edit update destroy ]
+  before_action :set_marking_note, only: %i[ edit_marking show edit update destroy toggle ]
 
   # GET /marking_notes or /marking_notes.json
   def index
@@ -37,6 +37,13 @@ class MarkingNotesController < ApplicationController
 
   # GET /marking_notes/1/edit
   def edit
+  end
+
+  def toggle
+    puts @marking_note.fixed
+    @marking_note.fixed = !@marking_note.fixed
+    puts @marking_note.fixed
+    @marking_note.save!
   end
 
   # POST /marking_notes or /marking_notes.json

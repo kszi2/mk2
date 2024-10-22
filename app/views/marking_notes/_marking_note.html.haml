@@ -3,6 +3,13 @@
     = form_tag edit_course_group_submission_marked_point_marking_note_path(*objs) do
       %wa-button{size: :small, appearance: :text, variant: :brand, type: :submit} Edit
 
+  = turbo_frame_tag dom_id(marking_note, :toggle_strm) do
+    = form_tag course_group_submission_marked_point_marking_note_toggle_path(*objs) do
+      - if marking_note.fixed
+        %wa-button{size: :small, appearance: :text, variant: :danger, type: :submit, class: 'w-12'} Unfix
+      - else
+        %wa-button{size: :small, appearance: :text, variant: :success, type: :submit, class: 'w-12'} Fix
+
   %div(class="translate-y-0.5")
     = note_preface(marking_note)
     = note_reasoning(marking_note)
