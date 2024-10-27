@@ -7,6 +7,11 @@ class MarkedPoint < ApplicationRecord
     rating_point.available_points - total_points_cost
   end
 
+  def failed_criterion?
+    return false unless rating_point.criterion?
+    total_points_cost != 0
+  end
+
   def total_points_cost
     return 0 if marking_notes.empty?
     marking_notes.filter_map { |n| n.points_cost unless n.fixed }.inject(:+) || 0

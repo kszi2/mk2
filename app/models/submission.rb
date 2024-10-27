@@ -12,6 +12,7 @@ class Submission < ApplicationRecord
   end
 
   def marked_for
+    return 0 if marked_points.any?(&:failed_criterion?)
     total_points - marked_points.map(&:total_points_cost).inject(:+)
   end
 end
