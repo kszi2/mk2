@@ -6,4 +6,8 @@
     = submission.created_at.localtime.strftime("%F %H:%M:%S")
   %wa-button-group
     %wa-button{variant: :brand, href: course_group_submission_path(@course, @group, submission)} Show
-    %wa-button{variant: :brand, appearance: :outlined, href: course_group_submission_path(@course, @group, submission)} Edit
+    %wa-button{variant: :brand, appearance: :outlined, href: edit_course_group_submission_path(@course, @group, submission)} Edit
+    = form_for [@course, @group, submission], method: :delete,
+                data: { "turbo-confirm": "Delete #{submission.coursework.name} for #{submission.student.name}?" } do
+      %wa-button{variant: :danger, appearance: :outlined, type: :submit} Delete
+
