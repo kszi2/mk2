@@ -4,6 +4,9 @@ class Submission < ApplicationRecord
   has_many :rating_points, through: :coursework
   has_many :marked_points
 
+  validates :student_id, presence: true
+  validates :coursework_id, presence: true, uniqueness: { scope: :student_id, message: "Already submitted" }, on: :create
+
   def total_points
     coursework.total_points
   end

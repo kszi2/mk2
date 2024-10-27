@@ -58,7 +58,7 @@ class SubmissionsController < ApplicationController
         end
       end
 
-      rollback unless succ
+      raise ActiveRecord::Rollback unless succ
     end
 
     respond_to do |format|
