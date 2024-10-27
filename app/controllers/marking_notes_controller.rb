@@ -30,6 +30,7 @@ class MarkingNotesController < ApplicationController
   end
 
   def cancel_make
+    set_marking_note unless params[:marking_note_id].blank?
     respond_to do |format|
       format.turbo_stream
     end
@@ -40,9 +41,7 @@ class MarkingNotesController < ApplicationController
   end
 
   def toggle
-    puts @marking_note.fixed
     @marking_note.fixed = !@marking_note.fixed
-    puts @marking_note.fixed
     @marking_note.save!
   end
 
