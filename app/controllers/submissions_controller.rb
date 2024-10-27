@@ -8,6 +8,7 @@ class SubmissionsController < ApplicationController
                      .includes(:student, :coursework)
                      .where(coursework_id: @courseworks.pluck(:id))
                      .where(student_id: @group.students.pluck(:id))
+                     .order('students.name', 'courseworks.name')
                      .all
   end
 
