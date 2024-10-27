@@ -6,7 +6,7 @@
       .w-full.px-3.py-1.drop-shadow.backdrop-blur-md.border.border-onyx.rounded
         .w-full.flex.justify-between.mb-2
           %div.text-2xl= marked_point.rating_point.name
-          %div
+          %div.flex-shrink-0
             %span{id: dom_id(marked_point, :xvalue_of)}= prog2_point_achieved marked_point
             = "/"
             = prog2_point_achievable marked_point
