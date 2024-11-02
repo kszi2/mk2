@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   mount GoodJob::Engine => 'good_job'
+  if Rails.env.development?
+    mount Lookbook::Engine => "lookbook"
+  end
 
   get 'control_panel' => 'control_panel#view', as: :control_panel
 

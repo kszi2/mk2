@@ -13,6 +13,7 @@ gem "pg", "~> 1.1"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
+gem "falcon", "~> 0.48.3"
 
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem "jsbundling-rails"
@@ -64,6 +65,11 @@ group :development do
 
   gem "better_errors"
   gem "binding_of_caller"
+
+  gem "listen"
+  gem 'wdm', '>= 0.1.0' if Gem.win_platform?
+  gem "actioncable"
+  gem "lookbook", ">= 2.3.4"
 end
 
 group :test do
@@ -74,6 +80,8 @@ end
 
 gem "haml", "~> 6.3"
 gem "haml-rails", "~> 2.1"
+gem "view_component"
+
 gem "prawn", "~> 2.5"
 
 gem 'faraday'
@@ -84,12 +92,6 @@ gem "good_job", "~> 4.2"
 
 gem "responders", "~> 3.1"
 
-gem "foreman", "~> 0.88.1"
-
-gem "bundler", "~> 2.4"
-
 gem "kaminari", "~> 1.2"
 
 gem "rack-pratchett", "~> 0.1.1"
-
-gem "falcon", "~> 0.48.3"
