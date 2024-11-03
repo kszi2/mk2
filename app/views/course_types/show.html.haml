@@ -1,7 +1,8 @@
-= render BreadcrumbsComponent.new(path: [ [@course_type.course.name, course_path(@course_type.course)],
-                                          [@course_type.name, course_course_type_path(@course, @course_type)], ])
+= render ShowShellComponent.new(objects: [@course, @course_type]) do |s|
+  Content!
 
-= turbo_frame_tag(:course_type_body) do
-  .mt-4
-    = render ResourceControlsComponent.new(edit: edit_course_course_type_path(@course, @course_type),
-                                           back: course_path(@course, from: :course_type))
+  - s.with_extras do
+    Extra content :)
+
+    .bg-wa-brand-fill-loud.w-4.h-4
+      AAA

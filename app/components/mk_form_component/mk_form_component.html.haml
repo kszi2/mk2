@@ -2,5 +2,5 @@
   = field
 
   .flex.justify-end.gap-2.mt-3
-    = cancel_button_tag "Cancel", url_for(@object)
+    = cancel_button_tag "Cancel", url_for(@object), data: { "turbo-frame": "_top" }
     = submit_button_tag

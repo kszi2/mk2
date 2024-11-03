@@ -5,11 +5,12 @@ class ButtonComponent < ViewComponent::Base
 
   SupportedTypes = %i[basic primary secondary cancel destroy]
 
-  def initialize(type:, text:, href:, size: :medium)
+  def initialize(type:, text:, href:, size: :medium, data: {})
     @type = type
     @text = text
     @href = href
     @size = size
+    @data = data
   end
 
   def true_button?

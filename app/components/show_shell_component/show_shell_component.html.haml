@@ -1,0 +1,13 @@
+.mb-4
+  = render BreadcrumbsComponent.new(path: @objects)
+
+= turbo_frame_tag(@frame_id) do
+  %artcle
+    = content
+
+  .mt-4
+    = render ResourceControlsComponent.new(back: back_url)
+
+- if extras?
+  %aside.mt-4
+    = extras

@@ -3,7 +3,11 @@
 module ComponentHelper
   ButtonComponent::SupportedTypes.each do |type|
     self.define_method("#{type}_button_tag") do |text, href = nil, options = {}|
-      render ButtonComponent.new(type: type, text: text, href: href, size: options[:size] || :normal)
+      render ButtonComponent.new(type: type,
+                                 text: text,
+                                 href: href,
+                                 size: options[:size] || :normal,
+                                 data: options[:data] || {})
     end
   end
 
