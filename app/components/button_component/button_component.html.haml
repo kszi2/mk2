@@ -1,0 +1,4 @@
+- if true_button?
+  %button.border.rounded.w-fit.h-fit{class: "#{size_styles} #{color_styles}"}= @text
+- else
+  %a.block.border.rounded.w-fit.h-fit{class: "#{size_styles} #{color_styles}", href: @href}= @text

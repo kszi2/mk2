@@ -76,4 +76,8 @@ Rails.application.configure do
 
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = true
+
+  # Development have instrumentation of view components
+  config.view_component.instrumentation_enabled = true
+  config.view_component.use_deprecated_instrumentation_name = false
 end

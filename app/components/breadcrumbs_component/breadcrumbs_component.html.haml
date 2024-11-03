@@ -1,0 +1,4 @@
+.flex.gap-2.items-center.text-sm
+  - @path.each do |name, url|
+    %i.fa-regular.fa-chevron-right.text-wa-text-quiet.text-center.h-4.leading-4.text-base._(class="translate-y-[.0625rem]")
+    = render(LinkComponent.new(url: url).with_content(name))

@@ -1,0 +1,6 @@
+- fields.each do |field|
+  = field
+
+  .flex.justify-end.gap-2.mt-3
+    = cancel_button_tag "Cancel", url_for(@object)
+    = submit_button_tag

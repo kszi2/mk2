@@ -6,7 +6,9 @@ module.exports = {
     './app/views/**/*.turbo_stream.haml',
     './app/helpers/**/*.rb',
     './app/assets/stylesheets/**/*.css',
-    './app/javascript/**/*.js'
+    './app/javascript/**/*.js',
+    './app/components/**/*.haml',
+    './app/components/**/*.rb',
   ],
   theme: {
     colors: {
