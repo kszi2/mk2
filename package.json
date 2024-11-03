@@ -5,7 +5,7 @@
     "esbuild": "^0.23.1"
   },
   "scripts": {
-    "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets",
+    "build": "node bundle.mjs",
     "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify"
   },
   "dependencies": {
@@ -14,6 +14,7 @@
     "@tailwindcss/typography": "^0.5.14",
     "@xpd/tailwind-3dtransforms": "^1.0.3",
     "autoprefixer": "^10.4.20",
+    "esbuild-plugin-import-glob": "^0.1.1",
     "postcss": "^8.4.41",
     "tailwindcss": "^3.4.10"
   }

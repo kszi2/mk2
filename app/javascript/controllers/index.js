@@ -2,7 +2,16 @@
 // Run that command whenever you add a new controller or create them with
 // ./bin/rails generate stimulus controllerName
 
-import { application } from "./application"
+import {application} from "./application"
 
-import HelloController from "./hello_controller"
-application.register("hello", HelloController)
+import { default as controllers, filenames } from "../../components/**/*.js";
+
+const controller_name = new RegExp(/\/(\w+)_controller.js$/);
+for (const i in controllers) {
+  const cn = controller_name.exec(filenames[i]);
+  if (cn === null) {
+    console.error("Couldn't find packaged Stimulus controller from path: " + filenames[i]);
+    continue;
+  }
+  application.register(cn[1].replaceAll("_", "-"), controllers[i].default)
+}

@@ -1,8 +1,2 @@
 = render ShowShellComponent.new(objects: [@course, @course_type]) do |s|
-  Content!
-
-  - s.with_extras do
-    Extra content :)
-
-    .bg-wa-brand-fill-loud.w-4.h-4
-      AAA
+  = render PropertyComponent.new(name: 'name', value: @course_type.name)
