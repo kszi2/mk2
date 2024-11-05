@@ -1,4 +1,5 @@
-.flex.gap-2.items-center.text-sm
+.flex.gap-2.items-center.text-sm.flex-wrap
   - @entries.each do |name, objs|
-    %i.fa-regular.fa-chevron-right.text-wa-text-quiet.text-center.h-4.leading-4.text-base._(class="translate-y-[.0625rem]")
-    = render(LinkComponent.new(url: url_for(objs)).with_content(name))
+    %div
+      %i.fa-regular.fa-chevron-right.text-wa-text-quiet.text-center.h-4.leading-4.text-base._(class="translate-y-[.0625rem]")
+      = render(LinkComponent.new(url: url_for(objs)).with_content(name))

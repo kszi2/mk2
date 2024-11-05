@@ -1,5 +1,5 @@
 = turbo_frame_tag :course_type_body do
   %h1.text-2xl Editing #{@course_type.name}
 
-  = render MkFormComponent.new(@course, @course_type) do |f|
+  = mk_form_for @course, @course_type do |f|
     - f.with_field :text, :name

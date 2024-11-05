@@ -4,6 +4,9 @@ class ShowShellComponent < ViewComponent::Base
   include Turbo::FramesHelper
 
   renders_one :extras
+  renders_many :properties, ->(field, name: nil) do
+    render PropertyComponent.new(name: name || field.to_s.humanize, value: @head_object.send(field))
+  end
 
   def initialize(objects:)
     if objects.kind_of?(Array)

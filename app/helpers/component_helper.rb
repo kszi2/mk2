@@ -40,21 +40,15 @@ module ComponentHelper
     primary_button_tag(text)
   end
 
-  def mk_form_for(*args, &block)
-    form_for(*args, builder: MkFormBuilder, &block)
-  end
-end
-
-class MkFormBuilder < ActionView::Helpers::FormBuilder
-  include ComponentHelper
-
-  InputComponent::SupportedTypes.each do |type|
-    self.define_method("mk_#{type}") do |field|
-      @template.send("#{type.to_s}_input_tag".to_sym, @object, field)
+  def mk_form_for(*args)
+    render MkFormComponent.new(*args) do |f|
+      yield f
     end
   end
 
-  def mk_submit(text = "Save")
-    @template.submit_button_tag(text)
+  def mk_show_for(*args)
+    render ShowShellComponent.new(objects: args) do |s|
+      yield s
+    end
   end
 end

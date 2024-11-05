@@ -1,7 +1,8 @@
-.flex.items-center.gap-2{data: { controller: 'property-component' }}
-  %span.h-fit.font-semibold._(class="-translate-y-0.5")= @name
-  .bg-wa-surface-default.rounded
-    %input.bg-transparent.px-3.py-1._(readonly value=@value){data: { property_component_target: "source" }}
-    %button.m-px.py-1.px-3.rounded._(class=button_style){data: {
-      action: "property-component#copy"
-    }} Copy
+.flex.h-10.flex-wrap.items-center.gap-2{data: { controller: 'property-component' }}
+  %span.h-fit.font-semibold= @name
+  .flex.bg-wa-surface-default.rounded._(class="focus-within:ring focus-within:ring-wa-brand-border-quiet")
+    %input.grow.outline-none.bg-transparent.px-3.py-1._(readonly value=@value){data: { property_component_target: "source" }}
+    %button.w-10.m-1.py-1.px-3.rounded._(class=button_style){data: {
+      action: "property-component#copy",
+    }}
+      %i.fa-regular.fa-clipboard
