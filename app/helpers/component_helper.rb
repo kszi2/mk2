@@ -51,4 +51,16 @@ module ComponentHelper
       yield s
     end
   end
+
+  def mk_edit_for(*args)
+    render EditShellComponent.new(objects: args) do |f|
+      yield f
+    end
+  end
+
+  def mk_new_for(*args)
+    render NewShellComponent.new(objects: args) do |f|
+      yield f
+    end
+  end
 end

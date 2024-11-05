@@ -6,6 +6,7 @@ class ErrorableFieldComponent < ViewComponent::Base
   }
 
   def proper_field(type, **kwargs, &block)
+    puts "---- #{type}"
     case type
     when *InputComponent::SupportedTypes
       with_form_field_input(type: type, **kwargs, &block)

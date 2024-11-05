@@ -8,7 +8,8 @@ class BreadcrumbsComponent < ViewComponent::Base
     raise ArgumentError, "#{@path} is empty" \
       if @path.empty?
 
-    @entries = (0..(@path.length - 1)).map do |to|
+    @entries = (0..(@path.length - 1)).take_while { |to| !@path[to].new_record? }
+                                      .map do |to|
       subobj = @path[0..to]
       [entity_name(subobj.last), subobj]
     end

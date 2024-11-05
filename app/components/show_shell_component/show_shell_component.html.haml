@@ -1,12 +1,9 @@
-.mb-4
-  = render BreadcrumbsComponent.new(path: @objects)
+= shell_body do
+  %article.flex.flex-col.gap-2
+    - properties.each do |property|
+      = property
 
-= turbo_frame_tag(@frame_id) do
-  %artcle
-    = content
-
-  .mt-4
-    = render ResourceControlsComponent.new(back: back_url)
+  = resource_controls
 
 - if extras?
   %aside.mt-4

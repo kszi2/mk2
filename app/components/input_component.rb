@@ -8,6 +8,7 @@ class InputComponent < FormComponent
   renders_one :label
 
   def initialize(type:, name:, value:, enabled:, id: nil, size: :normal)
+    puts "++++ #{type} #{name} #{value} #{id} #{size}"
     @type = type
     @name = name
     @value = value

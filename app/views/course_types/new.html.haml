@@ -1,6 +1,3 @@
-%h1 New course_type
-
-= render MkFormComponent.new(@course, @course_type) do |f|
-  - f.with_field :text, :name
-
-= link_to 'Back', course_path(@course_id)
+= mk_new_for @course, @course_type do |n|
+  - n.with_form do |f|
+    - f.with_field :text, :name

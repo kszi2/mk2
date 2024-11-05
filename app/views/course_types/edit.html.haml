@@ -1,5 +1,3 @@
-= turbo_frame_tag :course_type_body do
-  %h1.text-2xl Editing #{@course_type.name}
-
-  = mk_form_for @course, @course_type do |f|
+= mk_edit_for @course, @course_type do |e|
+  - e.with_form do |f|
     - f.with_field :text, :name

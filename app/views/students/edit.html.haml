@@ -1,8 +1,4 @@
-%h1 Editing student
-
-= render 'form'
-
-.flex.gap-2
-  = link_to 'Show', @student
-  \|
-  = link_to 'Back', students_path
+= mk_edit_for @student do |e|
+  - e.with_form do |f|
+    - f.with_field :text, :name
+    - f.with_field :text, :neptun
