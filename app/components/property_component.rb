@@ -4,6 +4,7 @@ class PropertyComponent < ViewComponent::Base
   def initialize(name:, value:)
     @name = name
     @value = value
+    @value = @value.name if @value.respond_to?(:name)
   end
 
   private

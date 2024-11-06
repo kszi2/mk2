@@ -1,5 +1,5 @@
-%h1 New free_day
-
-= render 'form'
-
-= link_to 'Back', free_days_path
+= mk_new_for @free_day do |n|
+  - n.with_form do |f|
+    - f.with_field :text, :name
+    - f.with_field :date, :from_day
+    - f.with_field :date, :to_day

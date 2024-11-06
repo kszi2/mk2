@@ -1,5 +1,4 @@
-%h1 New course
-
-= render 'form'
-
-= link_to 'Back', courses_path
+= mk_new_for @course do |n|
+  - n.with_form do |f|
+    - f.with_field :text, :name
+    

@@ -1,63 +1,51 @@
-= turbo_page_requires_reload
-
-%p
-  %b Course:
-  = @group.course.name
-%p
-  %b Group:
-  = @group.name
-%p
-  %b Group type:
-  = @group.course_type.name
-%p
-  %b Semester:
-  #{@group.year.year}-#{@group.year.year + 1}/#{@group.semester}
 %p
   %b Remaining dates:
   - @group.dates_for_class.filter { |date| date >= Date.today }.each do |date|
     %wa-tag.fit= date.strftime("%F")
 
-.flex.gap-2.mt-4
-  %wa-button{size: :small, href: edit_course_group_path(@course, @group)} Edit
-  %wa-button{size: :small, href: course_path(@course)} Back
+= mk_show_for @course, @group do |s|
+  - s.with_property :name
+  - s.with_property :course_type, name: 'Group type'
+  - s.with_property :semester, value: "#{@group.year.year}-#{@group.year.year + 1}/#{@group.semester}"
 
-.flex.flex-row.flex-wrap.items-center.gap-2.mt-8.h-full(class="mx-4 md:mx-0")
-  %wa-tab-group.w-full.h-full
-    %wa-tab(slot="nav" panel="students" style="--active-tab-color: var(--wa-color-brand-border-loud);") Students
-    %wa-tab(slot="nav" panel="submissions" style="--active-tab-color: var(--wa-color-brand-border-loud);") Submissions
+  - s.with_extras do
+    .flex.flex-row.flex-wrap.items-center.gap-2.mt-8.h-full(class="mx-4 md:mx-0")
+      %wa-tab-group.w-full.h-full
+        %wa-tab(slot="nav" panel="students" style="--active-tab-color: var(--wa-color-brand-border-loud);") Students
+        %wa-tab(slot="nav" panel="submissions" style="--active-tab-color: var(--wa-color-brand-border-loud);") Submissions
 
-    %wa-tab-panel.h-full(name="students")
-      .flex.gap-2
-        = turbo_frame_tag "add-students" do
-          %wa-button.w-fit{size: :small, variant: :brand, href: course_group_add_students_path(@course, @group)}
-            %wa-icon(slot="prefix" name="plus")
-            Add students
-        %wa-button{size: :small, href: course_group_path(@course, @group, format: :pdf)} Get attendance sheet
-        = form_tag course_group_send_attendance_path(@course, @group), method: :post, class: "flex w-fit gap-2" do
-          %wa-button{size: :small, type: :submit} Send attendance sheet to discord
-          %wa-input.w-fit._{size: :small, type: :date, name: :date, value: @group.next_class_date}
+        %wa-tab-panel.h-full(name="students")
+          .flex.gap-2
+            = turbo_frame_tag "add-students" do
+              %wa-button.w-fit{size: :small, variant: :brand, href: course_group_add_students_path(@course, @group)}
+                %wa-icon(slot="prefix" name="plus")
+                Add students
+            %wa-button{size: :small, href: course_group_path(@course, @group, format: :pdf)} Get attendance sheet
+            = form_tag course_group_send_attendance_path(@course, @group), method: :post, class: "flex w-fit gap-2" do
+              %wa-button{size: :small, type: :submit} Send attendance sheet to discord
+              %wa-input.w-fit._{size: :small, type: :date, name: :date, value: @group.next_class_date}
 
-      #group_student_list
-        - @group.students.order(:name).each do |student|
-          = form_tag course_group_remove_student_path(@course, @group, student.neptun.upcase), method: :delete do
-            .flex.mt-3.px-2.items-center.justify-between.border-b.border-wa-brand-border-loud
-              %span.block.w-px.overflow-visible.whitespace-nowrap= student.name
-              %span.font-mono= student.neptun.upcase
-              %wa-button(type="submit" variant="danger" appearance="text") Remove
+          #group_student_list
+            - @group.students.order(:name).each do |student|
+              = form_tag course_group_remove_student_path(@course, @group, student.neptun.upcase), method: :delete do
+                .flex.mt-3.px-2.items-center.justify-between.border-b.border-wa-brand-border-loud
+                  %span.block.w-px.overflow-visible.whitespace-nowrap= student.name
+                  %span.font-mono= student.neptun.upcase
+                  %wa-button(type="submit" variant="danger" appearance="text") Remove
 
-    %wa-tab-panel.h-full(name="submissions")
-      .flex.justify-between.flex-wrap.my-4.gap-2
-        %div(class="w-3/4")
-          = render 'submissions/header', objs: [@course, @group]
+        %wa-tab-panel.h-full(name="submissions")
+          .flex.justify-between.flex-wrap.my-4.gap-2
+            %div(class="w-3/4")
+              = render 'submissions/header', objs: [@course, @group]
 
-        = form_tag course_group_filter_submissions_path(@course, @group) do
-          .flex.gap-2.items-end
-            %wa-select.w-fit(name="coursework_id" label="Coursework")
-              %wa-option(value="") &lt;all&gt;
-              - @course.courseworks.pluck(:id, :name).each do |id, name|
-                %wa-option(value=id)= name
-            = wa_submit_tag "Filter"
+            = form_tag course_group_filter_submissions_path(@course, @group) do
+              .flex.gap-2.items-end
+                %wa-select.w-fit(name="coursework_id" label="Coursework")
+                  %wa-option(value="") &lt;all&gt;
+                  - @course.courseworks.pluck(:id, :name).each do |id, name|
+                    %wa-option(value=id)= name
+                = wa_submit_tag "Filter"
 
-      = turbo_frame_tag "group-submissions-frame", src: course_group_submissions_path(@course, @group) do
-        .w-full.flex.flex-row.justify-center
-          %wa-spinner.text-9xl
+          = turbo_frame_tag "group-submissions-frame", src: course_group_submissions_path(@course, @group) do
+            .w-full.flex.flex-row.justify-center
+              %wa-spinner.text-9xl

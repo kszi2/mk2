@@ -1,7 +1,5 @@
-%h1 Editing free_day
-
-= render 'form'
-
-= link_to 'Show', @free_day
-\|
-= link_to 'Back', free_days_path
+= mk_edit_for @free_day do |e|
+  - e.with_form do |f|
+    - f.with_field :text, :name
+    - f.with_field :date, :from_day
+    - f.with_field :date, :to_day

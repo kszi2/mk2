@@ -1,5 +1,4 @@
 = form_for [@course, @coursework] do |f|
-  = f.hidden_field :course_id, value: @course.id
   = f.hidden_field :active, value: "true"
   = f.wa_text :name
   = f.wa_select :for_type_id, @course.course_types.map(&:to_select_value)
