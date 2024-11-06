@@ -1,0 +1,9 @@
+%span.group.inline-flex.items-center.h-8.py-2.px-3.gap-2.my-1.border.rounded.w-fit.border-wa-neutral-border-normal{data: {
+    controller: "tag-component",
+    tag_component_target: "root"
+  }}
+  %span(class="group-[[data-do-red=true]]:text-wa-danger-fill-loud text-base/4")= @text
+  - if @closable
+    %button.w-4.h-4.relative{class: "group/x", data: { action: "tag-component#close" }}
+      %i.z-50.fa-regular.fa-xmark._(class="-translate-y-[.2rem] group-hover/x:text-wa-danger-fill-normal")
+      .absolute.rounded-full.w-5.h-5.border.border-wa-danger-fill-normal.hidden(class="z-[-1] -top-[6.2%] -left-[.1rem] group-hover/x:inline")

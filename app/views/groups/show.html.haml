@@ -1,12 +1,11 @@
-%p
-  %b Remaining dates:
-  - @group.dates_for_class.filter { |date| date >= Date.today }.each do |date|
-    %wa-tag.fit= date.strftime("%F")
-
 = mk_show_for @course, @group do |s|
   - s.with_property :name
   - s.with_property :course_type, name: 'Group type'
   - s.with_property :semester, value: "#{@group.year.year}-#{@group.year.year + 1}/#{@group.semester}"
+
+  - s.with_custom name: "Remaining dates" do
+    - @group.dates_for_class.filter { |date| date >= Date.today }.each do |date|
+      = render TagComponent.new(text: date.strftime("%F"))
 
   - s.with_extras do
     .flex.flex-row.flex-wrap.items-center.gap-2.mt-8.h-full(class="mx-4 md:mx-0")

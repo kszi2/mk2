@@ -5,6 +5,10 @@
 
   = resource_controls
 
+  %aside.mt-4
+    - customs.each do |custom|
+      = custom
+
 - if extras?
   %aside.mt-4
     = extras

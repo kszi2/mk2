@@ -101,11 +101,11 @@ module.exports = {
     },
     borderRadius: {
       'none': '0',
-      'sm': 'var(--wa-border-radius-xs)',
-      DEFAULT: 'var(--wa-border-radius-s)',
-      'md': 'var(--wa-border-radius-m)',
-      'lg': 'var(--wa-border-radius-l)',
-      'full': 'var(--wa-border-radius-pill)',
+      'sm': 'calc(.1875 * .5rem)',
+      DEFAULT: 'calc(.1875 * 1rem)',
+      'md': 'calc(.1875 * 2rem)',
+      'lg': 'calc(.1875 * 3rem)',
+      'full': '9999px',
     },
     extend: {
       spacing: {
