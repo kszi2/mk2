@@ -1,6 +1,5 @@
-%h1 New rating_point
-
-= turbo_frame_tag "add-rating-points-frame" do
-  = render 'form'
-
-= link_to 'Back', course_coursework_path(@course, @coursework)
+= mk_new_for @course, @coursework, @rating_point do |n|
+  - n.with_form do |f|
+    - f.with_field :text, :name
+    - f.with_field :number, :available_points
+    - f.with_field :text, :description

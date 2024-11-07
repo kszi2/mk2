@@ -7,8 +7,9 @@ class ShellComponent < ViewComponent::Base
   attr_reader :tail_objects
   attr_reader :frame_id
   attr_reader :full_objects
+  attr_accessor :do_breadcrumbs
 
-  def initialize(objects:)
+  def initialize(objects:, do_frame: true, do_breadcrumbs: true)
     if objects.kind_of?(Array)
       @full_objects = objects
     else
@@ -18,20 +19,12 @@ class ShellComponent < ViewComponent::Base
     @head_object = @full_objects.last
     @tail_objects = @full_objects[0..-2]
     @frame_id = "#{@head_object.class.name.underscore}_body".to_sym
+    @do_frame = do_frame
+    @do_breadcrumbs = do_breadcrumbs
   end
 
-  def do_breadcrumbs
-    content_tag :div, class: "mb-4" do
-      render BreadcrumbsComponent.new(path: @full_objects)
-    end
-  end
-
-  def shell_body(breadcrumbs: true, &block)
-    if breadcrumbs
-      do_breadcrumbs + turbo_frame_tag(@frame_id, &block)
-    else
-      turbo_frame_tag(@frame_id, &block)
-    end
+  def shell_body(&block)
+    do_breadcrumbs + do_frame_tag(&block)
   end
 
   def resource_controls
@@ -47,6 +40,27 @@ class ShellComponent < ViewComponent::Base
       url_for(controller: @head_object.class.name.underscore.pluralize, action: :index)
     else
       url_for(@tail_objects)
+    end
+  end
+
+  private
+
+  def do_frame_tag(&block)
+    if @do_frame
+      turbo_frame_tag(@frame_id, &block)
+    else
+      content_tag(:div, &block)
+    end
+  end
+
+  def do_breadcrumbs
+    if @do_breadcrumbs
+      content_tag :div, class: "mb-4" do
+        render BreadcrumbsComponent.new(path: @full_objects)
+      end
+    else
+      tag :div do
+      end
     end
   end
 end

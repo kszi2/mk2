@@ -1,5 +1,8 @@
-%h1 New coursework for #{@course.name}
-
-= render 'form'
-
-= link_to 'Back', course_path(@course)
+= mk_new_for @course, @coursework do |n|
+  - n.with_form do |f|
+    - f.with_field :text, :name
+    - f.with_field :select, :for_type_id do |s|
+      - s.with_label { "For type" }
+      - s.with_option { "" }
+      - @course.course_types.each do |ct|
+        - s.with_option(value: ct.id, current: @coursework.for_type_id) { ct.name }

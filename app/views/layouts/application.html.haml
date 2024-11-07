@@ -37,14 +37,6 @@
             href: students_path
           } Students
 
-      %wa-tooltip(for="logo")
-        - if Rails.configuration.version_info.nil?
-          Uncertain version
-        - else
-          %p This is a #{Rails.configuration.version_info[:type].upcase_first}
-          %p= Rails.configuration.version_info[:version]
-          %p Last commit deployed is #{Rails.configuration.version_info[:commit]}
-
     .fixed.top-16.left-0.z-40.w-full.flex.flex-col.items-center.notification.animate__animated.animate__fadeInDown
       - flashed = false
       - if flash && flash.key?(:alert)

@@ -1,10 +1,7 @@
-= turbo_page_requires_reload
-
-%h1 Editing coursework
-
-= render 'form'
-
-.flex.gap-2
-  = link_to 'Show', [@course, @coursework]
-  \|
-  = link_to 'Back', @course
+= mk_edit_for @course, @coursework do |n|
+  - n.with_form do |f|
+    - f.with_field :text, :name
+    - f.with_field :select, :for_type_id do |s|
+      - s.with_label { "For type" }
+      - @course.course_types.each do |ct|
+        - s.with_option(value: ct.id, current: @coursework.for_type_id) { ct.name }

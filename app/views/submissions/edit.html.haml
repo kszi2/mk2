@@ -1,9 +1,10 @@
-- turbo_page_requires_reload
-%h1 Editing submission
-
-= render 'form'
-
-.flex.gap-2
-  = link_to 'Show', [@course, @group, @submission]
-  \|
-  = link_to 'Back', course_group_path(@course, @group)
+= mk_edit_for @course, @group, @submission do |e|
+  - e.with_form do |f|
+    - f.with_field :select, :student_id do |s|
+      - s.with_label { "Student" }
+      - @group.students.each do |st|
+        - s.with_option(value: st.id, current: @submission.student_id) { st.name }
+    - f.with_field :select, :coursework_id do |s|
+      - s.with_label { "Coursework" }
+      - @group.course.courseworks.each do |cw|
+        - s.with_option(value: cw.id, current: @submission.coursework_id) { cw.name }

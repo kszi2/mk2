@@ -1,26 +1,21 @@
-= turbo_page_requires_reload
+= mk_show_for @course, @group, @submission do |f|
+  - f.with_property :student, value: "#{@submission.student.name} (#{@submission.student.neptun})"
+  - f.with_property :coursework
 
-%p
-  %b Student:
-  = "#{@submission.student.name} (#{@submission.student.neptun})"
-%p
-  %b Coursework:
-  = @submission.coursework.name
+  - f.with_custom name: "Reports" do
+    .flex.flex-row.gap-2
+      = basic_button_tag "Report (Prog1)", course_group_submission_path(@course, @group, @submission, format: :prog1), size: :small, data: { turbo_frame: "_top" }
+      = basic_button_tag "Report (Prog2\\bodand)", course_group_submission_path(@course, @group, @submission, format: :prog2), size: :small, data: { turbo_frame: "_top" }
 
-.flex.gap-2.mt-4
-  %wa-button{size: :small, href: edit_course_group_submission_path(@course, @group, @submission)} Edit
-  %wa-button{size: :small, href: course_group_path(@course, @group)} Back
-  %wa-button{size: :small, href: course_group_submission_path(@course, @group, @submission, format: :prog1)} Report (Prog1)
-  %wa-button{size: :small, href: course_group_submission_path(@course, @group, @submission, format: :prog2)} Report (Prog2\bodand)
+  - f.with_extras do
+    %h2.text-2xl.mt-8 Marking
 
-%h2.text-xl.mt-8 Marking
+    .text-lg
+      Total:
+      %span{id: dom_id(@submission, :marked_for)}= @submission.marked_for
+      = '/'
+      = @submission.total_points
 
-.text-lg
-  Total:
-  %span{id: dom_id(@submission, :marked_for)}= @submission.marked_for
-  = '/'
-  = @submission.total_points
-
-= turbo_frame_tag "marked-points-frame", src: course_group_submission_marked_points_path(@course, @group, @submission) do
-  .w-full.flex.flex-row.justify-center
-    %wa-spinner.text-9xl
+    = turbo_frame_tag "marked-points-frame", src: course_group_submission_marked_points_path(@course, @group, @submission) do
+      .w-full.flex.flex-row.justify-center
+        %wa-spinner.text-9xl

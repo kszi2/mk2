@@ -14,8 +14,6 @@ Rails.application.routes.draw do
   resources :courses do
     resources :course_types
     resources :courseworks do
-      get "header" => "rating_points#header", as: :rating_header
-
       resources :rating_points
     end
 
@@ -31,11 +29,11 @@ Rails.application.routes.draw do
       post "submission_filter" => "submissions#filter", as: :filter_submissions
 
       resources :submissions do
-        resources :marked_points do
+        resources :marked_points, only: :index do
           post 'make_marking', to: 'marking_notes#make_marking', as: :make_marking
           post 'cancel_make', to: 'marking_notes#cancel_make', as: :cancel_make
 
-          resources :marking_notes do
+          resources :marking_notes, except: [:show, :destroy] do
             post 'edit', to: 'marking_notes#edit_marking'
             post 'toggle', to: 'marking_notes#toggle', as: :toggle
           end

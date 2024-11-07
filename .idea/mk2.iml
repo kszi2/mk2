@@ -707,6 +707,11 @@
           <RakeTaskImpl description="" fullCommand="tmp/cache/assets" id="tmp/cache/assets" />
           <RakeTaskImpl description="" fullCommand="tmp/pids" id="tmp/pids" />
           <RakeTaskImpl description="" fullCommand="tmp/sockets" id="tmp/sockets" />
+          <RakeTaskImpl id="view_component">
+            <subtasks>
+              <RakeTaskImpl description="" fullCommand="view_component:statsetup" id="statsetup" />
+            </subtasks>
+          </RakeTaskImpl>
         </subtasks>
       </RakeTaskImpl>
     </option>

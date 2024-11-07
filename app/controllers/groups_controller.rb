@@ -183,7 +183,7 @@ class GroupsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def group_params
-    ret = params.require(:group).permit(:course_id, :course_type_id, :name, :year, :semester, :first_date, :repeat_times, :day_difference)
-    ret.except(:course_type)
+    ret = params.require(:group).permit(:course_type_id, :name, :year, :semester, :first_date, :repeat_times, :day_difference)
+    ret.merge(course_id: @course.id).except(:course_type)
   end
 end

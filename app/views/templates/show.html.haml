@@ -1,15 +1,6 @@
-%p#notice= notice
+= mk_show_for @template do |f|
+  - f.with_property :name
+  - f.with_property :course, name: "Connected course"
 
-%p
-  %b Name:
-  = @template.name
-%p
-  %b Course:
-  = @template.course
-%p
-  %b Data:
-  = @template.data
-
-= link_to 'Edit', edit_template_path(@template)
-\|
-= link_to 'Back', templates_path
+  - f.with_custom name: "" do
+    = render TextareaComponent.new(name: "Data", value: @template.data, enabled: true, id: object_id)

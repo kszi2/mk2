@@ -6,6 +6,6 @@ class NewShellComponent < ShellComponent
   end
 
   def initialize(objects:)
-    super(objects: objects)
+    super(objects: objects, do_frame: false)
   end
 end

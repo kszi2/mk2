@@ -14,9 +14,7 @@
         .flex.w-full.justify-end
           = turbo_frame_tag "marked-points-frame-inner" do
             = form_tag course_group_submission_marked_point_make_marking_path(@course, @group, @submission, marked_point) do
-              %wa-button.w-fit{size: :small, variant: :brand, type: 'submit'}
-                %wa-icon(slot="prefix" name="plus")
-                Add note
+              = submit_button_tag "Add note", nil, size: :small
 
         %div.my-2{id: dom_id(marked_point)}
           = turbo_frame_tag "marking-notes-frame", src: course_group_submission_marked_point_marking_notes_path(@course, @group, @submission, marked_point) do

@@ -21,12 +21,6 @@ class RatingPointsController < ApplicationController
   def edit
   end
 
-  def header
-    respond_to do |format|
-      format.html { render partial: 'header', locals: { objs: [@course, @coursework] } }
-    end
-  end
-
   # POST /rating_points or /rating_points.json
   def create
     @rating_point = RatingPoint.new(rating_point_params)
@@ -90,6 +84,7 @@ class RatingPointsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def rating_point_params
-    params.require(:rating_point).permit(:name, :description, :available_points, :coursework_id)
+    ret = params.require(:rating_point).permit(:name, :description, :available_points)
+    ret.merge(coursework_id: @coursework.id)
   end
 end

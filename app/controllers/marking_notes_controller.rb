@@ -1,14 +1,10 @@
 class MarkingNotesController < ApplicationController
   before_action :set_parents
-  before_action :set_marking_note, only: %i[ edit_marking show edit update destroy toggle ]
+  before_action :set_marking_note, only: %i[ edit_marking edit update toggle ]
 
   # GET /marking_notes or /marking_notes.json
   def index
     @marking_notes = MarkingNote.where(marked_point_id: params[:marked_point_id]).all
-  end
-
-  # GET /marking_notes/1 or /marking_notes/1.json
-  def show
   end
 
   # GET /marking_notes/new
@@ -73,16 +69,6 @@ class MarkingNotesController < ApplicationController
     end
   end
 
-  # DELETE /marking_notes/1 or /marking_notes/1.json
-  def destroy
-    @marking_note.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to marking_notes_url, notice: "Marking note was successfully destroyed." }
-      format.json { head :no_content }
-    end
-  end
-
   private
 
   def set_parents
@@ -99,6 +85,7 @@ class MarkingNotesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def marking_note_params
-    params.require(:marking_note).permit(:points_cost, :reason, :fixed, :marked_point_id)
+    ret = params.require(:marking_note).permit(:points_cost, :reason, :fixed)
+    ret.merge(marked_point_id: @marked_point.id)
   end
 end

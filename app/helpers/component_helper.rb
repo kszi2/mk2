@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 
 module ComponentHelper
+  def entity_name(obj)
+    if obj.respond_to?(:name)
+      obj.name
+    elsif obj.respond_to?(:render_as)
+      obj.render_as
+    end
+  end
+
   ButtonComponent::SupportedTypes.each do |type|
     self.define_method("#{type}_button_tag") do |text, href = nil, options = {}|
       render ButtonComponent.new(type: type,
@@ -36,8 +44,8 @@ module ComponentHelper
     end
   end
 
-  def submit_button_tag(text = "Save")
-    primary_button_tag(text)
+  def submit_button_tag(text = "Save", href = nil, options = {})
+    primary_button_tag(text, href, options)
   end
 
   def mk_form_for(*args)
@@ -52,8 +60,8 @@ module ComponentHelper
     end
   end
 
-  def mk_edit_for(*args)
-    render EditShellComponent.new(objects: args) do |f|
+  def mk_edit_for(*args, **options)
+    render EditShellComponent.new(objects: args, **options) do |f|
       yield f
     end
   end

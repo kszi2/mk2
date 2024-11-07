@@ -3,13 +3,18 @@
 class ErrorableFieldComponent < ViewComponent::Base
   renders_one :form_field, types: {
     input: InputComponent,
+    select: SelectComponent,
+    text: TextareaComponent
   }
 
   def proper_field(type, **kwargs, &block)
-    puts "---- #{type}"
     case type
     when *InputComponent::SupportedTypes
       with_form_field_input(type: type, **kwargs, &block)
+    when :select
+      with_form_field_select(**kwargs, &block)
+    when :textarea
+      with_form_field_text(**kwargs, &block)
     else
       raise ArgumentError, "BAD: #{type}"
     end

@@ -1,7 +1,4 @@
-%h1 Editing marking_note
-
-= render 'form'
-
-= link_to 'Show', @marking_note
-\|
-= link_to 'Back', marking_notes_path
+= mk_edit_for @course, @group, @submission, @marked_point, @marking_note do |edit|
+  - edit.with_form do |f|
+    - f.with_field :number, :points_cost
+    - f.with_field :textarea, :reason

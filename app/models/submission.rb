@@ -15,4 +15,9 @@ class Submission < ApplicationRecord
     return 0 if marked_points.any?(&:failed_criterion?)
     total_points - marked_points.map(&:total_points_cost).inject(:+)
   end
+
+  def render_as
+    return "" if coursework.nil? || student.nil?
+    "#{coursework.name} (#{student.name})"
+  end
 end

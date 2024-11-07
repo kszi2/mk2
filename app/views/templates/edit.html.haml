@@ -1,7 +1,9 @@
-%h1 Editing template
-
-= render 'form'
-
-= link_to 'Show', @template
-\|
-= link_to 'Back', templates_path
+= mk_edit_for @template do |edit|
+  - edit.with_form do |f|
+    - f.with_field :text, :name
+    - f.with_field :select, :course_id do |c|
+      - c.with_label { "Connect to course" }
+      - c.with_option { "" }
+      - @courses.each do |course|
+        - c.with_option(value: course[:id], current: @template.course_id) { course[:name] }
+    - f.with_field :textarea, :data

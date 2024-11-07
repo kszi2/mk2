@@ -74,6 +74,8 @@ class CourseworksController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def coursework_params
-    params.require(:coursework).permit(:course_id, :name, :active, :for_type_id)
+    cw_params = params.require(:coursework).permit(:name, :active, :for_type_id)
+    cw_params.merge!(course_id: @course.id)
+    cw_params
   end
 end

@@ -3,7 +3,7 @@
 class MkFormComponent < ViewComponent::Base
   include ComponentHelper
 
-  renders_many :fields, ->(type, field, options = {}) do
+  renders_many :fields, ->(type, field, options = {}, &block) do
     obj = @true_object
     render ErrorableFieldComponent.new(object: @true_object, field: field) do |ec|
       ec.proper_field(type,
@@ -11,10 +11,16 @@ class MkFormComponent < ViewComponent::Base
                       value: obj.send(field),
                       enabled: options[:enabled] || true,
                       id: field_id(obj, field)) do |input|
-        input.with_label { field.to_s.humanize }
+        if block.nil?
+          input.with_label { field.to_s.humanize }
+        else
+          block.call(input)
+        end
       end
     end
   end
+
+  renders_one :cancel
 
   def initialize(*object)
     @object = object

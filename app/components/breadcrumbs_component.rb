@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class BreadcrumbsComponent < ViewComponent::Base
+  include ComponentHelper
+
   def initialize(path:)
     @path = path
     raise ArgumentError, "#{@path} is not Array" \
@@ -9,21 +11,10 @@ class BreadcrumbsComponent < ViewComponent::Base
       if @path.empty?
 
     @entries = (0..(@path.length - 1)).take_while { |to| !@path[to].new_record? }
-                                      .map do |to|
+                                      .filter_map do |to|
       subobj = @path[0..to]
-      [entity_name(subobj.last), subobj]
-    end
-  end
-
-  private
-
-  def entity_name(obj)
-    if obj.respond_to?(:name)
-      obj.name
-    elsif obj.respond_to?(:render_as)
-      obj.render_as
-    else
-      "#{obj.class.name.underline}##{obj.id}"
+      name = entity_name(subobj.last)
+      [name, subobj] unless name.nil?
     end
   end
 end

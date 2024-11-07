@@ -8,4 +8,8 @@ class MarkingNote < ApplicationRecord
     return 0 if fixed
     points_cost
   end
+
+  def name
+    "Note"
+  end
 end

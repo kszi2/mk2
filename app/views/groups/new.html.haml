@@ -1,5 +1,16 @@
-%h1 New group
+= mk_new_for @course, @group do |edit|
+  - edit.with_form do |f|
+    - f.with_field :text, :name
 
-= render 'form'
+    - f.with_field :date, :year
+    - f.with_field :number, :semester
 
-= link_to 'Back', course_path(@course)
+    - f.with_field :date, :first_date
+    - f.with_field :number, :repeat_times
+    - f.with_field :number, :day_difference
+
+    - f.with_field :select, :course_type_id do |s|
+      - s.with_label { "Course type" }
+      - s.with_option { "" }
+      - @course.course_types.each do |ct|
+        - s.with_option(value: ct.id, current: @group.course_type_id) { ct.name }
