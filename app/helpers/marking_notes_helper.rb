@@ -13,6 +13,6 @@ module MarkingNotesHelper
 
   def note_reasoning(note)
     return "Szar" if note.reason.empty?
-    note.reason
+    note.reason.gsub("\r", "").gsub("\n", "\n    ")
   end
 end
