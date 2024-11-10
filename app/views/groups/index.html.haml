@@ -1,8 +1,10 @@
 %h1.text-4xl.mb-4 Listing groups for #{@course.name}
 
 = turbo_frame_tag 'groups-frame' do
-  .flex.flex-col.w-full.gap-2
-    - @groups.sort_by(&:name).each do |group|
-      = render 'group_listing', group: group
-
-= link_to 'New Group', new_course_group_path(@course)
+  = render DataTableComponent.new(objects: @groups,
+                                  parents: [@course],
+                                  type: Group,
+                                  col_config: [ { field: :name },
+                                    { name: "Next class", render_with: ->(g) { render_next_date(g.next_class_date) }, hide: :sm },
+                                    { field: :course_type, render_with: :name, name: "Group type", hide: :md },
+                                  ])

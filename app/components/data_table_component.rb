@@ -13,9 +13,10 @@ class DataTableComponent < ViewComponent::Base
   end
 
   def nth_th(idx, cfg = {})
-    return "border-t border-l text-medium" if idx == 0
+    return "border-t border-l text-semibold" if idx == 0
     if cfg.has_key?(:hide)
       hide = cfg[:hide]
+      # sm:table-cell md:table-cell lg:table-cell xl:table-cell
       "hidden #{hide}:table-cell border-t"
     else
       "border-t"
@@ -23,7 +24,7 @@ class DataTableComponent < ViewComponent::Base
   end
 
   def nth_td(idx, cfg = {})
-    return "font-medium border-l border-wa-neutral-border-normal" if idx == 0
+    return "font-semibold border-l border-wa-neutral-border-normal" if idx == 0
     if cfg.has_key?(:hide)
       hide = cfg[:hide]
       "hidden #{hide}:table-cell"

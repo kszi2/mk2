@@ -6,11 +6,13 @@ class GroupsController < ApplicationController
   def index
     @groups = Group.includes(:course, :course_type)
                    .where(course_id: params[:course_id])
+                   .order(:name)
                    .page(params[:page]).per(params[:per_page] || 25)
   end
 
   # GET /groups/1 or /groups/1.json
-  def show
+  def
+    show
     respond_to do |format|
       format.html
       format.json
