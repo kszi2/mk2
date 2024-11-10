@@ -172,7 +172,6 @@
     <orderEntry type="library" scope="PROVIDED" name="tzinfo-data (v1.2024.2, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="uri (v0.13.1, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="view_component (v3.20.0, ruby-3.2.4-p170) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="wdm (v0.2.0, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="web-console (v4.2.1, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="webrick (v1.8.2, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="websocket (v1.2.11, ruby-3.2.4-p170) [gem]" level="application" />

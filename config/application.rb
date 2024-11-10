@@ -28,8 +28,6 @@ module Mk2
     config.view_component.generate.sidecar = true
     config.view_component.generate.preview = true
 
-    config.lookbook.preview_layout = "preview"
-
     # use good_job in all scenarios (good_job itself handles different envs)
     config.active_job.queue_adapter = :good_job
     config.good_job.enable_cron = true

@@ -80,4 +80,6 @@ Rails.application.configure do
   # Development have instrumentation of view components
   config.view_component.instrumentation_enabled = true
   config.view_component.use_deprecated_instrumentation_name = false
+
+  config.lookbook.preview_layout = "preview"
 end
