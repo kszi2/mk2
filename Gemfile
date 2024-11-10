@@ -13,7 +13,7 @@ gem "pg", "~> 1.1"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
-gem "falcon", "~> 0.48.3"
+# gem "falcon", "~> 0.48.3"
 
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem "jsbundling-rails"
@@ -94,3 +94,5 @@ gem "responders", "~> 3.1"
 gem "kaminari", "~> 1.2"
 
 gem "rack-pratchett", "~> 0.1.1"
+
+gem "foreman", "~> 0.88.1"
