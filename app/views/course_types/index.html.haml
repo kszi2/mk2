@@ -1,22 +1,7 @@
-%h1 Listing course_types
+%h1.text-2xl Listing course_types
 
 = turbo_frame_tag "course-types-frame" do
-  %table.w-full
-    %thead
-      %tr.border-b-4.border-wa-brand-border-loud
-        %th Name
-        %th
-        %th
-        %th
-
-    %tbody
-      - @course_types.each do |course_type|
-        %tr.border-b.border-wa-brand-border-loud
-          %td= course_type.name
-          %td= link_to 'Show', [@course, course_type], data: { "turbo-frame": "_top" }
-          %td= link_to 'Edit', edit_course_course_type_path(@course, course_type), data: { "turbo-frame": "_top" }
-          %td= link_to 'Destroy', [@course, course_type], method: :delete, data: { turbo_confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New Course type', new_course_course_type_path(@course)
+  = render DataTableComponent.new(objects: @course_types,
+                                  parents: [@course],
+                                  type: CourseType,
+                                  col_config: [ { field: :name } ])

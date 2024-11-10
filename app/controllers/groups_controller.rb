@@ -4,7 +4,9 @@ class GroupsController < ApplicationController
 
   # GET /groups or /groups.json
   def index
-    @groups = Group.includes(:course, :course_type).where(course_id: params[:course_id]).all
+    @groups = Group.includes(:course, :course_type)
+                   .where(course_id: params[:course_id])
+                   .page(params[:page]).per(params[:per_page] || 25)
   end
 
   # GET /groups/1 or /groups/1.json

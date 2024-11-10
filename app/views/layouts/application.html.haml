@@ -19,7 +19,7 @@
   %body.h-screen.bg-gradient-to-b.from-charcoal2.to-charcoal2.via-charcoal22.text-wa-text-normal._(class="via-40% to-80%")
     .relative
       .fixed.z-50.w-full.flex.flex-row._(class="top-0.5 left-1/2 -translate-x-1/2 md:w-4/5 lg:w-3/5 xl:w-2/5")
-        %nav(class="mt-2 px-3 py-1 drop-shadow backdrop-blur-md w-full mx-2 md:mx-auto border border-onyx rounded flex flex-row flex-wrap justify-between")
+        %nav(class="mt-2 px-3 py-1 drop-shadow backdrop-blur-md w-[calc(100%-1rem)] mx-2 md:mx-auto border border-onyx rounded flex flex-row flex-wrap justify-between")
           #logo.h-full.flex.flex-row.items-center.gap-2
             = link_to '/', class: 'h-full font-plex font-semibold text-2xl mx-1' do
               mk2
@@ -67,5 +67,5 @@
           }, 100);
 
 
-    %main(class="container mx-3 md:mx-auto mt-16 h-full flex flex-col")
+    %main(class="container w-[calc(100%-2.25rem)] sm:w-[calc(100%-1rem)] mx-auto mt-16 h-[calc(100%-4rem)] flex flex-col")
       = yield

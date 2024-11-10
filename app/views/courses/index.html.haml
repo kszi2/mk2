@@ -1,21 +1,5 @@
-%h1 Listing courses
+%h1.text-2xl Listing courses
 
-%table
-  %thead.w-full
-    %tr
-      %th Name
-      %th
-      %th
-      %th
-
-  %tbody
-    - @courses.each do |course|
-      %tr.border-b.border-wa-brand-border-loud
-        %td= course.name
-        %td= link_to 'Show', course
-        %td= link_to 'Edit', edit_course_path(course)
-        %td= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New Course', new_course_path
+= render DataTableComponent.new(objects: @courses,
+                                type: Course,
+                                col_config: [ { field: :name } ])

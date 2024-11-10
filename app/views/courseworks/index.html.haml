@@ -1,30 +1,11 @@
-%h1 Listing courseworks
+%h1.text-2xl Listing courseworks
 
 = turbo_frame_tag "courseworks-frame" do
-  %table.w-full
-    %thead
-      %tr.border-b-4.border-wa-brand-border-loud
-        %th Name
-        %th Course
-        %th Group type
-        %th Total points
-        %th # Criteria
-        %th
-        %th
-        %th
-
-    %tbody
-      - @courseworks.each do |coursework|
-        %tr.border-b.border-wa-brand-border-loud
-          %td= coursework.name
-          %td= coursework.course.name
-          %td= coursework.for_type.name
-          %td= coursework.total_points
-          %td= coursework.criteria_count
-          %td= link_to 'Show', [@course, coursework], data: { "turbo-frame": "_top" }
-          %td= link_to 'Edit', edit_course_coursework_path(@course, coursework), data: { "turbo-frame": "_top" }
-          %td= link_to 'Destroy', [@course, coursework], method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New Coursework', new_course_coursework_path(@course)
+  = render DataTableComponent.new(objects: @courseworks,
+                                  parents: [@course],
+                                  type: Coursework,
+                                  col_config: [ { field: :name },
+                                    { field: :for_type, render_with: :name, hide: :md },
+                                    { field: :total_points, hide: :sm },
+                                    { field: :criteria_count, hide: :sm },
+                                  ])

@@ -4,7 +4,7 @@ class TemplatesController < ApplicationController
 
   # GET /templates or /templates.json
   def index
-    @templates = Template.all
+    @templates = Template.order(:name).page(params[:page]).per(params[:per_page] || 10)
   end
 
   # GET /templates/1 or /templates/1.json

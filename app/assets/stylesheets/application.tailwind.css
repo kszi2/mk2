@@ -95,6 +95,10 @@
     scrollbar-color: var(--wa-color-brand-fill-loud) #0a0f12;
 }
 
+.revert {
+    display: revert;
+}
+
 dialog.dialog {
     color: var(--wa-color-text-normal);
 }

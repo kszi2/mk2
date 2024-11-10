@@ -1,8 +1,12 @@
-%h1 Listing submissions
+%h1.text-2xl Listing submissions
 
 = turbo_frame_tag "group-submissions-frame" do
-  #submissions-listing.flex.flex-col.w-full.gap-2
-    - @submissions.each do |submission|
-      = render "submission_listing", submission: submission
-
-= link_to 'New Submission', new_course_group_submission_path(@course, @group)
+  #submissions-listing
+    = render DataTableComponent.new(objects: @submissions,
+                                    parents: [@course, @group],
+                                    type: Submission,
+                                    filters: @prev_filter || {},
+                                    col_config: [ { field: :student, render_with: :name, filtered: true },
+                                      { field: :coursework, render_with: :name, filtered: true },
+                                    ],
+                                    inline_create: true)

@@ -66,8 +66,8 @@ module ComponentHelper
     end
   end
 
-  def mk_new_for(*args)
-    render NewShellComponent.new(objects: args) do |f|
+  def mk_new_for(*args, **options)
+    render NewShellComponent.new(objects: args, **options) do |f|
       yield f
     end
   end

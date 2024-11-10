@@ -1,15 +1,19 @@
 class SubmissionsController < ApplicationController
-  before_action :set_parents
+  include Filterable
+
+  before_action :set_parents, except: :filter_for
   before_action :set_submission, only: %i[ show edit update destroy ]
 
   # GET /submissions or /submissions.json
   def index
     @submissions = Submission
                      .includes(:student, :coursework)
+                     .where(construct_filter_obj(Submission,
+                                                 [:student => [], :coursework => []]))
                      .where(coursework_id: @courseworks.pluck(:id))
                      .where(student_id: @group.students.pluck(:id))
                      .order('students.name', 'courseworks.name')
-                     .all
+                     .page(params[:page]).per(params[:per_page] || 25)
   end
 
   # GET /submissions/1 or /submissions/1.json
@@ -21,14 +25,23 @@ class SubmissionsController < ApplicationController
     end
   end
 
-  def filter
-    @submissions = Submission
-                     .includes(:student, :coursework)
-                     .where(coursework_id: @courseworks.pluck(:id))
-                     .where(student_id: @group.students.pluck(:id))
-                     .all
-    respond_to do |format|
-      format.turbo_stream
+  # def filter
+  #   @submissions = Submission
+  #                    .includes(:student, :coursework)
+  #                    .where(coursework_id: @courseworks.pluck(:id))
+  #                    .where(student_id: @group.students.pluck(:id))
+  #                    .page(params[:page]).per(params[:per_page] || 25)
+  #   respond_to do |format|
+  #     format.turbo_stream
+  #   end
+  # end
+
+  def filter_for
+    inner_filter_for Submission do |x|
+      x.joins(student: :groups)
+       .where(groups: { id: params.require(:group_id) })
+       .page(params[:page]).per(params[:per_page] || 25)
+       .distinct
     end
   end
 
@@ -107,9 +120,6 @@ class SubmissionsController < ApplicationController
     @group = Group.includes(:students).where(id: params.require(:group_id)).first!
     @course = Course.find(params.require(:course_id))
     @courseworks = @course.courseworks.where(for_type_id: @group.course_type_id)
-    if params.key?(:coursework_id) && !params[:coursework_id].blank?
-      @courseworks = @courseworks.where(id: params.require(:coursework_id))
-    end
   end
 
   # Use callbacks to share common setup or constraints between actions.

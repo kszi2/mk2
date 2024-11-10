@@ -1,4 +1,8 @@
-= turbo_stream.replace "submissions-listing" do
-  #submissions-listing.flex.flex-col.w-full.gap-2
-    - @submissions.each do |submission|
-      = render "submission_listing", submission: submission
+= turbo_stream.replace "submission-listing" do
+  #submissions-listing
+    = render DataTableComponent.new(objects: @submissions,
+                                    parents: [@course, @group],
+                                    type: Submission,
+                                    col_config: [ { field: :student, render_with: :name },
+                                      { field: :coursework, render_with: :name },
+                                    ])

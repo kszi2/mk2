@@ -3,7 +3,7 @@ class FreeDaysController < ApplicationController
 
   # GET /free_days or /free_days.json
   def index
-    @free_days = FreeDay.all
+    @free_days = FreeDay.page(params[:page]).per(params[:per_page] || 25)
   end
 
   # GET /free_days/1 or /free_days/1.json

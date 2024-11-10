@@ -4,7 +4,7 @@ class CourseworksController < ApplicationController
 
   # GET /courseworks or /courseworks.json
   def index
-    @courseworks = Coursework.includes(:for_type, :course).all
+    @courseworks = Coursework.includes(:for_type, :course).page(params[:page]).per(params[:per_page] || 25)
   end
 
   # GET /courseworks/1 or /courseworks/1.json

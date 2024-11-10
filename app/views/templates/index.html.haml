@@ -1,28 +1,8 @@
-%h1 Listing templates
+%h1.text-2xl Listing templates
 
-%wa-callout(variant="warning")
-  Warning! This feature is even less implemented than all the others.
-
-%table
-  %thead
-    %tr
-      %th Name
-      %th Course
-      %th Data
-      %th
-      %th
-      %th
-
-  %tbody
-    - @templates.each do |template|
-      %tr
-        %td= template.name
-        %td= template.course
-        %td= template.data
-        %td= link_to 'Show', template
-        %td= link_to 'Edit', edit_template_path(template)
-        %td= link_to 'Destroy', template, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New Template', new_template_path
+= render DataTableComponent.new(objects: @templates,
+                                type: Template,
+                                col_config: [ { field: :name },
+                                  { field: :course, render_with: :name, hide: :md },
+                                  { field: :data, hide: :sm },
+                                ])

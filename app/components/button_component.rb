@@ -5,16 +5,36 @@ class ButtonComponent < ViewComponent::Base
 
   SupportedTypes = %i[basic primary secondary cancel destroy]
 
-  def initialize(type:, text:, href:, size: :medium, data: {})
+  def initialize(type:, text:, href:, size: :medium, enabled: true, id: nil, data: {}, rounding: :all)
     @type = type
     @text = text
     @href = href
     @size = size
     @data = data
+    @enabled = enabled
+    @rounding = rounding
+    @id = id || object_id
+  end
+
+  def real_content
+    return content if content?
+    @text
   end
 
   def true_button?
+    return true unless @enabled
     @href.nil?
+  end
+
+  def rounding_styles
+    case @rounding
+    when :all
+      'rounded'
+    when :grouped
+      "first:rounded-l last:rounded-r first:border-r-0 last:border-l-0"
+    else
+      raise ArgumentError, "unexpected button rounding type #{@rounding}: expected #{[:all, :grouped]}"
+    end
   end
 
   def color_styles

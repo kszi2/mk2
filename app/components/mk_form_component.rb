@@ -22,7 +22,8 @@ class MkFormComponent < ViewComponent::Base
 
   renders_one :cancel
 
-  def initialize(*object)
+  def initialize(*object, inline: true)
+    @inline = inline
     @object = object
     if object.is_a? Array
       @true_object = object.last
@@ -31,6 +32,11 @@ class MkFormComponent < ViewComponent::Base
       @true_object = object
       @parent_objects = []
     end
+  end
+
+  def data_turbo_location
+    return {} if @inline
+    { turbo_frame: "_top" }
   end
 
   def back_url

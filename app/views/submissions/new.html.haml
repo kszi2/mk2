@@ -1,4 +1,4 @@
-= mk_edit_for @course, @group, @submission do |e|
+= mk_new_for @course, @group, @submission do |e|
   - e.with_form do |f|
     - f.with_field :select, :student_id do |s|
       - s.with_label { "Student" }

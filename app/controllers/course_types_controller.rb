@@ -5,7 +5,7 @@ class CourseTypesController < ApplicationController
 
   # GET /course_types or /course_types.json
   def index
-    @course_types = CourseType.where(course_id: @course_id).all
+    @course_types = CourseType.where(course_id: @course_id).page(params[:page]).per(params[:per_page] || 25)
   end
 
   # GET /course_types/1 or /course_types/1.json

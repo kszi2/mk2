@@ -1,0 +1,11 @@
+= turbo_frame_tag "#{@filter_ctrl}_#{@filter_field}_filter" do
+  %ol
+    - @fields.each do |value|
+      - val = value
+      - val = value.name if value.respond_to?(:name)
+      - val = value.render_as if value.respond_to?(:render_as)
+      - idx = val.underscore.gsub(" ", "_")
+      - idx = value.id if value.respond_to?(:id)
+      %li
+        %input.accent-wa-success-fill-normal._{id: "#{@filter_field}_#{idx}", type: "checkbox", data: { action: "filter-component#setFilter", filter_component_field_param: @filter_field, filter_component_value_param: idx }}
+        %label{for: "#{@filter_field}_#{idx}"}= val

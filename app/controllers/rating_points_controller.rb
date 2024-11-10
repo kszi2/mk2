@@ -5,7 +5,7 @@ class RatingPointsController < ApplicationController
 
   # GET /rating_points or /rating_points.json
   def index
-    @rating_points = RatingPoint.where(coursework_id: @coursework.id).all
+    @rating_points = RatingPoint.where(coursework_id: @coursework.id).page(params[:page]).per(params[:per_page] || 25)
   end
 
   # GET /rating_points/1 or /rating_points/1.json

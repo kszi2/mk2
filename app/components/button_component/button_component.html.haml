@@ -1,4 +1,6 @@
 - if true_button?
-  %button.border.rounded.w-fit.h-fit{class: "#{size_styles} #{color_styles}", data: @data}= @text
+  %button.border.w-fit.h-fit{id: @id, class: "#{rounding_styles} #{size_styles} #{color_styles}", data: @data, disabled: !@enabled}
+    = real_content
 - else
-  %a.block.border.rounded.w-fit.h-fit{class: "#{size_styles} #{color_styles}", href: @href, data: @data}= @text
+  %a.block.border.w-fit.h-fit{id: @id, class: "#{rounding_styles} #{size_styles} #{color_styles}", href: @href, data: @data}
+    = real_content

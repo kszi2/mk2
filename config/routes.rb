@@ -28,6 +28,7 @@ Rails.application.routes.draw do
       get "submission_header" => "submissions#header", as: :submission_header
       post "submission_filter" => "submissions#filter", as: :filter_submissions
 
+      get "submissions/filter_for" => "submissions#filter_for", as: :filter_for
       resources :submissions do
         resources :marked_points, only: :index do
           post 'make_marking', to: 'marking_notes#make_marking', as: :make_marking

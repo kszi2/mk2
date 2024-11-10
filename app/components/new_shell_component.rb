@@ -2,10 +2,10 @@
 
 class NewShellComponent < ShellComponent
   renders_one :form, ->(&block) do
-    MkFormComponent.new(*@full_objects, &block)
+    MkFormComponent.new(*@full_objects, inline: false, &block)
   end
 
-  def initialize(objects:)
-    super(objects: objects, do_frame: false)
+  def initialize(objects:, **kwargs)
+    super(objects: objects, **kwargs)
   end
 end
