@@ -5,7 +5,8 @@
     "esbuild": "^0.23.1"
   },
   "scripts": {
-    "build": "node bundle.mjs --watch",
+    "build": "node bundle.mjs",
+    "watch": "node watch.mjs",
     "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify"
   },
   "dependencies": {
