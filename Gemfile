@@ -67,7 +67,6 @@ group :development do
   gem "binding_of_caller"
 
   gem "listen"
-  gem 'wdm', '>= 0.1.0' if Gem.win_platform?
   gem "actioncable"
   gem "lookbook", ">= 2.3.4"
 end
