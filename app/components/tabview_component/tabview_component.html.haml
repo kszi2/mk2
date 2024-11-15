@@ -1,0 +1,13 @@
+.my-2._{class: "group/tabview", data: {
+                                        controller: "tabview-component"
+                                      }}
+  %nav.pb-2.flex.flex-wrap.gap-1.text-lg.border-b.border-wa-neutral-border-quiet
+    - pages.each_with_index do |page, i|
+      %div{class: title_classes(i), data: {
+                                            action: "click->tabview-component#changeTab",
+                                            tabview_component_id_param: i
+                                          }}= page.title
+
+  %div
+    - pages.each_with_index do |page, i|
+      %div.hidden{class: unhide_classes(i)}= page

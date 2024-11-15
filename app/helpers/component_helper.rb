@@ -27,6 +27,7 @@ module ComponentHelper
                                  name: field_name(obj.class.name.underscore, field),
                                  value: obj.send(field),
                                  enabled: options[:enabled] || true,
+                                 size: options[:size] || :normal,
                                  id: field_id(obj, field)) do |input|
           input.with_label { field.to_s.humanize }
         end
@@ -38,6 +39,7 @@ module ComponentHelper
                                 name: name,
                                 value: value,
                                 enabled: options[:enabled] || true,
+                                size: options[:size] || :normal,
                                 id: options[:id]) do |input|
         input.with_label { options[:label] }
       end

@@ -4,12 +4,6 @@
   - s.with_property :active
 
   - s.with_extras do
-    .flex.flex-row.flex-wrap.items-center.gap-2.my-4._(class="mx-4 md:mx-0")
-      %wa-button.w-fit{size: :small, variant: :brand, href: new_course_coursework_rating_point_path(@course, @coursework)}
-        %wa-icon(slot="prefix" name="plus")
-        Add rating
-
-    .w-full
-      = turbo_frame_tag "rating-points-frame", src: course_coursework_rating_points_path(@course, @coursework) do
-        .w-full.flex.flex-row.justify-center
-          %wa-spinner.text-9xl
+    = turbo_frame_tag "rating-points-frame", src: course_coursework_rating_points_path(@course, @coursework) do
+      .w-full.flex.flex-row.justify-center
+        %wa-spinner.text-9xl

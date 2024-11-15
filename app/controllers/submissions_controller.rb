@@ -25,17 +25,6 @@ class SubmissionsController < ApplicationController
     end
   end
 
-  # def filter
-  #   @submissions = Submission
-  #                    .includes(:student, :coursework)
-  #                    .where(coursework_id: @courseworks.pluck(:id))
-  #                    .where(student_id: @group.students.pluck(:id))
-  #                    .page(params[:page]).per(params[:per_page] || 25)
-  #   respond_to do |format|
-  #     format.turbo_stream
-  #   end
-  # end
-
   def filter_for
     inner_filter_for Submission do |x|
       x.joins(student: :groups)
@@ -82,12 +71,6 @@ class SubmissionsController < ApplicationController
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @submission.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  def header
-    respond_to do |format|
-      format.html { render partial: 'header', locals: { objs: [@course, @group] } }
     end
   end
 
