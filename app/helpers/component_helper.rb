@@ -9,20 +9,20 @@ module ComponentHelper
     end
   end
 
-  ButtonComponent::SupportedTypes.each do |type|
+  Inputs::ButtonComponent::SupportedTypes.each do |type|
     self.define_method("#{type}_button_tag") do |text, href = nil, options = {}|
-      render ButtonComponent.new(type: type,
-                                 text: text,
-                                 href: href,
-                                 size: options[:size] || :normal,
-                                 data: options[:data] || {})
+      render Inputs::ButtonComponent.new(type: type,
+                                         text: text,
+                                         href: href,
+                                         size: options[:size] || :normal,
+                                         data: options[:data] || {})
     end
   end
 
-  InputComponent::SupportedTypes.each do |type|
+  Inputs::InputComponent::SupportedTypes.each do |type|
     self.define_method("#{type}_input_tag") do |obj, field, options = {}|
       raise ArgumentError, "Given object #{obj} does not respond to #{field}" unless obj.respond_to?(field)
-      render ErrorableFieldComponent.new(object: obj, field: field) do |ec|
+      render Inputs::ErrorableFieldComponent.new(object: obj, field: field) do |ec|
         ec.with_form_field_input(type: type,
                                  name: field_name(obj.class.name.underscore, field),
                                  value: obj.send(field),
@@ -35,12 +35,12 @@ module ComponentHelper
     end
 
     self.define_method("#{type}_raw_input_tag") do |name, value = nil, options = {}|
-      render InputComponent.new(type: type,
-                                name: name,
-                                value: value,
-                                enabled: options[:enabled] || true,
-                                size: options[:size] || :normal,
-                                id: options[:id]) do |input|
+      render Inputs::InputComponent.new(type: type,
+                                        name: name,
+                                        value: value,
+                                        enabled: options[:enabled] || true,
+                                        size: options[:size] || :normal,
+                                        id: options[:id]) do |input|
         input.with_label { options[:label] }
       end
     end
@@ -57,19 +57,19 @@ module ComponentHelper
   end
 
   def mk_show_for(*args)
-    render ShowShellComponent.new(objects: args) do |s|
+    render Shells::ShowShellComponent.new(objects: args) do |s|
       yield s
     end
   end
 
   def mk_edit_for(*args, **options)
-    render EditShellComponent.new(objects: args, **options) do |f|
+    render Shells::EditShellComponent.new(objects: args, **options) do |f|
       yield f
     end
   end
 
   def mk_new_for(*args, **options)
-    render NewShellComponent.new(objects: args, **options) do |f|
+    render Shells::NewShellComponent.new(objects: args, **options) do |f|
       yield f
     end
   end

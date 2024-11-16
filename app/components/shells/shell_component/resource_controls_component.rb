@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-class ResourceControlsComponent < ViewComponent::Base
+class Shells::ShellComponent::ResourceControlsComponent < ViewComponent::Base
+  include Inputs
+
   def initialize(edit: nil, back: nil)
     @edit = edit
     @back = back

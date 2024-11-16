@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CustomPropertyComponent < ViewComponent::Base
+class Shells::ShowShellComponent::CustomPropertyComponent < ViewComponent::Base
   def initialize(name:)
     @name = name
   end

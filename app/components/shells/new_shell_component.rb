@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
-class EditShellComponent < ShellComponent
-  include ComponentHelper
-
+class Shells::NewShellComponent < Shells::ShellComponent
   renders_one :form, ->(&block) do
-    MkFormComponent.new(*@full_objects, &block)
+    MkFormComponent.new(*@full_objects, inline: false, &block)
   end
 
   def initialize(objects:, **kwargs)

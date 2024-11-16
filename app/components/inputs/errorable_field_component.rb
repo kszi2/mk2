@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-class ErrorableFieldComponent < ViewComponent::Base
+class Inputs::ErrorableFieldComponent < ViewComponent::Base
+  include Inputs
+
   renders_one :form_field, types: {
     input: InputComponent,
     select: SelectComponent,

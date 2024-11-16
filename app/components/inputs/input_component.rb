@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class InputComponent < FormComponent
+class Inputs::InputComponent < Inputs::FormComponent
   include Sizable
 
   SupportedTypes = %i[text email date time datetime tel password number url]

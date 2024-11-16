@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ShowShellComponent < ShellComponent
+class Shells::ShowShellComponent < Shells::ShellComponent
   renders_one :extras
   renders_many :properties, ->(field, name: nil, value: nil) do
     PropertyComponent.new(name: name || field.to_s.humanize, value: value || @head_object.send(field))

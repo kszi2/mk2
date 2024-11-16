@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ButtonComponent < ViewComponent::Base
+class Inputs::ButtonComponent < ViewComponent::Base
   include Sizable
 
   SupportedTypes = %i[basic primary secondary cancel destroy]

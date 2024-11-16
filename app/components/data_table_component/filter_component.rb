@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
-class FilterComponent < ViewComponent::Base
+class DataTableComponent::FilterComponent < ViewComponent::Base
   include Turbo::FramesHelper
+  include Inputs
 
   def initialize(controller:, field:, name: nil, current_filters: {})
     @controller = controller

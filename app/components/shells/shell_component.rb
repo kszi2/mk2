@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ShellComponent < ViewComponent::Base
+class Shells::ShellComponent < ViewComponent::Base
   include Turbo::FramesHelper
 
   attr_reader :head_object

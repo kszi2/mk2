@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class TextareaComponent < FormComponent
+class Inputs::TextareaComponent < Inputs::FormComponent
   renders_one :label
 
   def initialize(name:, value:, enabled:, id:)

@@ -2,6 +2,7 @@
 
 class DataTableComponent < ViewComponent::Base
   include Turbo::FramesHelper
+  include Inputs
 
   def initialize(objects:, col_config:, type:, parents: [], filters: {}, inline_create: false)
     @objects = objects

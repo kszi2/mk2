@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SelectOptionComponent < ViewComponent::Base
+class Inputs::SelectComponent::SelectOptionComponent < ViewComponent::Base
   def initialize(value: nil, selected: false, current: nil)
     @value = value
     @selected = selected

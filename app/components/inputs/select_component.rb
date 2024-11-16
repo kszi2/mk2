@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SelectComponent < FormComponent
+class Inputs::SelectComponent < Inputs::FormComponent
   include Sizable
 
   renders_one :label

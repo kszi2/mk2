@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class FormComponent < ViewComponent::Base
+class Inputs::FormComponent < ViewComponent::Base
   attr_accessor :errored
 
   def error_border_style

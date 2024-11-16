@@ -5,7 +5,7 @@ class MkFormComponent < ViewComponent::Base
 
   renders_many :fields, ->(type, field, options = {}, &block) do
     obj = @true_object
-    render ErrorableFieldComponent.new(object: @true_object, field: field) do |ec|
+    render Inputs::ErrorableFieldComponent.new(object: @true_object, field: field) do |ec|
       ec.proper_field(type,
                       name: field_name(obj.class.name.underscore, field),
                       value: obj.send(field),
