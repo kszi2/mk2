@@ -1,12 +1,13 @@
 .my-2._{class: "group/tabview", data: {
                                         controller: "tabview-component"
                                       }}
-  %nav.pb-2.flex.flex-wrap.gap-1.text-lg.border-b.border-wa-neutral-border-quiet
+  %nav.flex.flex-wrap.text-lg
     - pages.each_with_index do |page, i|
       %div{class: title_classes(i), data: {
-                                            action: "click->tabview-component#changeTab",
+                                            action: "click->tabview-component#changeTab pointerenter->tabview-component#preloadTab",
                                             tabview_component_id_param: i
                                           }}= page.title
+    .grow.border-b.border-wa-neutral-border-normal
 
   %div
     - pages.each_with_index do |page, i|

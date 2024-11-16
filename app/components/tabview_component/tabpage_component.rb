@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class TabpageComponent < ViewComponent::Base
+class TabviewComponent::TabpageComponent < ViewComponent::Base
   attr_reader :title
 
   def initialize(title:)
