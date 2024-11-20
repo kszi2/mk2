@@ -5,5 +5,4 @@
 
   - s.with_extras do
     = turbo_frame_tag "rating-points-frame", src: course_coursework_rating_points_path(@course, @coursework) do
-      .w-full.flex.flex-row.justify-center
-        %wa-spinner.text-9xl
+      = loader_tag

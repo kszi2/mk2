@@ -21,9 +21,7 @@
           .absolute.rounded-full.w-5.h-5.border.border-wa-danger-fill-normal.hidden(class="z-[-1] -top-[6.2%] -left-[.1rem] group-hover/x:inline")
       .max-h-40.overflow-auto.bg-wa-neutral-fill-loud.px-2.py-1.rounded
         = turbo_frame_tag "#{@controller}_#{@field}_filter", loading: :lazy, src: url_for(controller: @controller, action: :filter_for, field: @field) do
-          %div.flex.justify-center.text-wa-brand-fill-loud
-            %wa-spinner.text-2xl
-              -# todo remove
+          = loader_tag
 
       .flex.justify-between.mt-2
         = render ButtonComponent.new(type: :basic, text: "Clear", href: @clear_url, size: :small)

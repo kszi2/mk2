@@ -18,4 +18,4 @@
 
     = turbo_frame_tag "marked-points-frame", src: course_group_submission_marked_points_path(@course, @group, @submission) do
       .w-full.flex.flex-row.justify-center
-        %wa-spinner.text-9xl
+        = loader_tag

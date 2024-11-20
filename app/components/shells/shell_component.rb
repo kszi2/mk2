@@ -34,13 +34,7 @@ class Shells::ShellComponent < ViewComponent::Base
   end
 
   def back_url
-    # Return parent objects' path if they exist, otherwise the index page on the
-    # current object's type
-    if @tail_objects.empty?
-      url_for(controller: @head_object.class.name.underscore.pluralize, action: :index)
-    else
-      url_for(@tail_objects)
-    end
+    "javascript:history.back()"
   end
 
   private

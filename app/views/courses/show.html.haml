@@ -5,13 +5,10 @@
     = render TabviewComponent.new do |t|
       - t.with_page(title: "Groups") do
         = turbo_frame_tag "groups-frame", src: course_groups_path(@course), loading: "lazy" do
-          .w-full.flex.flex-row.justify-center
-            %wa-spinner.text-9xl
+          = loader_tag
       - t.with_page(title: "Group types") do
         = turbo_frame_tag "course-types-frame", src: course_course_types_path(@course), loading: "lazy" do
-          .w-full.flex.flex-row.justify-center
-            %wa-spinner.text-9xl
+          = loader_tag
       - t.with_page(title: "Courseworks") do
         = turbo_frame_tag "courseworks-frame", src: course_courseworks_path(@course), loading: "lazy" do
-          .w-full.flex.flex-row.justify-center
-            %wa-spinner.text-9xl
+          = loader_tag

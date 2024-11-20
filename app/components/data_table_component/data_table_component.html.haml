@@ -32,7 +32,10 @@
           - @col_config.each_with_index do |cfg, i|
             %td{class: nth_td(i, cfg)}= value_of(template, cfg)
           %td(class="border-r border-wa-neutral-border-normal")
-            .flex.justify-end
+            .flex.justify-end._(class="sm:hidden")
+              = render ButtonComponent.new(type: :primary, text: nil, href: url_for(full_obj_path(template)), size: :small, rounding: :grouped, data: { turbo_frame: "_top" }) do
+                %i.fa-regular.fa-arrow-up-right-from-square
+            .justify-end.hidden._(class="sm:flex")
               = render ButtonComponent.new(type: :primary, text: nil, href: url_for(full_obj_path(template)), size: :small, rounding: :grouped, data: { turbo_frame: "_top" }) do
                 %i.fa-regular.fa-arrow-up-right-from-square
               = render ButtonComponent.new(type: :secondary, text: nil, href: url_for(id: template, action: :edit), size: :small, rounding: :grouped, data: { turbo_frame: "_top" }) do

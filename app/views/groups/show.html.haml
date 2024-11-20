@@ -27,5 +27,4 @@
                 %wa-button(type="submit" variant="danger" appearance="text") Remove
       - t.with_page(title: "Submissions") do
         = turbo_frame_tag "group-submissions-frame", src: course_group_submissions_path(@course, @group) do
-          .w-full.flex.flex-row.justify-center
-            %wa-spinner.text-9xl
+          = loader_tag
