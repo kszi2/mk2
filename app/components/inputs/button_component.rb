@@ -5,6 +5,8 @@ class Inputs::ButtonComponent < ViewComponent::Base
 
   SupportedTypes = %i[basic primary secondary cancel destroy]
 
+  renders_one :prefix
+
   def initialize(type:, text:, href:, size: :medium, enabled: true, id: nil, data: {}, rounding: :all)
     @type = type
     @text = text

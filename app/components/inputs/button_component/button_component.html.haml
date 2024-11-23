@@ -1,6 +1,10 @@
 - if true_button?
   %button.border.w-fit.h-fit{id: @id, class: "#{rounding_styles} #{size_styles} #{color_styles}", data: @data, disabled: !@enabled}
+    - if prefix?
+      = prefix
     = real_content
 - else
   %a.block.border.w-fit.h-fit{id: @id, class: "#{rounding_styles} #{size_styles} #{color_styles}", href: @href, data: @data}
+    - if prefix?
+      = prefix
     = real_content
