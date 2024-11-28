@@ -1,0 +1,24 @@
+= turbo_frame_tag @note do
+  .w-full.bg-wa-surface-lowered.border.border-wa-surface-border.py-2.px-5.rounded{ data: {
+    controller: "rating-note-edit-component"
+  }, class: "group/note-detail" }
+    %input.hidden(type="checkbox" id="#{dom_id(@note, :opener)}" checked=true)
+    = render @preface_comp
+    .mt-2.border-t.border-wa-neutral-border-quiet
+      = form_tag(update_url, method: :put) do
+        = number_input_tag @note, :points_cost
+        %label.block.mt-2._(for="#{dom_id(@note, :reason)}") Reasoning
+        = render Inputs::TextareaComponent.new(name: "marking_note[reason]",
+                                               value: @note.reason,
+                                               enabled: true,
+                                               id: dom_id(@note, :reason),
+                                               class: 'w-full',
+                                               data: { action: "input->rating-note-edit-component#textChanged" })
+
+        .mt-3.w-full.flex.justify-between.align-top
+          .h-fit
+            %input(type="checkbox" name="marking_note[fixed]" id="#{dom_id(@note, :fixed_box)}"){checked: @note.fixed}
+            %label(for="#{dom_id(@note, :fixed_box)}") Fixed
+          .flex.gap-2
+            = cancel_button_tag "Cancel", update_url
+            = submit_button_tag "Save", nil

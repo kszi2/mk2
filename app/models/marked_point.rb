@@ -7,6 +7,10 @@ class MarkedPoint < ApplicationRecord
     rating_point.available_points - total_points_cost
   end
 
+  def criterion?
+    rating_point.criterion?
+  end
+
   def failed_criterion?
     return false unless rating_point.criterion?
     total_points_cost != 0

@@ -3,7 +3,7 @@
                                       }}
   %nav.flex.flex-wrap.text-lg
     - pages.each_with_index do |page, i|
-      %div{class: title_classes(i), data: {
+      .select-none{class: title_classes(i), data: {
                                             action: "click->tabview-component#changeTab pointerenter->tabview-component#preloadTab",
                                             tabview_component_id_param: i
                                           }}= page.title

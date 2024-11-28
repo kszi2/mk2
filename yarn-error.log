@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js upgrade
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add @hotwired/turbo-rails
 
 PATH: 
-  C:\Program Files\OpenSSL-Win64\bin;C:\berrybrew\instance\5.38.0_64\c\bin;C:\berrybrew\instance\5.38.0_64\perl\bin;C:\berrybrew\instance\5.38.0_64\perl\site\bin;C:\Program Files\CMake\bin;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\berrybrew\bin;C:\Program Files\Microsoft MPI\Bin\;C:\Program Files\ImageMagick-7.1.1-Q16-HDRI;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\dotnet\;C:\Program Files (x86)\gnupg\bin;C:\Program Files (x86)\Gpg4win\..\GnuPG\bin;C:\Program Files\MiKTeX\miktex\bin\x64\;C:\Program Files\nodejs\;C:\Program Files\Meson\;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\PostgreSQL\16\bin;C:\Program Files\PuTTY\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files\PowerShell\7-preview;D:\bin;C:\Program Files\WindowsApps\Microsoft.DesktopAppInstaller_1.23.532.0_x64__8wekyb3d8bbwe;C:\Program Files\Go\bin;C:\Program Files\Vim\vim91;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\TortoiseGit\bin;C:\Program Files\Git\cmd;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\Pandoc\;C:\Program Files\PowerShell\7-preview\preview;C:\Program Files\Docker\Docker\resources\bin;C:\Users\bodand\AppData\Local\mise\shims;C:\Users\bodand\AppData\Local\Programs\Python\Launcher\;C:\Users\bodand\scoop\apps\elixir\current\bin;C:\Users\bodand\scoop\shims;C:\Users\bodand\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\bodand\.dotnet\tools;P:\mk2\node_modules\.bin
+  C:\msys64\ucrt64\bin;C:\Program Files\OpenSSL-Win64\bin;C:\berrybrew\instance\5.38.0_64\c\bin;C:\berrybrew\instance\5.38.0_64\perl\bin;C:\berrybrew\instance\5.38.0_64\perl\site\bin;C:\Program Files\CMake\bin;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\berrybrew\bin;C:\Program Files\Microsoft MPI\Bin\;C:\Program Files\ImageMagick-7.1.1-Q16-HDRI;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\dotnet\;C:\Program Files (x86)\gnupg\bin;C:\Program Files (x86)\Gpg4win\..\GnuPG\bin;C:\Program Files\MiKTeX\miktex\bin\x64\;C:\Program Files\nodejs\;C:\Program Files\Meson\;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\PostgreSQL\16\bin;C:\Program Files\PuTTY\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files\PowerShell\7-preview;D:\bin;C:\Program Files\WindowsApps\Microsoft.DesktopAppInstaller_1.23.532.0_x64__8wekyb3d8bbwe;C:\Program Files\Go\bin;C:\Program Files\Vim\vim91;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\TortoiseGit\bin;C:\Program Files\Git\cmd;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\Pandoc\;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\cg3-checker 0.2.2\bin;C:\Program Files\PowerShell\7-preview\preview;C:\Users\bodand\AppData\Local\mise\shims;C:\Users\bodand\AppData\Local\Programs\Python\Launcher\;C:\Users\bodand\scoop\apps\elixir\current\bin;C:\Users\bodand\scoop\shims;C:\Users\bodand\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\bodand\.dotnet\tools;C:\Users\bodand\.bun\bin;C:\Users\bodand\.pyenv\pyenv-win\bin;C:\Users\bodand\.pyenv\pyenv-win\shims;C:\Users\bodand\scoop\shims;P:\mk2\node_modules\.bin
 
 Yarn version: 
   1.22.19
@@ -24,7 +24,8 @@ npm manifest:
       "esbuild": "^0.23.1"
     },
     "scripts": {
-      "build": "node bundle.mjs --watch",
+      "build": "node bundle.mjs",
+      "watch": "node watch.mjs",
       "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify"
     },
     "dependencies": {
@@ -34,6 +35,7 @@ npm manifest:
       "@xpd/tailwind-3dtransforms": "^1.0.3",
       "autoprefixer": "^10.4.20",
       "esbuild-plugin-import-glob": "^0.1.1",
+      "jquery": "^3.7.1",
       "postcss": "^8.4.41",
       "tailwindcss": "^3.4.10"
     }
@@ -509,6 +511,11 @@ Lockfile:
     version "1.21.6"
     resolved "https://registry.npmjs.org/jiti/-/jiti-1.21.6.tgz"
     integrity sha512-2yTgeWTWzMWkHu6Jp9NKgePDaYHbntiwvYuuJLbbN9vl7DC9DvXKOB2BC3ZZ92D3cvV/aflH0osDfwpHepQ53w==
+  
+  jquery@^3.7.1:
+    version "3.7.1"
+    resolved "https://registry.npmjs.org/jquery/-/jquery-3.7.1.tgz"
+    integrity sha512-m4avr8yL8kmFN8psrbFFFmB/If14iN5o9nw/NgnnM+kybDJpRsAynV2BsfpTYrTRysYUdADVD7CkUUizgkpLfg==
   
   lilconfig@^2.1.0:
     version "2.1.0"

@@ -31,10 +31,7 @@ Rails.application.routes.draw do
           post 'make_marking', to: 'marking_notes#make_marking', as: :make_marking
           post 'cancel_make', to: 'marking_notes#cancel_make', as: :cancel_make
 
-          resources :marking_notes, except: [:show, :destroy] do
-            post 'edit', to: 'marking_notes#edit_marking'
-            post 'toggle', to: 'marking_notes#toggle', as: :toggle
-          end
+          resources :marking_notes
         end
       end
     end

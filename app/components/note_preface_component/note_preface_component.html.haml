@@ -1,0 +1,9 @@
+.flex.flex-row.items-center.justify-start.gap-3.w-full
+  %i.fa-regular.fa-chevron-right.h-fit.w-fit.mr-3{class:
+      "group-open/note-detail:rotate-90 #{chevron_color}"
+    }
+  %h4.text-lg.min-w-6.select-none
+    %div= preface_symbol
+    = preface_text
+
+  .truncate.select-none._(class="#{data_classes} w-[70%]"){data: { rating_note_edit_component_target: "title" }}= data_start

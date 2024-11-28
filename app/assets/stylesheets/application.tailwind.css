@@ -107,6 +107,18 @@ dialog.dialog {
     text-transform: uppercase !important;
 }
 
+/*details {*/
+/*    transition: max-height 400ms ease-in-out;*/
+/*}*/
+
+details[open] summary ~ * {
+    animation: ease-opacity-t-b 0.5s ease;
+}
+
+details i {
+    transition: all .3s ease-out;
+}
+
 .menu-item {
     color: var(--wa-color-text-normal);
     text-transform: uppercase;
@@ -148,8 +160,7 @@ dialog.dialog {
     content: '';
     position: absolute;
     inset: 0;
-    /*background: rgba(var(--wa-color-brand-on-loud), 0.7);*/
-    background: rgba(234, 234, 255, .7);
+    background: theme(colors.wa-text-normal / 70%);
     animation: layerTr 1s linear infinite alternate;
 }
 
@@ -168,6 +179,12 @@ dialog.dialog {
     }
     100% {
         transform: translate(-25px, -25px) scale(1)
+    }
+}
+
+@layer components {
+    .turbo-progress-bar {
+        @apply bg-wa-brand-fill-normal shadow shadow-wa-brand-fill-loud;
     }
 }
 

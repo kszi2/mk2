@@ -1,0 +1,34 @@
+= turbo_frame_tag @note do
+  %details.w-full.bg-wa-surface-default.py-2.px-5.rounded{class: "group/note-detail",
+    data: {
+      controller: "rating-note-component",
+   }
+  }
+    %summary.relative.w-full.h-8.block.transition-margin.ease-in.duration-200{data: {
+      action: "click->rating-note-component#toggle:prevent"
+    }}
+      = render @preface_comp
+      .absolute.flex.gap-1.right-0._(class="top-1/2 -translate-y-1/2")
+        = render Inputs::ButtonComponent.new(type: :basic,
+                                             text: nil,
+                                             href: edit_url,
+                                             size: :small) do |b|
+          - b.with_prefix do
+            %i.fa-regular.fa-pen-to-square
+        = render Inputs::ButtonComponent.new(type: :basic,
+                                             text: nil,
+                                             href: nil,
+                                             size: :small) do |b|
+          - b.with_prefix do
+            %i.fa-regular._(class=fix_icon_classes)
+        = render Inputs::ButtonComponent.new(type: :basic,
+                                             text: nil,
+                                             href: nil,
+                                             size: :small) do |b|
+          - b.with_prefix do
+            %i.fa-regular.fa-trash-xmark(class="group-hover/button:text-wa-danger-fill-loud")
+
+    .py-3.mt-2.border-t.border-wa-neutral-border-quiet.text-wa-text-normal.hidden{data: {
+      rating_note_component_target: "content"
+    }}
+      %pre.font-sans= note_reason

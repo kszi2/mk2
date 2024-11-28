@@ -1,6 +1,6 @@
 class MarkingNotesController < ApplicationController
   before_action :set_parents
-  before_action :set_marking_note, only: %i[ edit_marking edit update toggle ]
+  before_action :set_marking_note, only: %i[ show edit update toggle ]
 
   # GET /marking_notes or /marking_notes.json
   def index
@@ -19,17 +19,20 @@ class MarkingNotesController < ApplicationController
     end
   end
 
-  def edit_marking
-    respond_to do |format|
-      format.turbo_stream
-    end
-  end
+  # def edit_marking
+  #   respond_to do |format|
+  #     format.turbo_stream
+  #   end
+  # end
+  #
+  # def cancel_make
+  #   set_marking_note unless params[:marking_note_id].blank?
+  #   respond_to do |format|
+  #     format.turbo_stream
+  #   end
+  # end
 
-  def cancel_make
-    set_marking_note unless params[:marking_note_id].blank?
-    respond_to do |format|
-      format.turbo_stream
-    end
+  def show
   end
 
   # GET /marking_notes/1/edit
@@ -59,8 +62,7 @@ class MarkingNotesController < ApplicationController
   def update
     respond_to do |format|
       if @marking_note.update(marking_note_params)
-        format.turbo_stream { render }
-        format.html { redirect_to course_group_submission_path(@course, @group, @submission), notice: "Marking note was successfully updated." }
+        format.html { redirect_to course_group_submission_marked_point_marking_note_path(@course, @group, @submission, @marked_point, @marking_note) }
         format.json { render :show, status: :ok, location: @marking_note }
       else
         format.html { render :edit, status: :unprocessable_entity }

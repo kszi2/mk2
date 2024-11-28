@@ -28,7 +28,7 @@ module.exports = {
       "wa-surface-border": 'var(--wa-color-surface-border)',
 
       /* text-color config: blue-tinted white-ish */
-      "wa-text-normal": 'var(--wa-color-text-normal)',
+      "wa-text-normal": ' #eaeaff',
       "wa-text-quiet": 'var(--wa-color-text-quiet)',
       "wa-text-link": 'var(--wa-color-text-link)',
 
@@ -110,6 +110,9 @@ module.exports = {
     extend: {
       spacing: {
         '2full': '200%',
+      },
+      transitionProperty: {
+        'margin': 'margin',
       }
     }
   },

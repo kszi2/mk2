@@ -9,6 +9,10 @@ class MarkingNote < ApplicationRecord
     points_cost
   end
 
+  def criterion?
+    marked_point.criterion?
+  end
+
   def name
     "Note"
   end
