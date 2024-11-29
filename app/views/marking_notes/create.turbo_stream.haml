@@ -4,7 +4,7 @@
   %span{id: dom_id(@marked_point, :xvalue_of)}= prog2_point_achieved @marked_point
 
 = turbo_stream.append dom_id(@marked_point, :notes) do
-  = render partial: 'marking_note', locals: { marking_note: @marking_note, objs: [@course, @group, @submission, @marked_point, @marking_note]}
+  = render RatingNoteComponent(note: @marking_note)
 
 = turbo_stream.replace dom_id(@submission, :marked_for) do
   %span{id: dom_id(@submission, :marked_for)}= @submission.marked_for

@@ -8,7 +8,7 @@ class RatingNoteEditComponent < ViewComponent::Base
   def initialize(note:)
     @note = note
     @preface_comp = NotePrefaceComponent.new(id: @note.id,
-                                             text: @note.reason || "Szar",
+                                             text: @note.reason || "New note",
                                              fixed: @note.fixed,
                                              points_cost: @note.points_cost,
                                              fatal: @note.criterion?,

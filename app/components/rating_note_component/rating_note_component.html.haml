@@ -39,4 +39,5 @@
     .py-3.mt-2.border-t.border-wa-neutral-border-quiet.text-wa-text-normal.hidden{data: {
       rating_note_component_target: "content"
     }}
-      %pre.font-sans= note_reason
+      - note_reason.lines.each do |line|
+        %p.text-wrap.whitespace-pre-wrap.pl-2.-indent-2= line

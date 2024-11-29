@@ -2,7 +2,6 @@
   .w-full.bg-wa-surface-lowered.border.border-wa-surface-border.py-2.px-5.rounded{ data: {
     controller: "rating-note-edit-component"
   }, class: "group/note-detail" }
-    %input.hidden(type="checkbox" id="#{dom_id(@note, :opener)}" checked=true)
     = render @preface_comp
     .mt-2.border-t.border-wa-neutral-border-quiet
       = form_tag(update_url, method: :put) do

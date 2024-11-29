@@ -13,24 +13,18 @@ class MarkingNotesController < ApplicationController
   end
 
   def make_marking
-    @marking_note = MarkingNote.new
+    @marking_note = MarkingNote.new(marked_point: @marked_point)
     respond_to do |format|
       format.turbo_stream
     end
   end
 
-  # def edit_marking
-  #   respond_to do |format|
-  #     format.turbo_stream
-  #   end
-  # end
-  #
-  # def cancel_make
-  #   set_marking_note unless params[:marking_note_id].blank?
-  #   respond_to do |format|
-  #     format.turbo_stream
-  #   end
-  # end
+  def cancel_make
+    set_marking_note unless params[:marking_note_id].blank?
+    respond_to do |format|
+      format.turbo_stream
+    end
+  end
 
   def show
   end

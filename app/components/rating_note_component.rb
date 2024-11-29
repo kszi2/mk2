@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class RatingNoteComponent < ViewComponent::Base
+  with_collection_parameter :note
+
   include ComponentHelper
   include Turbo::FramesHelper
   include Rails.application.routes.url_helpers

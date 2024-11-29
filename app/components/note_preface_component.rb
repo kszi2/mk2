@@ -34,11 +34,15 @@ class NotePrefaceComponent < ViewComponent::Base
   end
 
   def preface_text
+    return "" if note_is_new?
     return "" if @fixed
-    return "" if only_note?
+    return "" if note_is_message?
     return "" if @fatal
     tag.i class: "fa-solid" do
-      if @points_cost.is_a?(Float)
+      case @points_cost
+      when nil
+        ""
+      when Float
         sprintf "%+.1f", -@points_cost
       else
         sprintf "%+d", -@points_cost
@@ -58,17 +62,22 @@ class NotePrefaceComponent < ViewComponent::Base
     "text-wa-text-normal animate-text-normalize"
   end
 
-  def only_note?
+  def preface_symbol_name
+    return "fa-question" if note_is_new?
+    if @fixed
+      return "fa-comment-slash text-wa-success-fill-loud" if note_is_message?
+      return "fa-bug-slash text-wa-success-fill-loud"
+    end
+    return "fa-comment" if note_is_message?
+    return "fa-xmark-large text-wa-danger-fill-loud" if @fatal
+    ""
+  end
+
+  def note_is_message?
     @points_cost == 0
   end
 
-  def preface_symbol_name
-    if @fixed
-      return "fa-comment-slash text-wa-success-fill-loud" if only_note?
-      return "fa-bug-slash text-wa-success-fill-loud"
-    end
-    return "fa-comment" if only_note?
-    return "fa-xmark-large text-wa-danger-fill-loud" if @fatal
-    ""
+  def note_is_new?
+    @id.blank? || @id == 0
   end
 end
