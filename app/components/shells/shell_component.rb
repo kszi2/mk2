@@ -34,7 +34,11 @@ class Shells::ShellComponent < ViewComponent::Base
   end
 
   def back_url
-    "javascript:history.back()"
+    if @tail_objects.empty?
+      "javascript:history.back()"
+    else
+      url_for(@tail_objects)
+    end
   end
 
   private

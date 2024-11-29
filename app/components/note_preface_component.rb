@@ -1,12 +1,25 @@
 # frozen_string_literal: true
 
 class NotePrefaceComponent < ViewComponent::Base
-  def initialize(text:, fixed:, points_cost:, fatal:, active: true)
+  def self.for(note)
+    NotePrefaceComponent.new(id: note.id,
+                             text: note.reason,
+                             fixed: note.fixed,
+                             points_cost: note.points_cost,
+                             fatal: note.criterion?)
+  end
+
+  def initialize(id:, text:, fixed:, points_cost:, fatal:, active: true)
+    @id = id
     @text = text
     @fixed = fixed
     @points_cost = points_cost
     @fatal = fatal
     @active = active
+  end
+
+  def head_id
+    "note_preface_#{@id}"
   end
 
   def preface_symbol
@@ -41,8 +54,8 @@ class NotePrefaceComponent < ViewComponent::Base
   private
 
   def data_classes
-    return "text-wa-text-quiet" if @fixed
-    ""
+    return "text-wa-text-quiet animate-text-quietize" if @fixed
+    "text-wa-text-normal animate-text-normalize"
   end
 
   def only_note?

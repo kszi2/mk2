@@ -11,11 +11,13 @@
   },
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
+    "@hotwired/turbo": "^8.0.12",
     "@hotwired/turbo-rails": "^8.0.12",
     "@tailwindcss/typography": "^0.5.14",
     "@xpd/tailwind-3dtransforms": "^1.0.3",
     "autoprefixer": "^10.4.20",
     "esbuild-plugin-import-glob": "^0.1.1",
+    "idiomorph": "^0.3.0",
     "jquery": "^3.7.1",
     "postcss": "^8.4.41",
     "tailwindcss": "^3.4.10"

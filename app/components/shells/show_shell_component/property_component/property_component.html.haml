@@ -1,8 +1,19 @@
-.flex.justify-between.h-fit.flex-col.items-start.gap-2{class: "sm:flex-row sm:items-center sm:h-10 min-w-max w-full sm:w-2/3 md:w-1/2 lg:w-1/3 xl:w-1/4", data: { controller: 'property-component' }}
+.flex.justify-between.h-fit.flex-col.items-start.gap-2{data: {
+      controller: 'property-component'
+    },
+    class: "group/property sm:flex-row sm:items-center sm:h-10 min-w-max w-full sm:w-2/3 md:w-1/2 lg:w-1/3 xl:w-1/4",
+  }
   %span.h-fit.font-semibold= @name
   .flex.bg-wa-surface-default.rounded._(class="focus-within:ring focus-within:ring-wa-brand-border-quiet")
     %input.grow.outline-none.bg-transparent.px-3.py-1._(readonly value=@value){data: { property_component_target: "source" }}
-    %button.w-10.m-1.py-1.px-3.rounded._(class=button_style){data: {
+    %button.relative.w-10.h-8.m-1.py-1.px-3.rounded._(class=button_style){data: {
       action: "property-component#copy",
     }}
-      %i.fa-regular.fa-clipboard
+      %i.absolute.fa-regular.fa-circle-check.ease-in.transition-opacity.text-wa-success-fill-loud{class:
+        "top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2" +
+        " group-[[data-property-component-success-value='false']]/property:opacity-0" +
+        " group-[[data-property-component-success-value='true']]/property:opacity-100"}
+      %i.absolute.fa-regular.fa-clipboard.ease-in.transition-opacity{class:
+        "top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2" +
+        " group-[[data-property-component-success-value='true']]/property:opacity-0" +
+        " group-[[data-property-component-success-value='false']]/property:opacity-100"}

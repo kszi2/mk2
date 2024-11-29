@@ -28,8 +28,8 @@ module.exports = {
       "wa-surface-border": 'var(--wa-color-surface-border)',
 
       /* text-color config: blue-tinted white-ish */
-      "wa-text-normal": ' #eaeaff',
-      "wa-text-quiet": 'var(--wa-color-text-quiet)',
+      "wa-text-normal": '#eaeaff',
+      "wa-text-quiet": '#5f5f67',
       "wa-text-link": 'var(--wa-color-text-link)',
 
       /* color config */
@@ -113,6 +113,20 @@ module.exports = {
       },
       transitionProperty: {
         'margin': 'margin',
+      },
+      animation: {
+        'text-quietize': 'text-quietize .3s ease-out',
+        'text-normalize': 'text-normalize .3s ease-out',
+      },
+      keyframes: {
+        'text-quietize': {
+          '0%': { color: 'theme(colors.wa-text-normal)' },
+          '100%': { color: 'theme(colors.wa-text-quiet)' },
+        },
+        'text-normalize': {
+          '0%': { color: 'theme(colors.wa-text-quiet)' },
+          '100%': { color: 'theme(colors.wa-text-normal)' },
+        }
       }
     }
   },

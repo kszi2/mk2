@@ -7,10 +7,15 @@ class RatingNoteComponent < ViewComponent::Base
 
   def initialize(note:)
     @note = note
-    @preface_comp = NotePrefaceComponent.new(text: @note.reason,
-                                             fixed: @note.fixed,
-                                             points_cost: @note.points_cost,
-                                             fatal: @note.criterion?)
+    @preface_comp = NotePrefaceComponent.for(@note)
+  end
+
+  def self.toggle_icon_id(note)
+    "toggle_icon_#{note.id}"
+  end
+
+  def toggle_icon_id
+    RatingNoteComponent.toggle_icon_id(@note)
   end
 
   def note_reason
@@ -18,11 +23,25 @@ class RatingNoteComponent < ViewComponent::Base
     @note.reason
   end
 
-  def fix_icon_classes
+  def toggle_url
+    mp = @note.marked_point
+    subm = mp.submission
+    cw = subm.coursework
+    course = cw.course
+    group = subm.student.groups.where(course_id: course.id).first
+    url_for([course, group, subm, mp, @note, :toggle])
+  end
+
+  def self.toggle_icon_classes(note)
     return "fa-xmark-to-slot group-hover/button:text-wa-danger-fill-loud" \
-      if @note.fixed?
+      if note.fixed?
     "fa-check-to-slot group-hover/button:text-wa-success-fill-loud"
   end
+
+  def toggle_icon_classes
+    RatingNoteComponent.toggle_icon_classes(@note)
+  end
+  alias fix_icon_classes toggle_icon_classes
 
   def edit_url
     mp = @note.marked_point
@@ -31,5 +50,8 @@ class RatingNoteComponent < ViewComponent::Base
     course = cw.course
     group = subm.student.groups.where(course_id: course.id).first
     url_for([:edit, course, group, subm, mp, @note])
+  rescue
+    logger.error("Unknown edit path for #{@note}")
+    "#"
   end
 end

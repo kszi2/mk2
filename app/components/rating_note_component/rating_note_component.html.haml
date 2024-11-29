@@ -5,28 +5,36 @@
    }
   }
     %summary.relative.w-full.h-8.block.transition-margin.ease-in.duration-200{data: {
-      action: "click->rating-note-component#toggle:prevent"
+      action: "click->rating-note-component#toggleDetails:capture",
     }}
       = render @preface_comp
-      .absolute.flex.gap-1.right-0._(class="top-1/2 -translate-y-1/2")
-        = render Inputs::ButtonComponent.new(type: :basic,
+      .absolute.flex.right-0._(class="top-1/2 -translate-y-1/2")
+        = render Inputs::ButtonComponent.new(type: :secondary,
+                                             text: nil,
+                                             href: toggle_url,
+                                             size: :small,
+                                             rounding: :grouped,
+                                             data: { turbo: { method: :post },
+                                                     rating_note_component_target: "ignored" }) do |b|
+          - b.with_prefix do
+            %i.fa-regular._(id=toggle_icon_id class=fix_icon_classes)
+        = render Inputs::ButtonComponent.new(type: :secondary,
                                              text: nil,
                                              href: edit_url,
-                                             size: :small) do |b|
+                                             size: :small,
+                                             rounding: :grouped,
+                                             data: { rating_note_component_target: "ignored" }) do |b|
           - b.with_prefix do
             %i.fa-regular.fa-pen-to-square
-        = render Inputs::ButtonComponent.new(type: :basic,
+        = render Inputs::ButtonComponent.new(type: :destroy,
                                              text: nil,
-                                             href: nil,
-                                             size: :small) do |b|
+                                             href: "#",
+                                             size: :small,
+                                             rounding: :grouped,
+                                             data: { turbo: { method: :delete, confirm: "Delete note?" },
+                                                     rating_note_component_target: "ignored" }) do |b|
           - b.with_prefix do
-            %i.fa-regular._(class=fix_icon_classes)
-        = render Inputs::ButtonComponent.new(type: :basic,
-                                             text: nil,
-                                             href: nil,
-                                             size: :small) do |b|
-          - b.with_prefix do
-            %i.fa-regular.fa-trash-xmark(class="group-hover/button:text-wa-danger-fill-loud")
+            %i.fa-regular.fa-trash-xmark
 
     .py-3.mt-2.border-t.border-wa-neutral-border-quiet.text-wa-text-normal.hidden{data: {
       rating_note_component_target: "content"

@@ -2,9 +2,14 @@ import {Controller} from "@hotwired/stimulus";
 import $ from "jquery";
 
 export default class extends Controller {
-  static targets = ["content"]
+  static targets = ["content", "ignored"]
 
-  toggle() {
+  toggleDetails(e) {
+    if (this._checkIfIgnored(e.target)) return;
+
+    e.preventDefault();
+    if (e.detail > 1) return; /* skip multi-clicks */
+
     const det = $(this.contentTarget).parent();
     if (det.attr('open')) {
       $(this.contentTarget).slideToggle(function () {
@@ -14,5 +19,12 @@ export default class extends Controller {
       det.attr('open', '');
       $(this.contentTarget).slideToggle();
     }
+  }
+
+  _checkIfIgnored(node) {
+    for (const ignoredTarget of this.ignoredTargets) {
+      if (ignoredTarget.contains(node)) return true;
+    }
+    return false;
   }
 }

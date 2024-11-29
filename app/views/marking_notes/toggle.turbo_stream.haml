@@ -1,5 +1,11 @@
-= turbo_stream.replace @marking_note do
-  = render partial: 'marking_notes/marking_note', locals: {marking_note: @marking_note, objs: [@course, @group, @submission, @marked_point, @marking_note]}
+- preface = NotePrefaceComponent.for(@marking_note)
+= turbo_stream.replace preface.head_id do
+  = render preface
+
+- icon_id = RatingNoteComponent.toggle_icon_id(@marking_note)
+- icon_classes = RatingNoteComponent.toggle_icon_classes(@marking_note)
+= turbo_stream.replace icon_id do
+  %i.fa-regular._(id=icon_id class=icon_classes)
 
 = turbo_stream.replace dom_id(@marked_point, :xvalue_of) do
   %span{id: dom_id(@marked_point, :xvalue_of)}= prog2_point_achieved @marked_point

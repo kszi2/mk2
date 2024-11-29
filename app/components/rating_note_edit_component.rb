@@ -7,7 +7,8 @@ class RatingNoteEditComponent < ViewComponent::Base
 
   def initialize(note:)
     @note = note
-    @preface_comp = NotePrefaceComponent.new(text: @note.reason || "Szar",
+    @preface_comp = NotePrefaceComponent.new(id: @note.id,
+                                             text: @note.reason || "Szar",
                                              fixed: @note.fixed,
                                              points_cost: @note.points_cost,
                                              fatal: @note.criterion?,
@@ -21,5 +22,8 @@ class RatingNoteEditComponent < ViewComponent::Base
     course = cw.course
     group = subm.student.groups.where(course_id: course.id).first
     url_for([course, group, subm, mp, @note])
+  rescue _
+    logger.error("Unknown update path for #{@note}")
+    "#"
   end
 end
