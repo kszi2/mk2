@@ -24,7 +24,7 @@ module.exports = {
       /* surface config: blue-tinted dark */
       "wa-surface-default": 'var(--wa-color-surface-default)',
       "wa-surface-raised": 'var(--wa-color-surface-raised)',
-      "wa-surface-lowered": 'var(--wa-color-surface-lowered)',
+      "wa-surface-lowered": '#0a1117',
       "wa-surface-border": 'var(--wa-color-surface-border)',
 
       /* text-color config: blue-tinted white-ish */
@@ -113,6 +113,18 @@ module.exports = {
         'text-normalize': 'text-normalize .3s ease-out',
         'flash': 'flash-slide-reverse .7s cubic-bezier(0.65, 0, 0.35, 1)',
         'flash-out': 'flash-slide .7s cubic-bezier(0.65, 0, 0.35, 1)',
+        'sidebar': 'sidebar-slide 1s cubic-bezier(0.33, 1, 0.68, 1)',
+        'sidebar-out': 'sidebar-slide-reverse 1s cubic-bezier(0.33, 1, 0.68, 1)',
+        'sidebar-slide': {
+          from: {
+            opacity: '0%',
+            transform: 'translateX(100%)'
+          },
+          to: {
+            opacity: '100%',
+            transform: 'translateX(0)'
+          }
+        },
       },
       keyframes: {
         'text-quietize': {
@@ -122,6 +134,26 @@ module.exports = {
         'text-normalize': {
           '0%': { color: 'theme(colors.wa-text-quiet)' },
           '100%': { color: 'theme(colors.wa-text-normal)' },
+        },
+        'sidebar-slide': {
+          from: {
+            opacity: '0%',
+            transform: 'translateX(100%)'
+          },
+          to: {
+            opacity: '100%',
+            transform: 'translateX(0)'
+          }
+        },
+        'sidebar-slide-reverse': {
+          from: {
+            opacity: '100%',
+            transform: 'translateX(0)'
+          },
+          to: {
+            opacity: '0%',
+            transform: 'translateX(100%)'
+          }
         },
         'flash-slide': {
           from: {

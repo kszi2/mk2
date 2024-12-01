@@ -81,5 +81,5 @@ Rails.application.configure do
   config.view_component.instrumentation_enabled = true
   config.view_component.use_deprecated_instrumentation_name = false
 
-  config.lookbook.preview_layout = "preview"
+  config.lookbook.preview_layout = "raw_preview"
 end
