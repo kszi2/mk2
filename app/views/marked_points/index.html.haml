@@ -16,5 +16,5 @@
             = form_tag course_group_submission_marked_point_make_marking_path(@course, @group, @submission, marked_point) do
               = submit_button_tag "Add note", nil, size: :small
 
-        %div.my-2.flex.flex-col.gap-2{id: dom_id(marked_point)}
+        %div.my-2.flex.flex-col.gap-2{id: dom_id(marked_point, :notes)}
           = render RatingNoteComponent.with_collection(marked_point.marking_notes)

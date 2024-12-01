@@ -108,15 +108,11 @@ module.exports = {
       'full': '9999px',
     },
     extend: {
-      spacing: {
-        '2full': '200%',
-      },
-      transitionProperty: {
-        'margin': 'margin',
-      },
       animation: {
         'text-quietize': 'text-quietize .3s ease-out',
         'text-normalize': 'text-normalize .3s ease-out',
+        'flash': 'flash-slide-reverse .7s cubic-bezier(0.65, 0, 0.35, 1)',
+        'flash-out': 'flash-slide .7s cubic-bezier(0.65, 0, 0.35, 1)',
       },
       keyframes: {
         'text-quietize': {
@@ -126,7 +122,27 @@ module.exports = {
         'text-normalize': {
           '0%': { color: 'theme(colors.wa-text-quiet)' },
           '100%': { color: 'theme(colors.wa-text-normal)' },
-        }
+        },
+        'flash-slide': {
+          from: {
+            opacity: '100%',
+            transform: 'translateY(0px)'
+          },
+          to: {
+            opacity: '0%',
+            transform: 'translateY(-100%)'
+          }
+        },
+        'flash-slide-reverse': {
+          from: {
+            opacity: '0%',
+            transform: 'translateY(-100%)'
+          },
+          to: {
+            opacity: '100%',
+            transform: 'translateY(0px)'
+          }
+        },
       }
     }
   },

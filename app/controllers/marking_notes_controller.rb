@@ -1,6 +1,6 @@
 class MarkingNotesController < ApplicationController
   before_action :set_parents
-  before_action :set_marking_note, only: %i[ show edit update toggle ]
+  before_action :set_marking_note, only: %i[ show edit update toggle destroy ]
 
   # GET /marking_notes or /marking_notes.json
   def index
@@ -62,6 +62,23 @@ class MarkingNotesController < ApplicationController
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @marking_note.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  # DELETE /marking_notes/1 or /marking_notes/1.json
+  def destroy
+    @marking_note.destroy!
+
+    respond_to do |format|
+      format.turbo_stream {
+        flash[:success] = "Marking note was successfully destroyed."
+        render
+      }
+      format.html {
+        redirect_to course_group_submission_path(@course, @group, @submission),
+                    notice: "Marking note was successfully destroyed."
+      }
+      format.json { head :no_content }
     end
   end
 

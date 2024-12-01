@@ -16,7 +16,7 @@
     %script(type="module" src="https://early.webawesome.com/webawesome@3.0.0-alpha.2/dist/webawesome.loader.js" data-fa-kit-code="4e88cc9921")
     %link(rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/styles/github-dark.min.css")/
 
-  %body.h-screen.bg-gradient-to-b.from-charcoal2.to-charcoal2.via-charcoal22.text-wa-text-normal._(class="via-40% to-80%")
+  %body.h-full.m-0.bg-gradient-to-b.from-charcoal2.to-charcoal2.via-charcoal22.text-wa-text-normal._(class="via-40% to-80%")
     .relative
       .fixed.z-50.w-full.flex.flex-row._(class="top-0.5 left-1/2 -translate-x-1/2 md:w-4/5 lg:w-3/5 xl:w-2/5")
         %nav(class="mt-2 px-3 py-1 drop-shadow backdrop-blur-md w-[calc(100%-1rem)] mx-2 md:mx-auto border border-onyx rounded flex flex-row flex-wrap justify-between")
@@ -24,48 +24,20 @@
             = link_to '/', class: 'h-full font-plex font-semibold text-2xl mx-1' do
               mk2
 
-          %a.menu-item.flex-row.items-center.font-semibold.border-wa-brand-border-loud._{
+          %a.menu-item.flex-row.items-center.font-semibold.border-wa-brand-border-loud{
             class: "hidden md:flex #{"border-b" if controller_name == 'languages'}",
             href: templates_path
           } Templates
-          %a.menu-item.flex-row.items-center.font-semibold.border-wa-brand-border-loud._{
+          %a.menu-item.flex-row.items-center.font-semibold.border-wa-brand-border-loud{
             class: "hidden md:flex #{"border-b" if controller_name == 'decks'}",
             href: courses_path
           } Courses
-          %a.menu-item.flex-row.items-center.font-semibold.border-wa-brand-border-loud._{
+          %a.menu-item.flex-row.items-center.font-semibold.border-wa-brand-border-loud{
             class: "hidden md:flex #{"border-b" if controller_name == 'decks'}",
             href: students_path
           } Students
 
-    .fixed.top-16.left-0.z-40.w-full.flex.flex-col.items-center.notification.animate__animated.animate__fadeInDown
-      - flashed = false
-      - if flash && flash.key?(:alert)
-        - flashed = true
-        %wa-callout(variant="danger")
-          %wa-icon(slot="icon" name="triangle-exclamation" variant="regular")
-          %strong Error
-          %br/
-          = alert
-      - if flash && flash.key?(:notice)
-        - flashed = true
-        %wa-callout(variant="success")
-          %wa-icon(slot="icon" name="circle-check" variant="regular")
-          %strong Success
-          %br/
-          = notice
-
-      - if flashed
-        :javascript
-          setTimeout(() => {
-            animateCSS("div.notification", "fadeInDown").then(x => {
-              setTimeout(() => {
-                animateCSS("div.notification", "fadeOutUp").then(x => {
-                  document.querySelector("div.notification").remove();
-                });
-              }, 1000);
-            })
-          }, 100);
-
+    #flash-holder.fixed.z-40.top-16{class: "left-1/2 -translate-x-1/2"}
 
     %main(class="container w-[calc(100%-2.25rem)] sm:w-[calc(100%-1rem)] mx-auto mt-16 h-[calc(100%-4rem)] flex flex-col")
       = yield

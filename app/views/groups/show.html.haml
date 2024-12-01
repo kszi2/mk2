@@ -7,16 +7,19 @@
     - @group.dates_for_class.filter { |date| date >= Date.today }.each do |date|
       = render TagComponent.new(text: date.strftime("%F"))
 
+  - s.with_custom name: "Attendance" do
+    .flex.gap-3
+      = basic_button_tag "Get attendance sheet", course_group_path(@course, @group, format: :pdf), size: :small
+      = form_tag course_group_send_attendance_path(@course, @group), method: :post, class: "flex w-fit gap-1" do
+        = basic_button_tag "Send attendance sheet to discord", nil, size: :small
+        = date_raw_input_tag :date, @group.next_class_date, size: :small
+
   - s.with_extras do
     = render TabviewComponent.new do |t|
       - t.with_page(title: "Students") do
         .flex.gap-2
           = turbo_frame_tag "add-students" do
             = primary_button_tag "Add students", course_group_add_students_path(@course, @group), size: :small
-          = basic_button_tag "Get attendance sheet", course_group_path(@course, @group, format: :pdf), size: :small
-          = form_tag course_group_send_attendance_path(@course, @group), method: :post, class: "flex w-fit gap-2" do
-            = basic_button_tag "Send attendance sheet to discord", nil, size: :small
-            = date_raw_input_tag :date, @group.next_class_date, size: :small
         #group_student_list
           - @group.students.order(:name).each do |student|
             = form_tag course_group_remove_student_path(@course, @group, student.neptun.upcase), method: :delete do

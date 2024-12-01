@@ -1,5 +1,5 @@
 = turbo_stream.replace 'edit_note_form' do
-  = render partial: 'marking_note', locals: { marking_note: @marking_note, objs: [@course, @group, @submission, @marked_point, @marking_note]}
+  = render RatingNoteComponent.new(note: @marking_note)
 
 = turbo_stream.replace dom_id(@marked_point, :xvalue_of) do
   %span{id: dom_id(@marked_point, :xvalue_of)}= prog2_point_achieved @marked_point

@@ -4,7 +4,7 @@
       controller: "rating-note-component",
    }
   }
-    %summary.relative.w-full.h-8.block.transition-margin.ease-in.duration-200{data: {
+    %summary.relative.w-full.h-8.block{data: {
       action: "click->rating-note-component#toggleDetails:capture",
     }}
       = render @preface_comp
@@ -28,7 +28,7 @@
             %i.fa-regular.fa-pen-to-square
         = render Inputs::ButtonComponent.new(type: :destroy,
                                              text: nil,
-                                             href: "#",
+                                             href: destroy_url,
                                              size: :small,
                                              rounding: :grouped,
                                              data: { turbo: { method: :delete, confirm: "Delete note?" },

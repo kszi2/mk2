@@ -1,10 +1,11 @@
-= turbo_stream.remove 'new_note_form'
+= turbo_stream.remove dom_id(@marking_note)
 
 = turbo_stream.replace dom_id(@marked_point, :xvalue_of) do
   %span{id: dom_id(@marked_point, :xvalue_of)}= prog2_point_achieved @marked_point
 
-= turbo_stream.append dom_id(@marked_point, :notes) do
-  = render RatingNoteComponent.new(note: @marking_note)
-
 = turbo_stream.replace dom_id(@submission, :marked_for) do
   %span{id: dom_id(@submission, :marked_for)}= @submission.marked_for
+
+- if flash.key?(:success)
+  = turbo_stream.append 'flash-holder' do
+    = render FlashComponent.new(type: :success, title: "Removed", body_text: flash[:success])

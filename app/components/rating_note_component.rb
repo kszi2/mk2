@@ -26,12 +26,10 @@ class RatingNoteComponent < ViewComponent::Base
   end
 
   def toggle_url
-    mp = @note.marked_point
-    subm = mp.submission
-    cw = subm.coursework
-    course = cw.course
-    group = subm.student.groups.where(course_id: course.id).first
-    url_for([course, group, subm, mp, @note, :toggle])
+    url_for([*parent_objects, @note, :toggle])
+  rescue
+    logger.error("Unknown toggle path for #{@note}")
+    "#"
   end
 
   def self.toggle_icon_classes(note)
@@ -46,14 +44,27 @@ class RatingNoteComponent < ViewComponent::Base
   alias fix_icon_classes toggle_icon_classes
 
   def edit_url
+    url_for([:edit, *parent_objects, @note])
+  rescue
+    logger.error("Unknown edit path for #{@note}")
+    "#"
+  end
+
+  def destroy_url
+    url_for([*parent_objects, @note])
+  rescue
+    logger.error("Unknown destroy path for #{@note}")
+    "#"
+  end
+
+  private
+
+  def parent_objects
     mp = @note.marked_point
     subm = mp.submission
     cw = subm.coursework
     course = cw.course
     group = subm.student.groups.where(course_id: course.id).first
-    url_for([:edit, course, group, subm, mp, @note])
-  rescue
-    logger.error("Unknown edit path for #{@note}")
-    "#"
+    [course, group, subm, mp]
   end
 end

@@ -1,4 +1,4 @@
-= turbo_stream.prepend dom_id(@marked_point) do
+= turbo_stream.prepend dom_id(@marked_point, :notes) do
   #new_note_form.mb-2
     = turbo_frame_tag dom_id(@marked_point, :make) do
       = render "form"
