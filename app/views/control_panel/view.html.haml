@@ -6,14 +6,15 @@
 
     .mb-3
       %h3.mb-1.text-lg Job management
-      %a.border.rounded.border-wa-brand-border-loud.p-2._{href:"/good_job",
-        class: "hover:color-wa-brand-border-loud"
-      } Open good_job control panel
+      = secondary_button_tag "Good job control panel", "/good_job"
+
+    .mb-3
+      %h3.mb-1.text-lg Templates
+      = secondary_button_tag "Templates", templates_path
 
     .mb-3
       %h3.mb-1.text-lg Free days
-      %a.border.rounded.border-wa-brand-border-loud.p-2._{href:"/free_days"} Free days
-
+      = secondary_button_tag "Free days", free_days_path
 
   %aside
     %div(class="w-1/2")

@@ -1,0 +1,37 @@
+.fixed.z-50.w-full.flex.flex-row{class: "group/navbar top-0.5 left-1/2 -translate-x-1/2 md:w-4/5 lg:w-3/5 xl:w-2/5",
+    data: {
+      controller: "navbar-component"
+    }
+  }
+  %nav{class:
+    "mt-2 px-3 py-1 drop-shadow backdrop-blur-md w-[calc(100%-1rem)] mx-2 md:mx-auto border" +
+    " border-onyx rounded flex flex-row flex-wrap justify-between"}
+    .h-full.flex.flex-row.items-center.gap-2
+      = link_to '/', class: 'h-full font-plex font-semibold text-2xl mx-1' do
+        mk2
+
+    - entries.each do |e|
+      = e
+
+    -# hamburger menu button
+    .relative.w-6.h-6.mt-1{class: "block md:hidden group/opener", data: { action: "click->navbar-component#toggle" }}
+      .absolute.w-6.transition.bg-wa-text-normal{class:
+        "h-0.5 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1 group-hover/opener:-translate-y-1.5" +
+        " group-[[data-navbar-component-open-value='true']]/navbar:-translate-y-1/2" +
+        " group-[[data-navbar-component-open-value='true']]/navbar:rotate-45"}
+      .absolute.w-6.transition.bg-wa-text-normal{class:
+        "h-0.5 top-1/2 left-1/2 -translate-x-1/2 translate-y-1 group-hover/opener:translate-y-1.5" +
+        " group-[[data-navbar-component-open-value='true']]/navbar:-translate-y-1/2" +
+        " group-[[data-navbar-component-open-value='true']]/navbar:-rotate-45"}
+
+  .absolute.drop-shadow.backdrop-blur-lg.top-10.border-onyx.rounded-b.border-b.border-x.hidden{class:
+      "w-10/12 h-fit z-[-1] left-1/2 -translate-x-1/2 bg-onyx/35",
+      data: {
+        navbar_component: {
+          target: "dropdown"
+        }
+      }
+    }
+    .flex.flex-col.gap-4.px-2.py-3.mt-4
+      - entries.each do |e|
+        = render e.to_dropdown
