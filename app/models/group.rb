@@ -4,12 +4,18 @@ class Group < ApplicationRecord
   has_and_belongs_to_many :students
 
   validates :name, presence: true, uniqueness: { scope: :course_id }
-  validates :year, presence: true
-  validates :semester, presence: true, numericality: { only_integer: true }, inclusion: { in: 1..2 }
   validates :first_date, presence: true
   validates :repeat_times, presence: true, numericality: { only_integer: true }, inclusion: { in: 0..14 }
   validates :day_difference, presence: true, numericality: { only_integer: true }, inclusion: { in: 1..(7 * 14) }
   validates :course_type_id, presence: true, on: :create # new groups can only be created with course_type set
+
+  def year
+    first_date.year
+  end
+
+  def semester
+    first_date.semester_number
+  end
 
   def safe_course_type
     return "<unset>" if course_type.nil?
