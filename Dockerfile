@@ -87,3 +87,5 @@ ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 5000
 CMD ["/rails/bin/bundle", "exec", "foreman", "start"]
+
+HEALTHCHECK CMD [ "curl", "-f", "http://localhost:3000/up" ]
