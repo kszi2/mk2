@@ -8,7 +8,7 @@
       = render TagComponent.new(text: date.strftime("%F"))
 
   - s.with_custom name: "Attendance" do
-    .flex.gap-3
+    .flex.gap-3.flex-wrap
       = basic_button_tag "Get attendance sheet", course_group_path(@course, @group, format: :pdf), size: :small
       = form_tag course_group_send_attendance_path(@course, @group), method: :post, class: "flex w-fit gap-1" do
         = basic_button_tag "Send attendance sheet to discord", nil, size: :small
@@ -19,7 +19,8 @@
       - t.with_page(title: "Students") do
         .flex.gap-2
           = turbo_frame_tag "add-students" do
-            = primary_button_tag "Add students", course_group_add_students_path(@course, @group), size: :small
+            = form_tag course_group_add_students_path(@course, @group), method: :post do
+              = primary_button_tag "Add students", nil, size: :small
         #group_student_list
           - @group.students.order(:name).each do |student|
             = form_tag course_group_remove_student_path(@course, @group, student.neptun.upcase), method: :delete do
@@ -27,7 +28,7 @@
                 .flex.justify-between.flex-wrap(class="w-1/2")
                   %span.block.overflow-visible.whitespace-nowrap._(class="w-full sm:w-px")= student.name
                   %span.font-mono= student.neptun.upcase
-                %wa-button(type="submit" variant="danger" appearance="text") Remove
+                = destroy_button_tag "Remove", nil
       - t.with_page(title: "Submissions") do
         = turbo_frame_tag "group-submissions-frame", src: course_group_submissions_path(@course, @group) do
           = loader_tag

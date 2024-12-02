@@ -35,7 +35,7 @@ class Shells::ShellComponent < ViewComponent::Base
 
   def back_url
     if @tail_objects.empty?
-      "javascript:history.back()"
+      url_for(controller: @head_object.class.name.pluralize.underscore, action: :index)
     else
       url_for(@tail_objects)
     end

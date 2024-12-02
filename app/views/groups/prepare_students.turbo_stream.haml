@@ -3,6 +3,10 @@
     = hidden_field_tag "current_neptuns", @current_neptuns.join(";")
     .flex.flex-wrap.w-full.gap-2
       - @missing_neptuns.each do |neptun|
-        %wa-tag.w-fit._(variant="danger")= neptun
-      - @current_neptuns.each do |neptun|
-        %wa-tag.w-fit= neptun
+        = render TagComponent.new(text:nil, style: :danger) do
+          %span.uppercase.font-mono= neptun
+      - @rendered_students.each do |name, neptun|
+        = render TagComponent.new(text: "") do
+          .flex.gap-1.items-baseline{class: "group/student"}
+            = name
+            .uppercase.font-mono.hidden{class: "group-hover/student:block"}= "(#{neptun})"

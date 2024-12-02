@@ -13,6 +13,10 @@ module ComponentHelper
     render LoaderComponent.new
   end
 
+  def tag_tag(text, options = {})
+    render TagComponent.new(text: text, **options)
+  end
+
   Inputs::ButtonComponent::SupportedTypes.each do |type|
     self.define_method("#{type}_button_tag") do |text, href = nil, options = {}|
       render Inputs::ButtonComponent.new(type: type,

@@ -129,12 +129,14 @@ class GroupsController < ApplicationController
   def stage_students
     current_neptuns = params[:current_neptuns].upcase.split(";")
     next_neptuns = Student.where(neptun: current_neptuns).pluck(:neptun).map(&:upcase)
+    rendered_students = []
 
     unless params[:manual_neptuns].blank?
       manual_neptuns = params[:manual_neptuns].upcase.split(";")
       manual_neptuns.each { |n| current_neptuns << n }
-      Student.where(neptun: manual_neptuns).pluck(:neptun).map(&:upcase).each do |n|
-        next_neptuns << n
+      Student.where(neptun: manual_neptuns).pluck(:name, :neptun).each do |name, neptun|
+        rendered_students << [name, neptun]
+        next_neptuns << neptun.upcase
       end
     end
 
@@ -144,13 +146,15 @@ class GroupsController < ApplicationController
         current_neptuns << row["neptun"].upcase
         csv_neptuns << row["neptun"].upcase
       end
-      Student.where(neptun: csv_neptuns).pluck(:neptun).map(&:upcase).each do |n|
-        next_neptuns << n
+      Student.where(neptun: csv_neptuns).pluck(:name, :neptun).each do |name, neptun|
+        rendered_students << [name, neptun]
+        next_neptuns << neptun.upcase
       end
     end
 
     next_neptuns.sort!.uniq!
     @missing_neptuns = current_neptuns - next_neptuns
+    @rendered_students = rendered_students
     @current_neptuns = next_neptuns
 
     respond_to do |format|

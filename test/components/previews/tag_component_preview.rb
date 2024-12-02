@@ -3,7 +3,8 @@
 class TagComponentPreview < ViewComponent::Preview
   # @param text text
   # @param closable toggle
-  def default(text: "text", closable: false)
-    render(TagComponent.new(text: text, closable: closable))
+  # @param style select { choices: [default, warning, danger] }
+  def default(text: "text", closable: false, style: :default)
+    render(TagComponent.new(text: text, closable: closable, style: style))
   end
 end

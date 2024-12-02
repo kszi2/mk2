@@ -20,7 +20,8 @@ Rails.application.routes.draw do
     resources :groups do
       post "send_attendance" => "groups#send_attendance", as: :send_attendance
 
-      get "add_students", to: "groups#add_students", as: :add_students
+      # get "add_students", to: "groups#add_students", as: :add_students
+      post "add_students", to: "groups#add_students", as: :add_students
       post "prepare_students", to: "groups#prepare_students", as: :prepare_students
 
       delete ":neptun", to: "groups#remove_student", as: :remove_student

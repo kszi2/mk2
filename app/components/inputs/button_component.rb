@@ -7,7 +7,7 @@ class Inputs::ButtonComponent < ViewComponent::Base
 
   renders_one :prefix
 
-  def initialize(type:, text:, href:, size: :medium, enabled: true, id: nil, data: {}, rounding: :all)
+  def initialize(type:, text:, href:, size: :medium, enabled: true, id: nil, name: nil, data: {}, rounding: :all)
     @type = type
     @text = text
     @href = href
@@ -15,6 +15,7 @@ class Inputs::ButtonComponent < ViewComponent::Base
     @data = data
     @enabled = enabled
     @rounding = rounding
+    @name = name || (text.present? ? text.underscore : nil)
     @id = id || object_id
   end
 
@@ -31,11 +32,13 @@ class Inputs::ButtonComponent < ViewComponent::Base
   def rounding_styles
     case @rounding
     when :all
-      'rounded'
+      'border rounded'
     when :grouped
-      "first:rounded-l last:rounded-r first:border-r-0 last:border-l-0"
+      "border first:rounded-l last:rounded-r first:border-r-0 last:border-l-0"
+    when :no_border
+      ""
     else
-      raise ArgumentError, "unexpected button rounding type #{@rounding}: expected #{[:all, :grouped]}"
+      raise ArgumentError, "unexpected button rounding type #{@rounding}: expected #{[:all, :grouped, :no_border]}"
     end
   end
 

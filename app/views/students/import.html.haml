@@ -2,4 +2,4 @@
   = form_tag bulk_create_students_path, method: :post, multipart: true do
     .flex.flex-col.gap-2
       = file_field_tag :file
-      = wa_submit_tag "Import"
+      = submit_button_tag "Import"

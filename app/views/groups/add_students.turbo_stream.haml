@@ -1,0 +1,25 @@
+= turbo_stream.append "sidebar-holder" do
+  = render SidebarComponent.new(title: "Add students") do
+    = form_tag course_group_prepare_students_path(@course, @group), id: "students_form", class: "h-full", multipart: true do
+      .h-full.px-1.text-wa-text-normal.flex.flex-col.justify-between.overflow-x-visible
+        .flex.flex-col.gap-3
+          .flex.flex-col
+            = text_raw_input_tag :manual_neptuns, nil, label: "Manual import"
+
+          %div
+            %h3.text-md Import from file
+            = file_field_tag :import_file, accept: ".csv"
+
+          .w-full.flex.justify-end
+            = render Inputs::ButtonComponent.new(type: :primary,
+                                                 text: "Stage",
+                                                 name: "stage",
+                                                 href: nil)
+
+          %h3.text-xl Students to add
+          #students-to-add
+            = hidden_field_tag :current_neptuns, ""
+
+        .flex.justify-end.gap-2
+          = cancel_button_tag "Cancel", nil, data: { action: "sidebar-component#close" }
+          = primary_button_tag "Add students", nil
