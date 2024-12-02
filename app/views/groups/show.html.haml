@@ -28,7 +28,7 @@
                 .flex.justify-between.flex-wrap(class="w-1/2")
                   %span.block.overflow-visible.whitespace-nowrap._(class="w-full sm:w-px")= student.name
                   %span.font-mono= student.neptun.upcase
-                = destroy_button_tag "Remove", nil
+                = destroy_button_tag "Remove", nil, data: { turbo: { confirm: "Are you sure you want to remove #{student.name}?" } }
       - t.with_page(title: "Submissions") do
         = turbo_frame_tag "group-submissions-frame", src: course_group_submissions_path(@course, @group) do
           = loader_tag
