@@ -6,8 +6,6 @@ Rails.application.routes.draw do
 
   get 'control_panel' => 'control_panel#view', as: :control_panel
 
-  get 'control_panel' => 'control_panel#view', as: :control_panel
-
   get 'students/import' => 'students#import', as: :import_students
   post 'students/bulk_create' => 'students#bulk_create', as: :bulk_create_students
   resources :students

@@ -4,5 +4,6 @@
                                 type: FreeDay,
                                 col_config: [ { field: :name },
                                   { field: :from_day, hide: :sm },
-                                  { field: :to_day, hide: :sm },
+                                  { field: :to_day, hide: :lg },
+                                  { name: :duration, render_with: ->fd { fd.duration.inspect }, hide: :md },
                                 ])

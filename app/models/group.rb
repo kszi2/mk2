@@ -23,8 +23,10 @@ class Group < ApplicationRecord
   end
 
   def dates_for_class
-    (0..repeat_times - 1).map do |entry|
-      first_date + (day_difference * entry).days
+    semester_free_days = FreeDay.where(from_day: first_date.semester_range).all
+    (0..repeat_times - 1).filter_map do |entry|
+      date = first_date + (day_difference * entry).days
+      date unless semester_free_days.any? { |fd| fd.intersects?(date) }
     end
   end
 
