@@ -1,0 +1,6 @@
+%h1.text-4xl.mb-4 Listing rating styles
+
+= turbo_frame_tag 'groups-frame' do
+  = render DataTableComponent.new(objects: @rating_styles,
+                                  type: RatingStyle,
+                                  col_config: [ { field: :name } ])

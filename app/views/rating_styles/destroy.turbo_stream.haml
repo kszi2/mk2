@@ -1,0 +1,5 @@
+= turbo_stream.remove dom_id(@rating_style)
+
+- if flash.key?(:success)
+  = turbo_stream.append 'flash-holder' do
+    = render FlashComponent.new(type: :success, title: "Removed", body_text: flash[:success])

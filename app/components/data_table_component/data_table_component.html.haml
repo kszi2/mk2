@@ -28,7 +28,10 @@
 
     %tbody
       - @objects.each do |template|
-        %tr(class="even:bg-wa-neutral-fill-normal odd:bg-wa-neutral-fill-quiet hover:bg-wa-surface-raised border-b border-wa-brand-border-loud last:border-wa-neutral-border-normal last:rounded-b *:p-4")
+        %tr{id: dom_id(template),
+            class: "even:bg-wa-neutral-fill-normal odd:bg-wa-neutral-fill-quiet hover:bg-wa-surface-raised border-b" +
+                   " border-wa-brand-border-loud last:border-wa-neutral-border-normal last:rounded-b *:p-4"
+            }
           - @col_config.each_with_index do |cfg, i|
             %td{class: nth_td(i, cfg)}= value_of(template, cfg)
           %td(class="border-r border-wa-neutral-border-normal")
