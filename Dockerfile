@@ -88,4 +88,4 @@ ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 EXPOSE 5000
 CMD ["/rails/bin/bundle", "exec", "foreman", "start"]
 
-HEALTHCHECK CMD [ "curl", "-f", "http://localhost:3000/up" ]
+HEALTHCHECK CMD [ "curl", "-f", "http://localhost:5000/up" ]
