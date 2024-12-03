@@ -21,18 +21,9 @@ FROM base as build
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential curl git libpq-dev libvips pkg-config unzip nodejs npm
 
-#ENV BUN_INSTALL=/usr/local/bun
-#ENV PATH=/usr/local/bun/bin:$PATH
-#ARG BUN_VERSION=1.1.9
-#RUN curl -fsSL https://bun.sh/install | bash -s -- "bun-v${BUN_VERSION}"
-
 ARG NODE_VERSION=20.17.0
 ARG YARN_VERSION=1.22.19
 ENV PATH=/usr/local/node/bin:$PATH
-#RUN curl -sL https://github.com/nodenv/node-build/archive/master.tar.gz | tar xz -C /tmp/ && \
-#    /tmp/node-build-master/bin/node-build "${NODE_VERSION}" /usr/local/node && \
-#    npm install -g yarn@$YARN_VERSION && \
-#    rm -rf /tmp/node-build-master
 RUN npm install -g yarn@$YARN_VERSION
 
 # Install application gems
@@ -42,8 +33,6 @@ RUN bundle install && \
     bundle exec bootsnap precompile --gemfile
 
 # Install node modules
-#COPY package.json bun.lockb ./
-#RUN bun install --frozen-lockfile
 COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
 
@@ -86,6 +75,6 @@ ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 5000
-CMD ["/rails/bin/bundle", "exec", "foreman", "start"]
+CMD ["/rails/bin/bundle", "exec", "puma", "-e", "production", "-p", "5000", "-C", "config/puma.rb"]
 
 HEALTHCHECK CMD [ "curl", "-f", "http://localhost:5000/up" ]
