@@ -1,3 +1,9 @@
 = mk_new_for @rating_style do |n|
   - n.with_form do |f|
     - f.with_field :text, :name
+
+    = render CodeEditorComponent.new(id: dom_id(@rating_style, :code),
+                                     form_name: "rating_style[erb_source]",
+                                     lang: :erb,
+                                     value: @rating_style.source_as_text) do |c|
+      - c.with_label { "Rating style source (ERB)" }

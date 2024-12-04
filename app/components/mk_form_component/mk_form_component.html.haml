@@ -2,6 +2,9 @@
   - fields.each do |field|
     = field
 
+  - if content?
+    = content
+
   .flex.justify-end.gap-2.mt-3
     - if cancel?
       = cancel

@@ -1,6 +1,5 @@
 class RatingStylesController < ApplicationController
-  before_action :load_rating, only: %i[show edit update destroy]
-  before_action :create_new_rating, only: %i[create]
+  before_action :load_rating, only: %i[show edit update destroy preview]
 
   def new
     @rating_style = RatingStyle.new
@@ -16,8 +15,15 @@ class RatingStylesController < ApplicationController
   def edit
   end
 
+  def preview
+  end
+
   def create
-    @rating_style = RatingStyle.new(rating_style_params)
+    style_params = rating_style_params
+    @rating_style = RatingStyle.new(name: style_params[:name])
+    @rating_style.erb_source.attach(io: StringIO.new(style_params[:erb_source], 'r'),
+                                    filename: "#{@rating_style.name.underscore}-format.txt.erb",
+                                    content_type: 'text/vnd.mk2-fmt+erb')
     respond_to do |format|
       if @rating_style.save
         format.html { redirect_to rating_style_path(@rating_style), notice: "Rating style #{@rating_style.name} was successfully created." }
@@ -29,7 +35,14 @@ class RatingStylesController < ApplicationController
 
   def update
     respond_to do |format|
-      if @rating_style.update(rating_style_params)
+      style_params = rating_style_params
+      if style_params.key?(:erb_source)
+        @rating_style.erb_source.attach(io: StringIO.new(style_params[:erb_source], 'r'),
+                                        filename: "#{@rating_style.name.underscore}-format.txt.erb",
+                                        content_type: 'text/vnd.mk2-fmt+erb')
+        style_params = style_params.without(:erb_source)
+      end
+      if @rating_style.update(style_params)
         format.html { redirect_to rating_style_path(@rating_style) }
       else
         format.html { render :edit, status: :unprocessable_entity }

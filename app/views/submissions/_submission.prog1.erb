@@ -1,12 +1,12 @@
-<% @submission.marked_points.filter { |a| a.rating_point.criterion? }.each do |marked_point| %>
-<%= prog1_point_marker(marked_point) %> <%= marked_point.rating_point.name %>
+<% @submission.criteria_points.each do |marked_point| %>
+<%= go_nogo_value(marked_point, go: '+', nogo: '-') %> <%= marked_point.point_name %>
 <% marked_point.marking_notes.each do |note| %>
   - <%= note_preface(note) %> <%= note_reasoning(note) %>
 <% end %>
 <% end %>
 
-<% @submission.marked_points.filter { |a| !a.rating_point.criterion? }.each do |marked_point| %>
-<%= prog1_point_marker(marked_point) %> <%= marked_point.rating_point.name %>
+<% @submission.standard_points.each do |marked_point| %>
+<%= go_nogo_value(marked_point, go: '+', nogo: '-', wrap: '[]') %> <%= marked_point.point_name %>
 <% marked_point.marking_notes.each do |note| %>
   - <%= note_preface(note) %> <%= note_reasoning(note) %>
 <% end %>

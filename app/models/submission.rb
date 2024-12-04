@@ -11,6 +11,18 @@ class Submission < ApplicationRecord
     coursework.total_points
   end
 
+  def for_coursework
+    coursework.name
+  end
+
+  def criteria_points
+    marked_points.criteria_points
+  end
+
+  def standard_points
+    marked_points.standard_points
+  end
+
   def marked_for
     return 0 if marked_points.any?(&:failed_criterion?)
     total_points - marked_points.map(&:total_points_cost).inject(0, &:+)

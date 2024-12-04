@@ -1,0 +1,23 @@
+.w-full.mt-2{data: {
+    controller: "code-editor-component",
+    code_editor_component: {
+      language: { value: @lang },
+      editable: { value: @editable },
+    }
+  }}
+  %input{type: "hidden", name: @form_name, value: @value, data: { code_editor_component: {
+    target: "holder"
+  }}}
+  - if label?
+    %label{for: @id, data: {
+      action: "click->code-editor-component#focusEditor"
+    }}= label
+  .w-full.font-mono.border.rounded.border-wa-surface-default.p-2.bg-wa-surface-default{id: @id,
+    class: "focus-within:ring focus-within:ring-wa-brand-border-loud",
+    data: {
+      code_editor_component: {
+        target: "editor",
+      }
+    }
+  }
+    = loader_tag

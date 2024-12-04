@@ -45,7 +45,14 @@ class MarkingNotesController < ApplicationController
     respond_to do |format|
       if @marking_note.save
         format.turbo_stream { render }
-        format.html { redirect_to course_group_submission_marked_point_marking_notes_path(@marking_note), notice: "Marking note was successfully created." }
+        format.html {
+          redirect_to course_group_submission_marked_point_marking_notes_path(
+                        @course,
+                        @group,
+                        @submission,
+                        @marked_point),
+                      notice: "Marking note was successfully created."
+        }
       else
         format.html { render :new, status: :unprocessable_entity }
       end

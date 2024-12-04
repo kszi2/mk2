@@ -1,25 +1,31 @@
-module MarkedPointsHelper
-  def prog1_point_marker(mp)
-    if mp.rating_point.criterion?
-      return "(+)" if mp.marked_for == 0
-      "(-)"
-    else
-      return "[+]" if mp.marked_for > 0
-      "[-]"
-    end
-  end
+# frozen_string_literal: true
 
-  def prog2_point_achievable(mp)
+module MarkedPointsHelper
+  def point_achievable(mp)
     return "GO-NOGO" if mp.rating_point.criterion?
     mp.rating_point.available_points
   end
+  alias prog2_point_achievable point_achievable
 
-  def prog2_point_achieved(mp)
+  def point_achieved(mp, go: 'GO', nogo: 'NOGO')
     if mp.rating_point.criterion?
-      return "GO" if mp.marked_for == 0
-      "NOGO"
+      go_nogo_value(mp, go: go, nogo: nogo, wrap: "")
     else
       mp.marked_for
+    end
+  end
+  alias prog2_point_achieved point_achieved
+
+  def go_nogo_value(mp, go: 'GO', nogo: 'NOGO', wrap: "()")
+    raise ArgumentError.new("go_nogo_value: invalid wrap parameter: #{wrap} (must be at 0..2 long)") \
+      unless wrap.length.in?(0..2)
+    pre = wrap[0] || ""
+    post = wrap[1] || pre
+
+    if mp.marked_for == mp.available_points
+      pre + go + post
+    else
+      pre + nogo + post
     end
   end
 end

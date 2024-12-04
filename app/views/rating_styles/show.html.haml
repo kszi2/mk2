@@ -1,4 +1,14 @@
+= turbo_page_requires_reload
+
 = mk_show_for @rating_style do |s|
   - s.with_property :name
 
-  -# - s.with_extras do
+  - s.with_extras do
+    %h3.text-2xl Report style code
+    = render CodeEditorComponent.new(id: dom_id(@rating_style, :code),
+                                     form_name: "irrelevant",
+                                     lang: :erb,
+                                     value: @rating_style.source_as_text,
+                                     editable: false)
+
+    .mt-4= render PreviewRatingsStyleComponent.new(rating_style: @rating_style)

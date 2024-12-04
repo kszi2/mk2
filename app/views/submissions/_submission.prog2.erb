@@ -1,9 +1,9 @@
-# Beadás értékelése (<%= @submission.coursework.name %>)
+# Beadás értékelése (<%= @submission.for_coursework %>)
 
 Összesített pont: <%= @submission.marked_for %>/<%= @submission.total_points %>
 
 <% @submission.marked_points.each do |marked_point| %>
-## <%= marked_point.rating_point.name %> (<%= prog2_point_achieved marked_point %>/<%= prog2_point_achievable marked_point %>)
+## <%= marked_point.rating_point.name %> (<%= prog2_point_achieved marked_point %>/<%= point_achievable marked_point %>)
 
   <% marked_point.marking_notes.each do |note| %>
   - <%= note_preface(note) %> <%= note_reasoning(note) %>
