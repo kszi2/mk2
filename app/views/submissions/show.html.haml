@@ -4,8 +4,8 @@
 
   - f.with_custom name: "Reports" do
     .flex.flex-row.gap-2
-      = basic_button_tag "Report (Prog1)", course_group_submission_path(@course, @group, @submission, format: :prog1), size: :small, data: { turbo_frame: "_top" }
-      = basic_button_tag "Report (Prog2\\bodand)", course_group_submission_path(@course, @group, @submission, format: :prog2), size: :small, data: { turbo_frame: "_top" }
+      = basic_button_tag "Report (Prog1)", course_group_submission_path(@course, @group, @submission, format: :txt, style: 8), size: :small, data: { turbo_frame: "_top" }
+      = basic_button_tag "Report (Prog2\\bodand)", course_group_submission_path(@course, @group, @submission, format: :txt, style: 9), size: :small, data: { turbo_frame: "_top" }
 
   - f.with_extras do
     %h2.text-2xl.mt-8 Marking

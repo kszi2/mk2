@@ -20,8 +20,10 @@ class SubmissionsController < ApplicationController
   def show
     respond_to do |format|
       format.html
-      format.prog2 { render partial: 'submission', format: :prog2 }
-      format.prog1 { render partial: 'submission', format: :prog1 }
+      format.text {
+        @rating_style = RatingStyle.find(params.permit(:style)[:style])
+        render partial: 'submission'
+      }
     end
   end
 
