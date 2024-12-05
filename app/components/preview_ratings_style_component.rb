@@ -3,7 +3,7 @@
 class PreviewRatingsStyleComponent < ViewComponent::Base
   def initialize(rating_style:)
     @rating_style = rating_style
-    unscope_all do
+    PreviewRatingsStyleComponent.unscope_all do
       @submission = Submission
                       .strict_loading
                       .unscoped
@@ -17,66 +17,69 @@ class PreviewRatingsStyleComponent < ViewComponent::Base
 
   def self.create_data
     Submission.transaction do
-      course = Course.unscoped.create(id: -1, name: "Course")
-      course.course_types << CourseType.unscoped.create(id: -1, course: course, name: "Course Type 1")
-      submission = Submission.unscoped.create(
-        id: -1,
-        coursework: Coursework.unscoped.create(id: -1,
-                                               name: "Coursework",
-                                               course: course,
-                                               for_type: course.course_types.first),
-        student: Student.unscoped.create(
+      unscope_all do
+        course = Course.create!(id: -1, name: "Course")
+        ct = CourseType.create!(id: -1, course: course, name: "Course Type 1")
+        course.course_types << ct
+        submission = Submission.create!(
           id: -1,
-          name: "Student",
-          neptun: "FASZXD",),
-      )
-      marked = MarkedPoint.unscoped.create(
-        id: -1,
-        submission: submission,
-        rating_point: RatingPoint.unscoped.create!(id: -1,
-                                                   name: "Rating reason",
-                                                   coursework: submission.coursework,
-                                                   available_points: 1),
-      )
-      MarkedPoint.unscoped.create(
-        id: -2,
-        submission: submission,
-        rating_point: RatingPoint.unscoped.create!(id: -2,
-                                                   name: "Rating reason 2",
-                                                   coursework: submission.coursework,
-                                                   available_points: 1),
-      )
-      MarkedPoint.unscoped.create(
-        id: -3,
-        submission: submission,
-        rating_point: RatingPoint.unscoped.create!(id: -3,
-                                                   name: "Rating criterion",
-                                                   coursework: submission.coursework,
-                                                   available_points: 0),
-      )
-      MarkedPoint.unscoped.create(
-        id: -4,
-        submission: submission,
-        rating_point: RatingPoint.unscoped.create!(id: -4,
-                                                   name: "Rating criterion 2",
-                                                   coursework: submission.coursework,
-                                                   available_points: 0),
-      )
-      marked.marking_notes << MarkingNote.unscoped.create(
-        id: -1,
-        marked_point: marked,
-        points_cost: -1,
-        reason: "Valami random ok",
-        fixed: false)
-      marked.marking_notes << MarkingNote.unscoped.create(
-        id: -2,
-        marked_point: marked,
-        points_cost: 0,
-        reason: "Valami random megjegyzés",
-        fixed: false)
-      submission.marked_points << marked
-      submission.save!
-      submission
+          coursework: Coursework.create!(id: -1,
+                                         name: "Coursework",
+                                         course: course,
+                                         for_type: ct),
+          student: Student.create!(
+            id: -1,
+            name: "Student",
+            neptun: "FASZXD",),
+          )
+        marked = MarkedPoint.create!(
+          id: -1,
+          submission: submission,
+          rating_point: RatingPoint.create!(id: -1,
+                                            name: "Rating reason",
+                                            coursework: submission.coursework,
+                                            available_points: 1),
+          )
+        MarkedPoint.create!(
+          id: -2,
+          submission: submission,
+          rating_point: RatingPoint.unscoped.create!(id: -2,
+                                                     name: "Rating reason 2",
+                                                     coursework: submission.coursework,
+                                                     available_points: 1),
+          )
+        MarkedPoint.create!(
+          id: -3,
+          submission: submission,
+          rating_point: RatingPoint.create!(id: -3,
+                                            name: "Rating criterion",
+                                            coursework: submission.coursework,
+                                            available_points: 0),
+          )
+        MarkedPoint.create!(
+          id: -4,
+          submission: submission,
+          rating_point: RatingPoint.create!(id: -4,
+                                            name: "Rating criterion 2",
+                                            coursework: submission.coursework,
+                                            available_points: 0),
+          )
+        marked.marking_notes << MarkingNote.create!(
+          id: -1,
+          marked_point: marked,
+          points_cost: -1,
+          reason: "Valami random ok",
+          fixed: false)
+        marked.marking_notes << MarkingNote.create!(
+          id: -2,
+          marked_point: marked,
+          points_cost: 0,
+          reason: "Valami random megjegyzés",
+          fixed: false)
+        submission.marked_points << marked
+        submission.save!
+        submission
+      end
     end
   end
 
@@ -91,12 +94,12 @@ class PreviewRatingsStyleComponent < ViewComponent::Base
     erb = ERB.new(template, trim_mode: "%-")
 
     render = RenderEncapsulation.new(@submission)
-    unscope_all do
+    PreviewRatingsStyleComponent.unscope_all do
       erb.result(render.get_binding)
     end
   end
 
-  def unscope_all
+  def self.unscope_all
     # This is probably a horrible hack, the preview needs a valid object in the db, but
     # we don't want to let anyone see this object outside the preview page, so
     # we have it as a negative id, and have ApplicationRecord auto-filter for
