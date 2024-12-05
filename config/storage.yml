@@ -8,7 +8,7 @@ local:
 
 garage:
   service: S3
-  endpoint: http+unix:///var/garage/g.sock
+  endpoint: unix:///var/garage/g.sock
   bucket: mk2.s3.mk2.kszi2.hu
 
 # Use bin/rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
