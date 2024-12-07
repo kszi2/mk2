@@ -18,6 +18,7 @@ local_garage:
 
 garage:
   service: S3
+  region: mk2
   endpoint: http://localhost:42300
   disable_host_prefix_injection: true
   force_path_style: true
