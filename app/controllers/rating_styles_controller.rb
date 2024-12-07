@@ -20,12 +20,15 @@ class RatingStylesController < ApplicationController
 
   def create
     style_params = rating_style_params
-    @rating_style = RatingStyle.new(name: style_params[:name])
-    @rating_style.erb_source.attach(io: StringIO.new(style_params[:erb_source], 'r'),
-                                    filename: "#{@rating_style.name.underscore}-format.txt.erb",
-                                    content_type: 'text/vnd.mk2-fmt+erb')
+    new_args = style_params.without(:erb_source)
+    @rating_style = RatingStyle.new(new_args)
+    save_succ = @rating_style.save
+    blob = ActiveStorage::Blob.create_and_upload!(io: StringIO.new(style_params[:erb_source], 'r'),
+                                                  filename: "#{@rating_style.name.underscore}-format.txt.erb",
+                                                  content_type: 'text/vnd.mk2-fmt+erb',
+                                                  identify: false)
     respond_to do |format|
-      if @rating_style.save
+      if save_succ && @rating_style.erb_source.attach(blob)
         format.html { redirect_to rating_style_path(@rating_style), notice: "Rating style #{@rating_style.name} was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
