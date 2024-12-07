@@ -25,8 +25,8 @@ class RatingStylesController < ApplicationController
     save_succ = @rating_style.save!
     logger.info("saved #{@rating_style}")
     blob = ActiveStorage::Blob.create_and_upload!(io: StringIO.new(style_params[:erb_source], 'r'),
-                                                  filename: "#{@rating_style.name.underscore}-format.txt.erb",
-                                                  content_type: 'text/vnd.mk2-fmt+erb',
+                                                  filename: "#{SecureRandom.uuid}.txt.erb",
+                                                  content_type: 'application/octet-stream',
                                                   identify: false)
     logger.info("uploaded blob #{blob.signed_id}")
     respond_to do |format|
@@ -38,7 +38,7 @@ class RatingStylesController < ApplicationController
     end
   rescue => e
     logger.error(e.message)
-    format.html { render :new, status: :unprocessable_entity }
+    render :new, status: :unprocessable_entity
   end
 
   def update
