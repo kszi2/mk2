@@ -6,10 +6,24 @@ local:
   service: Disk
   root: <%= Rails.root.join("storage") %>
 
+local_garage:
+  service: S3
+  endpoint: http://localhost:42300
+  disable_host_prefix_injection: true
+  force_path_style: true
+  region: mk2
+  access_key_id: <%= Rails.application.credentials.garage_local!.access_key_id! %>
+  secret_access_key: <%= Rails.application.credentials.garage_local!.secret_access_key! %>
+  bucket: test
+
 garage:
   service: S3
-  endpoint: unix:///var/garage/g.sock
-  bucket: mk2.s3.mk2.kszi2.hu
+  endpoint: http://localhost:42300
+  disable_host_prefix_injection: true
+  force_path_style: true
+  access_key_id: <%= Rails.application.credentials.garage!.access_key_id! %>
+  secret_access_key: <%= Rails.application.credentials.garage!.access_key_id! %>
+  bucket: mk2-bucket
 
 # Use bin/rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 # amazon:

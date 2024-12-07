@@ -40,6 +40,12 @@
     <orderEntry type="library" scope="PROVIDED" name="activestorage (v7.1.4, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activesupport (v7.1.4, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="addressable (v2.8.7, ruby-3.2.4-p170) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-eventstream (v1.3.0, ruby-3.2.4-p170) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-partitions (v1.1015.0, ruby-3.2.4-p170) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-core (v3.214.0, ruby-3.2.4-p170) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-kms (v1.96.0, ruby-3.2.4-p170) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-s3 (v1.175.0, ruby-3.2.4-p170) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sigv4 (v1.10.1, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="base64 (v0.2.0, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="better_errors (v2.10.1, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bigdecimal (v3.1.8, ruby-3.2.4-p170) [gem]" level="application" />
@@ -78,6 +84,7 @@
     <orderEntry type="library" scope="PROVIDED" name="io-console (v0.7.2, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="irb (v1.14.0, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="jbuilder (v2.13.0, ruby-3.2.4-p170) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="jmespath (v1.6.2, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="jsbundling-rails (v1.3.1, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="json (v2.7.2, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="kaminari (v1.2.2, ruby-3.2.4-p170) [gem]" level="application" />
