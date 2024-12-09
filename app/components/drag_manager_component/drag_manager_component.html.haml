@@ -1,0 +1,14 @@
+.drag-manager{class: "group/drag-area",
+  data: {
+    controller: "drag-manager-component",
+    drag_manager_component: {
+      rating_point_listing_component_outlet: "div.obj_rating_point"
+    }
+  }}
+  = turbo_frame_tag :drag_area do
+    = form_tag @reorder_url, data: { drag_manager_component_target: "actionForm" } do
+      = hidden_field_tag :dropped_id, nil, data: { drag_manager_component_target: "droppedId" }
+      = hidden_field_tag :before_id, nil, data: { drag_manager_component_target: "beforeId" }
+
+    = content
+

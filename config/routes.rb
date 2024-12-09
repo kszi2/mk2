@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :courses do
     resources :course_types
     resources :courseworks do
+      post "reorder" => "courseworks#reorder", as: :reorder_ratings
       resources :rating_points
     end
 

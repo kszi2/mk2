@@ -1,0 +1,7 @@
+- @updated_ratings.sort_by{ |s| s.ordering }.each do |rating|
+  = turbo_stream.append 'drag_area' do
+    = render RatingPointListingComponent.new(rating_point: rating, fade: true)
+
+- @updated_ratings.each do |rating|
+  = turbo_stream.after dom_id(rating) do
+    %div{data: { rating_point_listing_component: { target: "destruction" } }}

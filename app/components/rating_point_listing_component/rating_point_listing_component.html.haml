@@ -1,0 +1,83 @@
+.obj_rating_point.mt-4{class:
+    "group/rating_point transition-opacity " +
+       fade_in_class +
+       " data-[rating-point-listing-component-ending-value='true']:animate-opacity-disappear",
+    data: {
+      controller: 'rating-point-listing-component',
+      action: "dragleave->rating-point-listing-component#leaveDragged:stop",
+      rating_point_listing_component: {
+        drag_area_component_outlet: "div:has(+ article##{dom_id(@rating_point)})",
+        drag_manager_component_outlet: "div.drag-manager:has(article##{dom_id(@rating_point)})",
+        ordering_value: @rating_point.ordering
+      }
+    }
+  }
+  %div.hidden.my-2.py-2.rounded.border-2.border-wa-success-border-quiet.border-dashed.overflow-hidden{class:
+      "bg-wa-success-fill-quiet/50",
+      data: {
+        action: "dragover->rating-point-listing-component#allowDrop:prevent
+                 drop->rating-point-listing-component#drop:prevent:stop".gsub(/\s+/, " "),
+        rating_point_listing_component: {
+          target: "dropArea"
+        }
+      }
+    }
+    .flex.justify-center.pointer-events-none
+      = render IconComponent.new(name: "caret-down", classes: "text-wa-success-border-quiet")
+
+  %article.w-full.pl-6.p-4.rounded.border.bg-wa-surface-default.border-wa-surface-border{id: dom_id(@rating_point),
+    draggable: true,
+    data: {
+      action: 'dragstart->rating-point-listing-component#initiateDrag:stop
+               dragend->rating-point-listing-component#finalizeDrag:stop
+               dragenter->rating-point-listing-component#enterDragged:stop'.gsub(/\s+/, ' '),
+      rating_point_listing_component: {
+        target: "dragenterArea"
+      },
+      drag_manager_component: {
+        target: "draggable"
+      }
+    }
+  }
+    .flex.justify-between.pointer-events-auto{class:
+        "group-[[data-drag-manager-component-active-value='true']]/drag-area:pointer-events-none"
+      }
+      .flex.items-center.gap-6.text-2xl.grow.transition.text-wa-text-normal{class:
+          "group-[[data-rating-point-listing-component-dragged-value='true']]/rating_point:text-wa-text-quiet" +
+           " group-[[data-rating-point-listing-component-dragged-value='true']]/rating_point:animate-text-quietize" +
+           " group-[[data-rating-point-listing-component-dragged-value='false']]/rating_point:animate-text-normalize"
+        }
+        %i.fa-regular= @rating_point.available_points
+        %h3.grow.text-ellipsis= @rating_point.name
+
+      .flex
+        = render ButtonComponent.new(type: :primary,
+                                      text: nil,
+                                      href: view_url,
+                                      size: :small,
+                                      rounding: :grouped,
+                                      data: { turbo_frame: "_top" }) do
+          = render IconComponent.new(name: "arrow-up-right-from-square")
+        = render ButtonComponent.new(type: :secondary,
+                                     text: nil,
+                                     href: edit_url,
+                                     size: :small,
+                                     rounding: :grouped,
+                                     data: { turbo_frame: "_top" }) do
+          = render IconComponent.new(name: "pen-to-square")
+        = render ButtonComponent.new(type: :destroy,
+                                     text: nil,
+                                     href: destroy_url,
+                                     size: :small,
+                                     rounding: :grouped,
+                                     data: { turbo_confirm: "Are your sure you want to destroy this rating?",
+                                             turbo_method: :delete,
+                                     }) do
+          = render IconComponent.new(name: "trash-can-xmark")
+
+    .mt-4.text-lg.text-wa-text-normal{class:
+      "group-[[data-drag-manager-component-active-value='true']]/drag-area:pointer-events-none" +
+        " group-[[data-rating-point-listing-component-dragged-value='true']]/rating_point:text-wa-text-quiet" +
+        " group-[[data-rating-point-listing-component-dragged-value='true']]/rating_point:animate-text-quietize" +
+        " group-[[data-rating-point-listing-component-dragged-value='false']]/rating_point:animate-text-normalize"
+    }= @rating_point.description

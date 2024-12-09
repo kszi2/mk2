@@ -47,7 +47,7 @@ module.exports = {
       "wa-brand-on-loud": 'var(--wa-color-brand-on-loud)',
 
       /*** success color ***/
-      "wa-success-fill-quiet": 'var(--wa-color-success-fill-quiet)',
+      "wa-success-fill-quiet": '#728964',
       "wa-success-fill-normal": 'var(--wa-color-success-fill-normal)',
       "wa-success-fill-loud": 'var(--wa-color-success-fill-loud)',
 

@@ -1,5 +1,5 @@
 class CourseworksController < ApplicationController
-  before_action :set_coursework, only: %i[ show edit update destroy ]
+  before_action :set_coursework, only: %i[ show edit update destroy reorder ]
   before_action :set_course
 
   # GET /courseworks or /courseworks.json
@@ -18,6 +18,27 @@ class CourseworksController < ApplicationController
 
   # GET /courseworks/1/edit
   def edit
+  end
+
+  def reorder
+    dropped_id = params.require(:dropped_id).gsub(/rating_point_/, '')
+    before_id = params.require(:before_id).gsub(/rating_point_/, '')
+    dropped = RatingPoint.find(dropped_id)
+    before = RatingPoint.find(before_id)
+
+    @updated_ratings = [dropped]
+    RatingPoint.transaction do
+      shifted = RatingPoint.where(coursework: @coursework, ordering: before.ordering..)
+                           .where.not(id: dropped_id).all
+      dropped.ordering = before.ordering
+      shifted.zip((dropped.ordering + 1)..).each do |rating, order|
+        @updated_ratings << rating
+        rating.ordering = order
+      end
+      dropped.save!
+      shifted.each(&:save!)
+    end
+    render
   end
 
   # POST /courseworks or /courseworks.json
@@ -69,7 +90,7 @@ class CourseworksController < ApplicationController
   end
 
   def set_coursework
-    @coursework = Coursework.includes(:course, :for_type).find(params[:id])
+    @coursework = Coursework.includes(:course, :for_type).find(params[:id] || params[:coursework_id])
   end
 
   # Only allow a list of trusted parameters through.

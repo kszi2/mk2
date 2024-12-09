@@ -4,5 +4,13 @@
   - s.with_property :active
 
   - s.with_extras do
-    = turbo_frame_tag "rating-points-frame", src: course_coursework_rating_points_path(@course, @coursework) do
-      = loader_tag
+    .w-full.flex.justify-end
+      = render Inputs::ButtonComponent.new(type: :primary,
+                                   text: "New rating point",
+                                   href: new_course_coursework_rating_point_url(@course, @coursework),
+                                   data: { turbo_target: "_top" })
+    = render DragManagerComponent.new(reorder_url: course_coursework_reorder_ratings_url(@course, @coursework)) do
+      = render RatingPointListingComponent.with_collection(@coursework.rating_points)
+
+    .w-full.h-48
+      &nbsp;
