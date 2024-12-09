@@ -107,7 +107,13 @@ class SubmissionsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_submission
-    @submission = Submission.includes(marked_points: [ :marking_notes, :rating_point ]).find(params[:id])
+    @submission = Submission.includes(:rating_points,
+                                      :coursework,
+                                      marked_points: [
+                                        :marking_notes,
+                                        :rating_point
+                                      ])
+                            .find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
