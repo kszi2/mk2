@@ -100,14 +100,14 @@ class SubmissionsController < ApplicationController
   private
 
   def set_parents
-    @group = Group.includes(:students).where(id: params.require(:group_id)).first!
-    @course = Course.find(params.require(:course_id))
+    @group = Group.includes(:students).find(params.require(:group_id))
+    @course = Course.includes(:courseworks).find(params.require(:course_id))
     @courseworks = @course.courseworks.where(for_type_id: @group.course_type_id)
   end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_submission
-    @submission = Submission.includes(:marked_points).find(params[:id])
+    @submission = Submission.includes(marked_points: [ :marking_notes, :rating_point ]).find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.

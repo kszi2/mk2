@@ -4,11 +4,15 @@ class MarkedPoint < ApplicationRecord
   has_many :marking_notes, dependent: :delete_all
 
   scope :criteria_points, -> do
-    eager_load(:marking_notes, :rating_point).where(rating_points: { available_points: 0 })
+    eager_load(:marking_notes, :rating_point)
+      .order("rating_points.ordering")
+      .where(rating_points: { available_points: 0 })
   end
 
   scope :standard_points, -> do
-    eager_load(:marking_notes, :rating_point).where.not(rating_points: { available_points: 0 })
+    eager_load(:marking_notes, :rating_point)
+      .order("rating_points.ordering")
+      .where.not(rating_points: { available_points: 0 })
   end
 
   def point_name

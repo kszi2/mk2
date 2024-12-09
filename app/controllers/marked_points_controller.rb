@@ -3,7 +3,10 @@ class MarkedPointsController < ApplicationController
 
   # GET /marked_points or /marked_points.json
   def index
-    @marked_points = MarkedPoint.where(submission_id: params[:submission_id])
+    @marked_points = MarkedPoint.joins(:rating_point)
+                                .order("rating_points.ordering")
+                                .includes(:rating_point, :marking_notes)
+                                .where(submission_id: params[:submission_id])
   end
 
   private
