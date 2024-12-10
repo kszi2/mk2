@@ -19,9 +19,14 @@ class SubmissionsController < ApplicationController
   # GET /submissions/1 or /submissions/1.json
   def show
     respond_to do |format|
-      format.html
-      format.prog2 { render partial: 'submission', format: :prog2 }
-      format.prog1 { render partial: 'submission', format: :prog1 }
+      format.html do
+        @rating_styles = RatingStyle.order(:name).all
+        render
+      end
+      format.text do
+        @rating_style = RatingStyle.find(params.require(:rating_style_id))
+        render
+      end
     end
   end
 
@@ -113,7 +118,7 @@ class SubmissionsController < ApplicationController
                                         :marking_notes,
                                         :rating_point
                                       ])
-                            .find(params[:id])
+                            .find(params[:id] || params[:submission_id])
   end
 
   # Only allow a list of trusted parameters through.

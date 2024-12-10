@@ -7,12 +7,15 @@ class PreviewRatingsStyleComponent < ViewComponent::Base
       @submission = Submission
                       .strict_loading
                       .unscoped
-                      .eager_load(marked_points: [:rating_point, :marking_notes])
-                      .where(id: -1)
-                      .first!
+                      .includes(coursework: [:rating_points],
+                                  marked_points: [:marking_notes, :rating_point])
+                      .find(-1)
     end
   rescue
     @submission = PreviewRatingsStyleComponent.create_data
+  ensure
+    @submission.readonly!
+    @submission.strict_loading!
   end
 
   def self.create_data
@@ -31,7 +34,7 @@ class PreviewRatingsStyleComponent < ViewComponent::Base
             id: -1,
             name: "Student",
             neptun: "FASZXD",),
-          )
+        )
         marked = MarkedPoint.create!(
           id: -1,
           submission: submission,
@@ -39,7 +42,7 @@ class PreviewRatingsStyleComponent < ViewComponent::Base
                                             name: "Rating reason",
                                             coursework: submission.coursework,
                                             available_points: 1),
-          )
+        )
         MarkedPoint.create!(
           id: -2,
           submission: submission,
@@ -47,7 +50,7 @@ class PreviewRatingsStyleComponent < ViewComponent::Base
                                                      name: "Rating reason 2",
                                                      coursework: submission.coursework,
                                                      available_points: 1),
-          )
+        )
         MarkedPoint.create!(
           id: -3,
           submission: submission,
@@ -55,7 +58,7 @@ class PreviewRatingsStyleComponent < ViewComponent::Base
                                             name: "Rating criterion",
                                             coursework: submission.coursework,
                                             available_points: 0),
-          )
+        )
         MarkedPoint.create!(
           id: -4,
           submission: submission,
@@ -63,7 +66,7 @@ class PreviewRatingsStyleComponent < ViewComponent::Base
                                             name: "Rating criterion 2",
                                             coursework: submission.coursework,
                                             available_points: 0),
-          )
+        )
         marked.marking_notes << MarkingNote.create!(
           id: -1,
           marked_point: marked,
@@ -91,11 +94,10 @@ class PreviewRatingsStyleComponent < ViewComponent::Base
     raise ArgumentError.new("cannot read attached file for style: #{@rating_style.name}") \
       unless template
 
-    erb = ERB.new(template, trim_mode: "%-")
-
-    render = RenderEncapsulation.new(@submission)
     PreviewRatingsStyleComponent.unscope_all do
-      erb.result(render.get_binding)
+      erb = ERB.new(template, trim_mode: "%-")
+      render = RenderEncapsulation.new(@submission)
+      render.render_via(erb)
     end
   end
 
@@ -105,10 +107,12 @@ class PreviewRatingsStyleComponent < ViewComponent::Base
     # we have it as a negative id, and have ApplicationRecord auto-filter for
     # id > 0
     Submission.unscoped do
-      RatingPoint.unscoped do
-        MarkedPoint.unscoped do
-          MarkingNote.unscoped do
-            yield
+      Coursework.unscoped do
+        RatingPoint.unscoped do
+          MarkedPoint.unscoped do
+            MarkingNote.unscoped do
+              yield
+            end
           end
         end
       end
@@ -128,8 +132,8 @@ class PreviewRatingsStyleComponent < ViewComponent::Base
       @submission = submission
     end
 
-    def get_binding
-      binding
+    def render_via(renderer)
+      renderer.result(binding)
     end
   end
 end

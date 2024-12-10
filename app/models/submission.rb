@@ -2,7 +2,7 @@ class Submission < ApplicationRecord
   belongs_to :student
   belongs_to :coursework
   has_many :rating_points, through: :coursework
-  has_many :marked_points, dependent: :destroy
+  has_many :marked_points, -> { joins(:rating_point).order("rating_points.ordering") }, dependent: :destroy
 
   validates :student_id, presence: true
   validates :coursework_id, presence: true, uniqueness: { scope: :student_id, message: "Already submitted" }, on: :create

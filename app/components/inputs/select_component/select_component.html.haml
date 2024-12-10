@@ -3,7 +3,8 @@
 %select.outline-none.bg-wa-surface-default.rounded.border{id: @id,
   name: @name,
   class: "#{error_border_style} #{size_styles} focus:ring focus:ring-wa-brand-border-quiet",
-  disabled: !@enabled
+  disabled: !@enabled,
+  data: @data
 }
   - options.each do |option|
     = option

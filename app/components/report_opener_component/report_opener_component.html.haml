@@ -1,0 +1,29 @@
+.flex.items-center.gap-1{ class: "group/report-opener",
+    data: {
+      controller: "report-opener-component",
+      report_opener_component: {
+        baseurl_value: @submission
+      }
+    }
+  }
+  = render Inputs::SelectComponent.new(name: "rating_style_id", value: nil, enabled: true, size: :small,
+                                       data: { report_opener_component: { target: "styleSelector" } }) do |s|
+    - @rating_styles.each do |style|
+      - s.with_option value: style.id do
+        = style.name
+
+  = basic_button_tag "Get", nil, size: :small,
+      data: { action: "!ctrl+click->report-opener-component#open ctrl+click->report-opener-component#openNewPage" } do
+    = render IconComponent.new(name: "arrow-up-right-from-square")
+
+  = basic_button_tag "copy", nil, size: :small,
+     data: { action: "click->report-opener-component#copy" } do
+    .relative.w-4.h-5
+      %i.absolute.fa-regular.fa-circle-check.ease-in.transition-opacity.text-wa-success-fill-loud{class:
+          "top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2" +
+          " group-[[data-report-opener-component-copied-value='false']]/report-opener:opacity-0" +
+          " group-[[data-report-opener-component-copied-value='true']]/report-opener:opacity-100"}
+      %i.absolute.fa-regular.fa-clipboard.ease-in.transition-opacity{class:
+          "top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2" +
+          " group-[[data-report-opener-component-copied-value='true']]/report-opener:opacity-0" +
+          " group-[[data-report-opener-component-copied-value='false']]/report-opener:opacity-100"}

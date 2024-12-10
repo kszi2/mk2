@@ -18,12 +18,24 @@ module ComponentHelper
   end
 
   Inputs::ButtonComponent::SupportedTypes.each do |type|
-    self.define_method("#{type}_button_tag") do |text, href = nil, options = {}|
-      render Inputs::ButtonComponent.new(type: type,
-                                         text: text,
-                                         href: href,
-                                         size: options[:size] || :normal,
-                                         data: options[:data] || {})
+    self.define_method("#{type}_button_tag") do |text, href = nil, options = {}, &block|
+      if block.nil?
+        render Inputs::ButtonComponent.new(type: type,
+                                           text: text,
+                                           href: href,
+                                           name: options[:name],
+                                           size: options[:size] || :normal,
+                                           data: options[:data] || {})
+      else
+        render Inputs::ButtonComponent.new(type: type,
+                                           text: text,
+                                           href: href,
+                                           name: options[:name],
+                                           size: options[:size] || :normal,
+                                           data: options[:data] || {}) do
+          block.call(self)
+        end
+      end
     end
   end
 

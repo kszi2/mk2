@@ -3,9 +3,8 @@
   - f.with_property :coursework
 
   - f.with_custom name: "Reports" do
-    .flex.flex-row.gap-2
-      = basic_button_tag "Report (Prog1)", course_group_submission_path(@course, @group, @submission, format: :prog1), size: :small, data: { turbo_frame: "_top" }
-      = basic_button_tag "Report (Prog2\\bodand)", course_group_submission_path(@course, @group, @submission, format: :prog2), size: :small, data: { turbo_frame: "_top" }
+    = render ReportOpenerComponent.new(submission_url: course_group_submission_url(@course, @group, @submission, :text),
+                                       rating_styles: @rating_styles)
 
   - f.with_extras do
     %h2.text-2xl.mt-8 Marking
