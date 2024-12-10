@@ -1,6 +1,6 @@
 = mk_edit_for @course, @group, @submission, @marked_point, @marking_note, do_breadcrumbs: false do |edit|
   - edit.with_form do |f|
-    - f.with_field :number, :points_cost
+    - f.with_field({number: 0.1}, :points_cost)
     - f.with_field :textarea, :reason
 
     - f.with_cancel do

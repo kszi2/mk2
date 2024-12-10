@@ -5,7 +5,6 @@ class FreeDay < ApplicationRecord
 
   def duration
     return 1.day if to_day.blank?
-    puts ">>> #{to_day} #{from_day} -> #{to_day - from_day} days"
     # difference of two dates is the number of "nights" between them, if we want
     # inclusive days, we need to add 1 to it
     nights = (to_day - from_day).to_i

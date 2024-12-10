@@ -39,13 +39,11 @@ class NotePrefaceComponent < ViewComponent::Base
     return "" if note_is_message?
     return "" if @fatal
     tag.i class: "fa-solid" do
-      case @points_cost
-      when nil
-        ""
-      when Float
-        sprintf "%+.1f", -@points_cost
-      else
+      return "" if @points_cost.nil?
+      if (@points_cost % 1).zero?
         sprintf "%+d", -@points_cost
+      else
+        sprintf "%+.1f", -@points_cost
       end
     end
   end
@@ -74,7 +72,7 @@ class NotePrefaceComponent < ViewComponent::Base
   end
 
   def note_is_message?
-    @points_cost == 0
+    @points_cost.zero?
   end
 
   def note_is_new?

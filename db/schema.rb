@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_12_10_212101) do
+ActiveRecord::Schema[7.1].define(version: 2024_12_10_220007) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -195,7 +195,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_10_212101) do
   end
 
   create_table "marking_notes", force: :cascade do |t|
-    t.integer "points_cost"
+    t.decimal "points_cost", precision: 8, scale: 1
     t.string "reason"
     t.boolean "fixed"
     t.bigint "marked_point_id", null: false

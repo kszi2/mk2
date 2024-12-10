@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 module MarkedPointsHelper
+  def marked_for(mp)
+    mf = mp.marked_for.to_s
+    mf.gsub(/.0\z/, '')
+  end
+
   def point_achievable(mp)
     return "GO-NOGO" if mp.rating_point.criterion?
     mp.rating_point.available_points
@@ -11,7 +16,7 @@ module MarkedPointsHelper
     if mp.rating_point.criterion?
       go_nogo_value(mp, go: go, nogo: nogo, wrap: "")
     else
-      mp.marked_for
+      marked_for(mp)
     end
   end
   alias prog2_point_achieved point_achieved
@@ -22,7 +27,7 @@ module MarkedPointsHelper
     pre = wrap[0] || ""
     post = wrap[1] || pre
 
-    if mp.marked_for == mp.available_points
+    if mp.marked_for >= mp.available_points
       pre + go + post
     else
       pre + nogo + post

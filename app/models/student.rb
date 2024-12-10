@@ -22,7 +22,6 @@ class Student < ApplicationRecord
       i = i + 1
 
       data = row.to_hash
-      puts data
       data["neptun"].upcase!
       student = Student.create(neptun: data["neptun"], name: data["name"])
       next if student.valid?

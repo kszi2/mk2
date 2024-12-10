@@ -2,7 +2,7 @@
   = render RatingNoteComponent.new(note: @marking_note)
 
 = turbo_stream.replace dom_id(@marked_point, :xvalue_of) do
-  %span{id: dom_id(@marked_point, :xvalue_of)}= prog2_point_achieved @marked_point
+  %span{id: dom_id(@marked_point, :xvalue_of)}= point_achieved @marked_point
 
 = turbo_stream.replace dom_id(@submission, :marked_for) do
-  %span{id: dom_id(@submission, :marked_for)}= @submission.marked_for
+  %span{id: dom_id(@submission, :marked_for)}= marked_for(@submission)

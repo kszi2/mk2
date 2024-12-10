@@ -11,7 +11,7 @@ class Inputs::ErrorableFieldComponent < ViewComponent::Base
 
   def proper_field(type, **kwargs, &block)
     case type
-    when *InputComponent::SupportedTypes
+    when *InputComponent::SupportedTypes, Hash
       with_form_field_input(type: type, **kwargs, &block)
     when :select
       with_form_field_select(**kwargs, &block)

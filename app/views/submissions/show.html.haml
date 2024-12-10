@@ -12,7 +12,7 @@
 
     .text-lg
       Total:
-      %span{id: dom_id(@submission, :marked_for)}= @submission.marked_for
+      %span{id: dom_id(@submission, :marked_for)}= marked_for(@submission)
       = '/'
       = @submission.total_points
 

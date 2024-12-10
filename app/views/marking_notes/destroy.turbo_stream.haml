@@ -4,7 +4,7 @@
   %span{id: dom_id(@marked_point, :xvalue_of)}= prog2_point_achieved @marked_point
 
 = turbo_stream.replace dom_id(@submission, :marked_for) do
-  %span{id: dom_id(@submission, :marked_for)}= @submission.marked_for
+  %span{id: dom_id(@submission, :marked_for)}= marked_for(@submission)
 
 - if flash.key?(:success)
   = turbo_stream.append 'flash-holder' do

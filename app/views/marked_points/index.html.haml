@@ -5,16 +5,16 @@
     - @marked_points.each do |marked_point|
       .w-full.px-3.py-1.drop-shadow.backdrop-blur-md.border.border-onyx.rounded
         .w-full.flex.justify-between.mb-2
-          %div.text-2xl= marked_point.rating_point.name
-          %div.flex-shrink-0
-            %span{id: dom_id(marked_point, :xvalue_of)}= prog2_point_achieved marked_point
+          .text-2xl= marked_point.rating_point.name
+          .flex-shrink-0
+            %span{id: dom_id(marked_point, :xvalue_of)}= point_achieved marked_point
             = "/"
-            = prog2_point_achievable marked_point
+            = point_achievable marked_point
 
         .flex.w-full.justify-end
           = turbo_frame_tag "marked-points-frame-inner" do
             = form_tag course_group_submission_marked_point_make_marking_path(@course, @group, @submission, marked_point) do
               = submit_button_tag "Add note", nil, size: :small
 
-        %div.my-2.flex.flex-col.gap-2{id: dom_id(marked_point, :notes)}
+        .my-2.flex.flex-col.gap-2{id: dom_id(marked_point, :notes)}
           = render RatingNoteComponent.with_collection(marked_point.marking_notes)
