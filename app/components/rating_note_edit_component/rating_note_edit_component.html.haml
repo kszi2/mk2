@@ -5,7 +5,7 @@
     = render @preface_comp
     .mt-2.border-t.border-wa-neutral-border-quiet
       = form_tag(update_url, method: :put) do
-        = number_input_tag @note, :points_cost, precision: 0.1
+        = number_input_tag @note, :points_cost, precision: 0.5
         %label.block.mt-2._(for="#{dom_id(@note, :reason)}") Reasoning
         = render Inputs::TextareaComponent.new(name: "marking_note[reason]",
                                                value: @note.reason,
