@@ -7,7 +7,12 @@ module MarkingNotesHelper
     elsif note.marked_point.rating_point.criterion? # LoD breakage
       "(Megtagadva)"
     else
-      "(-#{note.points_cost}p)"
+      case note.points_cost
+      when Float
+        sprintf "(%+.1fp)", -note.points_cost
+      else
+        sprintf "(%+dp)", -note.points_cost
+      end
     end
   end
 
