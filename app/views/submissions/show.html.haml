@@ -4,7 +4,8 @@
 
   - f.with_custom name: "Reports" do
     = render ReportOpenerComponent.new(submission_url: course_group_submission_url(@course, @group, @submission, :text),
-                                       rating_styles: @rating_styles)
+                                       rating_styles: @rating_styles,
+                                       default: @course.default_rating_style)
 
   - f.with_extras do
     %h2.text-2xl.mt-8 Marking

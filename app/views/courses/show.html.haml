@@ -1,5 +1,7 @@
 = mk_show_for @course do |s|
   - s.with_property :name
+  - s.with_custom name: "Default rating style" do
+    = default_style_name(@course)
 
   - s.with_extras do
     = render TabviewComponent.new do |t|

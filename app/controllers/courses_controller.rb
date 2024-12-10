@@ -1,5 +1,6 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: %i[ show edit update destroy ]
+  before_action :load_rating_styles, only: %i[ new edit ]
 
   # GET /courses or /courses.json
   def index
@@ -58,13 +59,16 @@ class CoursesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_course
-      @course = Course.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def course_params
-      params.require(:course).permit(:name)
-    end
+  def load_rating_styles
+    @rating_styles = RatingStyle.all
+  end
+
+  def set_course
+    @course = Course.includes(:default_rating_style).find(params[:id])
+  end
+
+  def course_params
+    params.require(:course).permit(:name, :default_rating_style_id)
+  end
 end

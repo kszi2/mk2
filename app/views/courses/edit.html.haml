@@ -1,3 +1,8 @@
 = mk_edit_for @course do |c|
   - c.with_form do |f|
     - f.with_field :text, :name
+    - f.with_field :select, :default_rating_style_id do |s|
+      - s.with_label { "Default rating style" }
+      - s.with_option { "" }
+      - @rating_styles.each do |style|
+        - s.with_option(value: style.id, current: @course.default_rating_style_id) { style.name }
