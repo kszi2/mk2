@@ -40,7 +40,7 @@ class RatingPointsController < ApplicationController
   def update
     respond_to do |format|
       if @rating_point.update(rating_point_params)
-        format.html { redirect_to course_coursework_path(@course, @coursework), notice: "Rating point was successfully updated." }
+        format.html { redirect_to course_coursework_rating_point_path(@course, @coursework, @rating_point), notice: "Rating point was successfully updated." }
         format.json { render :show, status: :ok, location: @rating_point }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -84,7 +84,7 @@ class RatingPointsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def rating_point_params
-    ret = params.require(:rating_point).permit(:name, :description, :available_points)
+    ret = params.require(:rating_point).permit(:name, :description, :available_points, :category)
     ret.merge(coursework_id: @coursework.id)
   end
 end

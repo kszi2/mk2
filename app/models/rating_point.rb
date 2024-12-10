@@ -8,6 +8,7 @@ class RatingPoint < ApplicationRecord
   validates :ordering,
             numericality: { only_integer: true, greater_than_or_equal_to: 0 },
             allow_nil: true
+  validates :category, length: { in: 1..32 }, allow_nil: true
   validates :available_points, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   def criterion?

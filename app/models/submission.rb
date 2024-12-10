@@ -15,12 +15,12 @@ class Submission < ApplicationRecord
     coursework.name
   end
 
-  def criteria_points
-    marked_points.criteria_points
+  def criteria_points(*args)
+    marked_points.criteria_points(*args)
   end
 
-  def standard_points
-    marked_points.standard_points
+  def standard_points(*args)
+    marked_points.standard_points(*args)
   end
 
   def marked_for

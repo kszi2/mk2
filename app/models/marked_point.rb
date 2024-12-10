@@ -3,16 +3,20 @@ class MarkedPoint < ApplicationRecord
   belongs_to :rating_point
   has_many :marking_notes, dependent: :delete_all
 
-  scope :criteria_points, -> do
-    eager_load(:marking_notes, :rating_point)
-      .order("rating_points.ordering")
-      .where(rating_points: { available_points: 0 })
+  scope :criteria_points, ->(category = nil) do
+    basic = eager_load(:marking_notes, :rating_point)
+              .order("rating_points.ordering")
+              .where(rating_points: { available_points: 0 })
+    basic = basic.where(rating_points: { category: category }) if category
+    basic
   end
 
-  scope :standard_points, -> do
-    eager_load(:marking_notes, :rating_point)
-      .order("rating_points.ordering")
-      .where.not(rating_points: { available_points: 0 })
+  scope :standard_points, ->(category = nil) do
+    basic = eager_load(:marking_notes, :rating_point)
+              .order("rating_points.ordering")
+              .where.not(rating_points: { available_points: 0 })
+    basic = basic.where(rating_points: { category: category }) if category
+    basic
   end
 
   def point_name
