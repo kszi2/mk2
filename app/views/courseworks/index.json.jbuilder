@@ -1,1 +1,1 @@
-json.array! @courseworks, partial: "courseworks/coursework_listing", as: :coursework
+json.objects @courseworks, partial: "courseworks/coursework_listing", as: :coursework

@@ -1,1 +1,1 @@
-json.array! @groups, partial: "groups/group_listing", as: :group
+json.objects @groups, partial: "groups/group_listing", as: :group

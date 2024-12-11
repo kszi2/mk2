@@ -1,0 +1,1 @@
+json.objects @templates, partial: 'templates/template_listing', as: :template

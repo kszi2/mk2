@@ -1,4 +1,5 @@
-json.extract! @coursework, :id, :public_id, :name, :active, :created_at, :updated_at
+json.id @coursework.public_id
+json.extract! @coursework, :name, :active, :created_at, :updated_at
 json.url course_coursework_url(@course, @coursework, format: :json)
 json.course_url course_url(@coursework.course, :json)
 

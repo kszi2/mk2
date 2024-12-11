@@ -1,1 +1,1 @@
-json.array! @students, partial: "students/student_listing", as: :student
+json.objects @students, partial: "students/student_listing", as: :student

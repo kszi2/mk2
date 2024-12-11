@@ -1,0 +1,1 @@
+json.objects @rating_styles, partial: 'rating_styles/rating_style_listing', as: :rating_style
