@@ -1,4 +1,6 @@
 class Submission < ApplicationRecord
+  extend PublicFindable["sM"]
+
   belongs_to :student
   belongs_to :coursework
   has_many :rating_points, through: :coursework

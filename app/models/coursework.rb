@@ -1,4 +1,6 @@
 class Coursework < ApplicationRecord
+  extend PublicFindable["cW"]
+
   belongs_to :course
   belongs_to :for_type, class_name: 'CourseType'
   has_many :rating_points

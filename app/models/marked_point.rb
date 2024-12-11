@@ -1,4 +1,6 @@
 class MarkedPoint < ApplicationRecord
+  extend PublicFindable["mP"]
+
   belongs_to :submission
   belongs_to :rating_point
   has_many :marking_notes, dependent: :delete_all

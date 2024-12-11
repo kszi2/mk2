@@ -170,102 +170,76 @@
   <component name="RailsGeneratorsCache">
     <option name="generators">
       <list>
-        <option value="active_record:application_record" />
-        <option value="active_record:multi_db" />
-        <option value="application_record" />
-        <option value="benchmark" />
-        <option value="channel" />
-        <option value="component" />
+        <option value="active_record:migration" />
+        <option value="active_record:model" />
+        <option value="active_record:observer" />
+        <option value="active_record:session_migration" />
         <option value="controller" />
-        <option value="erb:component" />
         <option value="erb:controller" />
         <option value="erb:mailer" />
         <option value="erb:scaffold" />
         <option value="generator" />
-        <option value="good_job:install" />
-        <option value="good_job:update" />
-        <option value="haml:application_layout" />
-        <option value="haml:component" />
         <option value="helper" />
         <option value="integration_test" />
-        <option value="jbuilder" />
-        <option value="job" />
-        <option value="kaminari:config" />
-        <option value="kaminari:views" />
-        <option value="locale:component" />
-        <option value="mailbox" />
         <option value="mailer" />
+        <option value="metal" />
         <option value="migration" />
         <option value="model" />
-        <option value="preview:component" />
+        <option value="model_subclass" />
+        <option value="observer" />
+        <option value="performance_test" />
+        <option value="plugin" />
         <option value="resource" />
-        <option value="responders:install" />
-        <option value="responders_controller" />
-        <option value="rspec:component" />
         <option value="scaffold" />
         <option value="scaffold_controller" />
-        <option value="slim:component" />
-        <option value="stimulus" />
-        <option value="stimulus:component" />
-        <option value="system_test" />
-        <option value="tailwindcss:component" />
-        <option value="task" />
-        <option value="test_unit:channel" />
-        <option value="test_unit:component" />
-        <option value="test_unit:generator" />
-        <option value="test_unit:install" />
-        <option value="test_unit:mailbox" />
+        <option value="session_migration" />
+        <option value="stylesheets" />
+        <option value="test_unit:controller" />
+        <option value="test_unit:helper" />
+        <option value="test_unit:integration" />
+        <option value="test_unit:mailer" />
+        <option value="test_unit:model" />
+        <option value="test_unit:observer" />
+        <option value="test_unit:performance" />
         <option value="test_unit:plugin" />
+        <option value="test_unit:scaffold" />
       </list>
     </option>
     <option name="myGenerators">
       <list>
-        <option value="active_record:application_record" />
-        <option value="active_record:multi_db" />
-        <option value="application_record" />
-        <option value="benchmark" />
-        <option value="channel" />
-        <option value="component" />
+        <option value="active_record:migration" />
+        <option value="active_record:model" />
+        <option value="active_record:observer" />
+        <option value="active_record:session_migration" />
         <option value="controller" />
-        <option value="erb:component" />
         <option value="erb:controller" />
         <option value="erb:mailer" />
         <option value="erb:scaffold" />
         <option value="generator" />
-        <option value="good_job:install" />
-        <option value="good_job:update" />
-        <option value="haml:application_layout" />
-        <option value="haml:component" />
         <option value="helper" />
         <option value="integration_test" />
-        <option value="jbuilder" />
-        <option value="job" />
-        <option value="kaminari:config" />
-        <option value="kaminari:views" />
-        <option value="locale:component" />
-        <option value="mailbox" />
         <option value="mailer" />
+        <option value="metal" />
         <option value="migration" />
         <option value="model" />
-        <option value="preview:component" />
+        <option value="model_subclass" />
+        <option value="observer" />
+        <option value="performance_test" />
+        <option value="plugin" />
         <option value="resource" />
-        <option value="responders:install" />
-        <option value="responders_controller" />
-        <option value="rspec:component" />
         <option value="scaffold" />
         <option value="scaffold_controller" />
-        <option value="slim:component" />
-        <option value="stimulus" />
-        <option value="stimulus:component" />
-        <option value="system_test" />
-        <option value="tailwindcss:component" />
-        <option value="task" />
-        <option value="test_unit:channel" />
-        <option value="test_unit:component" />
-        <option value="test_unit:generator" />
-        <option value="test_unit:install" />
-        <option value="test_unit:mailbox" />
+        <option value="session_migration" />
+        <option value="stylesheets" />
+        <option value="test_unit:controller" />
+        <option value="test_unit:helper" />
+        <option value="test_unit:integration" />
+        <option value="test_unit:mailer" />
+        <option value="test_unit:model" />
+        <option value="test_unit:observer" />
+        <option value="test_unit:performance" />
         <option value="test_unit:plugin" />
+        <option value="test_unit:scaffold" />
       </list>
     </option>
   </component>
@@ -371,8 +345,7 @@
       <value>file://$MODULE_DIR$/../mk2\vendor/assets</value>
     </entry>
   </component>
-  <component name="RakeTasksCache-v2" failedReloadsCounter="2">
-    <option name="failedReloadsCounter" value="2" />
+  <component name="RakeTasksCache-v2">
     <option name="myRootTask">
       <RakeTaskImpl id="rake">
         <subtasks>
@@ -413,6 +386,22 @@
                 </subtasks>
               </RakeTaskImpl>
               <RakeTaskImpl description="" fullCommand="active_storage:update" id="update" />
+            </subtasks>
+          </RakeTaskImpl>
+          <RakeTaskImpl id="apipie">
+            <subtasks>
+              <RakeTaskImpl description="Generate cache to avoid production dependencies on markup languages" fullCommand="apipie:cache" id="cache" />
+              <RakeTaskImpl description="Generate CLI client for API documented with apipie gem" fullCommand="apipie:client" id="client" />
+              <RakeTaskImpl description="Convert your examples from the old yaml into the new json format" fullCommand="apipie:convert_examples" id="convert_examples" />
+              <RakeTaskImpl description="Did swagger output change since the last execution of this task?" fullCommand="apipie:did_swagger_change[version,swagger_content_type_input,filename_suffix]" id="did_swagger_change[version,swagger_content_type_input,filename_suffix]" />
+              <RakeTaskImpl description="Generate static documentation" fullCommand="apipie:static[version]" id="static[version]" />
+              <RakeTaskImpl description="Generate static documentation json" fullCommand="apipie:static_json[version]" id="static_json[version]" />
+              <RakeTaskImpl description="Generate static swagger json" fullCommand="apipie:static_swagger_json[version,swagger_content_type_input,filename_suffix]" id="static_swagger_json[version,swagger_content_type_input,filename_suffix]" />
+              <RakeTaskImpl description="Update api description in controllers base on routes" fullCommand="apipie:update_from_routes" id="update_from_routes" />
+              <RakeTaskImpl description="" fullCommand="apipie:did_swagger_change" id="did_swagger_change" />
+              <RakeTaskImpl description="" fullCommand="apipie:static" id="static" />
+              <RakeTaskImpl description="" fullCommand="apipie:static_json" id="static_json" />
+              <RakeTaskImpl description="" fullCommand="apipie:static_swagger_json" id="static_swagger_json" />
             </subtasks>
           </RakeTaskImpl>
           <RakeTaskImpl id="app">

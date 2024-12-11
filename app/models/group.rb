@@ -1,4 +1,6 @@
 class Group < ApplicationRecord
+  extend PublicFindable["G"]
+
   belongs_to :course
   belongs_to :course_type, optional: true
   has_and_belongs_to_many :students

@@ -1,0 +1,39 @@
+= Model prefixes
+
+To generate unique public ids for each model even when they hold the same db id (e.g. 1), a model specific prefix is prepended to the value.
+These could be the names of the classes, as they are guaranteed to be unique, but those bloat the identifiers considerably.
+Therefore, a manually selected unique string is to be assigned to each class.
+These strings are recorded in this document.
+
+For ease of implementation, these should be prefix codes. That is, the prefix of one code must not be a valid code by itself.
+
+[%headers,cols="2m,m"]
+|===
+| Model | ID Prefix
+
+| Course | C
+
+| CourseType | cT
+
+| Coursework | cW
+
+| FreeDay | F
+
+| Group | G
+
+| MarkedPoint | mP
+
+| MarkingNote | M
+
+| PdfDatumfootnote:[This model is never sent to the clients.] | pdF
+
+| RatingPoint | R
+
+| RatingStyle  | rS
+
+| Student | S
+
+| Submission | sM
+
+| Template | T
+|===

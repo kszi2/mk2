@@ -1,4 +1,6 @@
 class PdfDatum < ApplicationRecord
+  extend PublicFindable["pdF"]
+
   has_one_attached :file
 
   validates :name, presence: true, length: { in: 1..255 }

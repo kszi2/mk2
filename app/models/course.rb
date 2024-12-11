@@ -1,4 +1,6 @@
 class Course < ApplicationRecord
+  extend PublicFindable["C"]
+
   has_many :templates
   has_many :groups
   has_many :courses

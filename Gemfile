@@ -61,7 +61,7 @@ group :development do
   # gem "rack-mini-profiler"
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
-  # gem "spring"
+  gem "spring"
 
   gem "better_errors"
   gem "binding_of_caller"
@@ -100,3 +100,5 @@ gem "foreman", "~> 0.88.1"
 gem "aws-sdk-s3", "~> 1.175", require: false
 
 gem "apipie-rails", "~> 1.4"
+
+gem "crockford32", "~> 1.1"

@@ -1,4 +1,6 @@
 class MarkingNote < ApplicationRecord
+  extend PublicFindable["M"]
+
   belongs_to :marked_point
 
   validates :points_cost, presence: true, numericality: true

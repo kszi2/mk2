@@ -1,4 +1,6 @@
 class CourseType < ApplicationRecord
+  extend PublicFindable["cT"]
+
   belongs_to :course
   has_many :groups
 

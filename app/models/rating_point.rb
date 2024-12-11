@@ -1,4 +1,6 @@
 class RatingPoint < ApplicationRecord
+  extend PublicFindable["R"]
+
   belongs_to :coursework
   has_many :marked_points
 

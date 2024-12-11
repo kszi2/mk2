@@ -1,4 +1,6 @@
 class FreeDay < ApplicationRecord
+  extend PublicFindable["F"]
+
   validates :name, presence: true, uniqueness: { scope: :from_day, case_sensitive: false }
   validates :from_day, presence: true
   validates :to_day, comparison: { greater_than_or_equal_to: :from_day }, allow_nil: true
