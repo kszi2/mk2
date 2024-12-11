@@ -260,17 +260,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_10_220007) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "course_types", "courses"
+  add_foreign_key "course_types", "courses", on_delete: :cascade
   add_foreign_key "courses", "rating_styles", column: "default_rating_style_id"
   add_foreign_key "courseworks", "course_types", column: "for_type_id"
-  add_foreign_key "courseworks", "courses"
+  add_foreign_key "courseworks", "courses", on_delete: :cascade
   add_foreign_key "groups", "course_types"
-  add_foreign_key "groups", "courses"
-  add_foreign_key "marked_points", "rating_points"
-  add_foreign_key "marked_points", "submissions"
-  add_foreign_key "marking_notes", "marked_points"
-  add_foreign_key "rating_points", "courseworks"
-  add_foreign_key "submissions", "courseworks"
+  add_foreign_key "groups", "courses", on_delete: :cascade
+  add_foreign_key "groups_students", "groups", on_delete: :cascade
+  add_foreign_key "groups_students", "students", on_delete: :cascade
+  add_foreign_key "marked_points", "rating_points", on_delete: :cascade
+  add_foreign_key "marked_points", "submissions", on_delete: :cascade
+  add_foreign_key "marking_notes", "marked_points", on_delete: :cascade
+  add_foreign_key "rating_points", "courseworks", on_delete: :cascade
+  add_foreign_key "submissions", "courseworks", on_delete: :cascade
   add_foreign_key "submissions", "students"
-  add_foreign_key "templates", "courses"
+  add_foreign_key "templates", "courses", on_delete: :nullify
 end

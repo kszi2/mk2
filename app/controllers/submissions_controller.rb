@@ -27,6 +27,7 @@ class SubmissionsController < ApplicationController
         @rating_style = RatingStyle.find(params.require(:rating_style_id))
         render
       end
+      format.json
     end
   end
 

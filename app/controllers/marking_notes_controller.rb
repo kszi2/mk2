@@ -27,6 +27,10 @@ class MarkingNotesController < ApplicationController
   end
 
   def show
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   # GET /marking_notes/1/edit
@@ -77,14 +81,13 @@ class MarkingNotesController < ApplicationController
     @marking_note.destroy!
 
     respond_to do |format|
-      format.turbo_stream {
-        flash[:success] = "Marking note was successfully destroyed."
+      flash[:success] = "Marking note was successfully destroyed."
+      format.turbo_stream do
         render
-      }
-      format.html {
-        redirect_to course_group_submission_path(@course, @group, @submission),
-                    notice: "Marking note was successfully destroyed."
-      }
+      end
+      format.html do
+        redirect_to course_group_submission_path(@course, @group, @submission)
+      end
       format.json { head :no_content }
     end
   end

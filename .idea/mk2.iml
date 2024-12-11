@@ -170,179 +170,209 @@
   <component name="RailsGeneratorsCache">
     <option name="generators">
       <list>
-        <option value="active_record:migration" />
-        <option value="active_record:model" />
-        <option value="active_record:observer" />
-        <option value="active_record:session_migration" />
+        <option value="active_record:application_record" />
+        <option value="active_record:multi_db" />
+        <option value="apipie:install" />
+        <option value="apipie:views" />
+        <option value="application_record" />
+        <option value="benchmark" />
+        <option value="channel" />
+        <option value="component" />
         <option value="controller" />
+        <option value="erb:component" />
         <option value="erb:controller" />
         <option value="erb:mailer" />
         <option value="erb:scaffold" />
         <option value="generator" />
+        <option value="good_job:install" />
+        <option value="good_job:update" />
+        <option value="haml:application_layout" />
+        <option value="haml:component" />
         <option value="helper" />
         <option value="integration_test" />
+        <option value="jbuilder" />
+        <option value="job" />
+        <option value="kaminari:config" />
+        <option value="kaminari:views" />
+        <option value="locale:component" />
+        <option value="mailbox" />
         <option value="mailer" />
-        <option value="metal" />
         <option value="migration" />
         <option value="model" />
-        <option value="model_subclass" />
-        <option value="observer" />
-        <option value="performance_test" />
-        <option value="plugin" />
+        <option value="preview:component" />
         <option value="resource" />
+        <option value="responders:install" />
+        <option value="responders_controller" />
+        <option value="rspec:component" />
         <option value="scaffold" />
         <option value="scaffold_controller" />
-        <option value="session_migration" />
-        <option value="stylesheets" />
-        <option value="test_unit:controller" />
-        <option value="test_unit:helper" />
-        <option value="test_unit:integration" />
-        <option value="test_unit:mailer" />
-        <option value="test_unit:model" />
-        <option value="test_unit:observer" />
-        <option value="test_unit:performance" />
+        <option value="slim:component" />
+        <option value="stimulus" />
+        <option value="stimulus:component" />
+        <option value="system_test" />
+        <option value="tailwindcss:component" />
+        <option value="task" />
+        <option value="test_unit:channel" />
+        <option value="test_unit:component" />
+        <option value="test_unit:generator" />
+        <option value="test_unit:install" />
+        <option value="test_unit:mailbox" />
         <option value="test_unit:plugin" />
-        <option value="test_unit:scaffold" />
       </list>
     </option>
     <option name="myGenerators">
       <list>
-        <option value="active_record:migration" />
-        <option value="active_record:model" />
-        <option value="active_record:observer" />
-        <option value="active_record:session_migration" />
+        <option value="active_record:application_record" />
+        <option value="active_record:multi_db" />
+        <option value="apipie:install" />
+        <option value="apipie:views" />
+        <option value="application_record" />
+        <option value="benchmark" />
+        <option value="channel" />
+        <option value="component" />
         <option value="controller" />
+        <option value="erb:component" />
         <option value="erb:controller" />
         <option value="erb:mailer" />
         <option value="erb:scaffold" />
         <option value="generator" />
+        <option value="good_job:install" />
+        <option value="good_job:update" />
+        <option value="haml:application_layout" />
+        <option value="haml:component" />
         <option value="helper" />
         <option value="integration_test" />
+        <option value="jbuilder" />
+        <option value="job" />
+        <option value="kaminari:config" />
+        <option value="kaminari:views" />
+        <option value="locale:component" />
+        <option value="mailbox" />
         <option value="mailer" />
-        <option value="metal" />
         <option value="migration" />
         <option value="model" />
-        <option value="model_subclass" />
-        <option value="observer" />
-        <option value="performance_test" />
-        <option value="plugin" />
+        <option value="preview:component" />
         <option value="resource" />
+        <option value="responders:install" />
+        <option value="responders_controller" />
+        <option value="rspec:component" />
         <option value="scaffold" />
         <option value="scaffold_controller" />
-        <option value="session_migration" />
-        <option value="stylesheets" />
-        <option value="test_unit:controller" />
-        <option value="test_unit:helper" />
-        <option value="test_unit:integration" />
-        <option value="test_unit:mailer" />
-        <option value="test_unit:model" />
-        <option value="test_unit:observer" />
-        <option value="test_unit:performance" />
+        <option value="slim:component" />
+        <option value="stimulus" />
+        <option value="stimulus:component" />
+        <option value="system_test" />
+        <option value="tailwindcss:component" />
+        <option value="task" />
+        <option value="test_unit:channel" />
+        <option value="test_unit:component" />
+        <option value="test_unit:generator" />
+        <option value="test_unit:install" />
+        <option value="test_unit:mailbox" />
         <option value="test_unit:plugin" />
-        <option value="test_unit:scaffold" />
       </list>
     </option>
   </component>
   <component name="RailsPaths" isManagedAutomatically="true">
     <entry key="app">
-      <value>file://$MODULE_DIR$/../mk2\app</value>
+      <value>file://$MODULE_DIR$/app</value>
     </entry>
     <entry key="app/assets">
-      <value>file://$MODULE_DIR$/../mk2\app/assets</value>
+      <value>file://$MODULE_DIR$/app/assets</value>
     </entry>
     <entry key="app/channels">
-      <value>file://$MODULE_DIR$/../mk2\app/channels</value>
+      <value>file://$MODULE_DIR$/app/channels</value>
     </entry>
     <entry key="app/controllers">
-      <value>file://$MODULE_DIR$/../mk2\app/controllers</value>
+      <value>file://$MODULE_DIR$/app/controllers</value>
     </entry>
     <entry key="app/helpers">
-      <value>file://$MODULE_DIR$/../mk2\app/helpers</value>
+      <value>file://$MODULE_DIR$/app/helpers</value>
     </entry>
     <entry key="app/mailers">
-      <value>file://$MODULE_DIR$/../mk2\app/mailers</value>
+      <value>file://$MODULE_DIR$/app/mailers</value>
     </entry>
     <entry key="app/models">
-      <value>file://$MODULE_DIR$/../mk2\app/models</value>
+      <value>file://$MODULE_DIR$/app/models</value>
     </entry>
     <entry key="app/views">
-      <value>file://$MODULE_DIR$/../mk2\app/views</value>
+      <value>file://$MODULE_DIR$/app/views</value>
     </entry>
     <entry key="config">
-      <value>file://$MODULE_DIR$/../mk2\config</value>
+      <value>file://$MODULE_DIR$/config</value>
     </entry>
     <entry key="config/cable">
-      <value>file://$MODULE_DIR$/../mk2\config/cable.yml</value>
+      <value>file://$MODULE_DIR$/config/cable.yml</value>
     </entry>
     <entry key="config/database">
-      <value>file://$MODULE_DIR$/../mk2\config/database.yml</value>
+      <value>file://$MODULE_DIR$/config/database.yml</value>
     </entry>
     <entry key="config/environment">
-      <value>file://$MODULE_DIR$/../mk2\config/environment.rb</value>
+      <value>file://$MODULE_DIR$/config/environment.rb</value>
     </entry>
     <entry key="config/environments">
-      <value>file://$MODULE_DIR$/../mk2\config/environments</value>
+      <value>file://$MODULE_DIR$/config/environments</value>
     </entry>
     <entry key="config/initializers">
-      <value>file://$MODULE_DIR$/../mk2\config/initializers</value>
+      <value>file://$MODULE_DIR$/config/initializers</value>
     </entry>
     <entry key="config/locales">
-      <value>file://$MODULE_DIR$/../mk2\config/locales</value>
+      <value>file://$MODULE_DIR$/config/locales</value>
     </entry>
     <entry key="config/routes">
-      <value>file://$MODULE_DIR$/../mk2\config/routes</value>
+      <value>file://$MODULE_DIR$/config/routes</value>
     </entry>
     <entry key="config/routes.rb">
-      <value>file://$MODULE_DIR$/../mk2\config/routes.rb</value>
+      <value>file://$MODULE_DIR$/config/routes.rb</value>
     </entry>
     <entry key="config/secrets">
-      <value>file://$MODULE_DIR$/../mk2\config</value>
+      <value>file://$MODULE_DIR$/config</value>
     </entry>
     <entry key="db">
-      <value>file://$MODULE_DIR$/../mk2\db</value>
+      <value>file://$MODULE_DIR$/db</value>
     </entry>
     <entry key="db/migrate">
-      <value>file://$MODULE_DIR$/../mk2\db/migrate</value>
+      <value>file://$MODULE_DIR$/db/migrate</value>
     </entry>
     <entry key="db/seeds.rb">
-      <value>file://$MODULE_DIR$/../mk2\db/seeds.rb</value>
+      <value>file://$MODULE_DIR$/db/seeds.rb</value>
     </entry>
     <entry key="lib">
-      <value>file://$MODULE_DIR$/../mk2\lib</value>
+      <value>file://$MODULE_DIR$/lib</value>
     </entry>
     <entry key="lib/assets">
-      <value>file://$MODULE_DIR$/../mk2\lib/assets</value>
+      <value>file://$MODULE_DIR$/lib/assets</value>
     </entry>
     <entry key="lib/tasks">
-      <value>file://$MODULE_DIR$/../mk2\lib/tasks</value>
+      <value>file://$MODULE_DIR$/lib/tasks</value>
     </entry>
     <entry key="lib/templates">
-      <value>file://$MODULE_DIR$/../mk2\lib/templates</value>
+      <value>file://$MODULE_DIR$/lib/templates</value>
     </entry>
     <entry key="log">
-      <value>file://$MODULE_DIR$/../mk2\log/development.log</value>
+      <value>file://$MODULE_DIR$/log/development.log</value>
     </entry>
     <entry key="public">
-      <value>file://$MODULE_DIR$/../mk2\public</value>
+      <value>file://$MODULE_DIR$/public</value>
     </entry>
     <entry key="public/javascripts">
-      <value>file://$MODULE_DIR$/../mk2\public/javascripts</value>
+      <value>file://$MODULE_DIR$/public/javascripts</value>
     </entry>
     <entry key="public/stylesheets">
-      <value>file://$MODULE_DIR$/../mk2\public/stylesheets</value>
+      <value>file://$MODULE_DIR$/public/stylesheets</value>
     </entry>
     <entry key="test/mailers/previews">
       <value>file://$MODULE_DIR$/test/mailers/previews</value>
-      <value>file://$MODULE_DIR$/../mk2\test/mailers/previews</value>
+      <value>file://$MODULE_DIR$/test/mailers/previews</value>
     </entry>
     <entry key="tmp">
-      <value>file://$MODULE_DIR$/../mk2\tmp</value>
+      <value>file://$MODULE_DIR$/tmp</value>
     </entry>
     <entry key="vendor">
-      <value>file://$MODULE_DIR$/../mk2\vendor</value>
+      <value>file://$MODULE_DIR$/vendor</value>
     </entry>
     <entry key="vendor/assets">
-      <value>file://$MODULE_DIR$/../mk2\vendor/assets</value>
+      <value>file://$MODULE_DIR$/vendor/assets</value>
     </entry>
   </component>
   <component name="RakeTasksCache-v2">
