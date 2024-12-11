@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  apipie
   mount GoodJob::Engine => 'good_job'
   if Rails.env.development?
     mount Lookbook::Engine => "lookbook"

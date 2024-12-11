@@ -98,3 +98,5 @@ gem "rack-pratchett", "~> 0.1.1"
 gem "foreman", "~> 0.88.1"
 
 gem "aws-sdk-s3", "~> 1.175", require: false
+
+gem "apipie-rails", "~> 1.4"
