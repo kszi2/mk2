@@ -1,1 +1,3 @@
-json.array! @courses, partial: "courses/course", as: :course
+json.objects do
+  json.array! @courses, partial: "courses/course_listing", as: :course
+end
