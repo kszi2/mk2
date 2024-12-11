@@ -29,8 +29,10 @@ class RatingStylesController < ApplicationController
                                            content_type: 'application/octet-stream',
                                            identify: false)
           format.html { redirect_to rating_style_path(@rating_style), notice: "Rating style #{@rating_style.name} was successfully created." }
+          format.json { render :show, status: :created, location: @rating_style }
         else
           format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @rating_style.errors, status: :unprocessable_entity }
         end
       end
     end
@@ -50,8 +52,10 @@ class RatingStylesController < ApplicationController
       end
       if @rating_style.update(style_params)
         format.html { redirect_to rating_style_path(@rating_style) }
+        format.json { render :show, status: :ok, location: @rating_style }
       else
         format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @rating_style.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -62,6 +66,7 @@ class RatingStylesController < ApplicationController
     respond_to do |format|
       format.turbo_stream { render }
       format.html { redirect_to rating_styles_path }
+      format.json { head :no_content }
     end
   end
 

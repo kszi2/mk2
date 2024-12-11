@@ -33,7 +33,7 @@ class StudentsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to students_path,
                                 notice: "Imported students: #{helpers.pluralize @import_errors.length, 'error'}" }
-      # todo json
+      format.json { render :show, status: :created, location: @import_errors }
     end
   end
 
