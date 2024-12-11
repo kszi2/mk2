@@ -4,4 +4,4 @@
     - f.with_field :select, :for_type_id do |s|
       - s.with_label { "For type" }
       - @course.course_types.each do |ct|
-        - s.with_option(value: ct.id, current: @coursework.for_type_id) { ct.name }
+        - s.with_option(value: ct.public_id, current: @coursework.for_type_pid) { ct.name }

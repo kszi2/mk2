@@ -6,14 +6,14 @@ class MarkedPointsController < ApplicationController
     @marked_points = MarkedPoint.joins(:rating_point)
                                 .order("rating_points.ordering")
                                 .includes(:rating_point, :marking_notes)
-                                .where(submission_id: params[:submission_id])
+                                .where(submission: @submission)
   end
 
   private
 
   def set_parents
-    @group = Group.find(params.require(:group_id))
-    @course = Course.find(params.require(:course_id))
-    @submission = Submission.find(params.require(:submission_id))
+    @group = Group.public_find(params.require(:group_id))
+    @course = Course.public_find(params.require(:course_id))
+    @submission = Submission.public_find(params.require(:submission_id))
   end
 end

@@ -5,7 +5,7 @@ class GroupsController < ApplicationController
   # GET /groups or /groups.json
   def index
     @groups = Group.includes(:course, :course_type)
-                   .where(course_id: params[:course_id])
+                   .where(course: @course)
                    .order(:name)
                    .page(params[:page]).per(params[:per_page] || 25)
   end
@@ -176,7 +176,7 @@ class GroupsController < ApplicationController
 
   def set_course
     if @group.nil?
-      @course = Course.find(params[:course_id])
+      @course = Course.public_find(params[:course_id])
     else
       @course = @group.course
     end
@@ -185,7 +185,7 @@ class GroupsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_group
     group_id = params[:group_id] || params[:id]
-    @group = Group.includes(:course, :course_type).find(group_id)
+    @group = Group.includes(:course, :course_type).public_find(group_id)
   end
 
   # Only allow a list of trusted parameters through.

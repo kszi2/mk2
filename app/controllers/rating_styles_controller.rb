@@ -78,6 +78,6 @@ class RatingStylesController < ApplicationController
 
   def load_rating
     id = params.require(:id)
-    @rating_style = RatingStyle.find(id)
+    @rating_style = RatingStyle.public_find(id)
   end
 end

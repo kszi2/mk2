@@ -5,6 +5,10 @@ class ApplicationRecord < ActiveRecord::Base
 
   default_scope { where(id: 0..) }
 
+  def to_param
+    public_id
+  end
+
   def self.id_prefix
     raise ArgumentError, "id_prefix must be defined on models"
   end
@@ -17,16 +21,24 @@ class ApplicationRecord < ActiveRecord::Base
     self.id = ApplicationRecord.decode_id(self.class, pid)
   end
 
-  def self.encode_id(model, id)
+  def self.encode_id(model, id = nil)
+    if id.nil?
+      id = model
+      model = self
+    end
     Crockford32.encode(ApplicationRecord.wrap_id(model.id_prefix, id), check: true)
   end
 
-  def self.decode_id(model, pid)
+  def self.decode_id(model, pid = nil)
+    if pid.nil?
+      pid = model
+      model = self
+    end
     ApplicationRecord.unwrap_id(Crockford32.decode(pid, check: true, into: :string),
                                 model.id_prefix)
   end
 
-  #private
+  # private
 
   # Wraps the id in the dynamic class's name, allowing different types of objects
   # to have different public ids even if their db id is the same integer.

@@ -4,7 +4,7 @@ class MarkingNotesController < ApplicationController
 
   # GET /marking_notes or /marking_notes.json
   def index
-    @marking_notes = MarkingNote.where(marked_point_id: params[:marked_point_id]).all
+    @marking_notes = MarkingNote.where(marked_point: @marked_point).all
   end
 
   # GET /marking_notes/new
@@ -97,15 +97,15 @@ class MarkingNotesController < ApplicationController
   private
 
   def set_parents
-    @group = Group.find(params.require(:group_id))
-    @course = Course.find(params.require(:course_id))
-    @submission = Submission.find(params.require(:submission_id))
-    @marked_point = MarkedPoint.find(params.require(:marked_point_id))
+    @group = Group.public_find(params.require(:group_id))
+    @course = Course.public_find(params.require(:course_id))
+    @submission = Submission.public_find(params.require(:submission_id))
+    @marked_point = MarkedPoint.public_find(params.require(:marked_point_id))
   end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_marking_note
-    @marking_note = MarkingNote.find(params[:id] || params[:marking_note_id])
+    @marking_note = MarkingNote.public_find(params[:id] || params[:marking_note_id])
   end
 
   # Only allow a list of trusted parameters through.

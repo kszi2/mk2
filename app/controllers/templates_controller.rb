@@ -65,7 +65,7 @@ class TemplatesController < ApplicationController
   end
 
   def set_template
-    @template = Template.find(params[:id])
+    @template = Template.public_find(params[:id])
   end
 
   def template_params

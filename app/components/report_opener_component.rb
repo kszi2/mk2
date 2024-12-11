@@ -11,6 +11,6 @@ class ReportOpenerComponent < ViewComponent::Base
 
   def default_id
     return if @default.blank?
-    @default.id
+    @default.public_id
   end
 end

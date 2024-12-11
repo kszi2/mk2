@@ -22,6 +22,7 @@ class SendToDiscordWebhookJob < ApplicationJob
     options[:content] ||= ""
     options[:filetype] ||= "application/pdf"
 
+    puts "<<<< PDF id: #{pdfid} sent: #{sentfile}>"
     pdf = PdfDatum.find(pdfid)
     conn = DiscordFaradayConnection.instance.get_connection
 

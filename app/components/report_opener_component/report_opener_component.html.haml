@@ -9,7 +9,7 @@
   = render Inputs::SelectComponent.new(name: "rating_style_id", value: nil, enabled: true, size: :small,
                                        data: { report_opener_component: { target: "styleSelector" } }) do |s|
     - @rating_styles.each do |style|
-      - s.with_option value: style.id, current: default_id do
+      - s.with_option value: style.public_id, current: default_id do
         = style.name
 
   = basic_button_tag "Get", nil, size: :small,

@@ -30,7 +30,7 @@ class CourseTypesController < ApplicationController
   api :POST, "/course/:course_id/course_types", "Creates a course type"
   param_group :course_type
   def create
-    @course_type = CourseType.new(course_type_params)
+    @course_type = CourseType.new(course: @course, **course_type_params)
 
     respond_to do |format|
       if @course_type.save
@@ -73,17 +73,17 @@ class CourseTypesController < ApplicationController
 
   def set_course
     if @course_type.nil?
-      @course = Course.find(params.require(:course_id))
+      @course = Course.public_find(params.require(:course_id))
     else
       @course = @course_type.course
     end
   end
 
   def set_course_type
-    @course_type = CourseType.includes(:course).find(params[:id])
+    @course_type = CourseType.includes(:course).public_find(params[:id])
   end
 
   def course_type_params
-    params.require(:course_type).permit(:name, :course_id)
+    params.require(:course_type).permit(:name)
   end
 end

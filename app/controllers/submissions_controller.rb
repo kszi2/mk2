@@ -24,7 +24,7 @@ class SubmissionsController < ApplicationController
         render
       end
       format.text do
-        @rating_style = RatingStyle.find(params.require(:rating_style_id))
+        @rating_style = RatingStyle.public_find(params.require(:rating_style_id))
         render
       end
       format.json
@@ -34,7 +34,7 @@ class SubmissionsController < ApplicationController
   def filter_for
     inner_filter_for Submission do |x|
       x.joins(student: :groups)
-       .where(groups: { id: params.require(:group_id) })
+       .where(groups: { id: Group.decode_id(params.require(:group_id)) })
        .page(params[:page]).per(params[:per_page] || 25)
        .distinct
     end
@@ -106,8 +106,8 @@ class SubmissionsController < ApplicationController
   private
 
   def set_parents
-    @group = Group.includes(:students).find(params.require(:group_id))
-    @course = Course.includes(:courseworks).find(params.require(:course_id))
+    @group = Group.includes(:students).public_find(params.require(:group_id))
+    @course = Course.includes(:courseworks).public_find(params.require(:course_id))
     @courseworks = @course.courseworks.where(for_type_id: @group.course_type_id)
   end
 
@@ -119,7 +119,7 @@ class SubmissionsController < ApplicationController
                                         :marking_notes,
                                         :rating_point
                                       ])
-                            .find(params[:id] || params[:submission_id])
+                            .public_find(params[:id] || params[:submission_id])
   end
 
   # Only allow a list of trusted parameters through.

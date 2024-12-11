@@ -4,7 +4,9 @@ class CourseworksController < ApplicationController
 
   # GET /courseworks or /courseworks.json
   def index
-    @courseworks = Coursework.includes(:for_type, :course).page(params[:page]).per(params[:per_page] || 25)
+    @courseworks = Coursework.includes(:for_type, :course)
+                             .where(course: @course)
+                             .page(params[:page]).per(params[:per_page] || 25)
   end
 
   # GET /courseworks/1 or /courseworks/1.json
@@ -23,8 +25,8 @@ class CourseworksController < ApplicationController
   def reorder
     dropped_id = params.require(:dropped_id).gsub(/rating_point_/, '')
     before_id = params.require(:before_id).gsub(/rating_point_/, '')
-    dropped = RatingPoint.find(dropped_id)
-    before = RatingPoint.find(before_id)
+    dropped = RatingPoint.public_find(dropped_id)
+    before = RatingPoint.public_find(before_id)
 
     @updated_ratings = [dropped]
     RatingPoint.transaction do
@@ -83,19 +85,20 @@ class CourseworksController < ApplicationController
 
   def set_course
     if @coursework.nil?
-      @course = Course.find params.require(:course_id)
+      @course = Course.public_find params.require(:course_id)
     else
       @course = @coursework.course
     end
   end
 
   def set_coursework
-    @coursework = Coursework.includes(:course, :for_type).find(params[:id] || params[:coursework_id])
+    @coursework = Coursework.includes(:course, :for_type).public_find(params[:id] || params[:coursework_id])
   end
 
   # Only allow a list of trusted parameters through.
   def coursework_params
     cw_params = params.require(:coursework).permit(:name, :active, :for_type_id)
+    cw_params[:for_type_id] = CourseType.decode_id(cw_params[:for_type_id])
     cw_params.merge!(course_id: @course.id)
     cw_params
   end

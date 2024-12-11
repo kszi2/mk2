@@ -9,6 +9,10 @@ class Coursework < ApplicationRecord
   validates :active, inclusion: { in: [true, false] }
   validates :for_type_id, presence: true
 
+  def for_type_pid
+    for_type.public_id
+  end
+
   def criteria_count
     rating_points.count { |rp| rp.criterion? }
   end

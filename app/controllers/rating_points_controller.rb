@@ -5,7 +5,9 @@ class RatingPointsController < ApplicationController
 
   # GET /rating_points or /rating_points.json
   def index
-    @rating_points = RatingPoint.where(coursework_id: @coursework.id).page(params[:page]).per(params[:per_page] || 25)
+    @rating_points = RatingPoint.where(coursework: @coursework)
+                                .page(params[:page])
+                                .per(params[:per_page] || 25)
   end
 
   # GET /rating_points/1 or /rating_points/1.json
@@ -63,7 +65,7 @@ class RatingPointsController < ApplicationController
 
   def set_coursework
     if @rating_point.nil?
-      @coursework = Coursework.find(params.require(:coursework_id))
+      @coursework = Coursework.public_find(params.require(:coursework_id))
     else
       @coursework = @rating_point.coursework
     end
@@ -71,7 +73,7 @@ class RatingPointsController < ApplicationController
 
   def set_course
     if @coursework.nil?
-      @course = Course.find(params.require(:course_id))
+      @course = Course.public_find(params.require(:course_id))
     else
       @course = @coursework.course
     end
@@ -79,7 +81,7 @@ class RatingPointsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_rating_point
-    @rating_point = RatingPoint.find(params[:id])
+    @rating_point = RatingPoint.public_find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.

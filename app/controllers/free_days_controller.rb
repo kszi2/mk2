@@ -60,7 +60,7 @@ class FreeDaysController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_free_day
-      @free_day = FreeDay.find(params[:id])
+      @free_day = FreeDay.public_find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

@@ -64,7 +64,7 @@ class RatingNoteComponent < ViewComponent::Base
     subm = mp.submission
     cw = subm.coursework
     course = cw.course
-    group = subm.student.groups.where(course_id: course.id).first
+    group = subm.student.groups.where(course: course).first
     [course, group, subm, mp]
   end
 end

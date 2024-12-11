@@ -102,3 +102,5 @@ gem "aws-sdk-s3", "~> 1.175", require: false
 gem "apipie-rails", "~> 1.4"
 
 gem "crockford32", "~> 1.1"
+
+gem "image_processing", "~> 1.13"
