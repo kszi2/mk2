@@ -30,23 +30,14 @@ gem "cssbundling-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
-# Use Redis adapter to run Action Cable in production
-# gem "redis", ">= 4.0.1"
-
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
-
-# Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
-# gem "bcrypt", "~> 3.1.7"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
-
-# Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -58,16 +49,23 @@ group :development do
   gem "web-console"
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
-  # gem "rack-mini-profiler"
+  # profiling
+  gem "rack-mini-profiler"
+  gem "memory_profiler"
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   gem "spring"
 
+  # error pages
   gem "better_errors"
   gem "binding_of_caller"
 
+  # react to file changes
   gem "listen"
   gem "actioncable"
+  gem "wdm", platform: %i[windows]
+
+  # UI debug
   gem "lookbook", ">= 2.3.4"
 end
 
@@ -77,30 +75,43 @@ group :test do
   gem "selenium-webdriver"
 end
 
+# UI rendering logic (HAML markup, and view components)
 gem "haml", "~> 6.3"
 gem "haml-rails", "~> 2.1"
 gem "view_component"
 
+# PDF generation
 gem "prawn", "~> 2.5"
+gem "responders", "~> 3.1"
 
+# HTTP requests
 gem 'faraday'
 gem 'faraday-multipart'
 gem 'httpx'
 
 gem "good_job", "~> 4.2"
 
-gem "responders", "~> 3.1"
-
+# Pagination
 gem "kaminari", "~> 1.2"
 
 gem "rack-pratchett", "~> 0.1.1"
 
+# Tooling
 gem "foreman", "~> 0.88.1"
 
+# S3 API
 gem "aws-sdk-s3", "~> 1.175", require: false
 
+# API docs
 gem "apipie-rails", "~> 1.4"
 
+# Custom non-integer id encoding format
 gem "crockford32", "~> 1.1"
 
+# image processing...
 gem "image_processing", "~> 1.13"
+
+# User management
+gem "devise", "~> 4.9"
+
+gem "devise-argon2", "~> 2.0"
