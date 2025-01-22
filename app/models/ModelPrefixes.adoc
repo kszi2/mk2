@@ -36,4 +36,6 @@ For ease of implementation, these should be prefix codes. That is, the prefix of
 | Submission | sM
 
 | Template | T
+
+| User | U
 |===

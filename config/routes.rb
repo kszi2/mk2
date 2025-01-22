@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  get "user/show"
+  get "user/new"
+  get "user/edit"
+  get "user/create"
+  get "user/update"
+  get "user/destroy"
+  devise_for :users
   apipie
   mount GoodJob::Engine => 'good_job'
   if Rails.env.development?
