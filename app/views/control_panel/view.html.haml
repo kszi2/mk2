@@ -2,42 +2,46 @@
 
 .flex.flex-row.flex-wrap-reverse._(class="gap-3 lg:gap-1")
   %div(style="flex-grow: 1;")
-    %h2.mb-5.text-xl Session
+    %h2.mb-5.text-2xl Session
 
     .mb-3.text-lg
       Logged in as
       %span.font-semibold.text-wa-brand-border-loud= current_user.username
 
-    .mb-3
+    .mb-3.flex.flex-wrap.gap-3
+      = primary_button_tag "Show user", self_user_path
       = form_tag destroy_user_session_url, method: :delete do
-        = secondary_button_tag "Log out"
+        = destroy_button_tag "Log out"
 
-    %h2.my-5.text-xl Job management
-
-    .mb-3
-    = secondary_button_tag "Good job control panel", "/good_job"
-
-    %h2.my-5.text-xl Configuration
+    %h2.my-5.text-2xl Job management
 
     .mb-3
-      .flex.flex-wrap.gap-3
-        %div
-          %h3.mb-1.text-lg Templates
-          = secondary_button_tag "Templates", templates_path
+      = secondary_button_tag "Good job control panel", "/good_job"
 
-        %div
-          %h3.mb-1.text-lg Free days
-          = secondary_button_tag "Free days", free_days_path
+    %h2.my-5.text-2xl Configuration
 
-        %div
-          %h3.mb-1.text-lg Rating styles
-          = secondary_button_tag "Rating styles", rating_styles_path
+    .mb-3.flex.flex-wrap.gap-3
+      %div
+        %h3.mb-1.text-lg Templates
+        = secondary_button_tag "Templates", templates_path
+
+      %div
+        %h3.mb-1.text-lg Free days
+        = secondary_button_tag "Free days", free_days_path
+
+      %div
+        %h3.mb-1.text-lg Rating styles
+        = secondary_button_tag "Rating styles", rating_styles_path
+
+      %div
+        %h3.mb-1.text-lg Users
+        = secondary_button_tag "Users", users_path
 
   %aside
     %div(class="w-1/2")
       = image_tag '/android-chrome-512x512.png'
 
-    %h2.mb-5.text-xl Version info
+    %h2.mb-5.text-2xl Version info
 
     %div.font-mono
       - if Rails.configuration.version_info.nil?

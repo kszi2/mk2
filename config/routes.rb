@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   get 'control_panel' => 'control_panel#view', as: :control_panel
 
+  get 'users/_self' => 'users#self_user', as: :self_user
   resources :users do
     get 'edit_password' => 'users#edit_password', as: :edit_password
     post 'update_password' => 'users#update_password', as: :update_password

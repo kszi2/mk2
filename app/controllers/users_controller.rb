@@ -20,6 +20,10 @@ class UsersController < ApplicationController
   def edit_password
   end
 
+  def self_user
+    redirect_to user_url(current_user)
+  end
+
   def create
     @user = User.new(user_params_creation)
 
