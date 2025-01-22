@@ -10,5 +10,6 @@
 
 unless User.find_by(username: 'admin')
   # admin:admin used in devel
-  User.create!(username: 'admin', password: ENV["MK2_ADMIN_PASSWORD"] || "admin")
+  admin_passwd = ENV["MK2_ADMIN_PASSWORD"] || "admin"
+  User.create!(username: 'admin', password: admin_passwd, password_confirmation: admin_passwd)
 end
