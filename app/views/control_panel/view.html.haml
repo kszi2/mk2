@@ -2,23 +2,36 @@
 
 .flex.flex-row.flex-wrap-reverse._(class="gap-3 lg:gap-1")
   %div(style="flex-grow: 1;")
-    %h2.mb-5.text-xl Configuration
+    %h2.mb-5.text-xl Session
+
+    .mb-3.text-lg
+      Logged in as
+      %span.font-semibold.text-wa-brand-border-loud= current_user.username
 
     .mb-3
-      %h3.mb-1.text-lg Job management
-      = secondary_button_tag "Good job control panel", "/good_job"
+      = form_tag destroy_user_session_url, method: :delete do
+        = secondary_button_tag "Log out"
+
+    %h2.my-5.text-xl Job management
 
     .mb-3
-      %h3.mb-1.text-lg Templates
-      = secondary_button_tag "Templates", templates_path
+    = secondary_button_tag "Good job control panel", "/good_job"
+
+    %h2.my-5.text-xl Configuration
 
     .mb-3
-      %h3.mb-1.text-lg Free days
-      = secondary_button_tag "Free days", free_days_path
+      .flex.flex-wrap.gap-3
+        %div
+          %h3.mb-1.text-lg Templates
+          = secondary_button_tag "Templates", templates_path
 
-    .mb-3
-      %h3.mb-1.text-lg Rating styles
-      = secondary_button_tag "Rating styles", rating_styles_path
+        %div
+          %h3.mb-1.text-lg Free days
+          = secondary_button_tag "Free days", free_days_path
+
+        %div
+          %h3.mb-1.text-lg Rating styles
+          = secondary_button_tag "Rating styles", rating_styles_path
 
   %aside
     %div(class="w-1/2")

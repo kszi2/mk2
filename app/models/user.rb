@@ -10,6 +10,9 @@ class User < ApplicationRecord
 
   before_validation :remove_blank_email
 
+  # TODO: a proper admin system
+  def admin? = username == "admin"
+
   private
 
   def confirmation_matches

@@ -1,18 +1,11 @@
-<h2>Log in</h2>
+<h2 class="text-2xl">Log in</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <%= notice %>
-  <%= alert %>
+  <div class="text-xl text-wa-danger-fill-quiet"><%= notice %></div>
+  <div class="text-xl text-wa-danger-fill-quiet"><%= alert %></div>
 
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username, autofocus: true, autocomplete: "username" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+  <%= text_input_tag resource, :username %>
+  <%= password_input_tag resource, :password %>
 
   <% if devise_mapping.rememberable? %>
     <div class="field">
@@ -21,9 +14,7 @@
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
+  <%= submit_button_tag "Log in" %>
 <% end %>
 
 <%= render "devise/shared/links" %>

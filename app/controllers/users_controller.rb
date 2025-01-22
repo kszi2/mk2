@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit edit_password update update_password destroy]
 
   def index
-    @users = User.order(:username).page(params[:page]).per(params[:per_page] || 50)
+    authorize User
+    @users = policy_scope(User).order(:username).page(params[:page]).per(params[:per_page] || 50)
   end
 
   def show
@@ -10,6 +11,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    authorize @user
   end
 
   def edit
@@ -81,5 +83,6 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.public_find(params[:id] || params[:user_id])
+    authorize @user
   end
 end
