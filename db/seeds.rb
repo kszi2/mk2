@@ -8,4 +8,4 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-User.create_or_find_by(username: "admin", password: ENV["MK2_ADMIN_PASSWORD"] || "admin") # admin:admin used in devel
+User.find_or_create_by!(username: "admin", password: ENV["MK2_ADMIN_PASSWORD"] || "admin") # admin:admin used in devel

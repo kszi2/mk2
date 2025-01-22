@@ -113,7 +113,5 @@ gem "image_processing", "~> 1.13"
 
 # User management
 gem "devise", "~> 4.9"
-
 gem "devise-argon2", "~> 2.0"
-
 gem "pundit", "~> 2.4"
