@@ -1,0 +1,7 @@
+%h1.text-2xl Listing users
+
+= render DataTableComponent.new(objects: @users,
+                                type: User,
+                                col_config: [ { field: :username },
+                                  { field: :email, hide: :sm },
+                                ])

@@ -1,0 +1,6 @@
+= mk_new_for @user do |new|
+  - new.with_form do |f|
+    - f.with_field :text, :username
+    - f.with_field :email, :email
+    - f.with_field :password, :password
+    - f.with_field :password, :password_confirmation

@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  get "user/show"
-  get "user/new"
-  get "user/edit"
-  get "user/create"
-  get "user/update"
-  get "user/destroy"
   devise_for :users
   apipie
   mount GoodJob::Engine => 'good_job'
@@ -13,6 +7,11 @@ Rails.application.routes.draw do
   end
 
   get 'control_panel' => 'control_panel#view', as: :control_panel
+
+  resources :users do
+    get 'edit_password' => 'users#edit_password', as: :edit_password
+    post 'update_password' => 'users#update_password', as: :update_password
+  end
 
   get 'students/import' => 'students#import', as: :import_students
   post 'students/bulk_create' => 'students#bulk_create', as: :bulk_create_students

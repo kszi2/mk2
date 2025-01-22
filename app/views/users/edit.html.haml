@@ -1,0 +1,4 @@
+= mk_edit_for @user do |edit|
+  - edit.with_form do |f|
+    - f.with_field :text, :username
+    - f.with_field :email, :email

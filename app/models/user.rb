@@ -5,5 +5,19 @@ class User < ApplicationRecord
 
   validates :email, uniqueness: true, allow_nil: true, format: /\A[^@\s]+@[^@\s]+\z/
   validates :username, presence: true, uniqueness: true, length: { in: 2..32 }
-  validates :password, presence: true
+  validates :password, presence: true, on: :create
+  validate :confirmation_matches
+
+  before_validation :remove_blank_email
+
+  private
+
+  def confirmation_matches
+    return if password == password_confirmation
+    errors.add(:password_confirmation, "doesn't match Password")
+  end
+
+  def remove_blank_email
+    self.email = nil if email.blank?
+  end
 end

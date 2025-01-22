@@ -1,0 +1,6 @@
+= mk_show_for @user do |f|
+  - f.with_property :username
+  - f.with_property :email
+
+  - f.with_custom name: "Password" do
+    - basic_button_tag "Update password", user_edit_password_url(@user), size: :small
