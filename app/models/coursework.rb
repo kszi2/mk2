@@ -10,7 +10,7 @@ class Coursework < ApplicationRecord
   validates :for_type_id, presence: true
 
   def for_type_pid
-    for_type.public_id
+    for_type&.public_id
   end
 
   def criteria_count
