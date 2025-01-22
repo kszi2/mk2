@@ -1,4 +1,5 @@
 class RatingStylesController < ApplicationController
+  before_action :authenticate_user!
   before_action :load_rating, only: %i[show edit update destroy preview]
 
   def new

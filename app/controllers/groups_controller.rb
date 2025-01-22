@@ -1,4 +1,5 @@
 class GroupsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_group, only: %i[ show edit update destroy add_students remove_student send_attendance ]
   before_action :set_course
 

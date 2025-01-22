@@ -1,4 +1,5 @@
 class FreeDaysController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_free_day, only: %i[ show edit update destroy ]
 
   # GET /free_days or /free_days.json

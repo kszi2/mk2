@@ -1,4 +1,5 @@
 class RatingPointsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_rating_point, only: %i[ show edit update destroy ]
   before_action :set_coursework
   before_action :set_course

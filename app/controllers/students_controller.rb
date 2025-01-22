@@ -1,4 +1,5 @@
 class StudentsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_import_status
   before_action :set_student, only: %i[ show edit update destroy ]
 
@@ -80,8 +81,6 @@ class StudentsController < ApplicationController
   def set_import_status
     @from_import = false
   end
-
-  private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_student

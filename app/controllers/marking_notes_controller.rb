@@ -1,4 +1,5 @@
 class MarkingNotesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_parents
   before_action :set_marking_note, only: %i[ show edit update toggle destroy ]
 

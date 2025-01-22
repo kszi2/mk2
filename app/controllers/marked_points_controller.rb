@@ -1,4 +1,5 @@
 class MarkedPointsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_parents
 
   # GET /marked_points or /marked_points.json

@@ -1,6 +1,7 @@
 class SubmissionsController < ApplicationController
   include Filterable
 
+  before_action :authenticate_user!
   before_action :set_parents, except: :filter_for
   before_action :set_submission, only: %i[ show edit update destroy ]
 

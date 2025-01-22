@@ -1,4 +1,5 @@
 class CourseworksController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_coursework, only: %i[ show edit update destroy reorder ]
   before_action :set_course
 
