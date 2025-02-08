@@ -1,8 +1,5 @@
 #!/bin/bash -e
 
-# If running the rails server then create or migrate existing database
-if [ "${1}" == "/rails/bin/bundle" ] && [ "${2}" == "exec" ] && [ "${3}" == "foreman" ] && [ "${4}" == "start" ]; then
-  ./bin/rails db:prepare
-fi
+./bin/rails db:prepare
 
 exec "${@}"
