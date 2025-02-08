@@ -1,0 +1,51 @@
+%h6.text-lg Accepted import formats
+%ul.ml-2
+  %li
+    %details
+      %summary CSV
+      %dl.ml-4.grid.grid-flow-row.gap-2(class="grid-cols-2 md:grid-cols-4")
+        %dt.font-semibold.flex.items-end
+          Extension
+          %hr.grow.border-wa-text-quiet.border-dashed.border-t.mb-1
+        %dd .csv
+
+        %dt.font-semibold.flex.items-end
+          Encoding
+          %hr.grow.border-wa-text-quiet.border-dashed.border-t.mb-1
+        %dd
+          UTF-8 w/o BOM
+          %span.text-wa-warning-fill-loud Excel saves w/ BOM
+
+        %dt.font-semibold.flex.items-end
+          Separator
+          %hr.grow.border-wa-text-quiet.border-dashed.border-t.mb-1
+        %dd ,
+
+        %dt.font-semibold.flex.items-end
+          Columns with spaces
+          %hr.grow.border-wa-text-quiet.border-dashed.border-t.mb-1
+        %dd Wrapped in "
+
+        %dt.font-semibold.flex.items-end
+          Columns (others ignored)
+          %hr.grow.border-wa-text-quiet.border-dashed.border-t.mb-1
+        %dd name, neptun
+
+  %li
+    %details
+      %summary JPorta HTML
+      %dl.ml-4.grid.grid-flow-row.gap-2(class="grid-cols-2 md:grid-cols-4 lg:grid-cols-6")
+        %dt.font-semibold.flex.items-end
+          Extension
+          %hr.grow.border-wa-text-quiet.border-dashed.border-t.mb-1
+        %dd .html, .htm
+
+        %dt.font-semibold.flex.items-end
+          Title tag
+          %hr.grow.border-wa-text-quiet.border-dashed.border-t.mb-1
+        %dd.font-mono *JPORTA*
+
+        %dt.font-semibold.flex.items-end
+          Body
+          %hr.grow.border-wa-text-quiet.border-dashed.border-t.mb-1
+        %dd JPorta group page

@@ -13,4 +13,24 @@ class Importers::CSVImporter < Importers::Importer
 
     students
   end
+
+  def exiting_students
+    students = []
+    not_found = []
+
+    CSV.foreach(file.path, headers: true) do |row|
+      data = row.to_hash
+      data.transform_keys! { |key| key.gsub(/\P{Print}/, '').downcase.to_sym }
+      data[:neptun].upcase!
+
+      s = Student.find_by(neptun: data[:neptun], name: data[:name])
+      if s
+        students << s
+      else
+        not_found << Student.new(neptun: data[:neptun], name: data[:name])
+      end
+    end
+
+    [students, not_found]
+  end
 end

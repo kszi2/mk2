@@ -119,7 +119,7 @@ class GroupsController < ApplicationController
       end
     end
     sort = :name
-    if !params[:sort].blank? && params[:sort].in?(["name", "neptun"])
+    if params[:sort].present? && params[:sort].in?(["name", "neptun"])
       sort = params[:sort].to_sym
     end
 
@@ -141,14 +141,19 @@ class GroupsController < ApplicationController
     end
 
     unless params[:import_file].blank?
-      csv_neptuns = []
-      CSV.foreach(params[:import_file].path, headers: true) do |row|
-        current_neptuns << row["neptun"].upcase
-        csv_neptuns << row["neptun"].upcase
-      end
-      Student.where(neptun: csv_neptuns).pluck(:name, :neptun).each do |name, neptun|
-        rendered_students << [name, neptun]
-        next_neptuns << neptun.upcase
+      begin
+        file = params[:import_file]
+        importer = Importers::ImporterFactory.build_importer_by_heuristic(file)
+        found, missing = importer.exiting_students
+        found.each do |st|
+          rendered_students << [st.name, st.neptun]
+          next_neptuns << st.neptun.upcase
+        end
+        missing.each do |st|
+          current_neptuns << st.neptun.upcase
+        end
+      rescue NoMemoryError
+        # Ignored
       end
     end
 

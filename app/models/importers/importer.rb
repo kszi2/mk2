@@ -7,8 +7,11 @@ class Importers::Importer
     @file = file
   end
 
-  # Parses and returns a list of Student objects
+  # Parses and returns a list of all Student objects
   # They are not saved.
-  def students
-  end
+  def students = []
+
+  # Parses and returns a list of already existing Students and a list of (unsaved)
+  # students that do not exist
+  def exiting_students = [[], []]
 end

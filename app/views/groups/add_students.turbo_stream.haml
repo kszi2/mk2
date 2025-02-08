@@ -8,7 +8,8 @@
 
           %div
             %h3.text-md Import from file
-            = file_field_tag :import_file, accept: ".csv"
+            = render "students/import_formats"
+            = file_field_tag :import_file, accept: "text/csv,text/html"
 
           .w-full.flex.justify-end
             = render Inputs::ButtonComponent.new(type: :primary,
