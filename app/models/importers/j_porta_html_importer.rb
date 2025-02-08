@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Importers::JPortaHTMLImporter < Importers::Importer
+class Importers::JPortaHtmlImporter < Importers::Importer
   def students
     students = []
 

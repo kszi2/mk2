@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Importers::CSVImporter < Importers::Importer
+class Importers::CsvImporter < Importers::Importer
   def students
     students = []
 
