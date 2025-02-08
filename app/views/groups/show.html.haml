@@ -1,7 +1,7 @@
 = mk_show_for @course, @group do |s|
   - s.with_property :name
   - s.with_property :course_type, name: 'Group type'
-  - s.with_property :semester, value: "#{@group.first_date.year}-#{@group.first_date.year + 1}/#{@group.semester}"
+  - s.with_property :semester, value: @group.semester_text
 
   - s.with_custom name: "Remaining dates" do
     - @group.dates_for_class.filter { |date| date >= Date.today }.each do |date|

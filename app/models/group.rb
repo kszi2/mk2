@@ -62,6 +62,15 @@ class Group < ApplicationRecord
     PdfDatum.from_raw(pdf.render, "#{name}_#{real_date}.pdf")
   end
 
+  def semester_text
+    year = first_date.year
+    if first_date.first_semester?
+      "#{year}-#{year + 1}/1"
+    else
+      "#{year - 1}-#{year}/2"
+    end
+  end
+
   private
 
   def render_to_pdf(me, golyok, real_date, title, pdf)

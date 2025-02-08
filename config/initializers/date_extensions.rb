@@ -1,6 +1,6 @@
 class Date
   def first_semester?
-    self.month >= 7 || self.month <= 2
+    self.month >= 7 || self.month < 2
   end
 
   def semester_number
@@ -21,6 +21,6 @@ class Date
   end
 
   def Date.second_semester_range(curr_year = Date.today.year)
-    Date.new(curr_year, 2, 1)..Date.new(curr_year + 1, 6, 30)
+    Date.new(curr_year, 2, 1)..Date.new(curr_year, 6, 30)
   end
 end
