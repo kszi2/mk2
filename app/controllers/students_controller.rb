@@ -26,15 +26,32 @@ class StudentsController < ApplicationController
   end
 
   def bulk_create
+    @invalid_format = false
+
     file = params.require('file')
-    @from_import = true
-    @import_errors = Student.import(file.path)
-    logger.error "Import errors: #{@import_errors}" unless @import_errors.empty?
+    importer = Importers::ImporterFactory.build_importer_by_heuristic(file)
+    if importer.nil?
+      @new_students = []
+      @filename = file.original_filename
+      @invalid_format = true
+      @students = Student.order(:name).page params[:page]
+      render :index
+      return
+    end
+
+    @new_students = importer.students
+    @have_failed = false
+    @new_students.each do |student|
+      @have_failed = true unless student.save
+    end
 
     respond_to do |format|
-      format.html { redirect_to students_path,
-                                notice: "Imported students: #{helpers.pluralize @import_errors.length, 'error'}" }
-      format.json { render :show, status: :created, location: @import_errors }
+      format.html { redirect_to students_path }
+      format.turbo_stream {
+        @students = Student.order(:name).page params[:page]
+        render :index
+      }
+      format.json { render :show, status: :created }
     end
   end
 

@@ -1,0 +1,34 @@
+= turbo_stream.replace "student-imports" do
+  = turbo_frame_tag "student-imports", class: "block w-full", src: import_students_path
+
+= turbo_stream.replace "listing_students" do
+  = render DataTableComponent.new(objects: @students,
+                                  type: Student,
+                                  col_config: [ { field: :name },
+                                    { field: :neptun, hide: :sm },
+                                  ])
+
+- if @invalid_format
+  = turbo_stream.append "flash-holder" do
+    = render FlashComponent.new(type: :alert, title: "Import") do |f|
+      - f.with_body do
+        Could not import #{@filename}. Check if it is in the correct format.
+
+- unless @new_students.empty?
+  = turbo_stream.append "flash-holder" do
+    = render FlashComponent.new(type: @have_failed ? :notice : :success, title: "Import") do |f|
+      - f.with_body do
+        - if @have_failed
+          Students failed importing:
+          .flex.flex-col.gap-2
+            - @new_students.filter { |s| s.invalid? }.each do |student|
+              %details.h-full.px-2.py-1.bg-wa-surface-default.rounded
+                %summary
+                  = student.name
+                  %span.font-mono (#{student.neptun})
+
+                .text-wa-danger-fill-loud.flex.flex-col.gap-1.pt-1
+                  - student.errors.full_messages.each do |message|
+                    = message
+        - else
+          All students imported successfully!

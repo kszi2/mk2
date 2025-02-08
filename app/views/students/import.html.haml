@@ -1,5 +1,50 @@
-= turbo_frame_tag "student-imports" do
-  = form_tag bulk_create_students_path, method: :post, multipart: true do
+= turbo_frame_tag "student-imports", class: "w-full" do
+  %h6.text-lg Accepted formats
+  %ul
+    %li
+      %details
+        %summary CSV
+        %dl.grid.grid-flow-row.gap-2(class="grid-cols-2 md:grid-cols-4")
+          %dt.font-semibold.flex.items-end
+            Extension
+            %hr.grow.border-wa-text-quiet.border-dashed.border-t.mb-1
+          %dd .csv
+
+          %dt.font-semibold.flex.items-end
+            Separator
+            %hr.grow.border-wa-text-quiet.border-dashed.border-t.mb-1
+          %dd ,
+
+          %dt.font-semibold.flex.items-end
+            Encoding
+            %hr.grow.border-wa-text-quiet.border-dashed.border-t.mb-1
+          %dd UTF-8 w/o BOM (Excel uses BOM)
+
+          %dt.font-semibold.flex.items-end
+            Columns (others ignored)
+            %hr.grow.border-wa-text-quiet.border-dashed.border-t.mb-1
+          %dd name, neptun
+
+    %li
+      %details
+        %summary JPorta HTML
+        %dl.grid.grid-flow-row.gap-2(class="grid-cols-2 md:grid-cols-4 lg:grid-cols-6")
+          %dt.font-semibold.flex.items-end
+            Extension
+            %hr.grow.border-wa-text-quiet.border-dashed.border-t.mb-1
+          %dd .html, .htm
+
+          %dt.font-semibold.flex.items-end
+            Title tag
+            %hr.grow.border-wa-text-quiet.border-dashed.border-t.mb-1
+          %dd.font-mono *JPORTA*
+
+          %dt.font-semibold.flex.items-end
+            Body
+            %hr.grow.border-wa-text-quiet.border-dashed.border-t.mb-1
+          %dd JPorta group page
+
+  = form_tag bulk_create_students_path, method: :post, multipart: true, class: "mt-4" do
     .flex.flex-col.gap-2
       = file_field_tag :file
       = submit_button_tag "Import"

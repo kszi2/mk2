@@ -1,54 +1,55 @@
-.flex.justify-end.mb-4.items-start.flex-wrap-reverse.gap-y-2._(class="sm:justify-between")
-  .w-full.flex.justify-start._(class="sm:w-auto")
-    = paginate @objects, window: 1
-  - if @inline_create
-    = turbo_frame_tag "#{@type.name.underscore}_body", class: "min-w-[50%]" do
-      .flex.justify-end
-        = render ButtonComponent.new(type: :primary,
-                                     text: "New #{@type.name.humanize}",
-                                     href: url_for(action: :new))
-  - else
-    = render ButtonComponent.new(type: :primary,
-                                 text: "New #{@type.name.humanize}",
-                                 href: url_for(action: :new),
-                                 data: data_turbo_location)
+= turbo_frame_tag "listing_" + @type.name.underscore.pluralize do
+  .flex.justify-end.mb-4.items-start.flex-wrap-reverse.gap-y-2._(class="sm:justify-between")
+    .w-full.flex.justify-start._(class="sm:w-auto")
+      = paginate @objects, window: 1
+    - if @inline_create
+      = turbo_frame_tag "#{@type.name.underscore}_body", class: "min-w-[50%]" do
+        .flex.justify-end
+          = render ButtonComponent.new(type: :primary,
+                                       text: "New #{@type.name.humanize}",
+                                       href: url_for(action: :new))
+    - else
+      = render ButtonComponent.new(type: :primary,
+                                   text: "New #{@type.name.humanize}",
+                                   href: url_for(action: :new),
+                                   data: data_turbo_location)
 
-.rounded.shadow-sm.rounded.w-full.overflow-visible.min-h-80
-  %table.w-full.overflow-visible
-    %thead.sticky.top-0.text-left
-      %tr{class: "*:p-3 *:sm:p-4 *:border-wa-neutral-border-normal *:bg-wa-neutral-fill-loud "}
-        - @col_config.each_with_index do |cfg, i|
-          %th{class: nth_th(i, cfg)}
-            %span.uppercase= header_name(cfg)
-            - if cfg[:filtered]
-              = render FilterComponent.new(controller: @type.name.underscore.pluralize,
-                                           field: cfg[:field],
-                                           current_filters: @filters)
-        %th(class="border-t border-r text-right") Actions
-
-    %tbody
-      - @objects.each do |template|
-        %tr{id: dom_id(template),
-            class: "even:bg-wa-neutral-fill-normal odd:bg-wa-neutral-fill-quiet hover:bg-wa-surface-raised border-b" +
-                   " border-wa-brand-border-loud last:border-wa-neutral-border-normal last:rounded-b *:p-4"
-            }
+  .rounded.shadow-sm.rounded.w-full.overflow-visible.min-h-80
+    %table.w-full.overflow-visible
+      %thead.sticky.top-0.text-left
+        %tr{class: "*:p-3 *:sm:p-4 *:border-wa-neutral-border-normal *:bg-wa-neutral-fill-loud "}
           - @col_config.each_with_index do |cfg, i|
-            %td{class: nth_td(i, cfg)}= value_of(template, cfg)
-          %td(class="border-r border-wa-neutral-border-normal")
-            .flex.justify-end._(class="sm:hidden")
-              = render ButtonComponent.new(type: :primary, text: nil, href: url_for(full_obj_path(template)), size: :small, rounding: :grouped, data: { turbo_frame: "_top" }) do
-                %i.fa-regular.fa-arrow-up-right-from-square
-            .justify-end.hidden._(class="sm:flex")
-              = render ButtonComponent.new(type: :primary, text: nil, href: url_for(full_obj_path(template)), size: :small, rounding: :grouped, data: { turbo_frame: "_top" }) do
-                %i.fa-regular.fa-arrow-up-right-from-square
-              = render ButtonComponent.new(type: :secondary, text: nil, href: url_for(id: template, action: :edit), size: :small, rounding: :grouped, data: { turbo_frame: "_top" }) do
-                %i.fa-regular.fa-pen-to-square
-              = render ButtonComponent.new(type: :destroy,
-                                           text: nil,
-                                           href: url_for(id: template, action: :destroy),
-                                           size: :small,
-                                           rounding: :grouped,
-                                           data: { turbo_confirm: "Are your sure you want to destroy #{identify_obj(template)}?",
-                                                   turbo_method: :delete,
-                                           }) do
-                %i.fa-regular.fa-trash-can-xmark
+            %th{class: nth_th(i, cfg)}
+              %span.uppercase= header_name(cfg)
+              - if cfg[:filtered]
+                = render FilterComponent.new(controller: @type.name.underscore.pluralize,
+                                             field: cfg[:field],
+                                             current_filters: @filters)
+          %th(class="border-t border-r text-right") Actions
+
+      %tbody
+        - @objects.each do |template|
+          %tr{id: dom_id(template),
+              class: "even:bg-wa-neutral-fill-normal odd:bg-wa-neutral-fill-quiet hover:bg-wa-surface-raised border-b" +
+                     " border-wa-brand-border-loud last:border-wa-neutral-border-normal last:rounded-b *:p-4"
+              }
+            - @col_config.each_with_index do |cfg, i|
+              %td{class: nth_td(i, cfg)}= value_of(template, cfg)
+            %td(class="border-r border-wa-neutral-border-normal")
+              .flex.justify-end._(class="sm:hidden")
+                = render ButtonComponent.new(type: :primary, text: nil, href: url_for(full_obj_path(template)), size: :small, rounding: :grouped, data: { turbo_frame: "_top" }) do
+                  %i.fa-regular.fa-arrow-up-right-from-square
+              .justify-end.hidden._(class="sm:flex")
+                = render ButtonComponent.new(type: :primary, text: nil, href: url_for(full_obj_path(template)), size: :small, rounding: :grouped, data: { turbo_frame: "_top" }) do
+                  %i.fa-regular.fa-arrow-up-right-from-square
+                = render ButtonComponent.new(type: :secondary, text: nil, href: url_for(id: template, action: :edit), size: :small, rounding: :grouped, data: { turbo_frame: "_top" }) do
+                  %i.fa-regular.fa-pen-to-square
+                = render ButtonComponent.new(type: :destroy,
+                                             text: nil,
+                                             href: url_for(id: template, action: :destroy),
+                                             size: :small,
+                                             rounding: :grouped,
+                                             data: { turbo_confirm: "Are your sure you want to destroy #{identify_obj(template)}?",
+                                                     turbo_method: :delete,
+                                             }) do
+                  %i.fa-regular.fa-trash-can-xmark
