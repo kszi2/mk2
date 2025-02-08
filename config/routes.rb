@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "index/index"
   devise_for :users
   apipie
   mount GoodJob::Engine => 'good_job'
@@ -62,5 +63,5 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
-  root "courses#index"
+  root "index#index"
 end

@@ -44,7 +44,7 @@ class DataTableComponent < ViewComponent::Base
   end
 
   def data_turbo_location
-    return { } if @inline_create
+    return {} if @inline_create
     { turbo_frame: "_top" }
   end
 
@@ -72,7 +72,13 @@ class DataTableComponent < ViewComponent::Base
   end
 
   def full_obj_path(obj)
-    @parents + [obj]
+    @parents.map do |p|
+      if p.respond_to?(:call)
+        p.(obj)
+      else
+        p
+      end
+    end + [obj]
   end
 
   def identify_obj(obj)

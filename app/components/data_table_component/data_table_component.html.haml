@@ -48,11 +48,16 @@
                 .justify-end.hidden._(class="sm:flex")
                   = render ButtonComponent.new(type: :primary, text: nil, href: url_for(full_obj_path(template)), size: :small, rounding: :grouped, data: { turbo_frame: "_top" }) do
                     %i.fa-regular.fa-arrow-up-right-from-square
-                  = render ButtonComponent.new(type: :secondary, text: nil, href: url_for(id: template, action: :edit), size: :small, rounding: :grouped, data: { turbo_frame: "_top" }) do
+                  = render ButtonComponent.new(type: :secondary,
+                                               text: nil,
+                                               href: url_for(full_obj_path(template)) + "/edit",
+                                               size: :small,
+                                               rounding: :grouped,
+                                               data: { turbo_frame: "_top" }) do
                     %i.fa-regular.fa-pen-to-square
                   = render ButtonComponent.new(type: :destroy,
                                                text: nil,
-                                               href: url_for(id: template, action: :destroy),
+                                               href: url_for(full_obj_path(template)),
                                                size: :small,
                                                rounding: :grouped,
                                                data: { turbo_confirm: "Are your sure you want to destroy #{identify_obj(template)}?",
