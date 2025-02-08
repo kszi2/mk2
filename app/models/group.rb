@@ -4,6 +4,10 @@ class Group < ApplicationRecord
   belongs_to :course
   belongs_to :course_type, optional: true
   has_and_belongs_to_many :students
+  has_and_belongs_to_many :teachers,
+                          class_name: User.name,
+                          association_foreign_key: :user_id,
+                          join_table: "groups_teachers"
 
   validates :name, presence: true, uniqueness: { scope: :course_id }
   validates :first_date, presence: true

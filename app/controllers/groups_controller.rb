@@ -1,6 +1,11 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_group, only: %i[ show edit update destroy add_students remove_student send_attendance ]
+  before_action :set_group, only: %i[
+    show edit update destroy
+    add_teacher associate_teacher remove_teacher
+    add_students remove_student
+    send_attendance
+  ]
   before_action :set_course
 
   # GET /groups or /groups.json
@@ -13,6 +18,7 @@ class GroupsController < ApplicationController
 
   # GET /groups/1 or /groups/1.json
   def show
+    @teachers = @group.teachers.page(params[:page]).per(params[:per_page] || 25)
     respond_to do |format|
       format.html
       format.json
@@ -34,6 +40,31 @@ class GroupsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to course_group_path(@course, @group), notice: "Attendance sheet was successfully queued for sending." }
     end
+  end
+
+  def add_teacher
+    @candidates = User.joins("LEFT JOIN groups_teachers ON groups_teachers.user_id = users.id")
+                      .where("COALESCE(groups_teachers.group_id, -99) <> :group_id", group_id: @group.id)
+                      .all
+  end
+
+  def associate_teacher
+    user_params = params.expect(group: [:user_id])
+    teach = User.public_find(user_params[:user_id])
+    @group.teachers << teach
+    @group.save!
+
+    @teachers = @group.teachers.page(params[:page]).per(params[:per_page] || 25)
+    render partial: "teachers"
+  end
+
+  def remove_teacher
+    @user = User.public_find(params[:id])
+    @group.teachers.delete(@user)
+    @group.save!
+
+    @teachers = @group.teachers.page(params[:page]).per(params[:per_page] || 25)
+    render partial: "teachers"
   end
 
   # GET /groups/new

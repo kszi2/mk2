@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_22_134313) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_08_135038) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -183,6 +183,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_22_134313) do
   create_table "groups_students", id: false, force: :cascade do |t|
     t.bigint "student_id", null: false
     t.bigint "group_id", null: false
+  end
+
+  create_table "groups_teachers", id: false, force: :cascade do |t|
+    t.bigint "group_id", null: false
+    t.bigint "user_id", null: false
   end
 
   create_table "marked_points", force: :cascade do |t|

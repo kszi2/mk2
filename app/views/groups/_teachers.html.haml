@@ -1,0 +1,20 @@
+= turbo_frame_tag "group-teachers" do
+  = render DataTableComponent.new(objects: @teachers,
+                                  parents: [],
+                                  type: User,
+                                  col_config: [ { field: :username } ]) do |table|
+    - table.with_row_actions do
+      .flex.justify-end
+        = render Inputs::ButtonComponent.new(type: :destroy,
+                                     text: nil,
+                                     href: course_group_remove_teacher_path(@course, @group, table.current_object),
+                                     size: :small,
+                                     data: { turbo_confirm: "Are your sure you want to disassociate this teacher?",
+                                             turbo_method: :delete,
+                                     }) do
+          %i.fa-regular.fa-link-slash
+    - table.with_table_actions do
+      = turbo_frame_tag "group-teachers-form" do
+        = render Inputs::ButtonComponent.new(type: :primary,
+                                                   text: "New teacher",
+                                                   href: course_group_teachers_path(@course, @group))

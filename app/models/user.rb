@@ -8,6 +8,7 @@ class User < ApplicationRecord
   validates :password, presence: true, on: :create
   validate :confirmation_matches
 
+  has_and_belongs_to_many :taught_groups, class_name: Group.name, join_table: "groups_teachers"
   before_validation :remove_blank_email
 
   # TODO: a proper admin system

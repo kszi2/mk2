@@ -32,3 +32,5 @@
       - t.with_page(title: "Submissions") do
         = turbo_frame_tag "group-submissions-frame", src: course_group_submissions_path(@course, @group) do
           = loader_tag
+      - t.with_page(title: "Teachers") do
+        = render "teachers"

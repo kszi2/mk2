@@ -33,6 +33,10 @@ Rails.application.routes.draw do
       post "add_students", to: "groups#add_students", as: :add_students
       post "prepare_students", to: "groups#prepare_students", as: :prepare_students
 
+      get "teachers", to: "groups#add_teacher", as: :teachers
+      post "teachers", to: "groups#associate_teacher"
+      delete "teachers/:id", to: "groups#remove_teacher", as: :remove_teacher
+
       delete ":neptun", to: "groups#remove_student", as: :remove_student
 
       get "submissions/filter_for" => "submissions#filter_for", as: :filter_for

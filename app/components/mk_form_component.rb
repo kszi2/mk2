@@ -8,7 +8,7 @@ class MkFormComponent < ViewComponent::Base
     render Inputs::ErrorableFieldComponent.new(object: @true_object, field: field) do |ec|
       ec.proper_field(type,
                       name: field_name(obj.class.name.underscore, field),
-                      value: obj.send(field),
+                      value: options[:value] || obj.send(field),
                       enabled: options[:enabled] || true,
                       id: field_id(obj, field)) do |input|
         if block.nil?
@@ -22,9 +22,11 @@ class MkFormComponent < ViewComponent::Base
 
   renders_one :cancel
 
-  def initialize(*object, inline: true)
-    @inline = inline
+  def initialize(*object, **opts)
+    puts "<> #{object.inspect}, <><> #{opts.inspect}"
+    @inline = opts[:inline] || true
     @object = object
+    @opts = opts.except(:inline)
     if object.is_a? Array
       @true_object = object.last
       @parent_objects = object[0..-2]
@@ -39,7 +41,13 @@ class MkFormComponent < ViewComponent::Base
     { turbo_frame: "_top" }
   end
 
+  def submit_url
+    return @opts[:url] if @opts.key? :url
+    url_for(@object)
+  end
+
   def back_url
+    return @opts[:back_url] if @opts.key? :back_url
     # Return object's path if it is already persisted, otherwise parent's path
     # and fallback to root if there are no parents
     return url_for(@object) unless @true_object.new_record?

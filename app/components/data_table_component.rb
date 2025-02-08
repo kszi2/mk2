@@ -4,6 +4,11 @@ class DataTableComponent < ViewComponent::Base
   include Turbo::FramesHelper
   include Inputs
 
+  renders_one :table_actions
+  renders_one :row_actions
+
+  attr_reader :current_object
+
   def initialize(objects:, col_config:, type:, parents: [], filters: {}, inline_create: false)
     @objects = objects
     @col_config = col_config
@@ -12,6 +17,10 @@ class DataTableComponent < ViewComponent::Base
     @filters = filters
     @inline_create = inline_create
   end
+
+  private
+
+  attr_writer :current_object
 
   def nth_th(idx, cfg = {})
     return "border-t border-l text-semibold" if idx == 0

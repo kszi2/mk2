@@ -1,0 +1,7 @@
+= turbo_frame_tag "group-teachers-form" do
+  = render MkFormComponent.new @course, @group,
+                               url: course_group_teachers_path(@course, @group) do |form|
+    - form.with_field :select, :user_id, value: 0 do |s|
+      - s.with_label { "Teacher" }
+      - @candidates.each do |user|
+        - s.with_option(value: user.public_id) { user.username }
