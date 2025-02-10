@@ -3,4 +3,4 @@
   - f.with_property :course, name: "Connected course"
 
   - f.with_custom name: "" do
-    = render Inputs::TextareaComponent.new(name: "Data", value: @template.data, enabled: true, id: object_id)
+    = render Inputs::TextareaComponent.new(name: "Data", value: @template.data, enabled: true, id: object_id, class: "w-full")
