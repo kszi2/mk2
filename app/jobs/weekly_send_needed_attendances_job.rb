@@ -5,13 +5,12 @@ class WeeklySendNeededAttendancesJob < ApplicationJob
     today = Date.today
     next_week = Date.today + 1.week
 
-    semester = today.semester_number
     real_semester = today.semester_range
 
     first_iteration = true
     pdf = Prawn::Document::new(page_size: 'A4') do |pdf|
       Group.includes(:course, :students)
-           .where(semester: semester, first_date: real_semester)
+           .where(first_date: real_semester)
            .find_each(batch_size: 100) do |group|
         # skip group, unless next week has a class
         next unless group.next_class_date.in?(today..next_week)
