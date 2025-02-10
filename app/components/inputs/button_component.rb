@@ -7,7 +7,7 @@ class Inputs::ButtonComponent < ViewComponent::Base
 
   renders_one :prefix
 
-  def initialize(type:, text:, href:, size: :medium, enabled: true, id: nil, name: nil, data: {}, rounding: :all)
+  def initialize(type:, text:, href:, size: :medium, enabled: true, id: nil, name: nil, data: {}, button_type: nil, rounding: :all)
     @type = type
     @text = text
     @href = href
@@ -17,11 +17,17 @@ class Inputs::ButtonComponent < ViewComponent::Base
     @rounding = rounding
     @name = name || (text.present? ? text.underscore : nil)
     @id = id || object_id
+    @button_type = button_type
   end
 
   def real_content
     return content if content?
     @text
+  end
+
+  def button_type
+    return {} if @button_type.nil?
+    { type: @button_type }
   end
 
   def true_button?

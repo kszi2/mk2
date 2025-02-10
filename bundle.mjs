@@ -13,6 +13,6 @@ esbuild.build({
   plugins: [
     ImportGlobPlugin.default()
   ],
-  minify: true,
+  minify: process.argv[2] !== "--no-minify",
   treeShaking: true
 })

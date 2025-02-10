@@ -53,6 +53,8 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  post "templates/listings/:course_id" => "templates#course_listing", as: :course_listing
   resources :templates
 
   resources :rating_styles

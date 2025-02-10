@@ -59,6 +59,12 @@ class TemplatesController < ApplicationController
     end
   end
 
+  def course_listing
+    @course = Course.public_find(params[:course_id])
+    @templates = @course.templates.order(:name)
+    @holder_id = params[:id]
+  end
+
   private
 
   def load_courses
@@ -70,6 +76,6 @@ class TemplatesController < ApplicationController
   end
 
   def template_params
-    params.require(:template).permit(:name, :course_id, :data)
+    params.expect(template: [:name, :course_id, :data])
   end
 end

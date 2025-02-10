@@ -7,12 +7,17 @@
       = form_tag(update_url, method: :put) do
         = number_input_tag @note, :points_cost, precision: 0.5
         %label.block.mt-2._(for="#{dom_id(@note, :reason)}") Reasoning
-        = render Inputs::TextareaComponent.new(name: "marking_note[reason]",
-                                               value: @note.reason,
-                                               enabled: true,
-                                               id: dom_id(@note, :reason),
-                                               class: 'w-full',
-                                               data: { action: "input->rating-note-edit-component#textChanged" })
+        .relative.w-full
+          = render Inputs::TextareaComponent.new(name: "marking_note[reason]",
+                                                 value: @note.reason,
+                                                 enabled: true,
+                                                 id: dom_id(@note, :reason),
+                                                 class: 'w-full',
+                                                 data: { action: "input->rating-note-edit-component#textChanged",
+                                                   rating_note_edit_component: { target: "body" },
+                                                 })
+          .absolute.right-0.top-1.w-12.h-12.py-1.overflow-hidden(class="group/template-button")
+            = render TemplatesComponent.new(sibling: dom_id(@note), course_id: @course.public_id, templates: @course.templates)
 
         .mt-3.w-full.flex.justify-between.align-top
           .h-fit

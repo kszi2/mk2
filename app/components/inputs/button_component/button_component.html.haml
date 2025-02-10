@@ -1,5 +1,5 @@
 - if true_button?
-  %button.w-fit.h-fit{id: @id, name: @name, class: "group/button #{rounding_styles} #{size_styles} #{color_styles}", data: @data, disabled: !@enabled}
+  %button.w-fit.h-fit{id: @id, name: @name, **button_type, class: "group/button #{rounding_styles} #{size_styles} #{color_styles}", data: @data, disabled: !@enabled}
     - if prefix?
       = prefix
     = real_content

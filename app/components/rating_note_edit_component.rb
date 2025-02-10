@@ -7,6 +7,7 @@ class RatingNoteEditComponent < ViewComponent::Base
 
   def initialize(note:)
     @note = note
+    @course = @note.marked_point.submission.coursework.course
     @preface_comp = NotePrefaceComponent.new(id: @note.id,
                                              text: @note.reason || "New note",
                                              fixed: @note.fixed,

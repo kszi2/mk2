@@ -9,7 +9,7 @@ class Shells::ShellComponent < ViewComponent::Base
   attr_reader :full_objects
   attr_accessor :do_breadcrumbs
 
-  def initialize(objects:, do_frame: true, do_breadcrumbs: true)
+  def initialize(objects:, do_frame: true, do_breadcrumbs: true, **opts)
     if objects.kind_of?(Array)
       @full_objects = objects
     else
@@ -21,6 +21,7 @@ class Shells::ShellComponent < ViewComponent::Base
     @frame_id = "#{@head_object.class.name.underscore}_body".to_sym
     @do_frame = do_frame
     @do_breadcrumbs = do_breadcrumbs
+    @opts = opts
   end
 
   def shell_body(&block)
@@ -40,6 +41,10 @@ class Shells::ShellComponent < ViewComponent::Base
       url_for(@tail_objects)
     end
   end
+
+  protected
+
+  def option(key) = @opts[key]
 
   private
 

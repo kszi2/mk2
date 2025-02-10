@@ -1,0 +1,12 @@
+.h-full.w-full.bg-wa-brand-fill-loud.rounded-l-lg.transition-all.ease-in-out.cursor-pointer.select-none.items-center.justify-center{class:
+    "hidden sm:flex ml-[80%] group-hover/template-button:ml-1",
+  data: {
+    controller: "templates-component",
+    action: "click->templates-component#openListings",
+    templates_component: {
+      course_value: @course_id,
+      rating_note_edit_component: { outlet: sibling_outlet }
+    }
+  }
+}
+  %i.text-lg.fa-regular.fa-bookmark

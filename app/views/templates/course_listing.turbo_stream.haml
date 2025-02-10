@@ -1,0 +1,8 @@
+- if @templates.empty?
+  = turbo_stream.append "flash-holder" do
+    = render FlashComponent.new(type: :notice, title: "Templates", body_text: "No templates for course #{@course.name}")
+- else
+  = turbo_stream.append "sidebar-holder" do
+    = render SidebarComponent.new(title: "Templates") do
+      .flex.flex-col.gap-2
+        = render RatingNoteEditComponent::TemplateComponent.with_collection(@templates, holder_id: @holder_id)

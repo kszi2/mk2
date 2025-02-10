@@ -46,6 +46,11 @@ class MkFormComponent < ViewComponent::Base
     url_for(@object)
   end
 
+  def form_method
+    return @opts[:method] if @opts.key? :method
+    :post
+  end
+
   def back_url
     return @opts[:back_url] if @opts.key? :back_url
     # Return object's path if it is already persisted, otherwise parent's path

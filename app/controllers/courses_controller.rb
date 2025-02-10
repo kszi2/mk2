@@ -66,7 +66,7 @@ class CoursesController < ApplicationController
   end
 
   def set_course
-    @course = Course.includes(:default_rating_style).public_find(params[:id])
+    @course = Course.includes(:default_rating_style, :templates).public_find(params[:id])
   end
 
   def course_params
