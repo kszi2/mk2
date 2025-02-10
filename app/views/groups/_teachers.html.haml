@@ -16,5 +16,5 @@
     - table.with_table_actions do
       = turbo_frame_tag "group-teachers-form" do
         = render Inputs::ButtonComponent.new(type: :primary,
-                                                   text: "New teacher",
-                                                   href: course_group_teachers_path(@course, @group))
+                                             text: "New teacher",
+                                             href: course_group_teachers_path(@course, @group))

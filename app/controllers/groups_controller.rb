@@ -45,7 +45,13 @@ class GroupsController < ApplicationController
   def add_teacher
     @candidates = User.joins("LEFT JOIN groups_teachers ON groups_teachers.user_id = users.id")
                       .where("COALESCE(groups_teachers.group_id, -99) <> :group_id", group_id: @group.id)
+                      .where("username <> 'admin'")
                       .all
+    if @candidates.empty?
+      render "no_more_teachers"
+    else
+      render "add_teacher"
+    end
   end
 
   def associate_teacher
@@ -55,7 +61,7 @@ class GroupsController < ApplicationController
     @group.save!
 
     @teachers = @group.teachers.page(params[:page]).per(params[:per_page] || 25)
-    render partial: "teachers"
+    render "refresh_teacher"
   end
 
   def remove_teacher
