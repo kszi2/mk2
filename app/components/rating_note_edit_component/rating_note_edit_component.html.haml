@@ -4,7 +4,7 @@
   }, class: "group/note-detail" }
     = render @preface_comp
     .mt-2.border-t.border-wa-neutral-border-quiet
-      = form_tag(update_url, method: :put) do
+      = form_tag(update_url, method: update_method) do
         = number_input_tag @note, :points_cost, precision: 0.5
         %label.block.mt-2._(for="#{dom_id(@note, :reason)}") Reasoning
         .relative.w-full

@@ -6,8 +6,9 @@ class MarkedPointsController < ApplicationController
   def index
     @marked_points = MarkedPoint.joins(:rating_point)
                                 .order("rating_points.ordering")
-                                .includes(:rating_point, :marking_notes)
+                                .includes(:rating_point)
                                 .where(submission: @submission)
+    @marked_points.each { |mp| mp.marking_notes.load }
   end
 
   private

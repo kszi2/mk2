@@ -3,7 +3,7 @@ class MarkedPoint < ApplicationRecord
 
   belongs_to :submission
   belongs_to :rating_point
-  has_many :marking_notes, dependent: :delete_all
+  has_many :marking_notes, -> { order(created_at: :asc) }, dependent: :delete_all
 
   scope :criteria_points, ->(category = nil) do
     basic = eager_load(:marking_notes, :rating_point)

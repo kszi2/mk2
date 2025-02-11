@@ -39,6 +39,7 @@
               %td{class: nth_td(i, cfg)}= value_of(template, cfg)
             %td(class="border-r border-wa-neutral-border-normal")
               - if row_actions?
+                -# repulsive hackery, horrid design, abhorrent implementation
                 - self.current_object = template
                 = row_actions
               - else

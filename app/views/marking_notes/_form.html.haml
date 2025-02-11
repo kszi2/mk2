@@ -1,10 +1,4 @@
-= mk_edit_for @course, @group, @submission, @marked_point, @marking_note, do_breadcrumbs: false, method: :post do |edit|
-  - edit.with_form do |f|
-    - f.with_field({number: 0.5}, :points_cost)
-    - f.with_field :textarea, :reason
-
-    - f.with_cancel do
-      = turbo_frame_tag "marked-points-frame-canceller" do
-        - mid = @marking_note.blank? ? nil : @marking_note.id
-        = form_tag course_group_submission_marked_point_cancel_make_path(@course, @group, @submission, @marked_point, {marking_note_id: mid}) do
-          = cancel_button_tag("Cancel")
+= turbo_frame_tag "marked-points-frame-inner" do
+  = render RatingNoteEditComponent.new(note: @marking_note,
+                                       url: course_group_submission_marked_point_marking_notes_path(@course, @group, @submission, @marked_point),
+                                       method: :post)

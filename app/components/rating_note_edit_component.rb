@@ -5,7 +5,9 @@ class RatingNoteEditComponent < ViewComponent::Base
   include Turbo::FramesHelper
   include UrlHelper
 
-  def initialize(note:)
+  def initialize(note:, url: nil, method: :put)
+    @url = url
+    @method = method || :put
     @note = note
     @course = @note.marked_point.submission.coursework.course
     @preface_comp = NotePrefaceComponent.new(id: @note.id,
@@ -16,7 +18,13 @@ class RatingNoteEditComponent < ViewComponent::Base
                                              active: false)
   end
 
+  private
+
+  def update_method = @method
+
   def update_url
+    return @url if @url.present?
+
     mp = @note.marked_point
     subm = mp.submission
     cw = subm.coursework
