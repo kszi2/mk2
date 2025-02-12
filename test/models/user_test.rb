@@ -5,6 +5,11 @@ class UserTest < ActiveSupport::TestCase
     @user = User.new(username: "testuser", password: "password123", password_confirmation: "password123")
   end
 
+  test "user can be found by public id" do
+    assert_respond_to User, :public_find
+    assert_respond_to @user, :public_id
+  end
+
   test "valid user should be valid" do
     assert @user.valid?
   end
