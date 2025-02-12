@@ -31,11 +31,13 @@ jobs:
 
       - name: "Create test database"
         env:
+          TEST_RAILS_PG_HOST: test-db
           RAILS_ENV: test
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
         run: bin/rake parallel:create
       - name: "Run tests"
         env:
+          TEST_RAILS_PG_HOST: test-db
           RAILS_ENV: test
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
         run: bin/rake parallel:test
