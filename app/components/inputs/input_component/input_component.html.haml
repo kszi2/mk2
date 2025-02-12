@@ -6,5 +6,6 @@
   value: @value,
   step: active_step,
   class: "#{error_border_style} #{size_styles} focus:ring focus:ring-wa-brand-border-quiet",
-  disabled: !@enabled
+  disabled: !@enabled,
+  **@data
 }

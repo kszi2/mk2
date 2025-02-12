@@ -6,4 +6,5 @@
       - c.with_option { "" }
       - @courses.each do |course|
         - c.with_option(value: course[:id], current: @template.course_id) { course[:name] }
+    - f.with_field({number: 0.5}, :cost)
     - f.with_field :textarea, :data

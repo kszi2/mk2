@@ -10,8 +10,8 @@ export default class extends Controller {
     this.element.id = "_" + crypto.randomUUID();
   }
 
-  setText(text) {
-    this.ratingNoteEditComponentOutlet.setText(text);
+  setContent(text, value) {
+    this.ratingNoteEditComponentOutlet.setContent(text, value);
   }
 
   async openListings() {

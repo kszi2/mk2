@@ -8,5 +8,5 @@
     - f.with_field :select, :coursework_id do |s|
       - s.with_label { "Coursework" }
       - s.with_option { "" }
-      - @group.course.courseworks.each do |cw|
+      - @group.group_works.each do |cw|
         - s.with_option(value: cw.id, current: @submission.coursework_id) { cw.name }

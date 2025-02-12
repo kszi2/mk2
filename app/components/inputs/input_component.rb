@@ -7,7 +7,7 @@ class Inputs::InputComponent < Inputs::FormComponent
 
   renders_one :label
 
-  def initialize(type:, name:, value:, enabled:, id: nil, size: :normal)
+  def initialize(type:, name:, value:, enabled:, id: nil, size: :normal, data: {})
     if type.is_a?(Hash)
       raise ArgumentError.new("invalid type for InputComponent: #{type}") unless type.has_key?(:number)
 
@@ -17,6 +17,7 @@ class Inputs::InputComponent < Inputs::FormComponent
       @type = type
       @step = 1 # only used by number atm
     end
+    @data = if data then { data: data } else {} end
     @name = name
     @value = value
     @enabled = enabled

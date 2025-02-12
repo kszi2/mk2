@@ -1,11 +1,13 @@
-import { Controller } from "@hotwired/stimulus";
+import {Controller} from "@hotwired/stimulus";
 import $ from "jquery";
 
 export default class extends Controller {
-  static targets = [ "data" ];
-  static outlets = [ "templates-component" ]
+  static values = {cost: Number}
+  static targets = ["data"];
+  static outlets = ["templates-component"]
 
   setContentToTemplate() {
-    this.templatesComponentOutlet.setText($(this.dataTarget).text());
+    console.log("setContentToTemplate", this.costValue);
+    this.templatesComponentOutlet.setContent($(this.dataTarget).text(), this.costValue);
   }
 }

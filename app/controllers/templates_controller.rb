@@ -76,6 +76,6 @@ class TemplatesController < ApplicationController
   end
 
   def template_params
-    params.expect(template: [:name, :course_id, :data])
+    params.expect(template: [:name, :course_id, :data, :cost])
   end
 end

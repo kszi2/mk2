@@ -23,7 +23,6 @@ class MkFormComponent < ViewComponent::Base
   renders_one :cancel
 
   def initialize(*object, **opts)
-    puts "<> #{object.inspect}, <><> #{opts.inspect}"
     @inline = opts[:inline] || true
     @object = object
     @opts = opts.except(:inline)

@@ -2,10 +2,11 @@ import {Controller} from "@hotwired/stimulus";
 import $ from "jquery";
 
 export default class extends Controller {
-  static targets = [ "title", "body" ]
+  static targets = [ "title", "cost", "body" ]
 
-  setText(text) {
+  setContent(text, value) {
     $(this.bodyTarget).val(text);
+    if (value != null) $(this.costTarget).val(value);
   }
 
   textChanged(value) {

@@ -3,11 +3,13 @@ class Group < ApplicationRecord
 
   belongs_to :course
   belongs_to :course_type, optional: true
-  has_and_belongs_to_many :students
+  has_and_belongs_to_many :students, -> { order(:name) }
   has_and_belongs_to_many :teachers,
                           class_name: User.name,
                           association_foreign_key: :user_id,
                           join_table: "groups_teachers"
+
+  def group_works = Coursework.for_group(self)
 
   validates :name, presence: true, uniqueness: { scope: :course_id }
   validates :first_date, presence: true
@@ -82,12 +84,12 @@ class Group < ApplicationRecord
       'IBMPlexSans' => {
         normal: Rails.root.join("IBMPlexSans-Text.ttf"),
         italic: Rails.root.join("IBMPlexSans-Italic.ttf"),
-        bold:  Rails.root.join("IBMPlexSans-Bold.ttf"),
+        bold: Rails.root.join("IBMPlexSans-Bold.ttf"),
       },
       'IBMPlexMono' => {
         normal: Rails.root.join("IBMPlexMono-Text.ttf"),
         italic: Rails.root.join("IBMPlexMono-Italic.ttf"),
-        bold:  Rails.root.join("IBMPlexMono-Bold.ttf"),
+        bold: Rails.root.join("IBMPlexMono-Bold.ttf"),
       }
     )
     pdf.font "IBMPlexSans"

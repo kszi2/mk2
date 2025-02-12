@@ -49,6 +49,7 @@ module ComponentHelper
                                  value: obj.send(field),
                                  enabled: options[:enabled] || true,
                                  size: options[:size] || :normal,
+                                 data: options[:data] || {},
                                  id: field_id(obj, field)) do |input|
           input.with_label { field.to_s.humanize }
         end

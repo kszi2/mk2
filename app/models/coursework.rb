@@ -5,6 +5,13 @@ class Coursework < ApplicationRecord
   belongs_to :for_type, class_name: 'CourseType'
   has_many :rating_points
 
+  scope :for_group, ->(group) {
+    order(:name)
+      .where(active: true)
+      .where(course_id: group.course_id)
+      .where(for_type_id: group.course_type_id)
+  }
+
   validates :name, presence: true, uniqueness: { scope: :course_id }, length: { in: 2..1024 }
   validates :active, inclusion: { in: [true, false] }
   validates :for_type_id, presence: true

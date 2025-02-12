@@ -108,8 +108,8 @@ class SubmissionsController < ApplicationController
 
   def set_parents
     @group = Group.includes(:students).public_find(params.require(:group_id))
-    @course = Course.includes(:courseworks).public_find(params.require(:course_id))
-    @courseworks = @course.courseworks.where(for_type_id: @group.course_type_id)
+    @course = Course.public_find(params.require(:course_id))
+    @courseworks = @group.group_works
   end
 
   # Use callbacks to share common setup or constraints between actions.
