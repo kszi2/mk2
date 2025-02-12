@@ -24,8 +24,10 @@
             %th{class: nth_th(i, cfg)}
               %span.uppercase= header_name(cfg)
               - if cfg[:filtered]
-                = render FilterComponent.new(controller: @type.name.underscore.pluralize,
+                - controller = @type.name.underscore.pluralize
+                = render FilterComponent.new(controller: controller,
                                              field: cfg[:field],
+                                             clear_url: url_for(controller: controller, action: :index),
                                              current_filters: @filters)
           %th(class="border-t border-r text-right") Actions
 

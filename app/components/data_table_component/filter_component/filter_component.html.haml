@@ -20,7 +20,7 @@
           %i.z-50.fa-regular.fa-xmark._(class="-translate-y-[.2rem] group-hover/x:text-wa-danger-fill-normal")
           .absolute.rounded-full.w-5.h-5.border.border-wa-danger-fill-normal.hidden(class="z-[-1] -top-[6.2%] -left-[.1rem] group-hover/x:inline")
       .max-h-40.overflow-auto.bg-wa-neutral-fill-loud.px-2.py-1.rounded
-        = turbo_frame_tag "#{@controller}_#{@field}_filter", loading: :lazy, src: url_for(controller: @controller, action: :filter_for, field: @field) do
+        = turbo_frame_tag "#{@controller}_#{@field}_filter", loading: :lazy, src: @filter_url do
           = loader_tag
 
       .flex.justify-between.mt-2
