@@ -10,6 +10,8 @@ class FlashComponent < ViewComponent::Base
     @body_text = body_text
   end
 
+  private
+
   def effective_body
     if body?
       logger.warn("Flash given both body an body_text, using body") if @body_text.present?
@@ -21,45 +23,55 @@ class FlashComponent < ViewComponent::Base
   def effective_icon
     return icon if icon?
     case @type
-    in :notice
+    when :notice
       render IconComponent.new(name: "square-exclamation")
-    in :success
+    when :success
       render IconComponent.new(name: "circle-check")
-    in :alert
+    when :alert
       render IconComponent.new(name: "hexagon-xmark")
+    else
+      invalid_type
     end
   end
 
   def border_color
     case @type
-    in :notice
+    when :notice
       "border-wa-neutral-border-normal hover:border-wa-neutral-border-loud"
-    in :success
+    when :success
       "border-wa-success-border-quiet hover:border-wa-success-border-normal"
-    in :alert
+    when :alert
       "border-wa-danger-border-quiet hover:border-wa-danger-border-normal"
+    else
+      invalid_type
     end
   end
 
   def bg_color
     case @type
-    in :notice
+    when :notice
       "bg-wa-neutral-fill-normal hover:bg-wa-neutral-fill-loud"
-    in :success
+    when :success
       "bg-wa-success-fill-quiet hover:bg-wa-success-fill-normal"
-    in :alert
+    when :alert
       "bg-wa-danger-fill-quiet hover:bg-wa-danger-fill-normal"
+    else
+      invalid_type
     end
   end
 
   def text_color
     case @type
-    in :notice
+    when :notice
       "text-wa-neutral-on-normal hover:text-wa-neutral-on-loud"
-    in :success
+    when :success
       "text-wa-success-on-quiet hover:text-wa-success-on-normal"
-    in :alert
+    when :alert
       "text-wa-danger-on-quiet hover:text-wa-danger-on-normal"
+    else
+      invalid_type
     end
   end
+
+  def invalid_type = raise ArgumentError, "type given is invalid: #{@type}"
 end
