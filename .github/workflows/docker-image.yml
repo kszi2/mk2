@@ -29,8 +29,14 @@ jobs:
 
       - run: chmod +x bin/* && sed -i "s/\r$//g" bin/* && sed -i 's/ruby\.exe$/ruby/' bin/*
 
-      - run: bin/rake parallel:create
-      - run: bin/rake parallel:test
+      - name: "Create test database"
+        env:
+          RAILS_ENV: test
+        run: bin/rake parallel:create
+      - name: "Run tests"
+        env:
+          RAILS_ENV: test
+        run: bin/rake parallel:test
 
   generate-vi:
     runs-on: ubuntu-latest
