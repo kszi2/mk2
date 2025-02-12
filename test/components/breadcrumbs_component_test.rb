@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'test_helper'
+
 class BreadcrumbsComponentTest < ViewComponent::TestCase
   test "non-array breadcrumbs component raises on init" do
     assert_raises ArgumentError, /Array/ do

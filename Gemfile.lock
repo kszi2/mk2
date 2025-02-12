@@ -271,6 +271,9 @@ GEM
     nokogiri (1.18.2-x86_64-linux-musl)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    parallel (1.26.3)
+    parallel_tests (4.9.0)
+      parallel
     pdf-core (0.10.0)
     pg (1.5.9)
     pg (1.5.9-x64-mingw-ucrt)
@@ -444,6 +447,7 @@ DEPENDENCIES
   listen
   lookbook (>= 2.3.4)
   memory_profiler
+  parallel_tests
   pg (~> 1.1)
   prawn (~> 2.5)
   puma (>= 5.0)

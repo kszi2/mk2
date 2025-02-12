@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'test_helper'
+
 class DataTableComponent::FilterComponentTest < ViewComponent::TestCase
   Sut = DataTableComponent::FilterComponent
   Controller = "submissions"
