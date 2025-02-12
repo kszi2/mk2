@@ -32,8 +32,6 @@ jobs:
       - run: bin/rake parallel:test
 
   generate-vi:
-    needs:
-      - test
     runs-on: ubuntu-latest
 
     steps:
