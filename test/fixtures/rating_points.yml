@@ -1,0 +1,14 @@
+lab1_complete_rating:
+  name: "Labor 1"
+  description: "Description"
+  available_points: 100
+  coursework: lab1
+  ordering: 2
+  category: "labor"
+
+lab1_crit:
+  name: "Labor 1 presence"
+  available_points: 0
+  coursework: lab1
+  ordering: 1
+  category: "presence"

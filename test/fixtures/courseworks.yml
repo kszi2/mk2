@@ -1,0 +1,5 @@
+lab1:
+  course: course1
+  name: "Labor 1"
+  active: true
+  for_type: lab
