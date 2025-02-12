@@ -1,5 +1,3 @@
-require 'csv'
-
 class Student < ApplicationRecord
   extend PublicFindable["S"]
 
@@ -14,24 +12,4 @@ class Student < ApplicationRecord
             length: { is: 6 },
             uniqueness: { case_sensitive: false },
             format: { with: /\A[a-zA-Z0-9]{6}\z/, message: "only allows 6 letters and numbers" }
-
-  def Student.import(file)
-    errors = []
-    i = 1
-
-    CSV.foreach(file, headers: true) do |row|
-      current_row = i
-      i = i + 1
-
-      data = row.to_hash
-      data["neptun"].upcase!
-      student = Student.create(neptun: data["neptun"], name: data["name"])
-      next if student.valid?
-
-      logger.warn "errors for: #{student.inspect}"
-      errors << { index: current_row, errors: student.errors.messages }
-    end
-
-    errors
-  end
 end
