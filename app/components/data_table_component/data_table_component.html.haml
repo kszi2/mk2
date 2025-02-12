@@ -28,6 +28,7 @@
                 = render FilterComponent.new(controller: controller,
                                              field: cfg[:field],
                                              clear_url: url_for(controller: controller, action: :index),
+                                             filter_url: url_for(controller: controller, action: :filter_for, field: cfg[:field]),
                                              current_filters: @filters)
           %th(class="border-t border-r text-right") Actions
 
