@@ -35,7 +35,10 @@ jobs:
         env:
           RAILS_ENV: test
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
-        run: bin/rake parallel:create
+        run: -<
+          bin/rake parallel:create && 
+          bin/rake parallel:prepare &&
+          bin/rake parallel:migrate
       - name: "Run tests"
         env:
           RAILS_ENV: test
