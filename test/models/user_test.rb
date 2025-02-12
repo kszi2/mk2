@@ -44,9 +44,9 @@ class UserTest < ActiveSupport::TestCase
     assert_nil @user.email
   end
 
-  test "email should have a valid format" do
-    invalid_emails = ["invalid", "user@", "@example.com", "user@example,com"]
-    invalid_emails.each do |invalid_email|
+  InvalidEmails = ["invalid", "user@", "@example.com", "user@example,com"]
+  InvalidEmails.each do |invalid_email|
+    test "invalid email (#{invalid_email}) is invalid" do
       @user.email = invalid_email
       refute @user.valid?, "#{invalid_email.inspect} should be invalid"
     end
