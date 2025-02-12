@@ -3,7 +3,7 @@ require "test_helper"
 class MarkedPointTest < ActiveSupport::TestCase
   setup do
     submission = Submission.create!(coursework: courseworks(:lab1), student: students(:xaver_teszt))
-    @rating_point = RatingPoint.create!(name: "Accuracy", coursework: courseworks(:lab1), available_points: 10)
+    @rating_point = RatingPoint.create!(name: "Accuracy", coursework: courseworks(:lab1), available_points: 10, ordering: 1)
     @marked_point = MarkedPoint.new(submission: submission, rating_point: @rating_point)
   end
 
