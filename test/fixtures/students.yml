@@ -1,3 +1,7 @@
 john_doe:
   name: "John Doe"
   neptun: "ABC123"
+
+xaver_teszt:
+  name: "Xavér Teszt"
+  neptun: "XTESZT"

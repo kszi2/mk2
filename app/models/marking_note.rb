@@ -4,7 +4,7 @@ class MarkingNote < ApplicationRecord
   belongs_to :marked_point
 
   validates :points_cost, presence: true, numericality: true
-  validates :fixed, inclusion: { in: [true, false] }, allow_nil: true
+  validates :fixed, inclusion: { in: [true, false] }, allow_blank: true
 
   def effective_cost
     return 0 if fixed
