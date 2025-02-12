@@ -99,7 +99,7 @@ jobs:
           push-to-registry: true
 
       - name: Build and push Docker image (MRI/Alpine)
-        id: push-mri
+        id: push-mri-alpine
         uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
         with:
           context: .
