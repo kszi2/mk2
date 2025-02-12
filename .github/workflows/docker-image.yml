@@ -14,11 +14,13 @@ jobs:
     runs-on: ubuntu-latest
 
     services:
-      test-db:
+      testdb:
+        image: postgres:17
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
-        image: postgres:17
+        ports:
+          - "5432:5432"
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
@@ -31,13 +33,11 @@ jobs:
 
       - name: "Create test database"
         env:
-          TEST_RAILS_PG_HOST: test-db
           RAILS_ENV: test
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
         run: bin/rake parallel:create
       - name: "Run tests"
         env:
-          TEST_RAILS_PG_HOST: test-db
           RAILS_ENV: test
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
         run: bin/rake parallel:test
