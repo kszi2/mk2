@@ -3,7 +3,7 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :rememberable, :argon2
 
-  validates :email, uniqueness: true, allow_nil: true, format: /\A[^@\s]+@[^@\s]+\z/
+  validates :email, uniqueness: true, allow_nil: true, format: /\A[^@\s]+@[^@\s]+\.[^@.\s]+\z/
   validates :username, presence: true, uniqueness: true, length: { in: 2..32 }
   validates :password, presence: true, on: :create
   validate :confirmation_matches

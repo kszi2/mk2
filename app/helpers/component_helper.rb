@@ -6,6 +6,10 @@ module ComponentHelper
       obj.name
     elsif obj.respond_to?(:render_as)
       obj.render_as
+    elsif obj.respond_to?(:[])
+      obj[0]
+    else
+      obj.to_s
     end
   end
 
@@ -42,7 +46,7 @@ module ComponentHelper
   Inputs::InputComponent::SupportedTypes.each do |type|
     self.define_method("#{type}_input_tag") do |obj, field, options = {}|
       raise ArgumentError, "Given object #{obj} does not respond to #{field}" unless obj.respond_to?(field)
-      type = {number: options[:precision]} if type == :number && options[:precision].present?
+      type = { number: options[:precision] } if type == :number && options[:precision].present?
       render Inputs::ErrorableFieldComponent.new(object: obj, field: field) do |ec|
         ec.with_form_field_input(type: type,
                                  name: field_name(obj.class.name.underscore, field),

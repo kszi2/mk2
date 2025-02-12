@@ -2,4 +2,4 @@
   - @entries.each do |name, objs|
     %div
       %i.fa-regular.fa-chevron-right.text-wa-text-quiet.text-center.h-4.leading-4.text-base._(class="translate-y-[.0625rem]")
-      = render(LinkComponent.new(url: url_for(objs)).with_content(name))
+      = render(LinkComponent.new(url: obj_url(objs)).with_content(name))
