@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
-  get "index/index"
   devise_for :users
   apipie
   mount GoodJob::Engine => 'good_job'
   if Rails.env.development?
     mount Lookbook::Engine => "lookbook"
   end
+
+  get '/service-worker.js' => 'service_worker#service_worker'
+  get '/manifest.json' => 'service_worker#manifest'
 
   get 'control_panel' => 'control_panel#view', as: :control_panel
 
