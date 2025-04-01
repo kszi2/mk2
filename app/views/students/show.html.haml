@@ -1,3 +1,22 @@
 = mk_show_for @student do |s|
   - s.with_property :name
   - s.with_property :neptun
+
+- @student.results.each do |course, groups|
+  .text-2xl.w-full.text-center= course.name
+  .pl-2
+    - groups.each do |group, works|
+      %details.my-2{class: "group/group-rating", open: group.current?}
+        %summary.py-2.px-3.rounded.border.border-wa-surface-border.text-xl._(class="group-open")
+          %i.fa-regular.fa-chevron-right.h-fit.w-fit.mr-3{class:
+              "group-open/group-rating:rotate-90"
+            }
+          #{group.name} (#{group.semester_text})
+
+        .flex.flex-wrap.gap-4.my-2
+          - works.each do |work, result|
+            .flex.rounded.flex-col.border.border-wa-surface-border.w-fit
+              .bg-wa-surface-default.w-full.px-3.py-2.text-center= work
+              .flex.justify-center
+                %span= result[:achieved]
+                %span.select-none= "/#{result[:total]}"

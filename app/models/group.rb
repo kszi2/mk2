@@ -77,6 +77,10 @@ class Group < ApplicationRecord
     end
   end
 
+  def current?
+    Date.today.in? first_date.semester_range
+  end
+
   private
 
   def render_to_pdf(me, golyok, real_date, title, pdf)
