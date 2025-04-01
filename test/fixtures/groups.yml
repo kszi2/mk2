@@ -1,0 +1,10 @@
+group_lab1:
+  name: "lab1-g"
+  course: course1
+  course_type: lab
+  students:
+    - john_doe
+    - xaver_teszt
+  first_date: "2024-04-01"
+  repeat_times: 987
+  day_difference: 365

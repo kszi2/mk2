@@ -2,7 +2,9 @@ require "test_helper"
 
 class MarkingNoteTest < ActiveSupport::TestCase
   setup do
-    subm = Submission.create!(coursework: courseworks(:lab1), student: students(:xaver_teszt))
+    subm = Submission.create!(coursework: courseworks(:lab1),
+                              student: students(:xaver_teszt),
+                              group: groups(:group_lab1))
     @marked_point = MarkedPoint.create!(submission: subm, rating_point: rating_points(:lab1_complete_rating))
     @marking_note = MarkingNote.new(marked_point: @marked_point, points_cost: 3, fixed: false)
   end

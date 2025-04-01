@@ -4,7 +4,8 @@ class SubmissionTest < ActiveSupport::TestCase
   def setup
     @student = students(:john_doe)
     @coursework = courseworks(:lab1)
-    @submission = Submission.new(student: @student, coursework: @coursework)
+    @group = groups(:group_lab1)
+    @submission = Submission.new(student: @student, group: @group, coursework: @coursework)
   end
 
   test "Submission can be found by public id" do
@@ -30,7 +31,7 @@ class SubmissionTest < ActiveSupport::TestCase
 
   test "should enforce uniqueness of coursework per student on create" do
     @submission.save!
-    duplicate_submission = Submission.new(student: @student, coursework: @coursework)
+    duplicate_submission = Submission.new(student: @student, group: @group, coursework: @coursework)
     refute duplicate_submission.valid?
     assert duplicate_submission.errors.added?(:coursework_id,
                                               :taken,
