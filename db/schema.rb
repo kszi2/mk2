@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_11_180250) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_01_154446) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+  enable_extension "postgres_fdw"
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -249,6 +250,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_11_180250) do
     t.bigint "coursework_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "group_id"
     t.index ["coursework_id"], name: "index_submissions_on_coursework_id"
     t.index ["student_id"], name: "index_submissions_on_student_id"
   end
@@ -292,6 +294,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_11_180250) do
   add_foreign_key "marking_notes", "marked_points", on_delete: :cascade
   add_foreign_key "rating_points", "courseworks", on_delete: :cascade
   add_foreign_key "submissions", "courseworks", on_delete: :cascade
+  add_foreign_key "submissions", "groups"
   add_foreign_key "submissions", "students"
   add_foreign_key "templates", "courses", on_delete: :nullify
 end

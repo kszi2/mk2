@@ -3,11 +3,13 @@ class Submission < ApplicationRecord
 
   belongs_to :student
   belongs_to :coursework
+  belongs_to :group
   has_many :rating_points, through: :coursework
   has_many :marked_points, -> { joins(:rating_point).order("rating_points.ordering") }, dependent: :destroy
 
   validates :student_id, presence: true
-  validates :coursework_id, presence: true, uniqueness: { scope: :student_id, message: "Already submitted" }, on: :create
+  validates :group_id, presence: true
+  validates :coursework_id, presence: true, uniqueness: { scope: [:student_id, :group_id], message: "Already submitted" }, on: :create
 
   def total_points
     coursework.total_points

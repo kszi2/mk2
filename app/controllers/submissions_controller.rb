@@ -13,6 +13,7 @@ class SubmissionsController < ApplicationController
                                                  [:student => [], :coursework => []]))
                      .where(coursework_id: @courseworks.pluck(:id))
                      .where(student_id: @group.students.pluck(:id))
+                     .where(group_id: @group.id)
                      .order('students.name', 'courseworks.name')
                      .page(params[:page]).per(params[:per_page] || 25)
   end
@@ -54,7 +55,7 @@ class SubmissionsController < ApplicationController
   def create
     succ = false
     Submission.transaction do
-      @submission = Submission.new(submission_params)
+      @submission = Submission.new(group: @group, **submission_params)
       succ = @submission.save
 
       if succ
