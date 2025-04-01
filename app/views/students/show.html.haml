@@ -6,6 +6,7 @@
   .text-2xl.w-full.text-center= course.name
   .pl-2
     - groups.each do |group, works|
+      - next if group.nil?
       %details.my-2{class: "group/group-rating", open: group.current?}
         %summary.py-2.px-3.rounded.border.border-wa-surface-border.text-xl._(class="group-open")
           %i.fa-regular.fa-chevron-right.h-fit.w-fit.mr-3{class:
