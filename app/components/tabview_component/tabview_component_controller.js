@@ -19,11 +19,11 @@ export default class extends Controller {
 
   changeTab({params: params}) {
     this.activeidValue = params.id
-    if ("history" in window) {
-      const url = new URL(window.location.href);
-      url.searchParams.set("tab", params.id)
-      window.history.pushState({}, "", url.href)
-    }
+    if (!("history" in window)) return;
+
+    const url = new URL(window.location.href);
+    url.searchParams.set("tab", params.id)
+    window.history.pushState({}, "", url.href)
   }
 
   restoreTab({target: ev}) {
