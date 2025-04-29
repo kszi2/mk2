@@ -1,3 +1,4 @@
+= content_for :title, "Coursework #{@coursework.name}"
 = mk_show_for @course, @coursework do |s|
   - s.with_property :name
   - s.with_property :for_type

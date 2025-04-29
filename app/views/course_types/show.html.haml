@@ -1,2 +1,3 @@
+= content_for :title, "Course type #{@course_type.name}"
 = mk_show_for @course, @course_type do |s|
   - s.with_property :name

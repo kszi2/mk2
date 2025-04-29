@@ -1,3 +1,4 @@
+= content_for :title, "Group #{@group.name}"
 = mk_show_for @course, @group do |s|
   - s.with_property :name
   - s.with_property :course_type, name: 'Group type'

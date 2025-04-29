@@ -1,4 +1,6 @@
 = turbo_page_requires_reload
+= content_for :title, "#{@submission.coursework.name} – #{@submission.student.name}"
+
 = turbo_stream.append 'flash-holder' do
   = render FlashComponent.new(type: :notice,
                               title: "Preexisting submission",

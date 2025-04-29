@@ -1,3 +1,4 @@
+= content_for :title, "Template #{@template.name}"
 = mk_show_for @template do |f|
   - f.with_property :name
   - f.with_property :course, name: "Connected course"
