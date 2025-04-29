@@ -8,11 +8,26 @@ export default class extends Controller {
 
   connect() {
     this.path = window.location.pathname
-    this.activeidValue = Number(sessionStorage.getItem(this.path))
+    this._setActiveTabFromUrl(window.location.href);
+  }
+
+  _setActiveTabFromUrl(urlString) {
+    const url = new URL(urlString);
+    const tab = url.searchParams.get("tab")
+    this.activeidValue = Number(tab)
   }
 
   changeTab({params: params}) {
     this.activeidValue = params.id
+    if ("history" in window) {
+      const url = new URL(window.location.href);
+      url.searchParams.set("tab", params.id)
+      window.history.pushState({}, "", url.href)
+    }
+  }
+
+  restoreTab({target: ev}) {
+    this._setActiveTabFromUrl(ev.location.href);
   }
 
   preloadTab({params: params}) {
@@ -30,9 +45,4 @@ export default class extends Controller {
       turbo.reload()
     }
   }
-
-  disconnect() {
-    sessionStorage.setItem(this.path, this.activeidValue)
-  }
-
 }

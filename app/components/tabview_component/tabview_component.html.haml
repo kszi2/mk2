@@ -1,5 +1,6 @@
 .my-2._{class: "group/tabview", data: {
-                                        controller: "tabview-component"
+                                        controller: "tabview-component",
+                                        action: "popstate@window->tabview-component#restoreTab"
                                       }}
   %nav.flex.flex-wrap.text-lg
     - pages.each_with_index do |page, i|
