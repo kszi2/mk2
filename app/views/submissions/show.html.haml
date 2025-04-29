@@ -1,4 +1,13 @@
 = turbo_page_requires_reload
+= turbo_stream.append 'flash-holder' do
+  = render FlashComponent.new(type: :notice,
+                              title: "Preexisting submission",
+                              body_text: "Opened already existing submission.")
+:javascript
+  const url = new URL(window.location.href);
+  url.searchParams.delete("known");
+  history.replaceState({}, "", url.toString())
+
 = mk_show_for @course, @group, @submission do |f|
   - f.with_property :student, value: "#{@submission.student.name} (#{@submission.student.neptun})"
   - f.with_property :coursework

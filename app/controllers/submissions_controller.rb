@@ -22,6 +22,7 @@ class SubmissionsController < ApplicationController
   def show
     respond_to do |format|
       format.html do
+        @render_opened = params[:known].present?
         @rating_styles = RatingStyle.order(:name).all
         render
       end
@@ -76,8 +77,14 @@ class SubmissionsController < ApplicationController
         format.html { redirect_to course_group_submission_path(@course, @group, @submission), notice: "Submission was successfully created." }
         format.json { render :show, status: :created, location: @submission }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @submission.errors, status: :unprocessable_entity }
+        subm = Submission.where(**submission_params).first
+        if subm.nil?
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @submission.errors, status: :unprocessable_entity }
+        else
+          format.html { redirect_to course_group_submission_path(@course, @group, subm, known: true), notice: "Existing submission opened." }
+          format.json { render :show, status: :created, location: subm }
+        end
       end
     end
   end
