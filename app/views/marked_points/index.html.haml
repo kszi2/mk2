@@ -3,7 +3,7 @@
 = turbo_frame_tag "marked-points-frame" do
   .mt-4.w-full.flex.flex-col.gap-2
     - @marked_points.each do |marked_point|
-      .w-full.px-3.py-1.drop-shadow.backdrop-blur-md.border.border-onyx.rounded
+      .w-full.px-3.py-1.border.border-onyx.rounded
         .w-full.flex.justify-between.mb-2
           .text-2xl= marked_point.rating_point.name
           .flex-shrink-0
