@@ -16,7 +16,7 @@ class Importers::CsvImporter < Importers::Importer
     students
   end
 
-  def exiting_students
+  def existing_students
     students = []
     not_found = []
 

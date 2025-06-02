@@ -13,5 +13,5 @@ class Importers::Importer
 
   # Parses and returns a list of already existing Students and a list of (unsaved)
   # students that do not exist
-  def exiting_students = [[], []]
+  def existing_students = [[], []]
 end

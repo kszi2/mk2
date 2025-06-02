@@ -181,7 +181,7 @@ class GroupsController < ApplicationController
       begin
         file = params[:import_file]
         importer = Importers::ImporterFactory.build_importer_by_heuristic(file)
-        found, missing = importer.exiting_students
+        found, missing = importer.existing_students
         found.each do |st|
           rendered_students << [st.name, st.neptun]
           next_neptuns << st.neptun.upcase
