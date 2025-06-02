@@ -84,6 +84,12 @@ class CourseworkTest < ActiveSupport::TestCase
     assert_equal expected_pid, coursework.for_type_pid
   end
 
+  test "for_type_pid should return the nil if for_type is not set" do
+    coursework = courseworks(:lab1)
+    coursework.for_type = nil
+    assert_nil coursework.for_type_pid
+  end
+
   test "criteria_count should return the count of criterion rating points" do
     coursework = courseworks(:lab1)
     # Count rating points where criterion? is true
