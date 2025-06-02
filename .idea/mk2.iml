@@ -64,7 +64,6 @@
     <orderEntry type="library" scope="PROVIDED" name="crass (v1.0.6, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="crockford32 (v1.1.0, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="css_parser (v1.21.1, ruby-3.2.4-p170) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="cssbundling-rails (v1.4.3, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="date (v3.4.1, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="debug (v1.10.0, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="debug_inspector (v1.2.0, ruby-3.2.4-p170) [gem]" level="application" />
@@ -113,6 +112,7 @@
     <orderEntry type="library" scope="PROVIDED" name="mini_magick (v5.2.0, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mini_mime (v1.1.5, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="minitest (v5.25.5, ruby-3.2.4-p170) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="mocha (v2.7.1, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="msgpack (v1.8.0, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="multipart-post (v2.4.1, ruby-3.2.4-p170) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="net-http (v0.6.0, ruby-3.2.4-p170) [gem]" level="application" />

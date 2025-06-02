@@ -73,6 +73,9 @@ group :test do
   # Covarage
   gem 'simplecov', require: false
 
+  # Mocking
+  gem "mocha"
+
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
