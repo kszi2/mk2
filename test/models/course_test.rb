@@ -43,8 +43,7 @@ class CourseTest < ActiveSupport::TestCase
     encoded_id = ApplicationRecord.encode_id(Course, course.id).to_s
 
     # Mock ApplicationRecord.decode_id to return the raw ID when given the encoded ID
-    ApplicationRecord.stub(:decode_id, course.id) do
-      assert_equal course, Course.public_find(encoded_id)
-    end
+    ApplicationRecord.stubs(:decode_id).returns(course.id)
+    assert_equal course, Course.public_find(encoded_id)
   end
 end

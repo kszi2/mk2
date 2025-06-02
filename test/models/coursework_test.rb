@@ -63,12 +63,10 @@ class CourseworkTest < ActiveSupport::TestCase
 
     # Use a stub for the actual query result
     expected_scope = Coursework.where(active: true, course_id: group.course_id, for_type_id: group.course_type_id).order(:name)
-    Coursework.stub :order, ->{ Coursework.all } do
-      Coursework.stub :where, ->(*) { expected_scope } do
-        result = Coursework.for_group(group)
-        assert_equal expected_scope, result
-      end
-    end
+    Coursework.stubs(:order).returns(Coursework.all)
+    Coursework.stubs(:where).returns(expected_scope)
+    result = Coursework.for_group(group)
+    assert_equal expected_scope, result
   end
 
   # Test PublicFindable functionality

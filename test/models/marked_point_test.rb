@@ -39,29 +39,24 @@ class MarkedPointTest < ActiveSupport::TestCase
   end
 
   test "marked_for should return available points minus total points cost" do
-    @marked_point.stub(:total_points_cost, 4) do
-      assert_equal 6, @marked_point.marked_for
-    end
+    @marked_point.stubs(:total_points_cost).returns(4)
+    assert_equal 6, @marked_point.marked_for
   end
 
   test "criterion? should return true if rating_point is a criterion" do
-    @rating_point.stub(:criterion?, true) do
-      assert @marked_point.criterion?
-    end
+    @rating_point.stubs(:criterion?).returns(true)
+    assert @marked_point.criterion?
   end
 
   test "failed_criterion? should return true if criterion and total points cost is not zero" do
-    @rating_point.stub(:criterion?, true) do
-      @marked_point.stub(:total_points_cost, 5) do
-        assert @marked_point.failed_criterion?
-      end
-    end
+    @rating_point.stubs(:criterion?).returns(true)
+    @marked_point.stubs(:total_points_cost).returns(5)
+    assert @marked_point.failed_criterion?
   end
 
   test "failed_criterion? should return false if not a criterion" do
-    @rating_point.stub(:criterion?, false) do
-      refute @marked_point.failed_criterion?
-    end
+    @rating_point.stubs(:criterion?).returns(false)
+    refute @marked_point.failed_criterion?
   end
 
   test "total_points_cost should sum non-fixed marking notes" do
