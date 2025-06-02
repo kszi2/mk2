@@ -40,7 +40,7 @@ class PdfDatumTest < ActiveSupport::TestCase
 
   test "send_to_discord should enqueue SendToDiscordWebhookJob" do
     @pdf_datum.save!
-    mock_job = mock()
+    mock_job = mock
     mock_job.expects(:perform_later).with(@pdf_datum.id, "Test PDF.pdf").returns(nil)
     @pdf_datum.discord_job = mock_job
 
