@@ -34,7 +34,9 @@ RUN bundle install && \
 
 # Install node modules
 COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
+RUN yarn install --frozen-lockfile && \
+    yarn build && \
+    yarn build:css 
 
 # Copy application code
 COPY . .
