@@ -114,7 +114,7 @@ class ApplicationRecordTest < ActiveSupport::TestCase
     b = "XYZ"
 
     # ASCII values: A=65, X=88, XOR=25; B=66, Y=89, XOR=27; C=67, Z=90, XOR=29
-    expected = [25, 27, 29].pack('C*')
+    expected = [25, 27, 25].pack('C*')
 
     assert_equal expected, ApplicationRecord.xor_s(a, b)
   end
