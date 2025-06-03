@@ -70,7 +70,7 @@ group :development do
 end
 
 group :test do
-  # Covarage
+  # Coverage
   gem 'simplecov', require: false
 
   # Mocking
