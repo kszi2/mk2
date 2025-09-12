@@ -22,7 +22,7 @@ RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential curl git libpq-dev libvips pkg-config unzip nodejs npm
 
 ARG NODE_VERSION=20.17.0
-ARG YARN_VERSION=1.22.19
+ARG YARN_VERSION=4.9.4
 ENV PATH=/usr/local/node/bin:$PATH
 RUN npm install -g yarn@$YARN_VERSION
 
