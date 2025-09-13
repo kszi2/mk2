@@ -1,0 +1,8 @@
+%div.mx-4.my-4
+  %h1.text-3xl.font-bold.text-wa-danger-fill-loud
+    = render IconComponent.new(name: "hexagon-xmark")
+    Unauthorized!
+  %p.my-6.text-xl
+    Oh my! You're not authorized to do that. This incident will be reported.
+
+  = render Inputs::ButtonComponent.new(type: :basic, text: 'Flee', href: @back, size: :small, data: { turbo_frame: "_top" })

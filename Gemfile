@@ -121,3 +121,8 @@ gem "image_processing", "~> 1.13"
 gem "devise", "~> 4.9"
 gem "devise-argon2", "~> 2.0"
 gem "pundit", "~> 2.4"
+
+# OpenTelemetry
+gem "opentelemetry-sdk", "~> 1.8"
+gem "opentelemetry-exporter-otlp", "~> 0.30.0"
+gem "opentelemetry-instrumentation-all", "~> 0.80.0"
