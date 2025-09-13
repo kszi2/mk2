@@ -6,6 +6,9 @@ Rails.application.routes.draw do
     mount Lookbook::Engine => "lookbook"
   end
 
+  # Fixing client side JS logging shenanigans
+  post "client_logs/log" => "client_logs#log", as: :client_logs_log
+
   get '/service-worker.js' => 'service_worker#service_worker'
   get '/manifest.json' => 'service_worker#manifest'
 
