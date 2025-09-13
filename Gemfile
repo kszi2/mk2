@@ -124,5 +124,8 @@ gem "pundit", "~> 2.4"
 
 # OpenTelemetry
 gem "opentelemetry-sdk", "~> 1.8"
+gem "opentelemetry-logs-api", "~> 0.2.0"
+gem "opentelemetry-logs-sdk", "~> 0.3.0"
 gem "opentelemetry-exporter-otlp", "~> 0.30.0"
+gem "opentelemetry-exporter-otlp-logs", "~> 0.2.1"
 gem "opentelemetry-instrumentation-all", "~> 0.80.0"

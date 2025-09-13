@@ -128,6 +128,7 @@
     <orderEntry type="library" scope="PROVIDED" name="opentelemetry-api (v1.6.0, mise: 3.2.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="opentelemetry-common (v0.22.0, mise: 3.2.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="opentelemetry-exporter-otlp (v0.30.0, mise: 3.2.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-exporter-otlp-logs (v0.2.1, mise: 3.2.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="opentelemetry-helpers-mysql (v0.2.0, mise: 3.2.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="opentelemetry-helpers-sql (v0.1.1, mise: 3.2.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="opentelemetry-helpers-sql-obfuscation (v0.3.0, mise: 3.2.4) [gem]" level="application" />
@@ -176,6 +177,8 @@
     <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-sidekiq (v0.26.1, mise: 3.2.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-sinatra (v0.26.0, mise: 3.2.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-trilogy (v0.61.1, mise: 3.2.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-logs-api (v0.2.0, mise: 3.2.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-logs-sdk (v0.3.0, mise: 3.2.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="opentelemetry-registry (v0.4.0, mise: 3.2.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="opentelemetry-sdk (v1.8.1, mise: 3.2.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="opentelemetry-semantic_conventions (v1.11.0, mise: 3.2.4) [gem]" level="application" />
