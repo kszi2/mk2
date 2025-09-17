@@ -101,7 +101,7 @@ class StudentsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_student
-    @student = Student.public_find(params[:id])
+    @student = Student.includes(submissions: [ :marked_points, coursework: [ rating_points: [ :marked_points ] ] ], groups: [ :course ]).public_find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
