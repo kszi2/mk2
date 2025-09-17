@@ -131,3 +131,5 @@ gem "opentelemetry-logs-sdk", "~> 0.3.0"
 gem "opentelemetry-exporter-otlp", "~> 0.30.0"
 gem "opentelemetry-exporter-otlp-logs", "~> 0.2.1"
 gem "opentelemetry-instrumentation-all", "~> 0.80.0"
+
+gem "csv", "~> 3.3"

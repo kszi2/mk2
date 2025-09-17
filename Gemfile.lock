@@ -129,6 +129,7 @@ GEM
     crockford32 (1.1.0)
     css_parser (1.21.1)
       addressable
+    csv (3.3.5)
     date (3.4.1)
     debug (1.11.0)
       irb (~> 1.10)
@@ -704,6 +705,7 @@ DEPENDENCIES
   bootsnap
   capybara
   crockford32 (~> 1.1)
+  csv (~> 3.3)
   debug
   devise (~> 4.9)
   devise-argon2 (~> 2.0)
