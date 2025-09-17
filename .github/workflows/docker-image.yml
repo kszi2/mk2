@@ -43,6 +43,7 @@ jobs:
           bun install
           && bun run build
           && bun run build:css
+          && bin/rake parallel:create
           && bin/rake parallel:prepare
       - name: "Run tests"
         env:
