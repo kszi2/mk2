@@ -1,205 +1,44 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-:host, :root {
-    /* WebAwesome configuration: this shouldn't need !important...
-     * but I'm probably fucking up something
-     */
-    --wa-border-radius-multiplier: .1875 !important;
-
-    /* focus config: make it smaller, and light-blue */
-    --wa-focus-ring-width: .09375rem !important;
-    --wa-focus-color: #4cb0f1 !important;
-
-    /* surface config: blue-tinted dark */
-    --wa-color-surface-default: #11181e !important;
-    --wa-color-surface-raised: #202127 !important;
-    --wa-color-surface-lowered: #0a1117 !important;
-    --wa-color-surface-border: #15202b !important;
-
-    /* text-color config: blue-tinted white-ish */
-    --wa-color-text-normal: #eaeaff !important;
-    --wa-color-text-quiet: #5f5f67 !important;
-    --wa-color-text-link: var(--wa-focus-color) !important;
-
-    /* color config */
-    /*** brand color ***/
-    --wa-color-brand-fill-quiet: #321763 !important;
-    --wa-color-brand-fill-normal: #472c78 !important;
-    --wa-color-brand-fill-loud: #654a96 !important;
-
-    --wa-color-brand-border-quiet: #503578 !important;
-    --wa-color-brand-border-normal: #654a8d !important;
-    --wa-color-brand-border-loud: #8368ab !important;
-
-    --wa-color-brand-on-quiet: var(--wa-color-brand-border-normal) !important;
-    --wa-color-brand-on-normal: var(--wa-color-text-normal) !important;
-    --wa-color-brand-on-loud: var(--wa-color-text-normal) !important;
-
-    /*** success color ***/
-    --wa-color-success-fill-quiet: #728964 !important;
-    --wa-color-success-fill-normal: #87a376 !important;
-    --wa-color-success-fill-loud: #82c86e !important;
-
-    --wa-color-success-border-quiet: #95a287 !important;
-    --wa-color-success-border-normal: #a0d08f !important;
-    --wa-color-success-border-loud: #aff59b !important;
-
-    --wa-color-success-on-quiet: #e7f5e2 !important;
-    --wa-color-success-on-normal: #eefbea !important;
-    --wa-color-success-on-loud: var(--wa-color-text-normal) !important;
-
-    /*** neutral color ***/
-    --wa-color-neutral-fill-quiet: #0f1316 !important;
-    --wa-color-neutral-fill-normal: #11181e !important;
-    --wa-color-neutral-fill-loud: #252c32 !important;
-
-    --wa-color-neutral-border-quiet: #414548 !important;
-    --wa-color-neutral-border-normal: #434a50 !important;
-    --wa-color-neutral-border-loud: #575e64 !important;
-
-    --wa-color-neutral-on-quiet: #e7f5e2 !important;
-    --wa-color-neutral-on-normal: #eefbea !important;
-    --wa-color-neutral-on-loud: var(--wa-color-text-normal) !important;
-
-    /*** warning color ***/
-    --wa-color-warning-fill-quiet: #9f582a !important;
-    --wa-color-warning-fill-normal: #fa8e08 !important;
-    --wa-color-warning-fill-loud: #e1750f !important;
-
-    --wa-color-warning-border-quiet: #bd7648 !important;
-    --wa-color-warning-border-normal: #ff930d !important;
-    --wa-color-warning-border-loud: #ff932d !important;
-
-    --wa-color-warning-on-quiet: #e7f5e2 !important;
-    --wa-color-warning-on-normal: #eefbea !important;
-    --wa-color-warning-on-loud: var(--wa-color-text-normal) !important;
-
-    /*** warning color ***/
-    --wa-color-danger-fill-quiet2: rgba(115, 8, 26, 0.1) !important;
-    --wa-color-danger-fill-quiet: #73081a !important;
-    --wa-color-danger-fill-normal: #780d24 !important;
-    --wa-color-danger-fill-loud: #96031A !important;
-
-    --wa-color-danger-border-quiet: #9b1c1a !important;
-    --wa-color-danger-border-normal: #b54343 !important;
-    --wa-color-danger-border-loud: #822b2b !important;
-
-    --wa-color-danger-on-quiet: #e7f5e2 !important;
-    --wa-color-danger-on-normal: #eefbea !important;
-    --wa-color-danger-on-loud: var(--wa-color-text-normal) !important;
-}
-
-details > summary {
-    list-style: none;
-}
-
-details > summary::marker, /* Latest Chrome, Edge, Firefox */
-details > summary::-webkit-details-marker /* Safari */ {
-    display: none;
-}
-
-.colored-scrollbar {
-    scrollbar-color: var(--wa-color-brand-fill-loud) #0a0f12;
-}
-
-.revert {
+@utility revert {
     display: revert;
 }
 
-dialog.dialog {
-    color: var(--wa-color-text-normal);
-}
-
-.menu-stuff wa-button::part(base) {
-    text-transform: uppercase !important;
-}
-
-@layer utilities {
-    .delay-100 {
-        animation-delay: 100ms;
+@layer base {
+    details[open] summary ~ * {
+        animation: ease-opacity-t-b 0.5s ease;
     }
-}
 
-details[open] summary ~ * {
-    animation: ease-opacity-t-b 0.5s ease;
-}
-
-details i {
-    transition: all .3s ease-out;
-}
-
-.menu-item {
-    color: var(--wa-color-text-normal);
-    text-transform: uppercase;
-    text-decoration: none;
-
-    padding: 0 20px;
-    position: relative;
-}
-
-.menu-item:after {
-    background: none repeat scroll 0 0 transparent;
-    bottom: 0;
-    content: "";
-    display: block;
-    height: 1px;
-    left: 50%;
-    position: absolute;
-    background: var(--wa-color-brand-border-normal);
-    transition: width 0.3s ease 0s, left 0.3s ease 0s;
-    width: 0;
-}
-
-.menu-item:hover:after {
-    width: 100%;
-    left: 0;
-}
-
-.loader {
-    position: relative;
-    width: 48px;
-    height: 48px;
-    background: var(--wa-color-brand-fill-loud);
-    transform: rotateX(65deg) rotate(45deg);
-    color: var(--wa-color-brand-on-loud);
-    animation: layers1 1s linear infinite alternate;
-}
-
-.loader:after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: theme(colors.wa-text-normal / 70%);
-    animation: layerTr 1s linear infinite alternate;
-}
-
-@keyframes layers1 {
-    0% {
-        box-shadow: 0 0 0 0
+    details i {
+        transition: all .3s ease-out;
     }
-    90%, 100% {
-        box-shadow: 20px 20px 0 -4px
-    }
-}
 
-@keyframes layerTr {
-    0% {
-        transform: translate(0, 0) scale(1)
+    details > summary {
+        list-style: none;
     }
-    100% {
-        transform: translate(-25px, -25px) scale(1)
+
+    details > summary::marker, /* Latest Chrome, Edge, Firefox */
+    details > summary::-webkit-details-marker /* Safari */
+    {
+        display: none;
+    }
+
+    dialog.dialog {
+        color: var(--color-text-normal);
+    }
+
+    .colored-scrollbar {
+        scrollbar-color: var(--color-brand-fill-loud) #0a0f12;
     }
 }
 
 @layer components {
+    /* External code styled with CSS */
     .turbo-progress-bar {
-        @apply bg-wa-brand-fill-normal shadow shadow-wa-brand-fill-loud;
+        --tw-shadow-color: var(--color-brand-fill-loud);
+        background: var(--color-brand-fill-loud);
+        @apply shadow;
     }
-}
-
-@layer base {
     /* This was copy-pasted from the hljs package */
     /*!
       Theme: Tokyo-night-Dark
@@ -260,8 +99,8 @@ details i {
     }
 
     .hljs {
-        @apply bg-wa-surface-default;
-        @apply text-wa-text-normal;
+        background: var(--color-surface-default);
+        color: var(--color-text-normal);
     }
 
     .hljs-emphasis {
@@ -270,5 +109,103 @@ details i {
 
     .hljs-strong {
         font-weight: 700
+    }
+}
+
+@theme {
+    --color-charcoal2: #0a0f12;
+    --color-charcoal22: #0f1316;
+    --color-onyx: #303536;
+
+    --color-surface-default: #11181e;
+    --color-surface-raised: #202127;
+    --color-surface-lowered: #0a1117;
+    --color-surface-border: #15202b;
+
+    --color-text-normal: #eaeaff;
+    --color-text-quiet: #5f5f67;
+    --color-text-link: #4cb0f1;
+
+    --color-brand-fill-quiet: #321763;
+    --color-brand-fill-normal: #472c78;
+    --color-brand-fill-loud: #654a96;
+
+    --color-brand-border-quiet: #503578;
+    --color-brand-border-normal: #654a8d;
+    --color-brand-border-loud: #8368ab;
+
+    --color-brand-on-quiet: var(--color-brand-border-normal);
+    --color-brand-on-normal: var(--color-text-normal);
+    --color-brand-on-loud: var(--color-text-normal);
+
+    --color-success-fill-quiet: #728964;
+    --color-success-fill-normal: #87a376;
+    --color-success-fill-loud: #82c86e;
+
+    --color-success-border-quiet: #95a287;
+    --color-success-border-normal: #a0d08f;
+    --color-success-border-loud: #aff59b;
+
+    --color-success-on-quiet: #e7f5e2;
+    --color-success-on-normal: #eefbea;
+    --color-success-on-loud: var(--color-text-normal);
+
+    --color-neutral-fill-quiet: #0f1316;
+    --color-neutral-fill-normal: #11181e;
+    --color-neutral-fill-loud: #252c32;
+
+    --color-neutral-border-quiet: #414548;
+    --color-neutral-border-normal: #434a50;
+    --color-neutral-border-loud: #575e64;
+
+    --color-neutral-on-quiet: #e7f5e2;
+    --color-neutral-on-normal: #eefbea;
+    --color-neutral-on-loud: var(--color-text-normal);
+
+    --color-warning-fill-quiet: #9f582a;
+    --color-warning-fill-normal: #fa8e08;
+    --color-warning-fill-loud: #e1750f;
+
+    --color-warning-border-quiet: #bd7648;
+    --color-warning-border-normal: #ff930d;
+    --color-warning-border-loud: #ff932d;
+
+    --color-warning-on-quiet: #e7f5e2;
+    --color-warning-on-normal: #eefbea;
+    --color-warning-on-loud: var(--color-text-normal);
+
+    --color-danger-fill-quiet2: rgba(115, 8, 26, 0.1);
+    --color-danger-fill-quiet: #73081a;
+    --color-danger-fill-normal: #780d24;
+    --color-danger-fill-loud: #96031A;
+
+    --color-danger-border-quiet: #9b1c1a;
+    --color-danger-border-normal: #b54343;
+    --color-danger-border-loud: #822b2b;
+
+    --color-danger-on-quiet: #e7f5e2;
+    --color-danger-on-normal: #eefbea;
+    --color-danger-on-loud: var(--color-text-normal);
+
+    --x-rotate-loader: rotateX(65deg) rotate(45deg);
+
+    --animate-loader: loader-shadow-pulse 1s linear infinite alternate;
+    @keyframes loader-shadow-pulse {
+        0% {
+            box-shadow: 0 0 0 0
+        }
+        90%, 100% {
+            box-shadow: 20px 20px 0 -4px
+        }
+    }
+
+    --animate-loader-elem: loader-elem-pulse 1s linear infinite alternate;
+    @keyframes loader-elem-pulse {
+        0% {
+            transform: translate(0, 0) scale(1)
+        }
+        100% {
+            transform: translate(-25px, -25px) scale(1)
+        }
     }
 }

@@ -19,85 +19,85 @@ module.exports = {
       onyx: '#303536',
 
       /* focus config: make it smaller, and light-blue */
-      "wa-focus": 'var(--wa-focus-color)',
+      "wa-focus": 'var(--focus-color)',
 
       /* surface config: blue-tinted dark */
-      "wa-surface-default": 'var(--wa-color-surface-default)',
-      "wa-surface-raised": 'var(--wa-color-surface-raised)',
+      "wa-surface-default": 'var(--color-surface-default)',
+      "wa-surface-raised": 'var(--color-surface-raised)',
       "wa-surface-lowered": '#0a1117',
-      "wa-surface-border": 'var(--wa-color-surface-border)',
+      "wa-surface-border": 'var(--color-surface-border)',
 
       /* text-color config: blue-tinted white-ish */
       "wa-text-normal": '#eaeaff',
       "wa-text-quiet": '#5f5f67',
-      "wa-text-link": 'var(--wa-color-text-link)',
+      "wa-text-link": 'var(--color-text-link)',
 
       /* color config */
       /*** brand color ***/
-      "wa-brand-fill-quiet": 'var(--wa-color-brand-fill-quiet)',
-      "wa-brand-fill-normal": 'var(--wa-color-brand-fill-normal)',
-      "wa-brand-fill-loud": 'var(--wa-color-brand-fill-loud)',
+      "wa-brand-fill-quiet": 'var(--color-brand-fill-quiet)',
+      "wa-brand-fill-normal": 'var(--color-brand-fill-normal)',
+      "wa-brand-fill-loud": 'var(--color-brand-fill-loud)',
 
-      "wa-brand-border-quiet": 'var(--wa-color-brand-border-quiet)',
-      "wa-brand-border-normal": 'var(--wa-color-brand-border-normal)',
-      "wa-brand-border-loud": 'var(--wa-color-brand-border-loud)',
+      "wa-brand-border-quiet": 'var(--color-brand-border-quiet)',
+      "wa-brand-border-normal": 'var(--color-brand-border-normal)',
+      "wa-brand-border-loud": 'var(--color-brand-border-loud)',
 
-      "wa-brand-on-quiet": 'var(--wa-color-brand-on-quiet)',
-      "wa-brand-on-normal": 'var(--wa-color-brand-on-normal)',
-      "wa-brand-on-loud": 'var(--wa-color-brand-on-loud)',
+      "wa-brand-on-quiet": 'var(--color-brand-on-quiet)',
+      "wa-brand-on-normal": 'var(--color-brand-on-normal)',
+      "wa-brand-on-loud": 'var(--color-brand-on-loud)',
 
       /*** success color ***/
       "wa-success-fill-quiet": '#728964',
-      "wa-success-fill-normal": 'var(--wa-color-success-fill-normal)',
-      "wa-success-fill-loud": 'var(--wa-color-success-fill-loud)',
+      "wa-success-fill-normal": 'var(--color-success-fill-normal)',
+      "wa-success-fill-loud": 'var(--color-success-fill-loud)',
 
-      "wa-success-border-quiet": 'var(--wa-color-success-border-quiet)',
-      "wa-success-border-normal": 'var(--wa-color-success-border-normal)',
-      "wa-success-border-loud": 'var(--wa-color-success-border-loud)',
+      "wa-success-border-quiet": 'var(--color-success-border-quiet)',
+      "wa-success-border-normal": 'var(--color-success-border-normal)',
+      "wa-success-border-loud": 'var(--color-success-border-loud)',
 
-      "wa-success-on-quiet": 'var(--wa-color-success-on-quiet)',
-      "wa-success-on-normal": 'var(--wa-color-success-on-normal)',
-      "wa-success-on-loud": 'var(--wa-color-success-on-loud)',
+      "wa-success-on-quiet": 'var(--color-success-on-quiet)',
+      "wa-success-on-normal": 'var(--color-success-on-normal)',
+      "wa-success-on-loud": 'var(--color-success-on-loud)',
 
       /*** neutral color ***/
-      "wa-neutral-fill-quiet": 'var(--wa-color-neutral-fill-quiet)',
-      "wa-neutral-fill-normal": 'var(--wa-color-neutral-fill-normal)',
-      "wa-neutral-fill-loud": 'var(--wa-color-neutral-fill-loud)',
+      "wa-neutral-fill-quiet": 'var(--color-neutral-fill-quiet)',
+      "wa-neutral-fill-normal": 'var(--color-neutral-fill-normal)',
+      "wa-neutral-fill-loud": 'var(--color-neutral-fill-loud)',
 
-      "wa-neutral-border-quiet": 'var(--wa-color-neutral-border-quiet)',
-      "wa-neutral-border-normal": 'var(--wa-color-neutral-border-normal)',
-      "wa-neutral-border-loud": 'var(--wa-color-neutral-border-loud)',
+      "wa-neutral-border-quiet": 'var(--color-neutral-border-quiet)',
+      "wa-neutral-border-normal": 'var(--color-neutral-border-normal)',
+      "wa-neutral-border-loud": 'var(--color-neutral-border-loud)',
 
-      "wa-neutral-on-quiet": 'var(--wa-color-neutral-on-quiet)',
-      "wa-neutral-on-normal": 'var(--wa-color-neutral-on-normal)',
-      "wa-neutral-on-loud": 'var(--wa-color-neutral-on-loud)',
-
-      /*** warning color ***/
-      "wa-warning-fill-quiet": 'var(--wa-color-warning-fill-quiet)',
-      "wa-warning-fill-normal": 'var(--wa-color-warning-fill-normal)',
-      "wa-warning-fill-loud": 'var(--wa-color-warning-fill-loud)',
-
-      "wa-warning-border-quiet": 'var(--wa-color-warning-border-quiet)',
-      "wa-warning-border-normal": 'var(--wa-color-warning-border-normal)',
-      "wa-warning-border-loud": 'var(--wa-color-warning-border-loud)',
-
-      "wa-warning-on-quiet": 'var(--wa-color-warning-on-quiet)',
-      "wa-warning-on-normal": 'var(--wa-color-warning-on-normal)',
-      "wa-warning-on-loud": 'var(--wa-color-warning-on-loud)',
+      "wa-neutral-on-quiet": 'var(--color-neutral-on-quiet)',
+      "wa-neutral-on-normal": 'var(--color-neutral-on-normal)',
+      "wa-neutral-on-loud": 'var(--color-neutral-on-loud)',
 
       /*** warning color ***/
-      "wa-danger-fill-quiet2": 'var(--wa-color-danger-fill-quiet2)',
-      "wa-danger-fill-quiet": 'var(--wa-color-danger-fill-quiet)',
-      "wa-danger-fill-normal": 'var(--wa-color-danger-fill-normal)',
-      "wa-danger-fill-loud": 'var(--wa-color-danger-fill-loud)',
+      "wa-warning-fill-quiet": 'var(--color-warning-fill-quiet)',
+      "wa-warning-fill-normal": 'var(--color-warning-fill-normal)',
+      "wa-warning-fill-loud": 'var(--color-warning-fill-loud)',
 
-      "wa-danger-border-quiet": 'var(--wa-color-danger-border-quiet)',
-      "wa-danger-border-normal": 'var(--wa-color-danger-border-normal)',
-      "wa-danger-border-loud": 'var(--wa-color-danger-border-loud)',
+      "wa-warning-border-quiet": 'var(--color-warning-border-quiet)',
+      "wa-warning-border-normal": 'var(--color-warning-border-normal)',
+      "wa-warning-border-loud": 'var(--color-warning-border-loud)',
 
-      "wa-danger-on-quiet": 'var(--wa-color-danger-on-quiet)',
-      "wa-danger-on-normal": 'var(--wa-color-danger-on-normal)',
-      "wa-danger-on-loud": 'var(--wa-color-danger-on-loud)',
+      "wa-warning-on-quiet": 'var(--color-warning-on-quiet)',
+      "wa-warning-on-normal": 'var(--color-warning-on-normal)',
+      "wa-warning-on-loud": 'var(--color-warning-on-loud)',
+
+      /*** warning color ***/
+      "wa-danger-fill-quiet2": 'var(--color-danger-fill-quiet2)',
+      "wa-danger-fill-quiet": 'var(--color-danger-fill-quiet)',
+      "wa-danger-fill-normal": 'var(--color-danger-fill-normal)',
+      "wa-danger-fill-loud": 'var(--color-danger-fill-loud)',
+
+      "wa-danger-border-quiet": 'var(--color-danger-border-quiet)',
+      "wa-danger-border-normal": 'var(--color-danger-border-normal)',
+      "wa-danger-border-loud": 'var(--color-danger-border-loud)',
+
+      "wa-danger-on-quiet": 'var(--color-danger-on-quiet)',
+      "wa-danger-on-normal": 'var(--color-danger-on-normal)',
+      "wa-danger-on-loud": 'var(--color-danger-on-loud)',
     },
     borderRadius: {
       'none': '0',

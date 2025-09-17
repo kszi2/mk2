@@ -5,17 +5,17 @@ class Inputs::FormComponent < ViewComponent::Base
 
   def error_border_style
     if errored
-      'border-wa-danger-border-loud'
+      'border-danger-border-loud'
     else
-      'border-wa-surface-border'
+      'border-surface-border'
     end
   end
 
   def error_text_style
     if errored
-      'text-wa-danger-border-loud'
+      'text-danger-border-loud'
     else
-      'text-wa-neutral-on-normal'
+      'text-neutral-on-normal'
     end
   end
 end

@@ -10,7 +10,7 @@ class Shells::ShowShellComponent::PropertyComponent < ViewComponent::Base
   private
 
   def button_style
-    'text-wa-text-normal bg-wa-surface-raised border-wa-surface-border' +
-      ' hover:bg-wa-surface-default active:bg-wa-surface-lowered'
+    'text-text-normal bg-surface-raised border-surface-border' +
+      ' hover:bg-surface-default active:bg-surface-lowered'
   end
 end

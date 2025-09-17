@@ -1,8 +1,8 @@
 %span.group.inline-flex.items-center.select-all.h-8.py-2.px-3.gap-2.my-1.border.rounded.w-fit{class:
   "#{root_color_classes}",
   data: {
-    controller: "tag-component",
-    tag_component: { target: "root" }
+    controller: "tag",
+    tag: { target: "root" }
   }}
   %span(class="text-base/4")
     - if content?
@@ -10,6 +10,6 @@
     - else
       = @text
   - if @closable
-    %button.w-4.h-4.relative{class: "group/x", data: { action: "tag-component#close" }}
+    %button.w-4.h-4.relative{class: "group/x", data: { action: "tag#close" }}
       %i.z-50.fa-regular.fa-xmark._(class="-translate-y-[.2rem] #{xhover_classes}")
-      .absolute.rounded-full.w-5.h-5.border.border-wa-danger-fill-normal.hidden(class="z-[-1] -top-[6.2%] -left-[.1rem] group-hover/x:inline")
+      .absolute.rounded-full.w-5.h-5.border.border-danger-fill-normal.hidden(class="z-[-1] -top-[6.2%] -left-[.1rem] group-hover/x:inline")

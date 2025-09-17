@@ -1,10 +1,10 @@
 .px-7.py-3.border.rounded.transition.animate-flash{class:
     "w-[calc(100lvw-3.5rem)] sm:w-[50lvw] md:w-[33lvw]" +
     " #{border_color} #{bg_color} #{text_color}" +
-    " data-[flash-component-ending-value]:animate-flash-out ",
+    " data-flash-ending-value:animate-flash-out ",
     data: {
-      controller: "flash-component",
-      action: "pointerenter->flash-component#haltTimeout pointerleave->flash-component#restartTimeout"
+      controller: "flash",
+      action: "pointerenter->flash#haltTimeout pointerleave->flash#restartTimeout"
     }
   }
   %h2.text-lg

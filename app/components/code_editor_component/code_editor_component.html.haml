@@ -1,21 +1,21 @@
 .w-full.mt-2{data: {
-    controller: "code-editor-component",
-    code_editor_component: {
+    controller: "code-editor",
+    code_editor: {
       language: { value: @lang },
       editable: { value: @editable },
     }
   }}
-  %input{type: "hidden", name: @form_name, value: @value, data: { code_editor_component: {
+  %input{type: "hidden", name: @form_name, value: @value, data: { code_editor: {
     target: "holder"
   }}}
   - if label?
     %label{for: @id, data: {
-      action: "click->code-editor-component#focusEditor"
+      action: "click->code-editor#focusEditor"
     }}= label
-  .w-full.font-mono.border.rounded.border-wa-surface-default.p-2.bg-wa-surface-default{id: @id,
-    class: "focus-within:ring focus-within:ring-wa-brand-border-loud",
+  .w-full.font-mono.border.rounded.border-surface-default.p-2.bg-surface-default{id: @id,
+    class: "focus-within:ring focus-within:ring-brand-border-loud",
     data: {
-      code_editor_component: {
+      code_editor: {
         target: "editor",
       }
     }

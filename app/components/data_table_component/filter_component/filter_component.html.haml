@@ -1,25 +1,25 @@
-%span.relative._{class: "group/filter", data: { controller: "filter-component",
-                                                filter_component_controller_value: @controller,
-                                                filter_component_field_value: @field,
-                                                filter_component_filters_value: current_filter,
+%span.relative._{class: "group/filter", data: { controller: "filter",
+                                                filter_controller_value: @controller,
+                                                filter_field_value: @field,
+                                                filter_filters_value: current_filter,
                                               }}
   = render ButtonComponent.new(type: :basic, text: nil, href: nil, size: :small,
-                               data: { action: "filter-component#toggle pointerenter->filter-component#preload" }) do
-    .hidden._(class="group-[[data-filter-component-useful-value=false]]/filter:block")
+                               data: { action: "filter#toggle pointerenter->filter#preload" }) do
+    .hidden._(class="group-data-[filter-useful-value=false]/filter:block")
       %i.fa-regular.fa-filter
-    .hidden._(class="group-[[data-filter-component-useful-value=true]]/filter:block")
-      %i.fa-solid.fa-filter.text-wa-success-fill-loud
+    .hidden._(class="group-data-[filter-useful-value=true]/filter:block")
+      %i.fa-solid.fa-filter.text-success-fill-loud
   %form{id: "#{@controller}_#{@field}_form"}
     %input(type="hidden" name="filter_field" value=@field)
     #values
-  .hidden{id: "#{@field}_filter", class: "group-[[data-filter-component-visible-value=true]]/filter:block"}
-    .absolute.max-h-64.w-52.py-2.px-3.bg-wa-brand-fill-loud.rounded.top-full._(class="left-1/2 -translate-x-1/2 translate-y-2")
+  .hidden{id: "#{@field}_filter", class: "group-data-[filter-visible-value=true]/filter:block"}
+    .absolute.max-h-64.w-52.py-2.px-3.bg-brand-fill-loud.rounded.top-full._(class="left-1/2 -translate-x-1/2 translate-y-2")
       .flex.justify-between
         %h6.mb-4.text-lg Filter #{@name}
-        %button.w-4.h-4.relative{class: "group/x", data: { action: "filter-component#toggle" }}
-          %i.z-50.fa-regular.fa-xmark._(class="-translate-y-[.2rem] group-hover/x:text-wa-danger-fill-normal")
-          .absolute.rounded-full.w-5.h-5.border.border-wa-danger-fill-normal.hidden(class="z-[-1] -top-[6.2%] -left-[.1rem] group-hover/x:inline")
-      .max-h-40.overflow-auto.bg-wa-neutral-fill-loud.px-2.py-1.rounded
+        %button.w-4.h-4.relative{class: "group/x", data: { action: "filter#toggle" }}
+          %i.z-50.fa-regular.fa-xmark._(class="-translate-y-[.2rem] group-hover/x:text-danger-fill-normal")
+          .absolute.rounded-full.w-5.h-5.border.border-danger-fill-normal.hidden(class="z-[-1] -top-[6.2%] -left-[.1rem] group-hover/x:inline")
+      .max-h-40.overflow-auto.bg-neutral-fill-loud.px-2.py-1.rounded
         = turbo_frame_tag "#{@controller}_#{@field}_filter", loading: :lazy, src: @filter_url do
           = loader_tag
 

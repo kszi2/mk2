@@ -1,8 +1,8 @@
 - if label?
   %label(for=@id class=error_text_style)= label
-%textarea.outline-none.bg-wa-surface-default.rounded.border.min-h-12{id: @id,
+%textarea.outline-none.bg-surface-default.rounded.border.min-h-12{id: @id,
   name: @name,
-  class: "#{error_border_style} #{@classes} px-5 py-2 focus:ring focus:ring-wa-brand-border-quiet",
+  class: "#{error_border_style} #{@classes} px-5 py-2 focus:ring focus:ring-brand-border-quiet",
   disabled: !@enabled,
   rows: [[true_value.count("\n"), 7].min, 3].max,
   data: @data

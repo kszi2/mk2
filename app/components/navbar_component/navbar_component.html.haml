@@ -1,6 +1,6 @@
 .fixed.z-50.w-full.flex.flex-row{class: "group/navbar top-0.5 left-1/2 -translate-x-1/2 md:w-4/5 lg:w-3/5 xl:w-2/5",
     data: {
-      controller: "navbar-component"
+      controller: "navbar"
     }
   }
   %nav{class:
@@ -14,20 +14,20 @@
       = e
 
     -# hamburger menu button
-    .relative.w-6.h-6.mt-1{class: "block md:hidden group/opener", data: { action: "click->navbar-component#toggle" }}
-      .absolute.w-6.transition.bg-wa-text-normal{class:
+    .relative.w-6.h-6.mt-1{class: "block md:hidden group/opener", data: { action: "click->navbar#toggle" }}
+      .absolute.w-6.transition.bg-text-normal{class:
         "h-0.5 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1 group-hover/opener:-translate-y-1.5" +
-        " group-[[data-navbar-component-open-value='true']]/navbar:-translate-y-1/2" +
-        " group-[[data-navbar-component-open-value='true']]/navbar:rotate-45"}
-      .absolute.w-6.transition.bg-wa-text-normal{class:
+        " group-data-[navbar-open-value=true]/navbar:-translate-y-1/2" +
+        " group-data-[navbar-open-value=true]/navbar:rotate-45"}
+      .absolute.w-6.transition.bg-text-normal{class:
         "h-0.5 top-1/2 left-1/2 -translate-x-1/2 translate-y-1 group-hover/opener:translate-y-1.5" +
-        " group-[[data-navbar-component-open-value='true']]/navbar:-translate-y-1/2" +
-        " group-[[data-navbar-component-open-value='true']]/navbar:-rotate-45"}
+        " group-data-[navbar-open-value=true]/navbar:-translate-y-1/2" +
+        " group-data-[navbar-open-value=true]/navbar:-rotate-45"}
 
   .absolute.drop-shadow.backdrop-blur-lg.top-10.border-onyx.rounded-b.border-b.border-x.hidden{class:
       "w-10/12 h-fit z-[-1] left-1/2 -translate-x-1/2 bg-onyx/35",
       data: {
-        navbar_component: {
+        navbar: {
           target: "dropdown"
         }
       }

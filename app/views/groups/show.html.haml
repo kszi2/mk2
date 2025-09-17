@@ -25,7 +25,7 @@
         #group_student_list
           - @group.students.order(:name).each do |student|
             = form_tag course_group_remove_student_path(@course, @group, student.neptun.upcase), method: :delete do
-              .flex.mt-3.px-2.items-center.justify-between.border-b.border-wa-brand-border-loud
+              .flex.mt-3.px-2.items-center.justify-between.border-b.border-brand-border-loud
                 .flex.justify-between.flex-wrap(class="w-1/2")
                   %span.block.overflow-visible.whitespace-nowrap._(class="w-full sm:w-px")= student.name
                   %span.font-mono= student.neptun.upcase

@@ -4,4 +4,4 @@
 
 - @updated_ratings.each do |rating|
   = turbo_stream.after dom_id(rating) do
-    %div{data: { rating_point_listing_component: { target: "destruction" } }}
+    %div{data: { rating_point_listing: { target: "destruction" } }}

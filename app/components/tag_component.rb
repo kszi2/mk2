@@ -10,11 +10,11 @@ class TagComponent < ViewComponent::Base
   def xhover_classes
     case @style
     in :default
-      "group-hover/x:text-wa-danger-fill-normal"
+      "group-hover/x:text-danger-fill-normal"
     in :warning
-      "group-hover/x:text-wa-danger-fill-normal"
+      "group-hover/x:text-danger-fill-normal"
     in :danger
-      "group-hover/x:text-wa-neutral-fill-quiet"
+      "group-hover/x:text-neutral-fill-quiet"
     end
   end
 
@@ -22,11 +22,11 @@ class TagComponent < ViewComponent::Base
   def root_color_classes
     case @style
     in :default
-      "border-wa-neutral-border-normal bg-wa-neutral-fill-normal"
+      "border-neutral-border-normal bg-neutral-fill-normal"
     in :warning
-      "border-wa-warning-border-normal bg-wa-warning-fill-normal"
+      "border-warning-border-normal bg-warning-fill-normal"
     in :danger
-      "border-wa-danger-border-loud bg-wa-danger-fill-loud"
+      "border-danger-border-loud bg-danger-fill-loud"
     end
   end
 end

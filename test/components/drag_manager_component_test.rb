@@ -21,6 +21,6 @@ class DragManagerComponentTest < ViewComponent::TestCase
     render_inline Sut.new(reorder_url: "/render")
     assert_component_rendered
 
-    assert_css "div[class*='drag-manager'][data-controller*='drag-manager-component']"
+    assert_css "div[class*='drag-manager'][data-controller*='drag-manager']"
   end
 end

@@ -3,7 +3,7 @@ import $ from "jquery";
 
 export default class extends Controller {
   // todo this hardcodes what can be dragged :(
-  static outlets = ["rating-point-listing-component"]
+  static outlets = ["rating-point-listing"]
   static targets = [
     "draggable",
     "actionForm",

@@ -5,23 +5,19 @@
     "esbuild": "^0.25.0"
   },
   "scripts": {
-    "build": "node bundle.mjs",
-    "watch": "node watch.mjs",
-    "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify"
+    "build": "bun bun.config.js",
+    "build:css": "bun x tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify"
   },
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo": "^8.0.12",
     "@hotwired/turbo-rails": "^8.0.12",
-    "@tailwindcss/typography": "^0.5.14",
-    "@xpd/tailwind-3dtransforms": "^1.0.3",
     "autoprefixer": "^10.4.20",
     "codejar": "^4.2.0",
-    "esbuild-plugin-import-glob": "^0.1.1",
     "highlight.js": "^11.10.0",
     "idiomorph": "^0.3.0",
     "jquery": "^3.7.1",
-    "postcss": "^8.4.41",
-    "tailwindcss": "^3.4.10"
+    "tailwindcss": "^4.1.13",
+    "@tailwindcss/cli": "^4.1.13"
   }
 }

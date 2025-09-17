@@ -12,11 +12,11 @@ class SidebarComponent < ViewComponent::Base
     if @dismissible
       "w-dvw"
     else
-      "w-dvw bg-wa-surface-lowered/50"
+      "w-dvw bg-surface-lowered/50"
     end
   end
 
   def sidebar_classes
-    "right-0 h-lvh w-[100lvw] md:w-[75lvw] lg:w-[50lvw] bg-wa-surface-raised"
+    "right-0 h-lvh w-[100lvw] md:w-[75lvw] lg:w-[50lvw] bg-surface-raised"
   end
 end

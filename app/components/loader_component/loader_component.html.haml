@@ -1,2 +1,4 @@
 .w-full.flex.flex-row.justify-center
-  %span.loader
+  %span.loader{class: "relative w-[48px] h-[48px] bg-brand-fill-loud text-brand-on-loud rotate-(--x-rotate-loader)" +
+    " animate-loader after:content-[_] after:inset-0 after:absolute after:bg-text-normal/70 after:animate-loader-elem"
+  }

@@ -7,5 +7,5 @@
       - idx = val.underscore.gsub(" ", "_")
       - idx = value.id if value.respond_to?(:id)
       %li
-        %input.accent-wa-success-fill-normal._{id: "#{@filter_field}_#{idx}", type: "checkbox", data: { action: "filter-component#setFilter", filter_component_field_param: @filter_field, filter_component_value_param: idx }}
+        %input.accent-success-fill-normal._{id: "#{@filter_field}_#{idx}", type: "checkbox", data: { action: "filter#setFilter", filter_field_param: @filter_field, filter_value_param: idx }}
         %label{for: "#{@filter_field}_#{idx}"}= val

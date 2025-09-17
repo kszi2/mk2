@@ -1,7 +1,7 @@
 = turbo_frame_tag "listing_" + @type.name.underscore.pluralize do
   .flex.justify-end.mb-4.items-start.flex-wrap-reverse.gap-y-2._(class="sm:justify-between")
     .w-full.flex.justify-start._(class="sm:w-auto")
-      = paginate @objects, window: 1
+      = helpers.paginate @objects, window: 1
     - if table_actions?
       = table_actions
     - elsif @inline_create
@@ -19,7 +19,7 @@
   .rounded.shadow-sm.rounded.w-full.overflow-visible.min-h-80
     %table.w-full.overflow-visible
       %thead.sticky.top-0.text-left
-        %tr{class: "*:p-3 *:sm:p-4 *:border-wa-neutral-border-normal *:bg-wa-neutral-fill-loud "}
+        %tr{class: "*:p-3 *:sm:p-4 *:border-neutral-border-normal *:bg-neutral-fill-loud "}
           - @col_config.each_with_index do |cfg, i|
             %th{class: nth_th(i, cfg)}
               %span.uppercase= header_name(cfg)
@@ -35,12 +35,12 @@
       %tbody
         - @objects.each do |template|
           %tr{id: dom_id(template),
-              class: "even:bg-wa-neutral-fill-normal odd:bg-wa-neutral-fill-quiet hover:bg-wa-surface-raised border-b" +
-                     " border-wa-brand-border-loud last:border-wa-neutral-border-normal last:rounded-b *:p-4"
+              class: "even:bg-neutral-fill-normal odd:bg-neutral-fill-quiet hover:bg-surface-raised border-b" +
+                     " border-brand-border-loud last:border-neutral-border-normal last:rounded-b *:p-4"
               }
             - @col_config.each_with_index do |cfg, i|
               %td{class: nth_td(i, cfg)}= value_of(template, cfg)
-            %td(class="border-r border-wa-neutral-border-normal")
+            %td(class="border-r border-neutral-border-normal")
               - if row_actions?
                 -# repulsive hackery, horrid design, abhorrent implementation
                 - self.current_object = template

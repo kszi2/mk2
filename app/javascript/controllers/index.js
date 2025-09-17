@@ -4,14 +4,4 @@
 
 import {application} from "./application"
 
-import { default as controllers, filenames } from "../../components/**/*.js";
 
-const controller_name = new RegExp(/\/(\w+)_controller.js$/);
-for (const i in controllers) {
-  const cn = controller_name.exec(filenames[i]);
-  if (cn === null) {
-    console.error("Couldn't find packaged Stimulus controller from path: " + filenames[i]);
-    continue;
-  }
-  application.register(cn[1].replaceAll("_", "-"), controllers[i].default)
-}

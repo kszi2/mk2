@@ -1,82 +1,70 @@
 # syntax = docker/dockerfile:1
-
-# Make sure RUBY_VERSION matches the Ruby version in .ruby-version and Gemfile
+# check=error=true
 ARG RUBY_VERSION=3.4.5
-FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim AS base
 
-# Rails app lives here
+FROM docker.io/ruby:$RUBY_VERSION-alpine AS base
+ARG BUILD_ENV
+
 WORKDIR /rails
 
-# Set production environment
 ENV RAILS_ENV="production" \
     BUNDLE_DEPLOYMENT="1" \
     BUNDLE_PATH="/usr/local/bundle" \
-    BUNDLE_WITHOUT="development"
+    BUNDLE_WITHOUT="development" \
+    TZ="Europe/Budapest" \
+    SKIP_COVERAGE="1"
 
+RUN apk update && \
+    apk add --no-cache yaml curl mimalloc libpq tzdata git icu icu-data-full
 
-# Throw-away build stage to reduce size of final image
 FROM base AS build
 
-# Install packages needed to build gems
-RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential curl git libpq-dev libvips pkg-config unzip nodejs npm
+ENV BUN_INSTALL=/usr/local/bun \
+    PATH=/usr/local/bun/bin:$PATH
 
-ARG NODE_VERSION=20.17.0
-ARG YARN_VERSION=1.22.19
-ENV PATH=/usr/local/node/bin:$PATH
-RUN npm install -g yarn@$YARN_VERSION
+# Add build tooling
+RUN apk update && \
+    apk add --no-cache yaml-dev pkgconf unzip build-base bash libpq-dev
 
-# Install application gems
+# Ruby tooling & packges
 COPY Gemfile Gemfile.lock ./
-RUN bundle install && \
-    rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git && \
-    bundle exec bootsnap precompile --gemfile
+RUN bundle config set frozen true && \
+    bundle install && \
+    rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git
 
-# Install node modules
-COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile 
+# JavaScript tooling & packages
+COPY package.json bun.lock ./
+RUN curl -fsSL https://bun.sh/install | bash && \
+    bun install --frozen-lockfile
 
-# Copy application code
 COPY . .
-
-# Precompile bootsnap code for faster boot times
-RUN yarn build && \
-    yarn build:css && \
-    bundle exec bootsnap precompile app/ lib/
 
 # Adjust binfiles to be executable on Linux
 RUN chmod +x bin/* && \
     sed -i "s/\r$//g" bin/* && \
     sed -i 's/ruby\.exe$/ruby/' bin/*
 
-# Precompiling assets for production without requiring secret RAILS_MASTER_KEY
-RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
+# Precompile everything
+RUN bun i --frozen-lockfile && bun run build && \
+    bun run build:css && \
+    bundle exec bootsnap precompile --gemfile && \
+    bundle exec bootsnap precompile app/ lib/ && \
+    SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 
-
-# Final stage for app image
 FROM base
 
-# Install packages needed for deployment
-RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y curl libvips postgresql-client && \
-    rm -rf /var/lib/apt/lists /var/cache/apt/archives \
-    gem install bundler -v '~> 2.5'
-
-# Copy built artifacts: gems, application
 COPY --from=build /usr/local/bundle /usr/local/bundle
 COPY --from=build /rails /rails
 
 # Run and own only the runtime files as a non-root user for security
-RUN useradd rails --create-home --shell /bin/bash && \
+RUN addgroup -g 1000 -S rails && \
+    adduser -u 1000 -G rails -S -s /bin/ash rails && \
     chown -R rails:rails db log storage tmp
-USER rails:rails
+USER 1000:1000
 
 # Entrypoint prepares the database.
-VOLUME "/var/pg"
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
-# Start the server by default, this can be overwritten at runtime
+# Start server via Thruster by default, this can be overwritten at runtime
 EXPOSE 5000
-CMD ["/rails/bin/bundle", "exec", "puma", "-e", "production", "-p", "5000", "-C", "config/puma.rb"]
-
-HEALTHCHECK CMD [ "curl", "-f", "http://localhost:5000/up" ]
+CMD ["./bin/thrust", "./bin/rails", "server"]

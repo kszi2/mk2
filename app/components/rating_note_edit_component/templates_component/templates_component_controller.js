@@ -4,7 +4,7 @@ import $ from "jquery";
 export default class extends Controller {
   static targets = [ "dialog" ]
   static values = {course: String}
-  static outlets = [ "rating-note-edit-component" ]
+  static outlets = [ "rating-note-edit" ]
 
   connect() {
     this.element.id = "_" + crypto.randomUUID();

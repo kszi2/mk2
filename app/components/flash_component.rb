@@ -37,11 +37,11 @@ class FlashComponent < ViewComponent::Base
   def border_color
     case @type
     when :notice
-      "border-wa-neutral-border-normal hover:border-wa-neutral-border-loud"
+      "border-neutral-border-normal hover:border-neutral-border-loud"
     when :success
-      "border-wa-success-border-quiet hover:border-wa-success-border-normal"
+      "border-success-border-quiet hover:border-success-border-normal"
     when :alert
-      "border-wa-danger-border-quiet hover:border-wa-danger-border-normal"
+      "border-danger-border-quiet hover:border-danger-border-normal"
     else
       invalid_type
     end
@@ -50,11 +50,11 @@ class FlashComponent < ViewComponent::Base
   def bg_color
     case @type
     when :notice
-      "bg-wa-neutral-fill-normal hover:bg-wa-neutral-fill-loud"
+      "bg-neutral-fill-normal hover:bg-neutral-fill-loud"
     when :success
-      "bg-wa-success-fill-quiet hover:bg-wa-success-fill-normal"
+      "bg-success-fill-quiet hover:bg-success-fill-normal"
     when :alert
-      "bg-wa-danger-fill-quiet hover:bg-wa-danger-fill-normal"
+      "bg-danger-fill-quiet hover:bg-danger-fill-normal"
     else
       invalid_type
     end
@@ -63,11 +63,11 @@ class FlashComponent < ViewComponent::Base
   def text_color
     case @type
     when :notice
-      "text-wa-neutral-on-normal hover:text-wa-neutral-on-loud"
+      "text-neutral-on-normal hover:text-neutral-on-loud"
     when :success
-      "text-wa-success-on-quiet hover:text-wa-success-on-normal"
+      "text-success-on-quiet hover:text-success-on-normal"
     when :alert
-      "text-wa-danger-on-quiet hover:text-wa-danger-on-normal"
+      "text-danger-on-quiet hover:text-danger-on-normal"
     else
       invalid_type
     end

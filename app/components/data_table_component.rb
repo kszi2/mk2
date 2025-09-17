@@ -34,7 +34,7 @@ class DataTableComponent < ViewComponent::Base
   end
 
   def nth_td(idx, cfg = {})
-    return "font-semibold border-l border-wa-neutral-border-normal" if idx == 0
+    return "font-semibold border-l border-neutral-border-normal" if idx == 0
     if cfg.has_key?(:hide)
       hide = cfg[:hide]
       "hidden #{hide}:table-cell"

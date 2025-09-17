@@ -1,14 +1,14 @@
-.w-full.border.border-wa-surface-border.rounded.bg-wa-surface-default.select-none{data: {
-  controller: "template-component",
-  action: "click->template-component#setContentToTemplate click->sidebar-component#close",
-  template_component: {
-    templates_component_outlet: "#" + @holder_id,
+.w-full.border.border-surface-border.rounded.bg-surface-default.select-none{data: {
+  controller: "template",
+  action: "click->template#setContentToTemplate click->sidebar#close",
+  template: {
+    templates_outlet: "#" + @holder_id,
     cost: { value: @template.cost }
   }
 }}
-  .text-lg.my-2.border-b.mx-3.border-wa-surface-border= @template.name
+  .text-lg.my-2.border-b.mx-3.border-surface-border= @template.name
   .mb-3.mx-3{data: {
-    template_component: {
+    template: {
       target: "data"
     }
   }}= @template.data

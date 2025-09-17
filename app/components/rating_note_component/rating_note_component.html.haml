@@ -1,11 +1,11 @@
 = turbo_frame_tag @note do
-  %details.w-full.bg-wa-surface-default.py-2.px-5.rounded{class: "group/note-detail",
+  %details.w-full.bg-surface-default.py-2.px-5.rounded{class: "group/note-detail",
     data: {
-      controller: "rating-note-component",
+      controller: "rating-note",
    }
   }
     %summary.relative.w-full.h-8.block{data: {
-      action: "click->rating-note-component#toggleDetails:capture",
+      action: "click->rating-note#toggleDetails:capture",
     }}
       = render @preface_comp
       .absolute.flex.right-0._(class="top-1/2 -translate-y-1/2")
@@ -15,7 +15,7 @@
                                              size: :small,
                                              rounding: :grouped,
                                              data: { turbo: { method: :post },
-                                                     rating_note_component_target: "ignored" }) do |b|
+                                                     rating_note_target: "ignored" }) do |b|
           - b.with_prefix do
             %i.fa-regular._(id=toggle_icon_id class=fix_icon_classes)
         = render Inputs::ButtonComponent.new(type: :secondary,
@@ -23,7 +23,7 @@
                                              href: edit_url,
                                              size: :small,
                                              rounding: :grouped,
-                                             data: { rating_note_component_target: "ignored" }) do |b|
+                                             data: { rating_note_target: "ignored" }) do |b|
           - b.with_prefix do
             %i.fa-regular.fa-pen-to-square
         = render Inputs::ButtonComponent.new(type: :destroy,
@@ -32,12 +32,12 @@
                                              size: :small,
                                              rounding: :grouped,
                                              data: { turbo: { method: :delete, confirm: "Delete note?" },
-                                                     rating_note_component_target: "ignored" }) do |b|
+                                                     rating_note_target: "ignored" }) do |b|
           - b.with_prefix do
             %i.fa-regular.fa-trash-xmark
 
-    .py-3.mt-2.border-t.border-wa-neutral-border-quiet.text-wa-text-normal.hidden{data: {
-      rating_note_component_target: "content"
+    .py-3.mt-2.border-t.border-neutral-border-quiet.text-text-normal.hidden{data: {
+      rating_note_target: "content"
     }}
       - note_reason.lines.each do |line|
         %p.text-wrap.whitespace-pre-wrap.pl-2.-indent-2= line

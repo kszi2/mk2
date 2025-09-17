@@ -1,14 +1,14 @@
 .my-2._{class: "group/tabview", data: {
-                                        controller: "tabview-component",
-                                        action: "popstate@window->tabview-component#restoreTab"
+                                        controller: "tabview",
+                                        action: "popstate@window->tabview#restoreTab"
                                       }}
   %nav.flex.flex-wrap.text-lg
     - pages.each_with_index do |page, i|
       .select-none{class: title_classes(i), data: {
-                                            action: "click->tabview-component#changeTab pointerenter->tabview-component#preloadTab",
-                                            tabview_component_id_param: i
+                                            action: "click->tabview#changeTab pointerenter->tabview#preloadTab",
+                                            tabview_id_param: i
                                           }}= page.title
-    .grow.border-b.border-wa-neutral-border-normal
+    .grow.border-b.border-neutral-border-normal
 
   %div
     - pages.each_with_index do |page, i|

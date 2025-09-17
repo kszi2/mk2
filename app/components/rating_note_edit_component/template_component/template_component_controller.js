@@ -4,7 +4,7 @@ import $ from "jquery";
 export default class extends Controller {
   static values = {cost: Number}
   static targets = ["data"];
-  static outlets = ["templates-component"]
+  static outlets = ["templates"]
 
   setContentToTemplate() {
     console.log("setContentToTemplate", this.costValue);

@@ -1,4 +1,11 @@
-#!/bin/bash -e
+#!/bin/sh -e
+
+# Enable jemalloc for reduced memory usage and latency.
+if [ -z "${LD_PRELOAD+x}" ]
+then
+    LD_PRELOAD=$(find /usr/lib -name libmimalloc.so.2 -print -quit)
+    export LD_PRELOAD
+fi
 
 ./bin/rails db:prepare
 

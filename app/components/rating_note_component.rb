@@ -33,9 +33,9 @@ class RatingNoteComponent < ViewComponent::Base
   end
 
   def self.toggle_icon_classes(note)
-    return "fa-xmark-to-slot group-hover/button:text-wa-danger-fill-loud" \
+    return "fa-xmark-to-slot group-hover/button:text-danger-fill-loud" \
       if note.fixed?
-    "fa-check-to-slot group-hover/button:text-wa-success-fill-loud"
+    "fa-check-to-slot group-hover/button:text-success-fill-loud"
   end
 
   def toggle_icon_classes

@@ -1,8 +1,8 @@
 <h2 class="text-2xl">Log in</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="text-xl text-wa-danger-fill-quiet"><%= notice %></div>
-  <div class="text-xl text-wa-danger-fill-quiet"><%= alert %></div>
+  <div class="text-xl text-danger-fill-quiet"><%= notice %></div>
+  <div class="text-xl text-danger-fill-quiet"><%= alert %></div>
 
   <%= text_input_tag resource, :username %>
   <%= password_input_tag resource, :password %>

@@ -29,7 +29,7 @@ class NotePrefaceComponent < ViewComponent::Base
   end
 
   def chevron_color
-    return "text-wa-text-quiet" unless @active
+    return "text-text-quiet" unless @active
     ""
   end
 
@@ -56,18 +56,18 @@ class NotePrefaceComponent < ViewComponent::Base
   private
 
   def data_classes
-    return "text-wa-text-quiet animate-text-quietize" if @fixed
-    "text-wa-text-normal animate-text-normalize"
+    return "text-text-quiet animate-text-quietize" if @fixed
+    "text-text-normal animate-text-normalize"
   end
 
   def preface_symbol_name
     return "fa-question" if note_is_new?
     if @fixed
-      return "fa-comment-slash text-wa-success-fill-loud" if note_is_message?
-      return "fa-bug-slash text-wa-success-fill-loud"
+      return "fa-comment-slash text-success-fill-loud" if note_is_message?
+      return "fa-bug-slash text-success-fill-loud"
     end
     return "fa-comment" if note_is_message?
-    return "fa-xmark-large text-wa-danger-fill-loud" if @fatal
+    return "fa-xmark-large text-danger-fill-loud" if @fatal
     ""
   end
 

@@ -2,7 +2,7 @@ import {Controller} from "@hotwired/stimulus";
 import $ from "jquery";
 
 export default class extends Controller {
-  static outlets = ["drag-manager-component"];
+  static outlets = ["drag-manager"];
   static targets = ["dragenterArea", "dropArea", "destruction"]
   static values = {
     // Currently being dragged
@@ -24,7 +24,7 @@ export default class extends Controller {
   }
 
   isAfter(order) {
-    return $(order).data('rating-point-listing-component-ordering-value') >= this.orderingValue
+    return $(order).data('rating-point-listing-ordering-value') >= this.orderingValue
   }
 
   destructionTargetConnected() {

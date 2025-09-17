@@ -22,12 +22,12 @@
           Students failed importing:
           .flex.flex-col.gap-2
             - @new_students.filter { |s| s.invalid? }.each do |student|
-              %details.h-full.px-2.py-1.bg-wa-surface-default.rounded
+              %details.h-full.px-2.py-1.bg-surface-default.rounded
                 %summary
                   = student.name
                   %span.font-mono (#{student.neptun})
 
-                .text-wa-danger-fill-loud.flex.flex-col.gap-1.pt-1
+                .text-danger-fill-loud.flex.flex-col.gap-1.pt-1
                   - student.errors.full_messages.each do |message|
                     = message
         - else

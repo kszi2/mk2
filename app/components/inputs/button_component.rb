@@ -51,24 +51,24 @@ class Inputs::ButtonComponent < ViewComponent::Base
   def color_styles
     case @type
     when :basic
-      'text-wa-text-normal bg-wa-surface-raised border-wa-surface-border' +
-        ' hover:bg-wa-surface-default active:bg-wa-surface-lowered'
+      'text-text-normal bg-surface-raised border-surface-border' +
+        ' hover:bg-surface-default active:bg-surface-lowered'
     when :primary
-      'text-wa-brand-on-loud bg-wa-brand-fill-loud border-wa-brand-border-loud' +
-        ' hover:bg-wa-brand-fill-normal active:bg-wa-brand-fill-quiet' +
-        ' hover:border-wa-brand-border-normal active:border-wa-brand-border-quiet'
+      'text-brand-on-loud bg-brand-fill-loud border-brand-border-loud' +
+        ' hover:bg-brand-fill-normal active:bg-brand-fill-quiet' +
+        ' hover:border-brand-border-normal active:border-brand-border-quiet'
     when :secondary
-      'text-wa-brand-fill-loud bg-transparent border-wa-brand-border-loud' +
-        ' hover:bg-wa-brand-fill-quiet active:bg-wa-brand-fill-normal' +
-        ' active:text-wa-brand-on-loud'
+      'text-brand-fill-loud bg-transparent border-brand-border-loud' +
+        ' hover:bg-brand-fill-quiet active:bg-brand-fill-normal' +
+        ' active:text-brand-on-loud'
     when :cancel
-      'text-wa-warning-fill-loud bg-transparent border-wa-warning-border-loud' +
-        ' hover:bg-wa-warning-fill-normal hover:text-wa-warning-on-normal' +
-        ' active:bg-wa-warning-fill-quiet active:text-wa-warning-on-quiet'
+      'text-warning-fill-loud bg-transparent border-warning-border-loud' +
+        ' hover:bg-warning-fill-normal hover:text-warning-on-normal' +
+        ' active:bg-warning-fill-quiet active:text-warning-on-quiet'
     when :destroy
-      'text-wa-danger-fill-quiet bg-transparent border-wa-danger-border-loud' +
-        ' hover:bg-wa-danger-fill-normal hover:text-wa-danger-on-normal' +
-        ' active:bg-wa-danger-fill-quiet active:text-wa-danger-on-quiet'
+      'text-danger-fill-quiet bg-transparent border-danger-border-loud' +
+        ' hover:bg-danger-fill-normal hover:text-danger-on-normal' +
+        ' active:bg-danger-fill-quiet active:text-danger-on-quiet'
     else
       raise ArgumentError, "unexpected button type #{@type}: expected #{SupportedTypes}"
     end

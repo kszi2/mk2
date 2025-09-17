@@ -1,25 +1,25 @@
 .fixed.overflow-hidden.transition-opacity.animate-opacity-appear.z-50.h-lvh.top-0.left-0{class: base_classes +
-    " group/sidebar data-[sidebar-component-ending-value]:animate-opacity-disappear",
+    " group/sidebar data-sidebar-ending-value:animate-opacity-disappear",
     data: {
-      controller: "sidebar-component",
-      action: "click->sidebar-component#outsideClick",
-      sidebar_component: {
+      controller: "sidebar",
+      action: "click->sidebar#outsideClick",
+      sidebar: {
         dismissible_value: @dismissible,
       }
     }
   }
   .absolute.transition.animate-sidebar.shadow-xl.z-50.px-10.py-5{class: sidebar_classes +
-      " group-[[data-sidebar-component-ending-value]]/sidebar:animate-sidebar-out " +
-      " group-[[data-sidebar-component-shake-value='true']]/sidebar:animate-shake",
+      " group-data-sidebar-ending-value/sidebar:animate-sidebar-out " +
+      " group-data-[sidebar-shake-value=true]/sidebar:animate-shake",
       data: {
-        action: "click->sidebar-component#insideClick:stop",
-        sidebar_component: {
+        action: "click->sidebar#insideClick:stop",
+        sidebar: {
           target: "sidebar"
         }
       }
     }
     .flex.items-center.gap-3
-      = render Inputs::ButtonComponent.new(type: :secondary, text: nil, href: nil, rounding: :no_border, data: { action: "sidebar-component#close" }) do
+      = render Inputs::ButtonComponent.new(type: :secondary, text: nil, href: nil, rounding: :no_border, data: { action: "sidebar#close" }) do
         = render IconComponent.new(name: "arrow-left-from-bracket", classes: "text-2xl translate-y-1/4")
       %h2.text-4xl= @title
 

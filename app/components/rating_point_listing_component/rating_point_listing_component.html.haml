@@ -1,51 +1,51 @@
 .obj_rating_point.mt-4{class:
     "group/rating_point transition-opacity " +
        fade_in_class +
-       " data-[rating-point-listing-component-ending-value='true']:animate-opacity-disappear",
+       " data-[rating-point-listing-ending-value='true']:animate-opacity-disappear",
     data: {
-      controller: 'rating-point-listing-component',
-      action: "dragleave->rating-point-listing-component#leaveDragged:stop",
-      rating_point_listing_component: {
-        drag_area_component_outlet: "div:has(+ article##{dom_id(@rating_point)})",
-        drag_manager_component_outlet: "div.drag-manager:has(article##{dom_id(@rating_point)})",
+      controller: 'rating-point-listing',
+      action: "dragleave->rating-point-listing#leaveDragged:stop",
+      rating_point_listing: {
+        drag_area_outlet: "div:has(+ article##{dom_id(@rating_point)})",
+        drag_manager_outlet: "div.drag-manager:has(article##{dom_id(@rating_point)})",
         ordering_value: @rating_point.ordering
       }
     }
   }
-  %div.hidden.my-2.py-2.rounded.border-2.border-wa-success-border-quiet.border-dashed.overflow-hidden{class:
-      "bg-wa-success-fill-quiet/50",
+  %div.hidden.my-2.py-2.rounded.border-2.border-success-border-quiet.border-dashed.overflow-hidden{class:
+      "bg-success-fill-quiet/50",
       data: {
-        action: "dragover->rating-point-listing-component#allowDrop:prevent
-                 drop->rating-point-listing-component#drop:prevent:stop".gsub(/\s+/, " "),
-        rating_point_listing_component: {
+        action: "dragover->rating-point-listing#allowDrop:prevent
+                 drop->rating-point-listing#drop:prevent:stop".gsub(/\s+/, " "),
+        rating_point_listing: {
           target: "dropArea"
         }
       }
     }
     .flex.justify-center.pointer-events-none
-      = render IconComponent.new(name: "caret-down", classes: "text-wa-success-border-quiet")
+      = render IconComponent.new(name: "caret-down", classes: "text-success-border-quiet")
 
-  %article.w-full.pl-6.p-4.rounded.border.bg-wa-surface-default.border-wa-surface-border{id: dom_id(@rating_point),
+  %article.w-full.pl-6.p-4.rounded.border.bg-surface-default.border-surface-border{id: dom_id(@rating_point),
     draggable: true,
     data: {
-      action: 'dragstart->rating-point-listing-component#initiateDrag:stop
-               dragend->rating-point-listing-component#finalizeDrag:stop
-               dragenter->rating-point-listing-component#enterDragged:stop'.gsub(/\s+/, ' '),
-      rating_point_listing_component: {
+      action: 'dragstart->rating-point-listing#initiateDrag:stop
+               dragend->rating-point-listing#finalizeDrag:stop
+               dragenter->rating-point-listing#enterDragged:stop'.gsub(/\s+/, ' '),
+      rating_point_listing: {
         target: "dragenterArea"
       },
-      drag_manager_component: {
+      drag_manager: {
         target: "draggable"
       }
     }
   }
     .flex.justify-between.pointer-events-auto{class:
-        "group-[[data-drag-manager-component-active-value='true']]/drag-area:pointer-events-none"
+        "group-[[data-drag-manager-active-value='true']]/drag-area:pointer-events-none"
       }
-      .flex.items-center.gap-6.text-2xl.grow.transition.text-wa-text-normal{class:
-          "group-[[data-rating-point-listing-component-dragged-value='true']]/rating_point:text-wa-text-quiet" +
-           " group-[[data-rating-point-listing-component-dragged-value='true']]/rating_point:animate-text-quietize" +
-           " group-[[data-rating-point-listing-component-dragged-value='false']]/rating_point:animate-text-normalize"
+      .flex.items-center.gap-6.text-2xl.grow.transition.text-text-normal{class:
+          "group-[[data-rating-point-listing-dragged-value='true']]/rating_point:text-text-quiet" +
+           " group-[[data-rating-point-listing-dragged-value='true']]/rating_point:animate-text-quietize" +
+           " group-[[data-rating-point-listing-dragged-value='false']]/rating_point:animate-text-normalize"
         }
         %i.fa-regular= @rating_point.available_points
         %h3.grow.text-ellipsis= @rating_point.name
@@ -75,9 +75,9 @@
                                      }) do
           = render IconComponent.new(name: "trash-can-xmark")
 
-    .mt-4.text-lg.text-wa-text-normal{class:
-      "group-[[data-drag-manager-component-active-value='true']]/drag-area:pointer-events-none" +
-        " group-[[data-rating-point-listing-component-dragged-value='true']]/rating_point:text-wa-text-quiet" +
-        " group-[[data-rating-point-listing-component-dragged-value='true']]/rating_point:animate-text-quietize" +
-        " group-[[data-rating-point-listing-component-dragged-value='false']]/rating_point:animate-text-normalize"
+    .mt-4.text-lg.text-text-normal{class:
+      "group-data-[drag-manager-active-value=true]/drag-area:pointer-events-none" +
+        " group-data-[rating-point-listing-dragged-value=true]/rating_point:text-text-quiet" +
+        " group-data-[rating-point-listing-dragged-value=true]/rating_point:animate-text-quietize" +
+        " group-data-[rating-point-listing-dragged-value=false]/rating_point:animate-text-normalize"
     }= @rating_point.description

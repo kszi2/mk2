@@ -1,3 +1,5 @@
-%a.menu-item.flex-row.items-center.font-semibold.border-wa-brand-border-loud{href: @href,
-    class: link_type_class
+%a.menu-item.flex-row.items-center.font-semibold.border-brand-border-loud.uppercase.px-8.relative.text-text-normal{href: @href,
+    class: link_type_class + " after:absolute after:content-[_] after:left-1/2 after:-translate-x-1/2 after:bottom-0" +
+    " after:w-0 hover:after:w-5/6 after:box-border after:h-0.5 after:bg-brand-border-normal after:mx-auto hover:after:mx-0 after:block after:duration-300 after:ease-in-out" +
+    " after:transition-all"
   }= @name
