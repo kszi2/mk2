@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+sum_expr:
+  sexpr: '(+ 1 2)'
+  parsed:
+    - s: "+"
+    - "1"
+    - "2"
+
+two:
+  sexpr: '2'
+  parsed:
+    - "2"

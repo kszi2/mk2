@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_01_154446) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_03_185406) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+  enable_extension "postgres_fdw"
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -69,6 +70,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_01_154446) do
     t.index ["course_id", "name"], name: "index_courseworks_on_course_id_and_name", unique: true
     t.index ["course_id"], name: "index_courseworks_on_course_id"
     t.index ["for_type_id"], name: "index_courseworks_on_for_type_id"
+  end
+
+  create_table "expressions", force: :cascade do |t|
+    t.string "sexpr"
+    t.jsonb "parsed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "free_days", force: :cascade do |t|
@@ -249,7 +257,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_01_154446) do
     t.bigint "coursework_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "group_id"
+    t.bigint "group_id", null: false
     t.index ["coursework_id"], name: "index_submissions_on_coursework_id"
     t.index ["student_id"], name: "index_submissions_on_student_id"
   end

@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "3.2.4"
+ruby "3.4.5"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 8.0.0"
@@ -87,8 +87,8 @@ gem "haml-rails", "~> 2.1"
 gem "view_component"
 
 # PDF generation
-gem "prawn", "~> 2.5"
-gem "responders", "~> 3.1"
+gem "ttfunk", "< 1.8.0"
+gem "prawn-rails", "~> 1.6.0"
 
 # HTTP requests
 gem 'faraday'
