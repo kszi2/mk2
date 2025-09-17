@@ -16,7 +16,7 @@ gem "puma", ">= 5.0"
 # gem "falcon", "~> 0.48.3"
 
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
-gem "jsbundling-rails"
+# gem "jsbundling-rails"
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
@@ -123,3 +123,11 @@ gem "devise-argon2", "~> 2.0"
 gem "pundit", "~> 2.4"
 
 gem "sxp", "~> 2.0"
+
+# OpenTelemetry
+gem "opentelemetry-sdk", "~> 1.8"
+gem "opentelemetry-logs-api", "~> 0.2.0"
+gem "opentelemetry-logs-sdk", "~> 0.3.0"
+gem "opentelemetry-exporter-otlp", "~> 0.30.0"
+gem "opentelemetry-exporter-otlp-logs", "~> 0.2.1"
+gem "opentelemetry-instrumentation-all", "~> 0.80.0"
