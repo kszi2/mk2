@@ -44,7 +44,7 @@ jobs:
           && bun run build
           && bun run build:css
           && bin/rake parallel:create
-          && bin/rake parallel:prepare
+          && bin/rake parallel:migrate
       - name: "Run tests"
         env:
           RAILS_ENV: test
