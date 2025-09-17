@@ -37,13 +37,12 @@ jobs:
       - name: "Prepare test"
         env:
           RAILS_ENV: test
+          OTEL_LOG_LEVEL: error
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
         run: >-
           bun install
           && bun run build
           && bun run build:css
-          && bin/rake parallel:create
-          && bin/rake parallel:migrate
           && bin/rake parallel:prepare
       - name: "Run tests"
         env:
