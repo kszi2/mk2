@@ -84,6 +84,8 @@
     <orderEntry type="library" scope="PROVIDED" name="fugit (v1.11.2, ruby-3.4.5-p51) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="globalid (v1.2.1, ruby-3.4.5-p51) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="good_job (v4.11.2, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="google-protobuf (v4.32.1, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="googleapis-common-protos-types (v1.21.0, ruby-3.4.5-p51) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="haml (v6.3.0, ruby-3.4.5-p51) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="haml-rails (v2.1.0, ruby-3.4.5-p51) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="htmlbeautifier (v1.4.3, ruby-3.4.5-p51) [gem]" level="application" />
@@ -96,7 +98,6 @@
     <orderEntry type="library" scope="PROVIDED" name="irb (v1.15.2, ruby-3.4.5-p51) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="jbuilder (v2.14.1, ruby-3.4.5-p51) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="jmespath (v1.6.2, ruby-3.4.5-p51) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="jsbundling-rails (v1.3.1, ruby-3.4.5-p51) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="json (v2.13.2, ruby-3.4.5-p51) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="kaminari (v1.2.2, ruby-3.4.5-p51) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="kaminari-actionview (v1.2.2, ruby-3.4.5-p51) [gem]" level="application" />
@@ -124,6 +125,63 @@
     <orderEntry type="library" scope="PROVIDED" name="net-smtp (v0.5.1, ruby-3.4.5-p51) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="nio4r (v2.7.4, ruby-3.4.5-p51) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="nokogiri (v1.18.10, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-api (v1.6.0, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-common (v0.22.0, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-exporter-otlp (v0.30.0, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-exporter-otlp-logs (v0.2.1, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-helpers-mysql (v0.2.0, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-helpers-sql (v0.1.1, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-helpers-sql-obfuscation (v0.3.0, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-action_mailer (v0.4.0, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-action_pack (v0.13.0, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-action_view (v0.9.0, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-active_job (v0.8.0, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-active_model_serializers (v0.22.0, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-active_record (v0.9.0, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-active_storage (v0.1.1, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-active_support (v0.8.0, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-all (v0.80.0, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-aws_lambda (v0.3.0, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-aws_sdk (v0.8.2, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-base (v0.23.0, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-bunny (v0.22.0, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-concurrent_ruby (v0.22.0, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-dalli (v0.27.3, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-delayed_job (v0.23.0, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-ethon (v0.23.1, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-excon (v0.24.0, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-faraday (v0.28.0, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-grape (v0.3.0, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-graphql (v0.29.0, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-grpc (v0.2.1, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-gruf (v0.3.0, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-http (v0.25.1, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-http_client (v0.24.0, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-httpx (v0.3.0, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-koala (v0.21.0, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-lmdb (v0.23.0, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-mongo (v0.23.0, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-mysql2 (v0.29.1, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-net_http (v0.23.1, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-pg (v0.30.1, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-que (v0.9.0, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-racecar (v0.4.0, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-rack (v0.27.1, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-rails (v0.37.0, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-rake (v0.3.1, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-rdkafka (v0.7.0, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-redis (v0.26.1, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-resque (v0.6.0, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-restclient (v0.24.0, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-ruby_kafka (v0.22.0, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-sidekiq (v0.26.1, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-sinatra (v0.26.0, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-instrumentation-trilogy (v0.61.1, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-logs-api (v0.2.0, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-logs-sdk (v0.3.0, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-registry (v0.4.0, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-sdk (v1.9.0, ruby-3.4.5-p51) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="opentelemetry-semantic_conventions (v1.36.0, ruby-3.4.5-p51) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="orm_adapter (v0.5.0, ruby-3.4.5-p51) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ostruct (v0.6.3, ruby-3.4.5-p51) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="parallel (v1.27.0, ruby-3.4.5-p51) [gem]" level="application" />

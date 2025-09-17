@@ -28,15 +28,21 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
 
       - run: chmod +x bin/* && sed -i "s/\r$//g" bin/* && sed -i 's/ruby\.exe$/ruby/' bin/*
 
-      - name: "Create test database"
+      - name: "Prepare test"
         env:
           RAILS_ENV: test
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
         run: >-
-          bin/rake parallel:create
+          bun install
+          && bun run build
+          && bun run build:css
+          && bin/rake parallel:create
           && bin/rake parallel:migrate
           && bin/rake parallel:prepare
       - name: "Run tests"
