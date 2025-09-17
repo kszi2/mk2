@@ -4,21 +4,25 @@
   - s.with_property :neptun
 
 - results = @student.results
-- @student.groups.each do |group|
-  - works = results[group.course][group]
-  .text-2xl.w-full.text-center= group.course.name
+- last_course_name = nil
+- @student.groups.joins(:course).order("courses.name", "groups.name").each do |group|
+  - if last_course_name != group.course.name
+    .flex.gap-6.my-4
+      .ml-8.grow.border-b-2{class: "border-onyx/90 -translate-y-[calc(50%-4px)]"}
+      .text-2xl.text-center{class: "px-4"}= last_course_name = group.course.name
+      .mr-8.grow.border-b-2{class: "border-onyx/90 -translate-y-[calc(50%-4px)]"}
   .pl-2
     %details.my-2{class: "group/group-rating", open: group.current?}
       %summary.py-2.px-3.rounded.border.border-surface-border.text-xl._(class="group-open")
-        %i.fa-regular.fa-chevron-right.h-fit.w-fit.mr-3{class:
-            "group-open/group-rating:rotate-90"
-          }
+        %i.fa-regular.fa-chevron-right.h-fit.w-fit.mr-3{class: "group-open/group-rating:rotate-90"}
         #{group.name} (#{group.semester_text})
 
-      .flex.flex-wrap.gap-4.my-2
-        - works.each do |work, result|
-          .flex.rounded.flex-col.border.border-surface-border.w-fit
-            .bg-surface-default.w-full.px-3.py-2.text-center= work
-            .flex.justify-center
-              %span= result[:achieved]
-              %span.select-none= "/#{result[:total]}"
+      - works = results&.dig(group.course, group) || []
+      - unless works.empty?
+        .flex.flex-wrap.gap-4.my-2
+          - works.each do |work, result|
+            .flex.rounded.flex-col.border.border-surface-border.w-fit
+              .bg-surface-default.w-full.px-3.py-2.text-center= work
+              .flex.justify-center
+                %span= result[:achieved]
+                %span.select-none= "/#{result[:total]}"
