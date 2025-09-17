@@ -8,4 +8,8 @@ class IndexController < ApplicationController
                 .where(first_date: current_semester)
                 .page(params[:page]).per(params[:per_page])
   end
+
+  def unauthorized
+    @back = params[:back] || root_path
+  end
 end

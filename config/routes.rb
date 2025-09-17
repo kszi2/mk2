@@ -6,6 +6,9 @@ Rails.application.routes.draw do
     mount Lookbook::Engine => "lookbook"
   end
 
+  # Fixing client side JS logging shenanigans
+  post "client_logs/log" => "client_logs#log", as: :client_logs_log
+
   get '/service-worker.js' => 'service_worker#service_worker'
   get '/manifest.json' => 'service_worker#manifest'
 
@@ -67,5 +70,6 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
+  get "/unauthorized"  => "index#unauthorized", as: :unauthorized
   root "index#index"
 end

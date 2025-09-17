@@ -14,6 +14,8 @@ class User < ApplicationRecord
   # TODO: a proper admin system
   def admin? = username == "admin"
 
+  def render_as = username
+
   private
 
   def confirmation_matches
