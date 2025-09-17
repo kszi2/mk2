@@ -45,7 +45,8 @@ RUN chmod +x bin/* && \
     sed -i 's/ruby\.exe$/ruby/' bin/*
 
 # Precompile everything
-RUN bun i --frozen-lockfile && bun run build && \
+RUN bun i --frozen-lockfile && \
+    bun run build && \
     bun run build:css && \
     bundle exec bootsnap precompile --gemfile && \
     bundle exec bootsnap precompile app/ lib/ && \
