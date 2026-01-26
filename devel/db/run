@@ -1,0 +1,10 @@
+#!/bin/sh
+
+exec 2>&1
+exec chpst -e env \
+  podman run --rm -it \
+    -p 5432:5432 \
+    -e TZ \
+    -e "POSTGRES_*" \
+    -v ../.data:/var/lib/postgresql/data \
+  docker.io/postgres:18-alpine

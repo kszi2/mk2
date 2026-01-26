@@ -1,0 +1,5 @@
+#!/bin/sh
+
+cd ../..
+exec 2>&1
+exec bun run build:css --watch
