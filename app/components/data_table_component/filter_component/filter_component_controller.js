@@ -7,7 +7,7 @@ export default class extends Controller {
     filters: Object,
     controller: String,
     field: String,
-    useful: { type: Boolean, default: false },
+    useful: {type: Boolean, default: false},
   };
 
   connect() {
@@ -50,7 +50,10 @@ export default class extends Controller {
 
   _getFilterParameters() {
     return "?"
-      + Object.entries(this.filtersValue).map(([field, vals]) =>
+      + Object
+        .entries(this.filtersValue)
+        .map(
+          ([field, vals]) =>
         vals.map(val => `f[${field}][]=${val}`).join("&")
       ).join("&")
   }
