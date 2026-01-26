@@ -1,0 +1,4 @@
+#!/bin/sh
+
+exec podman run --rm -it --network host \
+  docker.io/postgres:18-alpine pg_isready -h localhost -d mk2_development

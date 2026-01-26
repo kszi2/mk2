@@ -1,0 +1,10 @@
+#!/bin/sh
+
+exec 2>&1
+cd ../..
+
+SVDIR=./devel sv start db || exit 1
+
+./bin/rails db:prepare
+
+exec sleep inf

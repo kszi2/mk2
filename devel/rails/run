@@ -1,0 +1,10 @@
+#!/bin/sh
+
+cd ../..
+
+bundle install
+
+SVDIR=./devel sv check db || exit 1
+
+exec 2>&1
+exec ./bin/rails server

@@ -1,3 +1,4 @@
 [tools]
 bun = "1.3"
+podman = "latest"
 ruby = "4.0.1"

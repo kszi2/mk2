@@ -2,4 +2,7 @@
 
 cd ../..
 exec 2>&1
+
+bun install
+
 exec bun run build:css --watch

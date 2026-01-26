@@ -2,4 +2,8 @@
 
 cd ../..
 exec 2>&1
+
+SVDIR=./devel sv check css-build || exit 1
+[ -d node_modules ] || exit 1
+
 exec bun run build --watch
