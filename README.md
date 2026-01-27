@@ -42,6 +42,8 @@ mise tool.
 Running this will install the postgres container into the running user's podman
 image store.
 
-After that, `runsvdir devel` will launch all development services. If any need
-to be restarted, `SVDIR=./devel sv restart <name>` can be used, or just go and
-echo `restart` to the control pipe of the service.
+After that, `./devel/run.sh` will launch all development services. If any need
+to be restarted, `SVDIR=./devel/svc sv restart <name>` can be used, or just go
+and echo `restart` to the control pipe of the service.
+To view the logs, `./devel/readlog.sh` can be used; this follows the logs of all
+running services.
