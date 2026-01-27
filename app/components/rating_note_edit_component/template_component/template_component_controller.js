@@ -8,6 +8,6 @@ export default class extends Controller {
 
   setContentToTemplate() {
     console.log("setContentToTemplate", this.costValue);
-    this.templatesComponentOutlet.setContent($(this.dataTarget).text(), this.costValue);
+    this.templatesOutlet.setContent($(this.dataTarget).text(), this.costValue);
   }
 }

@@ -7,11 +7,11 @@ export default class extends Controller {
   static outlets = [ "rating-note-edit" ]
 
   connect() {
-    this.element.id = "_" + crypto.randomUUID();
+    this.element.id = this.element.id || "_" + crypto.randomUUID();
   }
 
   setContent(text, value) {
-    this.ratingNoteEditComponentOutlet.setContent(text, value);
+    this.ratingNoteEditOutlet.setContent(text, value);
   }
 
   async openListings() {

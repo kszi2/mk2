@@ -21,7 +21,7 @@ export default class extends Controller {
 
   endDrag() {
     this.activeValue = false;
-    this.ratingPointListingComponentOutlets.forEach(outlet => {
+    this.ratingPointListingOutlets.forEach(outlet => {
       outlet.dragEnded()
     })
   }
@@ -31,7 +31,7 @@ export default class extends Controller {
     droppedHelper.innerHTML = e.getData("text/html");
     const dropped = droppedHelper.firstChild;
 
-    this.ratingPointListingComponentOutlets
+    this.ratingPointListingOutlets
       .filter(x => x.isAfter(before))
       .forEach(x => {
         x.fadeOut();

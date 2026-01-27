@@ -46,12 +46,12 @@ export default class extends Controller {
     e.dataTransfer.effectAllowed = "move";
     e.dataTransfer.setData("text/html", this.dragenterAreaTarget.outerHTML);
 
-    this.dragManagerComponentOutlet.startDrag();
+    this.dragManagerOutlet.startDrag();
   }
 
   finalizeDrag() {
     this.draggedValue = false;
-    this.dragManagerComponentOutlet.endDrag();
+    this.dragManagerOutlet.endDrag();
   }
 
   allowDrop() {
@@ -61,7 +61,7 @@ export default class extends Controller {
   drop(e) {
     this.dragEnded();
     this.finalizeDrag();
-    this.dragManagerComponentOutlet.droppedBefore(this.dragenterAreaTarget, e.dataTransfer);
+    this.dragManagerOutlet.droppedBefore(this.dragenterAreaTarget, e.dataTransfer);
   }
 
   enterDragged(e) {
