@@ -1,5 +1,4 @@
 require "active_support/core_ext/integer/time"
-require_relative "./loggers"
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -59,9 +58,7 @@ Rails.application.configure do
   config.force_ssl = true
 
   # Log to STDOUT by default
-  config.logger = Loggers::OtelLogger.new(STDOUT)
-    .tap  { |logger| logger.formatter = ::Logger::Formatter.new }
-    .then { |logger| ActiveSupport::TaggedLogging.new(logger) }
+  config.logger = ActiveSupport::TaggedLogging.new(Logger.new(STDOUT))
 
   # Prepend all log lines with the following tags.
   config.log_tags = [ :request_id ]
