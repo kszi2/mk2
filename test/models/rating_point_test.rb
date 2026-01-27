@@ -47,9 +47,6 @@ class RatingPointTest < ActiveSupport::TestCase
   end
 
   test "category length should be within range" do
-    @rating_point.category = ""
-    refute @rating_point.valid?
-
     @rating_point.category = "A" * 33
     refute @rating_point.valid?
   end

@@ -10,30 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_03_185406) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_27_154103) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "postgres_fdw"
 
   create_table "active_storage_attachments", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "record_type", null: false
-    t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
+    t.string "name", null: false
+    t.bigint "record_id", null: false
+    t.string "record_type", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
   create_table "active_storage_blobs", force: :cascade do |t|
-    t.string "key", null: false
-    t.string "filename", null: false
-    t.string "content_type"
-    t.text "metadata"
-    t.string "service_name", null: false
     t.bigint "byte_size", null: false
     t.string "checksum"
+    t.string "content_type"
     t.datetime "created_at", null: false
+    t.string "filename", null: false
+    t.string "key", null: false
+    t.text "metadata"
+    t.string "service_name", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
@@ -44,121 +44,121 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_03_185406) do
   end
 
   create_table "course_types", force: :cascade do |t|
-    t.string "name", limit: 32, null: false
     t.bigint "course_id", null: false
     t.datetime "created_at", null: false
+    t.string "name", limit: 32, null: false
     t.datetime "updated_at", null: false
     t.index ["course_id"], name: "index_course_types_on_course_id"
   end
 
   create_table "courses", force: :cascade do |t|
-    t.string "name", limit: 32, null: false
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.bigint "default_rating_style_id"
+    t.string "name", limit: 32, null: false
+    t.datetime "updated_at", null: false
     t.index ["default_rating_style_id"], name: "index_courses_on_default_rating_style_id"
     t.index ["name"], name: "index_courses_on_name", unique: true
   end
 
   create_table "courseworks", force: :cascade do |t|
-    t.bigint "course_id", null: false
-    t.string "name", limit: 255, null: false
     t.boolean "active", default: true, null: false
+    t.bigint "course_id", null: false
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.bigint "for_type_id"
+    t.string "name", limit: 255, null: false
+    t.datetime "updated_at", null: false
     t.index ["course_id", "name"], name: "index_courseworks_on_course_id_and_name", unique: true
     t.index ["course_id"], name: "index_courseworks_on_course_id"
     t.index ["for_type_id"], name: "index_courseworks_on_for_type_id"
   end
 
   create_table "expressions", force: :cascade do |t|
-    t.string "sexpr"
-    t.jsonb "parsed"
     t.datetime "created_at", null: false
+    t.jsonb "parsed"
+    t.string "sexpr"
     t.datetime "updated_at", null: false
   end
 
   create_table "free_days", force: :cascade do |t|
-    t.string "name", limit: 64, null: false
-    t.date "from_day", null: false
-    t.date "to_day"
     t.datetime "created_at", null: false
+    t.date "from_day", null: false
+    t.string "name", limit: 64, null: false
+    t.date "to_day"
     t.datetime "updated_at", null: false
   end
 
   create_table "good_job_batches", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "callback_priority"
+    t.text "callback_queue_name"
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.text "description"
-    t.jsonb "serialized_properties"
+    t.datetime "discarded_at"
+    t.datetime "enqueued_at"
+    t.datetime "finished_at"
+    t.text "on_discard"
     t.text "on_finish"
     t.text "on_success"
-    t.text "on_discard"
-    t.text "callback_queue_name"
-    t.integer "callback_priority"
-    t.datetime "enqueued_at"
-    t.datetime "discarded_at"
-    t.datetime "finished_at"
+    t.jsonb "serialized_properties"
+    t.datetime "updated_at", null: false
   end
 
   create_table "good_job_executions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.uuid "active_job_id", null: false
-    t.text "job_class"
-    t.text "queue_name"
-    t.jsonb "serialized_params"
-    t.datetime "scheduled_at"
-    t.datetime "finished_at"
-    t.text "error"
-    t.integer "error_event", limit: 2
-    t.text "error_backtrace", array: true
-    t.uuid "process_id"
+    t.datetime "created_at", null: false
     t.interval "duration"
+    t.text "error"
+    t.text "error_backtrace", array: true
+    t.integer "error_event", limit: 2
+    t.datetime "finished_at"
+    t.text "job_class"
+    t.uuid "process_id"
+    t.text "queue_name"
+    t.datetime "scheduled_at"
+    t.jsonb "serialized_params"
+    t.datetime "updated_at", null: false
     t.index ["active_job_id", "created_at"], name: "index_good_job_executions_on_active_job_id_and_created_at"
     t.index ["process_id", "created_at"], name: "index_good_job_executions_on_process_id_and_created_at"
   end
 
   create_table "good_job_processes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.jsonb "state"
     t.integer "lock_type", limit: 2
+    t.jsonb "state"
+    t.datetime "updated_at", null: false
   end
 
   create_table "good_job_settings", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.text "key"
+    t.datetime "updated_at", null: false
     t.jsonb "value"
     t.index ["key"], name: "index_good_job_settings_on_key", unique: true
   end
 
   create_table "good_jobs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.text "queue_name"
-    t.integer "priority"
-    t.jsonb "serialized_params"
-    t.datetime "scheduled_at"
-    t.datetime "performed_at"
-    t.datetime "finished_at"
-    t.text "error"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.uuid "active_job_id"
-    t.text "concurrency_key"
-    t.text "cron_key"
-    t.uuid "retried_good_job_id"
-    t.datetime "cron_at"
-    t.uuid "batch_id"
     t.uuid "batch_callback_id"
-    t.boolean "is_discrete"
-    t.integer "executions_count"
-    t.text "job_class"
+    t.uuid "batch_id"
+    t.text "concurrency_key"
+    t.datetime "created_at", null: false
+    t.datetime "cron_at"
+    t.text "cron_key"
+    t.text "error"
     t.integer "error_event", limit: 2
+    t.integer "executions_count"
+    t.datetime "finished_at"
+    t.boolean "is_discrete"
+    t.text "job_class"
     t.text "labels", array: true
-    t.uuid "locked_by_id"
     t.datetime "locked_at"
+    t.uuid "locked_by_id"
+    t.datetime "performed_at"
+    t.integer "priority"
+    t.text "queue_name"
+    t.uuid "retried_good_job_id"
+    t.datetime "scheduled_at"
+    t.jsonb "serialized_params"
+    t.datetime "updated_at", null: false
     t.index ["active_job_id", "created_at"], name: "index_good_jobs_on_active_job_id_and_created_at"
     t.index ["batch_callback_id"], name: "index_good_jobs_on_batch_callback_id", where: "(batch_callback_id IS NOT NULL)"
     t.index ["batch_id"], name: "index_good_jobs_on_batch_id", where: "(batch_id IS NOT NULL)"
@@ -177,20 +177,20 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_03_185406) do
 
   create_table "groups", force: :cascade do |t|
     t.bigint "course_id", null: false
-    t.string "name", limit: 32, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.date "first_date", null: false
-    t.integer "repeat_times", default: 14, null: false
-    t.integer "day_difference", default: 7, null: false
     t.bigint "course_type_id"
+    t.datetime "created_at", null: false
+    t.integer "day_difference", default: 7, null: false
+    t.date "first_date", null: false
+    t.string "name", limit: 32, null: false
+    t.integer "repeat_times", default: 14, null: false
+    t.datetime "updated_at", null: false
     t.index ["course_id"], name: "index_groups_on_course_id"
     t.index ["course_type_id"], name: "index_groups_on_course_types_id"
   end
 
   create_table "groups_students", id: false, force: :cascade do |t|
-    t.bigint "student_id", null: false
     t.bigint "group_id", null: false
+    t.bigint "student_id", null: false
   end
 
   create_table "groups_teachers", id: false, force: :cascade do |t|
@@ -199,89 +199,89 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_03_185406) do
   end
 
   create_table "marked_points", force: :cascade do |t|
-    t.bigint "submission_id", null: false
-    t.bigint "rating_point_id", null: false
     t.datetime "created_at", null: false
+    t.bigint "rating_point_id", null: false
+    t.bigint "submission_id", null: false
     t.datetime "updated_at", null: false
     t.index ["rating_point_id"], name: "index_marked_points_on_rating_point_id"
     t.index ["submission_id"], name: "index_marked_points_on_submission_id"
   end
 
   create_table "marking_notes", force: :cascade do |t|
-    t.decimal "points_cost", precision: 8, scale: 1
-    t.string "reason"
+    t.datetime "created_at", null: false
     t.boolean "fixed"
     t.bigint "marked_point_id", null: false
-    t.datetime "created_at", null: false
+    t.decimal "points_cost", precision: 8, scale: 1
+    t.string "reason"
     t.datetime "updated_at", null: false
     t.index ["marked_point_id"], name: "index_marking_notes_on_marked_point_id"
   end
 
   create_table "pdf_data", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "name", limit: 255
+    t.datetime "updated_at", null: false
   end
 
   create_table "rating_points", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "description"
     t.integer "available_points", default: 0, null: false
+    t.string "category", limit: 32
     t.bigint "coursework_id", null: false
     t.datetime "created_at", null: false
+    t.string "description"
+    t.string "name", null: false
+    t.integer "ordering"
     t.datetime "updated_at", null: false
-    t.integer "ordering", null: false
-    t.string "category", limit: 32
     t.index ["coursework_id", "name"], name: "index_rating_points_on_coursework_id_and_name", unique: true
     t.index ["coursework_id"], name: "index_rating_points_on_coursework_id"
     t.unique_constraint ["coursework_id", "ordering"], deferrable: :deferred, name: "uq_cw_order"
   end
 
   create_table "rating_styles", force: :cascade do |t|
-    t.string "name", limit: 64, null: false
     t.datetime "created_at", null: false
+    t.string "name", limit: 64, null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_rating_styles_on_name", unique: true
   end
 
   create_table "students", force: :cascade do |t|
+    t.datetime "created_at", null: false
     t.string "name", limit: 255, null: false
     t.string "neptun", limit: 6, null: false
-    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["neptun"], name: "index_students_on_neptun", unique: true
   end
 
   create_table "submissions", force: :cascade do |t|
-    t.bigint "student_id", null: false
     t.bigint "coursework_id", null: false
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.bigint "group_id", null: false
+    t.bigint "student_id", null: false
+    t.datetime "updated_at", null: false
     t.index ["coursework_id"], name: "index_submissions_on_coursework_id"
     t.index ["student_id"], name: "index_submissions_on_student_id"
   end
 
   create_table "templates", force: :cascade do |t|
-    t.string "name", limit: 64, null: false
-    t.bigint "course_id"
-    t.string "data", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.integer "cost"
+    t.bigint "course_id"
+    t.datetime "created_at", null: false
+    t.string "data", null: false
+    t.string "name", limit: 64, null: false
+    t.datetime "updated_at", null: false
     t.index ["course_id"], name: "index_templates_on_course_id"
     t.index ["name"], name: "index_templates_on_name", unique: true
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "username", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.string "email"
     t.datetime "created_at", null: false
+    t.string "email"
+    t.string "encrypted_password", default: "", null: false
+    t.datetime "remember_created_at"
+    t.datetime "reset_password_sent_at"
+    t.string "reset_password_token"
     t.datetime "updated_at", null: false
+    t.string "username", default: "", null: false
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
   end

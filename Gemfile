@@ -59,8 +59,7 @@ group :development do
   gem "spring"
 
   # error pages
-  gem "better_errors"
-  gem "binding_of_caller"
+  # gem "better_errors"
 
   # react to file changes
   gem "listen"
