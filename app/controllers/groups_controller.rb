@@ -43,10 +43,16 @@ class GroupsController < ApplicationController
   end
 
   def add_teacher
-    @candidates = User.joins("LEFT JOIN groups_teachers ON groups_teachers.user_id = users.id")
-                      .where("COALESCE(groups_teachers.group_id, -99) <> :group_id", group_id: @group.id)
-                      .where("username <> 'admin'")
-                      .all
+    @candidates = User.find_by_sql([ <<~SQL.squish, { group_id: @group.id } ])
+      SELECT *
+      FROM users
+      WHERE id <> ALL (SELECT user_id
+                       FROM groups_teachers
+                       GROUP BY user_id
+                       HAVING :group_id = ANY (array_agg(group_id)))
+        AND username <> 'admin';
+    SQL
+
     if @candidates.empty?
       render "no_more_teachers"
     else
@@ -55,7 +61,7 @@ class GroupsController < ApplicationController
   end
 
   def associate_teacher
-    user_params = params.expect(group: [:user_id])
+    user_params = params.expect(group: [ :user_id ])
     teach = User.public_find(user_params[:user_id])
     @group.teachers << teach
     @group.save!
@@ -144,7 +150,7 @@ class GroupsController < ApplicationController
     end
   end
 
-  private
+private
 
   def parse_attendance_sheet_data
     date = Date.today
@@ -156,11 +162,11 @@ class GroupsController < ApplicationController
       end
     end
     sort = :name
-    if params[:sort].present? && params[:sort].in?(["name", "neptun"])
+    if params[:sort].present? && params[:sort].in?([ "name", "neptun" ])
       sort = params[:sort].to_sym
     end
 
-    [date, sort]
+    [ date, sort ]
   end
 
   def stage_students
@@ -172,7 +178,7 @@ class GroupsController < ApplicationController
       manual_neptuns = params[:manual_neptuns].upcase.split(";")
       manual_neptuns.each { |n| current_neptuns << n }
       Student.where(neptun: manual_neptuns).pluck(:name, :neptun).each do |name, neptun|
-        rendered_students << [name, neptun]
+        rendered_students << [ name, neptun ]
         next_neptuns << neptun.upcase
       end
     end
@@ -183,7 +189,7 @@ class GroupsController < ApplicationController
         importer = Importers::ImporterFactory.build_importer_by_heuristic(file)
         found, missing = importer.existing_students
         found.each do |st|
-          rendered_students << [st.name, st.neptun]
+          rendered_students << [ st.name, st.neptun ]
           next_neptuns << st.neptun.upcase
         end
         missing.each do |st|

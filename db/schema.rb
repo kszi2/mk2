@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_27_154103) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_15_171119) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "postgres_fdw"
@@ -196,6 +196,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_27_154103) do
   create_table "groups_teachers", id: false, force: :cascade do |t|
     t.bigint "group_id", null: false
     t.bigint "user_id", null: false
+    t.index ["group_id", "user_id"], name: "index_groups_teachers_on_group_id_and_user_id", unique: true
   end
 
   create_table "marked_points", force: :cascade do |t|
@@ -296,6 +297,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_27_154103) do
   add_foreign_key "groups", "courses", on_delete: :cascade
   add_foreign_key "groups_students", "groups", on_delete: :cascade
   add_foreign_key "groups_students", "students", on_delete: :cascade
+  add_foreign_key "groups_teachers", "groups"
+  add_foreign_key "groups_teachers", "users"
   add_foreign_key "marked_points", "rating_points", on_delete: :cascade
   add_foreign_key "marked_points", "submissions", on_delete: :cascade
   add_foreign_key "marking_notes", "marked_points", on_delete: :cascade
