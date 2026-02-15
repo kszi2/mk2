@@ -5,8 +5,9 @@
   - s.with_property :semester, value: @group.semester_text
 
   - s.with_custom name: "Remaining dates" do
-    - @group.dates_for_class.filter { |date| date >= Date.today }.each do |date|
-      = render TagComponent.new(text: date.strftime("%F"))
+    .mb-2.w-full.flex.gap-x-2.flex-wrap
+      - @group.dates_for_class.filter { |date| date >= Date.today }.each do |date|
+        = render TagComponent.new(text: date.strftime("%F"))
 
   - s.with_custom name: "Attendance" do
     .flex.gap-3.flex-wrap
