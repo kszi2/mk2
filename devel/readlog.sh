@@ -57,12 +57,19 @@ function log_svc() {
   done
 }
 
+function cleanup() {
+  tput rmcup
+  kill 0
+}
+
 : ${COLUMNS:=$(tput cols)}
 
-trap "kill 0" EXIT || fatal "cannot trap on EXIT"
+trap cleanup EXIT || fatal "cannot trap on EXIT"
 
 test -d devel || fatal "not run from project root: ./devel is not a directory"
 test -d devel/log || fatal "not run from project root: ./devel/log is not a directory"
+
+tput smcup
 
 COLOR_IDX=0
 for svc in ./devel/log/*
