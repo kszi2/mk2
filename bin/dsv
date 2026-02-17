@@ -1,0 +1,11 @@
+#!/bin/sh
+
+fatal() {
+  printf >&2 "fatal: %s" "$1"
+  exit 1
+}
+
+test -d devel || fatal "not run from project root: ./devel is not a directory"
+test -d devel/svc || fatal "not run from project root: ./devel/log is not a directory"
+
+SVDIR=./devel/svc sv "$@"

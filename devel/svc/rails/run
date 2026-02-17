@@ -6,5 +6,6 @@ cd ../../..
 bundle install
 
 SVDIR=./devel/svc sv check db || exit 1
+SVDIR=./devel/svc sv check db-bootstrap || exit 1
 
 exec ./bin/rails server
