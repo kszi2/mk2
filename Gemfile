@@ -126,3 +126,5 @@ gem "pundit", "~> 2.4"
 gem "sxp", "~> 2.0"
 
 gem "csv", "~> 3.3"
+
+gem "active_record_union", "~> 1.4"

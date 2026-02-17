@@ -35,6 +35,7 @@
     <orderEntry type="library" scope="PROVIDED" name="actionpack (v8.1.2, mise: 4.0.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="actiontext (v8.1.2, mise: 4.0.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="actionview (v8.1.2, mise: 4.0.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="active_record_union (v1.4.0, mise: 4.0.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activejob (v8.1.2, mise: 4.0.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activemodel (v8.1.2, mise: 4.0.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activerecord (v8.1.2, mise: 4.0.1) [gem]" level="application" />

@@ -5,7 +5,10 @@ class StudentsController < ApplicationController
 
   # GET /students or /students.json
   def index
-    @students = Student.order(:name).page params[:page]
+    @students = current_user.known_students
+                            .order(:name)
+                            .page(params[:page])
+                            .per(params[:per_page] || 50)
   end
 
   # GET /students/1 or /students/1.json
@@ -22,7 +25,6 @@ class StudentsController < ApplicationController
   end
 
   def import
-
   end
 
   def bulk_create

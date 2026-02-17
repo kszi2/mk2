@@ -11,12 +11,19 @@ class User < ApplicationRecord
   has_and_belongs_to_many :taught_groups, class_name: Group.name, join_table: "groups_teachers"
   before_validation :remove_blank_email
 
+  def known_students
+    return Student if admin?
+
+    Student.joins(groups: [ :teachers ]).where(users: { id: self.id })
+           .union(Student.joins(groups: [ :course ]).where(course: { privacy_preserving: false }))
+  end
+
   # TODO: a proper admin system
   def admin? = username == "admin"
 
   def render_as = username
 
-  private
+private
 
   def confirmation_matches
     return if password == password_confirmation

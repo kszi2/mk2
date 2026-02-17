@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourcePerFileMappings">
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/da718f21-fa7b-4a2b-9999-29bd85d2ba9e/console.sql" value="da718f21-fa7b-4a2b-9999-29bd85d2ba9e" />
     <file url="file://$PROJECT_DIR$/app/controllers/groups_controller.rb" value="da718f21-fa7b-4a2b-9999-29bd85d2ba9e" />
     <file url="file://$PROJECT_DIR$/db/migrate/20260215165445_enforce_unique_group_teacher_assoc_numericality.rb" value="da718f21-fa7b-4a2b-9999-29bd85d2ba9e" />
   </component>
