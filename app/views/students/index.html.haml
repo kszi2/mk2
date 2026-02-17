@@ -1,7 +1,8 @@
 %h1.text-2xl Listing students
 
-.w-full.my-4
-  = turbo_frame_tag "student-imports", class: "block w-full", src: import_students_path
+- if policy(Student).import?
+  .w-full.my-4
+    = turbo_frame_tag "student-imports", class: "block w-full", src: import_students_path
 
 = render DataTableComponent.new(objects: @students,
                                 type: Student,

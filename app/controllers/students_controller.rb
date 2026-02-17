@@ -5,30 +5,35 @@ class StudentsController < ApplicationController
 
   # GET /students or /students.json
   def index
-    @students = current_user.known_students
-                            .order(:name)
-                            .page(params[:page])
-                            .per(params[:per_page] || 50)
+    @students = policy_scope(Student)
+                  .order(:name)
+                  .page(params[:page])
+                  .per(params[:per_page] || 50)
   end
 
   # GET /students/1 or /students/1.json
   def show
+    authorize @student
   end
 
   # GET /students/new
   def new
+    authorize Student
     @student = Student.new
   end
 
   # GET /students/1/edit
   def edit
+    authorize @student
   end
 
   def import
+    authorize Student
   end
 
   def bulk_create
     @invalid_format = false
+    authorize Student
 
     file = params.require('file')
     importer = Importers::ImporterFactory.build_importer_by_heuristic(file)
@@ -60,6 +65,7 @@ class StudentsController < ApplicationController
   # POST /students or /students.json
   def create
     @student = Student.new(student_params)
+    authorize @student
 
     respond_to do |format|
       if @student.save
@@ -74,6 +80,7 @@ class StudentsController < ApplicationController
 
   # PATCH/PUT /students/1 or /students/1.json
   def update
+    authorize @student
     respond_to do |format|
       if @student.update(student_params)
         format.html { redirect_to student_url(@student), notice: "Student was successfully updated." }
@@ -87,6 +94,7 @@ class StudentsController < ApplicationController
 
   # DELETE /students/1 or /students/1.json
   def destroy
+    authorize @student
     @student.destroy!
 
     respond_to do |format|
@@ -95,7 +103,7 @@ class StudentsController < ApplicationController
     end
   end
 
-  private
+private
 
   def set_import_status
     @from_import = false

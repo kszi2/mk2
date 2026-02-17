@@ -34,7 +34,5 @@ class UserPolicy < ApplicationPolicy
     user.username == record.username
   end
 
-  def admin?
-    user.username == "admin"
-  end
+  delegate :admin?, to: :user
 end
