@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 ruby "4.0.1"
 
-gem "rack", "~> 3.2.2"
+gem "rack", "~> 3.2.5"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 8.1.2"
 
@@ -98,6 +98,8 @@ gem 'httpx'
 
 gem "good_job", "~> 4.2"
 
+gem "nokogiri", "~> 1.19.1"
+
 # Pagination
 gem "kaminari", "~> 1.2"
 
@@ -128,3 +130,5 @@ gem "sxp", "~> 2.0"
 gem "csv", "~> 3.3"
 
 gem "active_record_union", "~> 1.4"
+
+
