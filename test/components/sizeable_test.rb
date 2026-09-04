@@ -34,7 +34,7 @@ class SizeableTest < ActiveSupport::TestCase
   end
 
   test "size_style raises for invalid size" do
-    assert_raises ArgumentError, /my_size_value/ do
+    assert_raises ArgumentError, match: /my_size_value/ do
       Sut.new(:my_size_value).size_styles
     end
   end

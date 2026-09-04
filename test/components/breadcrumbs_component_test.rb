@@ -4,13 +4,13 @@ require 'test_helper'
 
 class BreadcrumbsComponentTest < ViewComponent::TestCase
   test "non-array breadcrumbs component raises on init" do
-    assert_raises ArgumentError, /Array/ do
+    assert_raises ArgumentError, match: /Array/ do
       BreadcrumbsComponent.new(path: "string")
     end
   end
 
   test "empty breadcrumbs component raises on init" do
-    assert_raises ArgumentError, /empty/ do
+    assert_raises ArgumentError, match: /empty/ do
       BreadcrumbsComponent.new(path: [])
     end
   end
